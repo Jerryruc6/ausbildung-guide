@@ -10,6 +10,9 @@
   --cream:#f4f1e6; --cream2:#ece8d8; --olive:#161a10; --olive2:#1e2416; --olive3:#252c1b;
   --ink:#161a10; --paper:#f4f1e6; --mut:#5f6455; --mut-d:#a2a793;
   --blue:#2244ff; --blue-d:#1a33c2; --blue-soft:rgba(34,68,255,.12);
+  --green:#0f7b4d; --green-soft:rgba(15,123,77,.12); --purple:#7048e8; --purple-soft:rgba(112,72,232,.12);
+  --teal:#0b7285; --teal-soft:rgba(11,114,133,.12); --orange:#e8590c; --orange-soft:rgba(232,89,12,.12);
+  --pink:#d6336c; --pink-soft:rgba(214,51,108,.12); --amber:#e67700; --amber-soft:rgba(230,119,0,.12); --red:#d70015;
   --line:rgba(22,26,16,.18); --line-d:rgba(244,241,230,.16);
   --disp:"Arial Narrow","Helvetica Neue",Helvetica,Arial,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
   --serif:Didot,"Bodoni MT","Playfair Display",Georgia,"Songti SC",serif;
@@ -28,7 +31,7 @@ img{max-width:100%}
 :focus-visible{outline:3px solid var(--blue);outline-offset:2px}
 
 /* ---------- loader ---------- */
-#loader{position:fixed;inset:0;z-index:200;background:var(--olive);color:var(--paper);display:flex;align-items:center;justify-content:center;transition:transform .7s var(--ease);cursor:pointer}
+#loader{position:fixed;inset:0;z-index:200;background:var(--cream);color:var(--ink);display:flex;align-items:center;justify-content:center;transition:transform .7s var(--ease);cursor:pointer}
 #loader.done{transform:translateY(-101%)}
 .loader-in{text-align:center;padding:0 20px}
 .loader-word{font-family:var(--disp);font-weight:900;font-size:clamp(44px,11vw,110px);letter-spacing:.02em;line-height:1;display:flex;justify-content:center}
@@ -36,8 +39,8 @@ img{max-width:100%}
 .loader-word span:nth-child(1){animation-delay:.05s}.loader-word span:nth-child(2){animation-delay:.1s}.loader-word span:nth-child(3){animation-delay:.15s}.loader-word span:nth-child(4){animation-delay:.2s}.loader-word span:nth-child(5){animation-delay:.25s}.loader-word span:nth-child(6){animation-delay:.3s}.loader-word span:nth-child(7){animation-delay:.35s}.loader-word span:nth-child(8){animation-delay:.4s}.loader-word span:nth-child(9){animation-delay:.45s}.loader-word span:nth-child(10){animation-delay:.5s}
 @keyframes lwIn{to{opacity:1;transform:none}}
 .loader-word .lb{color:var(--blue)}
-.loader-sub{margin-top:18px;font-size:13px;letter-spacing:.22em;color:var(--mut-d);text-transform:uppercase}
-.loader-bar{width:min(320px,70vw);height:2px;background:rgba(244,241,230,.2);margin:26px auto 0;overflow:hidden}
+.loader-sub{margin-top:18px;font-size:13px;letter-spacing:.22em;color:var(--mut);text-transform:uppercase}
+.loader-bar{width:min(320px,70vw);height:2px;background:rgba(22,26,16,.14);margin:26px auto 0;overflow:hidden}
 .loader-bar span{display:block;height:100%;width:0;background:var(--blue);transition:width .9s var(--ease)}
 
 /* ---------- fixed chrome: progress, cursor, to-top ---------- */
@@ -54,41 +57,41 @@ img{max-width:100%}
 #toTop:hover{background:var(--blue);color:#fff;transform:translateY(-3px)}
 
 /* ---------- header ---------- */
-.site-header{position:sticky;top:0;z-index:100;background:rgba(22,26,16,.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);color:var(--paper);border-bottom:1px solid var(--line-d)}
+.site-header{position:sticky;top:0;z-index:100;background:rgba(244,241,230,.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);color:var(--ink);border-bottom:1px solid var(--line)}
 .site-header-in{max-width:1440px;margin:0 auto;padding:0 24px}
 .brand-row{display:flex;align-items:center;gap:16px;min-height:64px}
-.brand{background:none;border:0;color:var(--paper);font-family:var(--disp);font-weight:900;font-size:24px;letter-spacing:.02em;text-transform:uppercase;padding:8px 0;transition:color .2s}
+.brand{background:none;border:0;color:var(--ink);font-family:var(--disp);font-weight:900;font-size:24px;letter-spacing:.02em;text-transform:uppercase;padding:8px 0;transition:color .2s}
 .brand b{color:var(--blue);font-weight:900}
 .brand:hover{color:var(--blue)}
-.brand-tag{font-size:12px;letter-spacing:.14em;color:var(--mut-d);text-transform:uppercase}
-.brand-date{margin-left:auto;font-size:12px;letter-spacing:.1em;color:var(--mut-d);border:1px solid var(--line-d);padding:6px 10px;border-radius:999px;white-space:nowrap}
-.nav-toggle{display:none;background:none;border:1px solid var(--line-d);width:44px;height:44px;border-radius:8px;position:relative;flex:0 0 auto}
-.nav-toggle span{position:absolute;left:11px;right:11px;height:2px;background:var(--paper);transition:transform .3s,top .3s,opacity .2s}
+.brand-tag{font-size:12px;letter-spacing:.14em;color:var(--mut);text-transform:uppercase}
+.brand-date{margin-left:auto;font-size:12px;letter-spacing:.1em;color:var(--mut);border:1px solid var(--line);padding:6px 10px;border-radius:999px;white-space:nowrap}
+.nav-toggle{display:none;background:none;border:1px solid var(--line);width:44px;height:44px;border-radius:8px;position:relative;flex:0 0 auto}
+.nav-toggle span{position:absolute;left:11px;right:11px;height:2px;background:var(--ink);transition:transform .3s,top .3s,opacity .2s}
 .nav-toggle span:nth-child(1){top:16px}.nav-toggle span:nth-child(2){top:21px}.nav-toggle span:nth-child(3){top:26px}
 .nav-toggle:hover{border-color:var(--blue)}
 .nav-toggle:hover span{background:var(--blue)}
 .site-nav{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none;padding-bottom:2px}
 .site-nav::-webkit-scrollbar{display:none}
-.site-nav button{background:none;border:0;color:var(--mut-d);font-size:14px;font-weight:600;padding:12px 12px 13px;position:relative;white-space:nowrap;transition:color .2s}
+.site-nav button{background:none;border:0;color:var(--mut);font-size:14px;font-weight:600;padding:12px 12px 13px;position:relative;white-space:nowrap;transition:color .2s}
 .site-nav button::after{content:"";position:absolute;left:12px;right:12px;bottom:6px;height:3px;background:var(--blue);transform:scaleX(0);transform-origin:left;transition:transform .35s var(--ease)}
-.site-nav button:hover{color:var(--paper)}
+.site-nav button:hover{color:var(--ink)}
 .site-nav button:hover::after{transform:scaleX(1)}
-.site-nav button.on{color:var(--paper)}
+.site-nav button.on{color:var(--ink)}
 .site-nav button.on::after{transform:scaleX(1)}
 
 /* ---------- fullscreen menu ---------- */
-.fs-menu{position:fixed;inset:0;z-index:130;background:var(--olive);color:var(--paper);display:flex;transform:translateY(-102%);transition:transform .6s cubic-bezier(.76,0,.24,1);visibility:hidden}
+.fs-menu{position:fixed;inset:0;z-index:130;background:var(--cream);color:var(--ink);display:flex;transform:translateY(-102%);transition:transform .6s cubic-bezier(.76,0,.24,1);visibility:hidden}
 .fs-menu.open{transform:none;visibility:visible}
-.fs-wall{flex:0 0 34%;border-right:1px solid var(--line-d);padding:90px 28px 28px;position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between}
-.fs-wall-big{font-family:var(--disp);font-weight:900;font-size:clamp(48px,7vw,110px);line-height:.9;color:transparent;-webkit-text-stroke:1.5px rgba(244,241,230,.35);writing-mode:vertical-rl;letter-spacing:.04em}
-.fs-wall-stats{font-size:13px;letter-spacing:.18em;color:var(--mut-d);text-transform:uppercase;line-height:2}
+.fs-wall{flex:0 0 34%;border-right:1px solid var(--line);padding:90px 28px 28px;position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between}
+.fs-wall-big{font-family:var(--disp);font-weight:900;font-size:clamp(48px,7vw,110px);line-height:.9;color:transparent;-webkit-text-stroke:1.5px rgba(22,26,16,.32);writing-mode:vertical-rl;letter-spacing:.04em}
+.fs-wall-stats{font-size:13px;letter-spacing:.18em;color:var(--mut);text-transform:uppercase;line-height:2}
 .fs-wall-stats b{color:var(--blue);font-size:22px;font-family:var(--disp);letter-spacing:0;display:block}
 .fs-nav{flex:1;padding:80px 28px 28px;display:flex;flex-direction:column;justify-content:center;gap:2px;overflow-y:auto}
-.fs-nav button{display:flex;align-items:baseline;gap:14px;background:none;border:0;border-bottom:1px solid var(--line-d);color:var(--paper);text-align:left;padding:10px 4px;font-family:var(--disp);font-weight:900;font-size:clamp(26px,4.6vh,40px);letter-spacing:.01em;opacity:0;transform:translateY(24px);transition:opacity .45s var(--ease),transform .45s var(--ease),color .2s,padding-left .3s var(--ease)}
+.fs-nav button{display:flex;align-items:baseline;gap:14px;background:none;border:0;border-bottom:1px solid var(--line);color:var(--ink);text-align:left;padding:10px 4px;font-family:var(--disp);font-weight:900;font-size:clamp(26px,4.6vh,40px);letter-spacing:.01em;opacity:0;transform:translateY(24px);transition:opacity .45s var(--ease),transform .45s var(--ease),color .2s,padding-left .3s var(--ease)}
 .fs-menu.open .fs-nav button{opacity:1;transform:none}
 .fs-nav button i{font-style:normal;font-family:var(--sans);font-size:12px;color:var(--blue);letter-spacing:.1em}
 .fs-nav button:hover{color:var(--blue);padding-left:18px}
-.fs-close{position:absolute;top:14px;right:14px;z-index:2;width:48px;height:48px;border-radius:50%;border:1.5px solid var(--line-d);background:none;color:var(--paper);font-size:18px;transition:transform .3s var(--spring),border-color .2s,color .2s}
+.fs-close{position:absolute;top:14px;right:14px;z-index:2;width:48px;height:48px;border-radius:50%;border:1.5px solid var(--line);background:none;color:var(--ink);font-size:18px;transition:transform .3s var(--spring),border-color .2s,color .2s}
 .fs-close:hover{transform:rotate(90deg);border-color:var(--blue);color:var(--blue)}
 
 /* ---------- sections & transitions ---------- */
@@ -106,10 +109,10 @@ main{display:block}
 [data-reveal].in{opacity:1;transform:none}
 
 /* ---------- hero ---------- */
-.hero{background:var(--olive);color:var(--paper);position:relative;overflow:hidden}
-.hero-vt{position:absolute;right:18px;top:50%;transform:translateY(-50%);writing-mode:vertical-rl;font-family:var(--disp);font-weight:900;font-size:13px;letter-spacing:.5em;color:rgba(244,241,230,.28);white-space:nowrap}
+.hero{background:#fff;color:var(--ink);position:relative;overflow:hidden}
+.hero-vt{position:absolute;right:18px;top:50%;transform:translateY(-50%);writing-mode:vertical-rl;font-family:var(--disp);font-weight:900;font-size:13px;letter-spacing:.5em;color:rgba(22,26,16,.22);white-space:nowrap}
 .hero-in{max-width:1200px;margin:0 auto;padding:84px 24px 64px;position:relative}
-.hero-kicker{font-size:12px;font-weight:700;letter-spacing:.24em;color:var(--mut-d);text-transform:uppercase;display:flex;align-items:center;gap:10px}
+.hero-kicker{font-size:12px;font-weight:700;letter-spacing:.24em;color:var(--mut);text-transform:uppercase;display:flex;align-items:center;gap:10px}
 .hk-dot{width:10px;height:10px;background:var(--blue);display:inline-block;animation:blink 1.6s infinite}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.25}}
 .hero-title{font-family:var(--disp);font-weight:900;line-height:.98;margin:26px 0 0;letter-spacing:-.01em;text-transform:uppercase}
@@ -124,29 +127,32 @@ main{display:block}
 .ht-serif em{font-style:italic;color:var(--blue)}
 .ht-dot{color:var(--blue)}
 .hero-script{font-family:var(--script);font-size:clamp(22px,3.4vw,34px);color:var(--blue);transform:rotate(-2deg);margin:18px 0 0 4px}
-.hero .lead{max-width:640px;color:var(--mut-d);font-size:18px;margin:26px 0 0}
-.hero-stats{display:flex;flex-wrap:wrap;gap:0;margin-top:44px;border-top:1px solid var(--line-d);border-bottom:1px solid var(--line-d)}
-.hstat{flex:1;min-width:160px;padding:22px 22px 22px 0;border-right:1px solid var(--line-d)}
+.hero .lead{max-width:640px;color:var(--mut);font-size:18px;margin:26px 0 0}
+.hero-stats{display:flex;flex-wrap:wrap;gap:0;margin-top:44px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.hstat{flex:1;min-width:160px;padding:22px 22px 22px 0;border-right:1px solid var(--line)}
 .hstat:last-child{border-right:0}
-.hnum{font-family:var(--disp);font-weight:900;font-size:clamp(38px,5vw,56px);line-height:1;color:var(--paper);font-variant-numeric:tabular-nums}
+.hnum{font-family:var(--disp);font-weight:900;font-size:clamp(38px,5vw,56px);line-height:1;color:var(--ink);font-variant-numeric:tabular-nums}
+.hstat:nth-child(1) .hnum{color:var(--green)}
 .hstat:nth-child(2) .hnum{color:var(--blue)}
-.hlbl{font-size:12px;letter-spacing:.14em;color:var(--mut-d);text-transform:uppercase;margin-top:8px}
+.hstat:nth-child(3) .hnum{color:var(--purple)}
+.hstat:nth-child(4) .hnum{color:var(--orange)}
+.hlbl{font-size:12px;letter-spacing:.14em;color:var(--mut);text-transform:uppercase;margin-top:8px}
 .hero-cta-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:36px}
 .btn-cta{background:var(--blue);color:#fff;border:0;font-weight:800;font-size:16px;padding:16px 26px;border-radius:999px;transition:transform .25s var(--spring),box-shadow .25s;box-shadow:0 0 0 0 rgba(34,68,255,.4)}
 .btn-cta:hover{transform:translateY(-3px) scale(1.02);box-shadow:0 14px 34px rgba(34,68,255,.45)}
 .btn-cta .arr{display:inline-block;transition:transform .25s var(--ease)}
 .btn-cta:hover .arr{transform:translateX(5px)}
-.btn-ghost{background:transparent;color:var(--paper);border:1.5px solid var(--line-d);font-weight:700;font-size:16px;padding:16px 26px;border-radius:999px;transition:border-color .2s,color .2s,transform .25s var(--spring)}
+.btn-ghost{background:transparent;color:var(--ink);border:1.5px solid var(--line);font-weight:700;font-size:16px;padding:16px 26px;border-radius:999px;transition:border-color .2s,color .2s,transform .25s var(--spring)}
 .btn-ghost:hover{border-color:var(--blue);color:var(--blue);transform:translateY(-3px)}
 .hero-next{margin-top:44px;border:1px solid var(--blue);padding:22px 24px;max-width:560px;position:relative;background:rgba(34,68,255,.07);transition:transform .3s var(--ease),box-shadow .3s}
 .hero-next:hover{transform:translateY(-3px);box-shadow:0 18px 40px rgba(0,0,0,.35)}
 .hn-tag{font-size:11px;font-weight:800;letter-spacing:.26em;color:var(--blue)}
 .hn-title{font-family:var(--disp);font-weight:900;font-size:26px;margin-top:8px;text-transform:uppercase}
 .hn-cd{display:flex;gap:18px;margin-top:12px}
-.hn-cd span,.rc-countdown span{font-size:12px;color:var(--mut-d);letter-spacing:.08em}
-.hn-cd b,.rc-countdown b{display:block;font-family:var(--disp);font-weight:900;font-size:34px;line-height:1;color:var(--paper);font-variant-numeric:tabular-nums}
+.hn-cd span,.rc-countdown span{font-size:12px;color:var(--mut);letter-spacing:.08em}
+.hn-cd b,.rc-countdown b{display:block;font-family:var(--disp);font-weight:900;font-size:34px;line-height:1;color:var(--ink);font-variant-numeric:tabular-nums}
 .hn-cd i,.rc-countdown i{font-style:normal}
-.hn-note{margin-top:12px;font-size:13px;color:var(--mut-d)}
+.hn-note{margin-top:12px;font-size:13px;color:var(--mut)}
 
 /* ---------- marquee ---------- */
 .marquee{background:var(--blue);color:#fff;overflow:hidden;padding:12px 0}
@@ -169,20 +175,20 @@ main{display:block}
 .block p,.block li{font-size:17px}
 .block b{font-weight:700}
 .bleed{margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw);padding-left:max(24px,calc(50vw - 600px));padding-right:max(24px,calc(50vw - 600px))}
-.block.alt{background:var(--olive);color:var(--paper);margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw);padding-left:max(24px,calc(50vw - 600px));padding-right:max(24px,calc(50vw - 600px))}
-.block.alt h2,.block.alt h3{color:var(--paper)}
-.block.alt p,.block.alt li{color:#cfd2c2}
-.block.alt b{color:var(--paper)}
-.block.alt .callout{background:var(--olive2);border-color:var(--line-d);color:var(--paper)}
-.block.alt .callout p{color:#cfd2c2}
-.block.alt table.g-tbl th{color:var(--mut-d);border-color:var(--line-d)}
-.block.alt table.g-tbl td{border-color:var(--line-d);color:#dfe1d2}
+.block.alt{background:var(--cream2);color:var(--ink);margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw);padding-left:max(24px,calc(50vw - 600px));padding-right:max(24px,calc(50vw - 600px))}
+.block.alt h2,.block.alt h3{color:var(--ink)}
+.block.alt p,.block.alt li{color:var(--mut)}
+.block.alt b{color:var(--ink)}
+.block.alt .callout{background:#fff;border-color:var(--line);color:var(--ink)}
+.block.alt .callout p{color:var(--mut)}
+.block.alt table.g-tbl th{color:var(--mut);border-color:var(--line)}
+.block.alt table.g-tbl td{border-color:var(--line);color:var(--ink)}
 .g-sec{padding:34px 0}
-.g-sec.alt{background:var(--olive);color:var(--paper);margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw);padding-left:max(24px,calc(50vw - 600px));padding-right:max(24px,calc(50vw - 600px))}
-.g-sec.alt h3{color:var(--paper)}
-.g-sec.alt p,.g-sec.alt li{color:#cfd2c2}
-.g-sec.alt b{color:var(--paper)}
-.g-sec.alt .callout{background:var(--olive2);border-color:var(--line-d)}
+.g-sec.alt{background:var(--cream2);color:var(--ink);margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw);padding-left:max(24px,calc(50vw - 600px));padding-right:max(24px,calc(50vw - 600px))}
+.g-sec.alt h3{color:var(--ink)}
+.g-sec.alt p,.g-sec.alt li{color:var(--mut)}
+.g-sec.alt b{color:var(--ink)}
+.g-sec.alt .callout{background:#fff;border-color:var(--line)}
 .g-sec h3{font-family:var(--disp);font-weight:900;font-size:24px;text-transform:uppercase;letter-spacing:.01em;margin:0 0 14px}
 .g-sec h3 .em{font-family:var(--serif);font-style:italic;text-transform:none;color:var(--blue);font-weight:400}
 .g-head{padding:56px 0 8px}
@@ -251,16 +257,16 @@ ol.steps ul{margin:10px 0 0;padding-left:20px}
 .top-row h1{font-family:var(--disp);font-weight:900;font-size:clamp(36px,6vw,68px);line-height:1;text-transform:uppercase;margin:0;letter-spacing:-.01em}
 .top-sub{display:block;margin-top:12px;color:var(--mut);font-size:15px}
 .top-sub b{color:var(--blue)}
-.low-switch{display:flex;gap:14px;align-items:flex-start;width:100%;text-align:left;background:var(--olive);color:var(--paper);border:0;padding:20px 22px;margin:28px 0;transition:transform .25s var(--spring),box-shadow .25s}
+.low-switch{display:flex;gap:14px;align-items:flex-start;width:100%;text-align:left;background:#fff;color:var(--ink);border:1.5px solid var(--blue);padding:20px 22px;margin:28px 0;transition:transform .25s var(--spring),box-shadow .25s}
 .low-switch:hover{transform:translateY(-2px);box-shadow:0 14px 30px rgba(22,26,16,.35)}
 .low-switch[aria-pressed="false"]{background:var(--cream2);color:var(--ink);border:1px solid var(--line)}
-.sw-track{flex:0 0 52px;height:28px;border-radius:999px;background:rgba(244,241,230,.25);position:relative;margin-top:2px;transition:background .3s}
+.sw-track{flex:0 0 52px;height:28px;border-radius:999px;background:var(--blue);position:relative;margin-top:2px;transition:background .3s}
 .sw-knob{position:absolute;top:3px;left:3px;width:22px;height:22px;border-radius:50%;background:var(--blue);transition:left .35s var(--spring),transform .35s var(--spring)}
 .low-switch[aria-pressed="true"] .sw-knob{left:27px;background:#fff}
 .low-switch[aria-pressed="false"] .sw-track{background:rgba(22,26,16,.15)}
 .low-switch[aria-pressed="false"] .sw-knob{background:var(--blue)}
 .sw-title{font-weight:800;font-size:16px;display:block}
-.sw-sub{font-size:13px;color:var(--mut-d);display:block;margin-top:4px;line-height:1.5}
+.sw-sub{font-size:13px;color:var(--mut);display:block;margin-top:4px;line-height:1.5}
 .low-switch[aria-pressed="false"] .sw-sub{color:var(--mut)}
 .timeline{margin:8px 0 30px}
 .timeline h2{font-family:var(--disp);font-weight:900;font-size:24px;text-transform:uppercase;margin:0 0 16px}
@@ -380,14 +386,14 @@ ol.steps ul{margin:10px 0 0;padding-left:20px}
 .vtl-note{font-size:14px;color:var(--mut);margin-top:4px}
 
 /* ---------- footer ---------- */
-.site-footer{margin-top:0;background:var(--olive);color:var(--paper);padding:64px 24px 40px}
+.site-footer{margin-top:0;background:var(--cream2);color:var(--ink);padding:64px 24px 40px}
 .foot-in{max-width:1200px;margin:0 auto}
 .foot-slogan .fs-de{font-family:var(--serif);font-style:italic;font-size:clamp(30px,5vw,54px);display:block;line-height:1.1}
 .foot-slogan .fs-zh{font-family:var(--disp);font-weight:900;font-size:clamp(26px,4.4vw,46px);display:block;margin-top:8px;text-transform:uppercase}
 .foot-slogan .fs-zh b{color:var(--blue)}
-.foot-note{color:var(--mut-d);font-size:14px;margin-top:22px;max-width:640px;line-height:1.7}
+.foot-note{color:var(--mut);font-size:14px;margin-top:22px;max-width:640px;line-height:1.7}
 .site-footer nav{display:flex;flex-wrap:wrap;gap:6px 22px;margin-top:26px}
-.site-footer nav button{background:none;border:0;color:var(--mut-d);font-size:14px;padding:6px 0;transition:color .2s}
+.site-footer nav button{background:none;border:0;color:var(--mut);font-size:14px;padding:6px 0;transition:color .2s}
 .site-footer nav button:hover{color:var(--blue)}
 
 /* ---------- responsive ---------- */
@@ -407,7 +413,7 @@ ol.steps ul{margin:10px 0 0;padding-left:20px}
   .hero-in{padding:64px 16px 48px}
   .hero-vt{display:none}
   .hero-stats{flex-direction:column}
-  .hstat{border-right:0;border-bottom:1px solid var(--line-d);padding:16px 0}
+  .hstat{border-right:0;border-bottom:1px solid var(--line);padding:16px 0}
   .hstat:last-child{border-bottom:0}
   .stats{grid-template-columns:1fr 1fr;gap:0;margin:36px 0 4px}
   .stat{padding:18px 12px 18px 0}
@@ -433,6 +439,59 @@ ol.steps ul{margin:10px 0 0;padding-left:20px}
 #list.swapping{animation:listSwap .3s var(--ease)}
 @keyframes listSwap{from{opacity:.35}to{opacity:1}}
 @media (max-width:768px){.job-hint{display:none}}
+
+/* ---------- colorful accents ---------- */
+.badge.tier-a2{background:var(--green);border-color:var(--green);color:#fff}
+.badge.tier-b1{background:var(--blue);border-color:var(--blue);color:#fff}
+.badge.tier-b1b2{background:var(--purple);border-color:var(--purple);color:#fff}
+.badge.tier-kurs{background:var(--teal);border-color:var(--teal);color:#fff}
+.badge.tier-b2{background:var(--orange);border-color:var(--orange);color:#fff}
+.badge.tier-c1{background:var(--pink);border-color:var(--pink);color:#fff}
+.badge.tier-range{background:var(--amber);border-color:var(--amber);color:#fff}
+.badge.tier-none{color:var(--mut)}
+.badge.cat{border-color:var(--red);color:var(--red)}
+.badge.status-ok{border-color:var(--green);color:var(--green)}
+.badge.status-unver{border-color:var(--amber);color:var(--amber)}
+.badge.fit-ok{border-color:var(--green);color:var(--green)}
+.badge.fit-mid{border-color:var(--amber);color:var(--amber)}
+.badge.fit-no{border-color:var(--red);color:var(--red)}
+.job:hover .badge.tier-a2,.job:hover .badge.tier-b1,.job:hover .badge.tier-b1b2,.job:hover .badge.tier-kurs,.job:hover .badge.tier-b2,.job:hover .badge.tier-c1,.job:hover .badge.tier-range{background:#fff;border-color:#fff}
+.job:hover .badge.tier-a2{color:var(--green)}
+.job:hover .badge.tier-b1{color:var(--blue)}
+.job:hover .badge.tier-b1b2{color:var(--purple)}
+.job:hover .badge.tier-kurs{color:var(--teal)}
+.job:hover .badge.tier-b2{color:var(--orange)}
+.job:hover .badge.tier-c1{color:var(--pink)}
+.job:hover .badge.tier-range{color:var(--amber)}
+.job:hover .badge.cat,.job:hover .badge.status-ok,.job:hover .badge.status-unver,.job:hover .badge.fit-ok,.job:hover .badge.fit-mid,.job:hover .badge.fit-no{border-color:rgba(255,255,255,.5);color:#fff}
+.chip[data-lang="a2"][aria-pressed="true"]{background:var(--green);border-color:var(--green)}
+.chip[data-lang="b1"][aria-pressed="true"]{background:var(--blue);border-color:var(--blue)}
+.chip[data-lang="b1b2"][aria-pressed="true"]{background:var(--purple);border-color:var(--purple)}
+.chip[data-lang="kurs"][aria-pressed="true"]{background:var(--teal);border-color:var(--teal)}
+.chip[data-lang="b2"][aria-pressed="true"]{background:var(--orange);border-color:var(--orange)}
+.chip[data-lang="c1"][aria-pressed="true"]{background:var(--pink);border-color:var(--pink)}
+.chip[data-lang="range"][aria-pressed="true"]{background:var(--amber);border-color:var(--amber)}
+.stat.hl2 .num{color:var(--green)}
+.stat:nth-child(4) .num{color:var(--purple)}
+#sec-apply .g-no,#sec-apply .g-head h2 .em,#sec-apply .block h2 .em{color:var(--green)}
+#sec-documents .g-no,#sec-documents .g-head h2 .em,#sec-documents .block h2 .em{color:var(--teal)}
+#sec-visa .g-no,#sec-visa .g-head h2 .em,#sec-visa .block h2 .em{color:var(--purple)}
+#sec-recognition .g-no,#sec-recognition .g-head h2 .em,#sec-recognition .block h2 .em{color:var(--orange)}
+#sec-language .g-no,#sec-language .g-head h2 .em,#sec-language .block h2 .em{color:var(--pink)}
+#sec-costs .g-no,#sec-costs .g-head h2 .em,#sec-costs .block h2 .em{color:var(--amber)}
+#sec-residence .g-no,#sec-residence .g-head h2 .em,#sec-residence .block h2 .em{color:var(--green)}
+#sec-timeline .g-no,#sec-timeline .g-head h2 .em,#sec-timeline .block h2 .em{color:var(--purple)}
+#sec-faq .g-no,#sec-faq .g-head h2 .em,#sec-faq .block h2 .em{color:var(--teal)}
+#sec-pitfalls .g-no,#sec-pitfalls .g-head h2 .em,#sec-pitfalls .block h2 .em{color:var(--red)}
+.job-occ a{color:inherit;text-decoration:none}
+.job-occ a:hover{text-decoration:underline;text-underline-offset:4px}
+.job-occ a .ext{font-size:14px;color:var(--blue)}
+.job:hover .job-occ a .ext{color:#fff}
+.src-row{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin:16px 0 4px}
+.src-btn{display:inline-block;background:var(--blue);color:#fff;font-weight:800;font-size:14px;padding:11px 20px;border-radius:999px;text-decoration:none;transition:transform .25s var(--spring),box-shadow .25s}
+.src-btn:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(34,68,255,.4);color:#fff}
+.src-hint{font-size:13px;color:var(--mut)}
+.job:hover .src-btn{background:#fff;color:var(--blue)}
 </style>
 </head>
 <body>
@@ -537,7 +596,7 @@ ol.steps ul{margin:10px 0 0;padding-left:20px}
             <button type="button" class="dir-card" data-goto="apply"><div class="cn">第 1 章</div><div class="ct">申请流程（一步一步）</div><div class="cd">从定方向、找岗位、写简历求职信，到面试、签合同、拿到 offer 后办什么，全流程拆到每一步。</div><div class="cgo">进入本章 →</div></button>
             <button type="button" class="dir-card" data-goto="documents"><div class="cn">第 2 章</div><div class="ct">材料清单</div><div class="cd">全部文件一张表：哪份要德语翻译、哪份要公证、哪份要 Apostille，办之前先问谁、怎么办最省事。</div><div class="cgo">进入本章 →</div></button>
             <button type="button" class="dir-card" data-goto="visa"><div class="cn">第 3 章</div><div class="ct">签证流程（§16a）</div><div class="cd">培训签证的条件、材料、预约递交、审核周期、资金证明怎么算、保险怎么买、被拒了怎么办。</div><div class="cgo">进入本章 →</div></button>
-            <button type="button" class="dir-card" data-goto="recognition"><div class="cn">第 4 章</div><div class="ct">学历认证（Anerkennung）</div><div class="cd">中国职高/高中学历怎么在德国各州认证、找哪个机构、多少钱、多久，附真实雇主承担费用的案例。</div><div class="cgo">进入本章 →</div></button>
+            <button type="button" class="dir-card" data-goto="recognition"><div class="cn">第 4 章</div><div class="ct">学历认证（Anerkennung）</div><div class="cd">中国中专、职高、普高、大专、本科五种学历怎么在德国各州认证、找哪个机构、多少钱、多久，附真实雇主承担费用的案例。</div><div class="cgo">进入本章 →</div></button>
             <button type="button" class="dir-card" data-goto="language"><div class="cn">第 5 章</div><div class="ct">语言路径</div><div class="cd">A1 到 B2 每一级能干什么、考什么试、要学多久，以及 B1 之后在德国继续冲 B2 的免费路径。</div><div class="cgo">进入本章 →</div></button>
             <button type="button" class="dir-card" data-goto="costs"><div class="cn">第 6 章</div><div class="ct">费用明细</div><div class="cd">从国内准备到抵德安顿的全部开支估算、培训期的收支平衡，以及不花冤枉钱的具体办法。</div><div class="cgo">进入本章 →</div></button>
             <button type="button" class="dir-card" data-goto="residence"><div class="cn">第 7 章</div><div class="ct">永居路径（§18c）</div><div class="cd">培训毕业后怎么一步步走到永居：条件清单、24 个月养老保险怎么算、助理培训为什么不算数。</div><div class="cgo">进入本章 →</div></button>
@@ -1001,8 +1060,8 @@ ol.steps ul{margin:10px 0 0;padding-left:20px}
 
 <div class="g-head">
           <div class="g-no">第 4 章 · 学历认证</div>
-          <h2>中国职高学历在德国怎么认证（Anerkennung）</h2>
-          <p class="g-lead">德国雇主和职业学校看不懂中国职高毕业证对应德国哪一级学历——认证就是由德国官方机构出一纸决定（Bescheid），把你的学历认定为等同 Hauptschulabschluss（初级）或 mittlere Reife / Realschulabschluss（中级）等德国学历级别。很多岗位的准入线写的是德国学历名，没有认证决定，申请在第一关就卡住。</p>
+          <h2>中国学历在德国怎么认证（Anerkennung）</h2>
+          <p class="g-lead">德国雇主和职业学校看不懂中国毕业证对应德国哪一级学历——认证就是由德国官方机构出一纸决定（Bescheid），把你的学历认定为等同 Hauptschulabschluss（初级）或 mittlere Reife / Realschulabschluss（中级）等德国学历级别。很多岗位的准入线写的是德国学历名，没有认证决定，申请在第一关就卡住。本章覆盖中国最常见的五种学历——中专、职高、普高、大专、大学本科，每种单独说怎么办、能认到哪一级、注意什么；没有官方对照表的地方直接写明，不编关系。</p>
         </div>
 
         <div class="g-sec">
@@ -1029,6 +1088,54 @@ ol.steps ul{margin:10px 0 0;padding-left:20px}
             </table>
           </div>
           <p>机构名称与受理范围偶有调整，正式办理前以 anerkennung-in-deutschland.de 与机构官网当期信息为准。</p>
+        </div>
+
+        <div class="g-sec">
+          <h3>五种中国学历，一种一种说</h3>
+          <p>下面五种是中国申请者最常见的学历，每一种的说法都按官方来源核过。先讲清楚一个总前提：<b>德国没有一张公开的「中国学历＝德国学历」对照表</b>。中专、职高、普高的等级由各州认证机构按 KMK（各州文教部长联席会议）的通用尺度逐案认定；大专、本科学位的德国可比性走 anabin 数据库或 ZAB（国外教育中央办公室）个案评估。凡是没查到明文依据的，下面直接写「无公开对照表」，不编关系。</p>
+          <p>还有一条所有人适用的底线（BIBB，德国联邦职业教育与培训研究所）：<b>双元制 Ausbildung 在法律上不规定必须有什么学校学历</b>，只要求完成义务教育阶段的全日制学校教育；具体要什么级别，由雇主自己定。认证不是「法律强制」，而是「雇主或职业学校要求时才需要」——岗位要求 Hauptschulabschluss 或 Mittlerer Schulabschluss 时，没有认证决定才会被卡。另外注意分工：<b>ZAB 的 Zeugnisbewertung 只针对外国高等教育学历</b>，不是学校学历认证的常规程序——不要拿高中毕业证去申请 ZAB 评估。</p>
+
+          <div class="rule-card">
+            <h4>1 · 中专（中等专业学校，3 年）</h4>
+            <p><b>怎么办：</b>走所在州 Zeugnisanerkennungsstelle（证书认证处）的学校学历认证：交毕业证＋完整成绩单（按该州清单办德语翻译，有的州要公证件）。职业部分的对等认定（相当于德国 Berufsfachschulabschluss）由各州 Bezirksregierung 另行受理，入口同样是 anerkennung-in-deutschland.de 的 Anerkennungs-Finder；但报双元制 Ausbildung 时，起决定作用的是普通学历级别，不是职业部分。</p>
+            <p><b>能认到哪一级：无公开的中国中专专用对照表，州认证机构逐案认定。</b>按 KMK 通用尺度：Hauptschulabschluss 要求至少 9 年普通教育＋规定科目（母语、外语、数学、自然科学、社会科学、音乐/美术/体育）；Mittlerer Schulabschluss（Mittlerer Bildungsabschluss）要求至少 10 年＋同样科目。中专是 9 年义务教育＋3 年职业学校，共 12 年，年限上不吃亏；但后 3 年以职业课为主，普通文化课的科目与学时是否达到 KMK 尺度，由认证机构看成绩单逐案判定——不要默认等于 Mittlerer，也不要默认只等于 Hauptschulabschluss。</p>
+            <p><b>注意什么：</b>成绩单上科目越全（语文、数学、英语、物理/化学、历史/政治等）越有利，这是 KMK 科目尺度的直接要求；缺失学期的成绩单可向原学校补开，补齐后可申请复核。</p>
+            <p><b>来源：</b><a href="https://www.kmk.org/zab/zentralstelle-fuer-auslaendisches-bildungswesen/allgemeines-zur-anerkennung/anerkennung-im-schulbereich/gleichstellung-mit-deutschen-schulabschluessen.html" target="_blank" rel="noopener">KMK《Gleichstellung mit deutschen Schulabschlüssen》</a>；各州 Zeugnisanerkennungsstelle（机构见 anabin「Zuständige Stellen in Deutschland」）；<a href="https://www.anerkennung-in-deutschland.de/" target="_blank" rel="noopener">anerkennung-in-deutschland.de</a>。</p>
+          </div>
+
+          <div class="rule-card">
+            <h4>2 · 职高（职业高级中学，3 年）</h4>
+            <p><b>怎么办：</b>与中专走同一通道：所在州 Zeugnisanerkennungsstelle，毕业证＋完整成绩单＋德语翻译。流程、材料、费用见本章「办理步骤」与 Bruderhaus 案例。</p>
+            <p><b>能认到哪一级：与中专相同，无公开的中国职高专用对照表，州认证机构逐案认定。</b>KMK 通用尺度同上（Hauptschulabschluss 至少 9 年＋规定科目；Mittlerer 至少 10 年＋规定科目）。职高毕业证上的专业方向不影响普通学历级别的认定——认证决定只写德国学历级别，不写专业。</p>
+            <p><b>注意什么：</b>不要只交毕业证不交成绩单：认证机构靠成绩单里的科目与学时判断级别，没有成绩单通常只能认到较低级别；缺失学期可向原学校补开后申请复核。</p>
+            <p><b>来源：</b><a href="https://www.kmk.org/zab/zentralstelle-fuer-auslaendisches-bildungswesen/allgemeines-zur-anerkennung/anerkennung-im-schulbereich/gleichstellung-mit-deutschen-schulabschluessen.html" target="_blank" rel="noopener">KMK《Gleichstellung mit deutschen Schulabschlüssen》</a>；Bruderhaus 案例（Stuttgart 认证处实测：费用 €100、雇主承担、不需要 Apostille）。</p>
+          </div>
+
+          <div class="rule-card">
+            <h4>3 · 普高（普通高中毕业，3 年＋高考）</h4>
+            <p><b>怎么办：</b>把高中毕业证＋高考成绩单（＋德语翻译件）交给州认证机构；同时在 anabin 数据库「Schulabschlüsse mit Hochschulzugang」里按中国查自己的证书类型，看 KMK 当期 Bewertungsvorschläge 给出的入学资格类别。</p>
+            <p><b>能认到哪一级：五种里唯一有 KMK 决议直接背书的。</b>KMK 2025 年 5 月 8 日决议：凡按 KMK 决议可获直接（专业限定）大学入学资格、或经预科（Studienkolleg）＋定级考试获大学入学资格的外国中学学历，同时即证明具备报读要求 Mittlerer Schulabschluss / Erweiterter Erster Schulabschluss / Erster Schulabschluss 的职业培训的入学资格。按留德人员审核部（APS，德国驻华使馆文化处）当期规则（依据 KMK 2026 年 6 月 18 日 Bewertungsvorschläge），高考成绩达标可获直接的专业限定大学入学资格（具体分数线以 anabin / APS 当期公布为准）；未达标的走预科＋定级考试，同样适用上述 KMK 决议。注意区分：这证明的是「培训入学资格」，不是一份「等同 Mittlerer Schulabschluss」的正式 Gleichstellung 决定——正式的等级认定仍由州认证机构出具，报名职业学校时以认证决定为准。</p>
+            <p><b>注意什么：</b>只有毕业证、没参加高考的，拿不到上述 KMK 决议的背书，级别由州认证机构按 12 年学制＋科目逐案认定；高考成绩单向省教育考试院或原学校开具，与毕业证一起交。</p>
+            <p><b>来源：</b><a href="https://www.kmk.org/zab/fileadmin/Dateien/pdf/ZAB/KMK-Beschluesse/2025-08-05-BMK-Zugang_zu_beruflicher_Ausbildung_mit_auslaendischen_Sekundarschulabschluessen.pdf" target="_blank" rel="noopener">KMK 决议（2025-05-08）《Zugang zu beruflicher Ausbildung mit ausländischen Sekundarschulabschlüssen》</a>；留德人员审核部 APS 当期规则（依据 KMK Bewertungsvorschläge 2026-06-18）；<a href="https://anabin.kmk.org/anabin.html" target="_blank" rel="noopener">anabin 数据库</a>。</p>
+          </div>
+
+          <div class="rule-card">
+            <h4>4 · 大专（专科，3 年）</h4>
+            <p><b>怎么办：</b>两条线分开办。(a) 报 Ausbildung 看的是普通学校学历：把高中毕业证和大专毕业证都交给州认证机构，由其按最高可认定的级别出决定；(b) 如果要一份高等教育学历的可比性证明（比如以后转技术工人通道要用），走 ZAB 的 Zeugnisbewertung，或先在 anabin 按院校＋学历类型自查。</p>
+            <p><b>能认到哪一级：大专是高等教育学历，但不是本科。</b>按 APS 当期规则（依据 KMK Bewertungsvorschläge 2026-06-18），三年制 Junior College 毕业生没有直接大学入学资格，只能凭已完成的大专学习走预科＋定级考试；专升本读完本科后才获得直接的专业限定入学资格。按 KMK 2025 年决议，经预科获得大学入学资格的，同样证明具备报读 Mittlerer / Erster 级别职业培训的入学资格。至于大专本身在德国高等教育体系里比到哪一级：<b>本站没有查到针对中国大专的公开统一评级表述</b>——anabin 按院校与学历类型逐条登记，ZAB 按个案评估，以 anabin 查询结果或 ZAB 评估决定为准；不要按「大专＝德国 Fachhochschule」或「大专＝本科」自行换算。</p>
+            <p><b>注意什么：</b>不要把大专写成本科——德国机构会在学信网/APS 渠道核验，写错会被认定为材料不实；专升本在读的，只有拿到本科毕业证后才按本科算。</p>
+            <p><b>来源：</b>留德人员审核部 APS 当期规则（依据 KMK Bewertungsvorschläge 2026-06-18）；<a href="https://www.kmk.org/zab/fileadmin/Dateien/pdf/ZAB/KMK-Beschluesse/2025-08-05-BMK-Zugang_zu_beruflicher_Ausbildung_mit_auslaendischen_Sekundarschulabschluessen.pdf" target="_blank" rel="noopener">KMK 决议（2025-05-08）</a>；<a href="https://zab.kmk.org/de/zeugnisbewertung" target="_blank" rel="noopener">ZAB Zeugnisbewertung</a>；<a href="https://anabin.kmk.org/anabin.html" target="_blank" rel="noopener">anabin 数据库</a>。</p>
+          </div>
+
+          <div class="rule-card">
+            <h4>5 · 大学本科（学士，4 年）</h4>
+            <p><b>怎么办：</b>先在 anabin 自查：院校状态须为 H+，学历类型须显示「entspricht」或「gleichwertig」学士（Bachelor），两者同时满足即视为与德国学士可比；查不到或不满足的，向 ZAB 申请 Zeugnisbewertung（线上申请，费用 €208，补发 €104，最晚 3 个月出结果）。评估决定会写明可比的德国学历级别（如 Bachelor-Ebene），这是一份全德通用的官方证明。</p>
+            <p><b>能认到哪一级：五种里唯一有明确可比性判定通道的。</b>anabin 查到 H+ 且「entspricht/gleichwertig」Bachelor 的，等同德国学士；ZAB 评估同样会写明级别。ZAB 的评估只针对高等教育学历，不针对中小学学历——不要拿高中毕业证去申请 ZAB 评估。</p>
+            <p><b>注意什么：</b>报 Ausbildung 不需要为本科学位办 ZAB 评估——双元制在法律上不规定学校学历（BIBB），起作用的是高中毕业证的州认证；ZAB 评估是为以后走技术工人通道（如 §18b）或雇主明确要求时准备的，别花冤枉钱。另外：本科毕业证和学位证是两回事，德国认的是学位（Bachelor 学位证）；只有毕业证、没有学位证的，按无学位处理。</p>
+            <p><b>来源：</b><a href="https://anabin.kmk.org/anabin.html" target="_blank" rel="noopener">anabin 数据库</a>（ZAB/KMK；院校 H+ 且学历「entspricht/gleichwertig」即视为可比）；<a href="https://zab.kmk.org/de/zeugnisbewertung" target="_blank" rel="noopener">ZAB Zeugnisbewertung</a>；<a href="https://www.anerkennung-in-deutschland.de/" target="_blank" rel="noopener">Anerkennung in Deutschland</a> 联邦门户（ZAB 程序信息：€208、3 个月）；<a href="https://www.bibb.de/en/77203.php" target="_blank" rel="noopener">BIBB</a>（双元制无法律规定的学校学历要求）。</p>
+          </div>
+
+          <div class="callout"><span class="co-t">本节依据的官方来源（2026-11-19 核实）</span><p>KMK《Gleichstellung mit deutschen Schulabschlüssen》（kmk.org）；KMK 决议（2025-05-08）《Zugang zu beruflicher Ausbildung mit ausländischen Sekundarschulabschlüssen》；ZAB Zeugnisbewertung（zab.kmk.org）；anabin 数据库（anabin.kmk.org）；BIBB 双元制介绍（bibb.de）；留德人员审核部 APS 当期规则（依据 KMK Bewertungsvorschläge 2026-06-18，aps.org.cn）；Anerkennung in Deutschland 联邦门户（anerkennung-in-deutschland.de）。未查到明文依据的，一律写「无公开对照表、须逐案书面确认」，不编造映射关系。</p></div>
         </div>
 
         <div class="g-sec">
@@ -1770,7 +1877,7 @@ ol.steps ul{margin:10px 0 0;padding-left:20px}
         var html = "";
         html += '<article class="job' + (j.low ? " low" : "") + (starred ? " starred" : "") + '">';
         html += '<div class="job-main"><div class="job-body">';
-        html += '<h3 class="job-occ">' + esc(j.occ) + "</h3>";
+        html += j.url ? '<h3 class="job-occ"><a href="' + esc(j.url) + '" target="_blank" rel="noopener" title="\u5728\u65b0\u6807\u7b7e\u9875\u6253\u5f00\u5b98\u65b9\u539f\u5c97\u4f4d">' + esc(j.occ) + ' <span class="ext" aria-hidden="true">\u2197</span></a></h3>' : '<h3 class="job-occ">' + esc(j.occ) + "</h3>";
         html += '<div class="job-emp">' + esc(j.emp) + " · " + esc(j.id) + "</div>";
         html += '<div class="badges">';
         html += '<span class="badge tier-' + j.langKey + '">' + esc(j.langLabel) + "</span>";
@@ -1798,6 +1905,7 @@ ol.steps ul{margin:10px 0 0;padding-left:20px}
         html += '<div class="job-foot">';
         html += '<button type="button" class="detail-btn" data-detail="' + j.id + '" aria-expanded="false">申请前清单 · 永居账 · 备注 · 来源 <span class="chev" aria-hidden="true">▾</span></button>';
         html += '<div class="details" id="det-' + j.id + '">';
+        if (j.url) html += '<p class="src-row"><a class="src-btn" href="' + esc(j.url) + '" target="_blank" rel="noopener">\u67e5\u770b\u539f\u5c97\u4f4d \u2197</a><span class="src-hint">\u5728\u96c7\u4e3b\u5b98\u7f51 / \u52b3\u5de5\u7f72\u6253\u5f00\u539f\u6587\uff0c\u6295\u9012\u524d\u9010\u6761\u590d\u6838</span></p>';
         html += "<h3>时间线契合度（按现 A2、B1 预计 2027 年 6–7 月算）</h3><p><b>" + esc(j.fitLabel) + "。</b>" + esc(j.fitNote) + "</p>";
         html += "<h3>申请前问题清单（逐条向雇主书面确认）</h3><ul class=\"check\">";
         html += "<li>打开原文链接，逐项复核语言等级、工资、学制、开学日期和申请截止日</li>";
@@ -1822,7 +1930,7 @@ ol.steps ul{margin:10px 0 0;padding-left:20px}
         if (j.note) html += "<h3>备注（扫描时核到的关键点）</h3><p>" + esc(j.note) + "</p>";
         if (j.quote) html += "<h3>语言要求原文</h3><blockquote>" + esc(j.quote) + "</blockquote>";
         html += "<h3>学历要求</h3><p>" + esc(j.edu || "未写") + "</p>";
-        html += '<h3>来源</h3><p><a class="src-link" href="' + esc(j.url) + '" target="_blank" rel="noopener">' + esc(j.url) + "</a></p>";
+        if (j.url) html += '<h3>来源</h3><p><a class="src-link" href="' + esc(j.url) + '" target="_blank" rel="noopener">' + esc(j.url) + "</a></p>";
         html += "<p style='margin-top:6px'>核实状态：" + (j.verified === "opened" ? "已打开原文逐页核实" : j.verified === "unverifiable" ? "原文链接打不开（限流 / 失效 / 只有聚合列表页），片段说法未能核实，投之前必须找到原文或直接书面问雇主" : "仅搜索片段，投之前打开原文复核") + " · 编号 " + esc(j.id) + "</p>";
         html += "</div></div>";
         html += "</article>";
@@ -2223,7 +2331,7 @@ function enhanceJobs(){
     if (!job.querySelector(".job-hint")) {
       var hint = document.createElement("span");
       hint.className = "job-hint";
-      hint.textContent = "\u70b9\u51fb\u6807\u9898\u67e5\u770b\u7533\u8bf7\u524d\u6e05\u5355 \u00b7 \u6c38\u5c45\u8d26 \u00b7 \u6765\u6e90 \u2192";
+      hint.textContent = "\u70b9\u51fb\u6807\u9898\u6253\u5f00\u5b98\u65b9\u539f\u5c97\u4f4d \u2197 \u00b7 \u70b9\u4e0b\u65b9\u6309\u94ae\u770b\u7533\u8bf7\u524d\u6e05\u5355 \u00b7 \u6c38\u5c45\u8d26 \u2192";
       job.appendChild(hint);
     }
   });
@@ -2240,7 +2348,7 @@ if (jobList && "MutationObserver" in window) {
 enhanceJobs();
 document.addEventListener("click", function (e) {
   var occ = e.target.closest ? e.target.closest(".job-occ") : null;
-  if (occ) {
+  if (occ && !(e.target.closest && e.target.closest("a"))) {
     var job = occ.closest(".job");
     var btn = job ? job.querySelector(".detail-btn") : null;
     if (btn) btn.click();
