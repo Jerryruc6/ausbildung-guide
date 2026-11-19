@@ -656,6 +656,278 @@ button:active{transform:scale(.96)}
 .src-btn{display:inline-block;background:var(--green);color:#fff;font-weight:800;font-size:14px;padding:11px 20px;border-radius:999px;text-decoration:none;transition:transform .25s var(--spring),box-shadow .25s}
 .src-btn:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(15,123,77,.4);color:#fff}
 .src-hint{font-size:13px;color:var(--mut)}
+
+/* ===== 德语学习 (GL) ===== */
+.gl-view{display:none}
+.gl-view.gl-on{display:block;animation:glFade .35s var(--ease)}
+@keyframes glFade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.gl-tabs{display:flex;flex-wrap:wrap;gap:8px;margin:26px 0 8px}
+.gl-tab{background:transparent;border:1px solid var(--line);border-radius:999px;padding:9px 16px;font-size:14px;font-weight:700;color:var(--mut);transition:all .2s var(--ease)}
+.gl-tab:hover{color:var(--ink);border-color:var(--ink)}
+.gl-tab.on{background:var(--ink);color:var(--cream);border-color:var(--ink)}
+.gl-views{margin-top:18px}
+.foot-credit{color:var(--mut);font-size:14px;margin-top:10px}
+
+#gl-view-invite .gl-invite-card {
+  max-width: 560px;
+  margin: 0 auto;
+  padding: 20px;
+  background: var(--cream);
+  color: var(--ink);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  font-family: var(--sans);
+}
+#gl-view-invite .gl-invite-title {
+  margin: 0 0 8px;
+  font-family: var(--disp);
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--ink);
+}
+#gl-view-invite .gl-invite-note {
+  margin: 0 0 16px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--mut);
+}
+#gl-view-invite .gl-invite-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+#gl-view-invite .gl-invite-label {
+  font-size: 14px;
+  color: var(--mut);
+}
+#gl-view-invite .gl-invite-input {
+  flex: 1 1 160px;
+  min-width: 140px;
+  padding: 9px 12px;
+  font-family: var(--sans);
+  font-size: 15px;
+  color: var(--ink);
+  background: var(--cream);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  outline: none;
+  transition: border-color var(--ease);
+}
+#gl-view-invite .gl-invite-input:focus {
+  border-color: var(--blue);
+}
+#gl-view-invite .gl-invite-btn {
+  padding: 9px 16px;
+  font-family: var(--sans);
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 8px;
+  border: 1px solid var(--line);
+  background: var(--cream);
+  color: var(--ink);
+  cursor: pointer;
+  transition: opacity var(--ease);
+}
+#gl-view-invite .gl-invite-btn:hover {
+  opacity: 0.85;
+}
+#gl-view-invite .gl-invite-btn-primary {
+  background: var(--blue);
+  border-color: var(--blue);
+  color: var(--cream);
+}
+#gl-view-invite .gl-invite-btn-ghost {
+  background: transparent;
+  color: var(--mut);
+}
+#gl-view-invite .gl-invite-msg {
+  min-height: 20px;
+  margin: 10px 0 0;
+  font-size: 13px;
+  color: var(--mut);
+}
+#gl-view-invite .gl-invite-current {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+  font-size: 14px;
+}
+#gl-view-invite .gl-invite-current-label {
+  color: var(--mut);
+}
+#gl-view-invite .gl-invite-code {
+  padding: 2px 8px;
+  font-family: var(--sans);
+  font-weight: 700;
+  color: var(--green);
+  background: var(--cream);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+}
+.gl-flash-wrap,.gl-write-wrap{max-width:640px;margin:0 auto;padding:16px}
+.gl-title{font-family:var(--disp);font-size:22px;font-weight:700;color:var(--ink);margin:0 0 4px}
+.gl-sub{font-size:13px;color:var(--mut);margin:0 0 16px}
+.gl-progress{font-size:14px;color:var(--mut);margin:0 0 12px}
+.gl-progress b{color:var(--ink)}
+.gl-filter{width:100%;padding:12px;border:1px solid var(--line);border-radius:12px;background:var(--cream);color:var(--ink);font-size:15px;font-family:var(--sans);margin-bottom:16px}
+.gl-card{perspective:900px;cursor:pointer;min-height:220px;margin-bottom:16px}
+.gl-card-inner{position:relative;width:100%;height:220px;transition:transform .45s var(--ease);transform-style:preserve-3d}
+.gl-card.flipped .gl-card-inner{transform:rotateY(180deg)}
+.gl-card-face{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:24px;border:1px solid var(--line);border-radius:16px;background:var(--cream);backface-visibility:hidden;-webkit-backface-visibility:hidden;text-align:center}
+.gl-card-back{transform:rotateY(180deg);background:var(--blue);color:#fff;border-color:var(--blue)}
+.gl-card-de{font-family:var(--disp);font-size:30px;font-weight:700;color:var(--ink);line-height:1.3}
+.gl-card-back .gl-card-de{color:#fff}
+.gl-card-zh{font-size:20px;color:var(--ink)}
+.gl-card-back .gl-card-zh{color:#fff}
+.gl-card-cat{font-size:12px;color:var(--mut);border:1px solid var(--line);border-radius:999px;padding:3px 10px}
+.gl-card-back .gl-card-cat{color:#fff;border-color:rgba(255,255,255,.5)}
+.gl-card-hint{font-size:12px;color:var(--mut)}
+.gl-card-back .gl-card-hint{color:rgba(255,255,255,.8)}
+.gl-row{display:flex;gap:10px;flex-wrap:wrap}
+.gl-btn{flex:1;min-width:88px;padding:13px 10px;border:1px solid var(--line);border-radius:12px;background:var(--cream);color:var(--ink);font-size:15px;font-family:var(--sans);cursor:pointer;transition:transform .15s var(--ease)}
+.gl-btn:active{transform:scale(.97)}
+.gl-btn-primary{background:var(--blue);border-color:var(--blue);color:#fff}
+.gl-btn-good{background:var(--green);border-color:var(--green);color:#fff}
+.gl-btn-bad{background:var(--red);border-color:var(--red);color:#fff}
+.gl-prompt{font-size:24px;font-weight:700;color:var(--ink);text-align:center;padding:28px 16px;border:1px solid var(--line);border-radius:16px;background:var(--cream);margin-bottom:16px;line-height:1.5}
+.gl-input{width:100%;padding:14px;border:1px solid var(--line);border-radius:12px;background:var(--cream);color:var(--ink);font-size:17px;font-family:var(--sans);margin-bottom:12px;box-sizing:border-box}
+.gl-input:focus{outline:2px solid var(--blue);outline-offset:1px}
+.gl-result{min-height:52px;padding:14px;border-radius:12px;font-size:16px;line-height:1.6;margin:12px 0;text-align:center;box-sizing:border-box}
+.gl-result-ok{background:rgba(0,128,0,.08);color:var(--green);border:1px solid var(--green)}
+.gl-result-bad{background:rgba(200,0,0,.06);color:var(--red);border:1px solid var(--red)}
+.gl-result-empty{background:transparent;border:1px dashed var(--line);color:var(--mut)}
+.gl-stats{font-size:14px;color:var(--mut);text-align:center;margin:0 0 4px}
+.gl-note{font-size:14px;color:var(--mut);text-align:center;padding:20px}
+.gl-view { display: block; padding: 16px; color: var(--ink); font-family: var(--sans); }
+.gl-card { background: var(--cream); border: 1px solid var(--line); border-radius: 12px; padding: 16px; margin: 0 0 16px 0; }
+.gl-title { font-family: var(--disp); font-size: 22px; margin: 0 0 4px 0; color: var(--ink); }
+.gl-sub { font-size: 14px; color: var(--mut); margin: 0 0 14px 0; line-height: 1.6; }
+.gl-row { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 12px 0; }
+.gl-btn { min-height: 44px; padding: 10px 16px; border-radius: 10px; border: 1px solid var(--line); background: var(--cream); color: var(--ink); font-family: var(--sans); font-size: 15px; cursor: pointer; transition: transform var(--ease); }
+.gl-btn:active { transform: scale(0.97); }
+.gl-btn-primary { background: var(--blue); color: #fff; border-color: var(--blue); }
+.gl-btn-green { background: var(--green); color: #fff; border-color: var(--green); }
+.gl-btn-ghost { background: transparent; }
+.gl-btn-active { border-color: var(--blue); color: var(--blue); font-weight: 700; }
+.gl-input { width: 100%; box-sizing: border-box; min-height: 48px; padding: 12px 14px; border: 1px solid var(--line); border-radius: 10px; background: var(--cream); color: var(--ink); font-family: var(--sans); font-size: 16px; }
+.gl-input:focus { outline: 2px solid var(--blue); outline-offset: 1px; }
+.gl-hint { font-size: 13px; color: var(--mut); margin: 8px 0 0 0; line-height: 1.5; }
+.gl-answer { font-size: 14px; color: var(--mut); margin: 8px 0 0 0; line-height: 1.5; }
+.gl-feedback { margin: 12px 0 0 0; padding: 12px; border-radius: 10px; font-size: 15px; line-height: 1.6; display: none; }
+.gl-feedback-ok { display: block; background: var(--green); color: #fff; }
+.gl-feedback-bad { display: block; background: var(--red); color: #fff; }
+.gl-stats { font-size: 14px; color: var(--mut); margin: 12px 0 0 0; }
+.gl-note { font-size: 14px; color: var(--orange); background: var(--amber); border-radius: 8px; padding: 10px 12px; margin: 0 0 12px 0; display: none; line-height: 1.5; }
+.gl-note-show { display: block; }
+.gl-group { border: 1px solid var(--line); border-radius: 12px; padding: 16px; margin: 0 0 16px 0; background: var(--cream); }
+.gl-group-title { font-size: 18px; font-weight: 700; margin: 0 0 4px 0; color: var(--ink); }
+.gl-group-sub { font-size: 13px; color: var(--mut); margin: 0 0 12px 0; line-height: 1.5; }
+.gl-score { font-size: 14px; font-weight: 700; color: var(--blue); margin: 0 0 12px 0; }
+.gl-q { border-top: 1px solid var(--line); padding: 14px 0 4px 0; }
+.gl-q-text { font-size: 16px; font-weight: 700; margin: 0 0 10px 0; line-height: 1.6; }
+.gl-q-num { color: var(--mut); font-weight: 400; margin-right: 6px; }
+.gl-opts { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.gl-opt { min-height: 48px; padding: 10px 12px; border-radius: 10px; border: 1px solid var(--line); background: var(--cream); color: var(--ink); font-family: var(--sans); font-size: 15px; cursor: pointer; text-align: left; }
+.gl-opt-correct { background: var(--green); color: #fff; border-color: var(--green); }
+.gl-opt-wrong { background: var(--red); color: #fff; border-color: var(--red); }
+.gl-opt-dim { opacity: 0.55; }
+.gl-why { font-size: 14px; line-height: 1.6; margin: 10px 0 6px 0; padding: 10px 12px; border-radius: 8px; background: var(--cyan); color: var(--ink); display: none; }
+.gl-why-show { display: block; }
+.gl-why-bad { background: var(--pink); }
+.gl-reset { font-size: 13px; color: var(--mut); background: transparent; border: none; cursor: pointer; padding: 6px 0; text-decoration: underline; }
+.gl-view{display:none}
+.gl-view.gl-active{display:block}
+.gl-panel{background:var(--cream);border:1px solid var(--line);border-radius:16px;padding:16px;margin:0 0 16px}
+.gl-title{font-family:var(--disp);font-size:20px;line-height:1.3;margin:0 0 4px;color:var(--ink)}
+.gl-sub{font-size:13px;line-height:1.6;color:var(--mut);margin:0 0 12px}
+.gl-badge{display:inline-block;font-size:12px;line-height:1;padding:5px 8px;border-radius:999px;background:var(--yellow);color:var(--ink);margin:0 0 12px}
+.gl-scen{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 12px}
+.gl-chip{min-height:44px;padding:10px 14px;border-radius:999px;border:1px solid var(--line);background:var(--cream);color:var(--ink);font-family:var(--sans);font-size:14px;cursor:pointer}
+.gl-chip.gl-on{background:var(--blue);border-color:var(--blue);color:var(--cream)}
+.gl-chat{display:flex;flex-direction:column;gap:8px;max-height:320px;overflow-y:auto;padding:4px 0 12px}
+.gl-msg{max-width:88%;padding:10px 12px;border-radius:14px;font-size:14px;line-height:1.7;white-space:pre-wrap;word-break:break-word}
+.gl-msg.gl-ai{align-self:flex-start;background:var(--cream);border:1px solid var(--line);color:var(--ink)}
+.gl-msg.gl-user{align-self:flex-end;background:var(--blue);color:var(--cream)}
+.gl-row{display:flex;gap:8px;align-items:center}
+.gl-input{flex:1;min-height:48px;padding:10px 12px;border-radius:12px;border:1px solid var(--line);background:var(--cream);color:var(--ink);font-family:var(--sans);font-size:15px}
+.gl-btn{min-height:48px;padding:12px 18px;border-radius:12px;border:0;background:var(--blue);color:var(--cream);font-family:var(--sans);font-size:15px;font-weight:700;cursor:pointer}
+.gl-btn.gl-ghost{background:var(--cream);color:var(--ink);border:1px solid var(--line);font-weight:400}
+.gl-btn.gl-big{width:100%;font-size:17px}
+.gl-btn.gl-done{background:var(--green)}
+.gl-note{font-size:13px;line-height:1.6;color:var(--mut);margin:8px 0 0}
+.gl-stat{margin:0 0 16px}
+.gl-stat-head{display:flex;justify-content:space-between;gap:12px;font-size:14px;line-height:1.5;margin:0 0 6px;color:var(--ink)}
+.gl-stat-num{color:var(--mut);white-space:nowrap}
+.gl-bar{height:10px;border-radius:999px;background:var(--line);overflow:hidden}
+.gl-bar-fill{display:block;height:100%;border-radius:999px;background:var(--green);transition:width .4s var(--ease)}
+.gl-bar-fill.gl-blue{background:var(--blue)}
+.gl-bar-fill.gl-purple{background:var(--purple)}
+.gl-bar-fill.gl-teal{background:var(--teal)}
+.gl-bar-fill.gl-orange{background:var(--orange)}
+.gl-bar-fill.gl-pink{background:var(--pink)}
+.gl-list{list-style:none;margin:0;padding:0;font-size:14px;line-height:1.7;color:var(--ink)}
+.gl-list-item{display:flex;justify-content:space-between;gap:12px;padding:8px 0;border-bottom:1px solid var(--line)}
+.gl-big{font-family:var(--disp);font-size:36px;line-height:1.1;margin:0;color:var(--ink)}
+.gl-center{text-align:center}
+.gl-week{display:flex;justify-content:space-between;gap:6px;margin:16px 0 8px}
+.gl-day{flex:1;text-align:center;font-size:12px;color:var(--mut)}
+.gl-dot{width:36px;height:36px;border-radius:50%;border:2px solid var(--line);background:var(--cream);margin:6px auto 0;display:flex;align-items:center;justify-content:center;font-size:13px;color:var(--ink)}
+.gl-dot.gl-on{background:var(--green);border-color:var(--green);color:var(--cream)}
+.gl-dot.gl-today{border-color:var(--blue)}
+.gl-errors-note{margin:0 0 14px;padding:10px 12px;border:1px solid var(--line);border-left:3px solid var(--blue);border-radius:10px;background:var(--cream);color:var(--mut);font-size:13px;line-height:1.6}
+.gl-errors-form{display:flex;flex-direction:column;gap:10px;padding:14px;border:1px solid var(--line);border-radius:12px;background:var(--cream);margin-bottom:16px}
+.gl-errors-input,.gl-errors-select{width:100%;box-sizing:border-box;padding:12px;border:1px solid var(--line);border-radius:10px;background:var(--cream);color:var(--ink);font-family:var(--sans);font-size:15px;outline:none}
+.gl-errors-input:focus,.gl-errors-select:focus{border-color:var(--blue)}
+.gl-errors-btn{padding:12px 18px;border:none;border-radius:10px;background:var(--ink);color:var(--cream);font-family:var(--sans);font-size:15px;font-weight:600;cursor:pointer;min-height:44px}
+.gl-errors-btn:active{opacity:.85}
+.gl-errors-btn-ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+.gl-errors-btn-green{background:var(--green);color:#fff}
+.gl-errors-btn-red{background:transparent;color:var(--red);border:1px solid var(--red);padding:8px 14px;min-height:40px;font-size:14px}
+.gl-errors-toolbar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:10px}
+.gl-errors-filter{padding:8px 14px;border:1px solid var(--line);border-radius:999px;background:var(--cream);color:var(--ink);font-family:var(--sans);font-size:14px;cursor:pointer;min-height:40px}
+.gl-errors-filter-on{background:var(--ink);color:var(--cream);border-color:var(--ink)}
+.gl-errors-count{margin:0 0 12px;color:var(--mut);font-size:13px;line-height:1.7}
+.gl-errors-list{display:flex;flex-direction:column;gap:10px}
+.gl-errors-item{padding:14px;border:1px solid var(--line);border-radius:12px;background:var(--cream)}
+.gl-errors-wrong{margin:0 0 6px;color:var(--red);text-decoration:line-through;font-size:15px;line-height:1.6;word-break:break-word}
+.gl-errors-right{margin:0 0 6px;color:var(--green);font-size:15px;line-height:1.6;word-break:break-word}
+.gl-errors-zh{margin:0 0 8px;color:var(--mut);font-size:13px;line-height:1.6}
+.gl-errors-meta{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between}
+.gl-errors-tag{display:inline-block;padding:3px 10px;border-radius:999px;background:var(--purple);color:#fff;font-size:12px}
+.gl-errors-date{color:var(--mut);font-size:12px}
+.gl-errors-note-text{margin:8px 0 0;color:var(--mut);font-size:13px;line-height:1.6}
+.gl-errors-empty{padding:32px 16px;text-align:center;color:var(--mut);font-size:15px;line-height:1.8;border:1px dashed var(--line);border-radius:12px}
+.gl-errors-review{padding:16px;border:1px solid var(--line);border-radius:12px;background:var(--cream);text-align:center}
+.gl-errors-review-progress{margin:0 0 16px;color:var(--mut);font-size:13px}
+.gl-errors-review-wrong{margin:0 0 16px;color:var(--red);font-size:18px;line-height:1.7;word-break:break-word}
+.gl-errors-review-answer{margin:0 0 16px;color:var(--green);font-size:18px;line-height:1.7;word-break:break-word}
+.gl-errors-review-zh{margin:0 0 16px;color:var(--mut);font-size:14px;line-height:1.7}
+.gl-errors-review-actions{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.gl-apply-head { margin: 0 0 18px; }
+.gl-apply-head h2 { font-family: var(--disp); font-size: 26px; line-height: 1.25; margin: 0 0 6px; color: var(--ink); }
+.gl-apply-head p { margin: 0; color: var(--mut); font-size: 14px; line-height: 1.7; }
+.gl-apply-sec { border-top: 1px solid var(--line); padding: 20px 0 6px; }
+.gl-apply-sec h3 { font-family: var(--disp); font-size: 19px; margin: 0 0 4px; color: var(--ink); }
+.gl-apply-sec h3 .gl-apply-num { color: var(--blue); }
+.gl-apply-sec h4 { font-size: 15px; margin: 16px 0 6px; color: var(--ink); }
+.gl-apply-sec p { font-size: 14px; line-height: 1.8; color: var(--ink); margin: 0 0 10px; }
+.gl-apply-sec ul { margin: 0 0 12px; padding-left: 20px; }
+.gl-apply-sec li { font-size: 14px; line-height: 1.8; color: var(--ink); margin-bottom: 4px; }
+.gl-apply-sec li b { font-weight: 650; }
+.gl-apply-note { background: var(--cream); border: 1px solid var(--line); border-left: 3px solid var(--amber); border-radius: 8px; padding: 10px 12px; font-size: 13px; line-height: 1.7; color: var(--ink); margin: 0 0 12px; }
+.gl-apply-note.gl-apply-note-blue { border-left-color: var(--blue); }
+.gl-apply-note.gl-apply-note-green { border-left-color: var(--green); }
+.gl-apply-note.gl-apply-note-purple { border-left-color: var(--purple); }
+.gl-apply-source { font-size: 12px; color: var(--mut); margin: 4px 0 14px; }
+.gl-apply-tag { display: inline-block; font-size: 12px; padding: 2px 8px; border-radius: 999px; border: 1px solid var(--line); color: var(--mut); margin: 0 6px 6px 0; }
+.gl-apply-tag.gl-apply-tag-blue { color: var(--blue); border-color: var(--blue); }
+.gl-apply-tag.gl-apply-tag-teal { color: var(--teal); border-color: var(--teal); }
+.gl-apply-tag.gl-apply-tag-orange { color: var(--orange); border-color: var(--orange); }
 </style>
 </head>
 <body>
@@ -674,7 +946,7 @@ button:active{transform:scale(.96)}
       <span class="brand-tag">德国双元制培训 · 从找岗位到永居的完整手册</span>
       <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="fsMenu" aria-label="打开栏目导航"><span></span><span></span><span></span></button>
     </div>
-    <nav class="site-nav" id="siteNav" aria-label="网站栏目"><button type="button" data-goto="home" class="on">首页</button><button type="button" data-goto="board">岗位看板</button><button type="button" data-goto="apply">申请流程</button><button type="button" data-goto="documents">材料清单</button><button type="button" data-goto="visa">签证指南 §16a</button><button type="button" data-goto="recognition">学历认证</button><button type="button" data-goto="language">语言路径</button><button type="button" data-goto="costs">费用明细</button><button type="button" data-goto="residence">永居路径 §18c</button><button type="button" data-goto="timeline">时间规划</button><button type="button" data-goto="faq">常见问题</button><button type="button" data-goto="pitfalls">避坑指南</button></nav>
+    <nav class="site-nav" id="siteNav" aria-label="网站栏目"><button type="button" data-goto="home" class="on">首页</button><button type="button" data-goto="board">岗位看板</button><button type="button" data-goto="apply">申请流程</button><button type="button" data-goto="documents">材料清单</button><button type="button" data-goto="visa">签证指南 §16a</button><button type="button" data-goto="recognition">学历认证</button><button type="button" data-goto="language">语言路径</button><button type="button" data-goto="costs">费用明细</button><button type="button" data-goto="residence">永居路径 §18c</button><button type="button" data-goto="timeline">时间规划</button><button type="button" data-goto="faq">常见问题</button><button type="button" data-goto="pitfalls">避坑指南</button><button type="button" data-goto="learn">德语学习</button></nav>
   </div>
 </header>
 <div class="fs-menu" id="fsMenu" aria-hidden="true">
@@ -682,7 +954,7 @@ button:active{transform:scale(.96)}
     <div class="fs-wall-big">AUSBILDUNG</div>
     <div class="fs-wall-stats"><b>1,771</b>2027 年入学岗位<br><b>182</b>低语言入口<br><b>10</b>章指南 · 申请到永居</div>
   </div>
-  <nav class="fs-nav" aria-label="全部栏目"><button type="button" data-goto="home"><i>01</i>首页</button><button type="button" data-goto="board"><i>02</i>岗位看板</button><button type="button" data-goto="apply"><i>03</i>申请流程</button><button type="button" data-goto="documents"><i>04</i>材料清单</button><button type="button" data-goto="visa"><i>05</i>签证指南 §16a</button><button type="button" data-goto="recognition"><i>06</i>学历认证</button><button type="button" data-goto="language"><i>07</i>语言路径</button><button type="button" data-goto="costs"><i>08</i>费用明细</button><button type="button" data-goto="residence"><i>09</i>永居路径 §18c</button><button type="button" data-goto="timeline"><i>10</i>时间规划</button><button type="button" data-goto="faq"><i>11</i>常见问题</button><button type="button" data-goto="pitfalls"><i>12</i>避坑指南</button></nav>
+  <nav class="fs-nav" aria-label="全部栏目"><button type="button" data-goto="home"><i>01</i>首页</button><button type="button" data-goto="board"><i>02</i>岗位看板</button><button type="button" data-goto="apply"><i>03</i>申请流程</button><button type="button" data-goto="documents"><i>04</i>材料清单</button><button type="button" data-goto="visa"><i>05</i>签证指南 §16a</button><button type="button" data-goto="recognition"><i>06</i>学历认证</button><button type="button" data-goto="language"><i>07</i>语言路径</button><button type="button" data-goto="costs"><i>08</i>费用明细</button><button type="button" data-goto="residence"><i>09</i>永居路径 §18c</button><button type="button" data-goto="timeline"><i>10</i>时间规划</button><button type="button" data-goto="faq"><i>11</i>常见问题</button><button type="button" data-goto="pitfalls"><i>12</i>避坑指南</button><button type="button" data-goto="learn"><i>13</i>德语学习</button></nav>
   <button type="button" class="fs-close" id="fsClose" aria-label="关闭菜单">&#10005;</button>
 </div>
 <main>
@@ -1797,6 +2069,311 @@ button:active{transform:scale(.96)}
 </section>
 </main>
 
+
+<section class="page-section" id="sec-learn" aria-label="sec-learn">
+  <div class="wrap">
+    <div class="g-head">
+      <div class="g-no">第 13 章 · 德语学习</div>
+      <h2>德语学习：闪卡、默写、听写、错题、AI 陪练</h2>
+      <p class="g-lead">练德语的地方。邀请码就是你的账号：输码进入，进度、错题、打卡都存在你的档案里，换手机输码找回。不用注册、不用验证码。你的错题只在你自己的档案里，别人看不到。</p>
+    </div>
+    <div class="gl-tabs" role="tablist" aria-label="德语学习栏目">
+          <button type="button" class="gl-tab on" data-gl-tab="invite">邀请码</button>
+          <button type="button" class="gl-tab" data-gl-tab="flash">闪卡</button>
+          <button type="button" class="gl-tab" data-gl-tab="write">默写</button>
+          <button type="button" class="gl-tab" data-gl-tab="listen">听写</button>
+          <button type="button" class="gl-tab" data-gl-tab="errors">错题本</button>
+          <button type="button" class="gl-tab" data-gl-tab="grammar">语法</button>
+          <button type="button" class="gl-tab" data-gl-tab="ai">AI 陪练</button>
+          <button type="button" class="gl-tab" data-gl-tab="stats">智能分析</button>
+          <button type="button" class="gl-tab" data-gl-tab="checkin">打卡</button>
+          <button type="button" class="gl-tab" data-gl-tab="apply">大学申请</button>
+    </div>
+    <div class="gl-views">
+      <div id="gl-view-invite" class="gl-view">
+  <section class="gl-invite-card" aria-label="邀请码档案">
+    <h2 class="gl-invite-title">我的档案</h2>
+    <p class="gl-invite-note">邀请码就是你的账号。进度存在云端，换手机输码找回。不用注册、不用验证码。</p>
+    <div class="gl-invite-row">
+      <label class="gl-invite-label" for="gl-code-input">邀请码</label>
+      <input id="gl-code-input" class="gl-invite-input" type="text" inputmode="latin" autocomplete="off" spellcheck="false" placeholder="如 jojo-2027" maxlength="32">
+      <button id="gl-enter-btn" class="gl-invite-btn gl-invite-btn-primary" type="button">进入 / 切换</button>
+    </div>
+    <p class="gl-invite-msg" id="gl-invite-msg" role="status"></p>
+    <div class="gl-invite-current">
+      <span class="gl-invite-current-label">当前档案：</span>
+      <code id="gl-current-code" class="gl-invite-code">anon</code>
+      <button id="gl-exit-btn" class="gl-invite-btn gl-invite-btn-ghost" type="button">换码 / 退出</button>
+    </div>
+  </section>
+</div>
+      <div id="gl-view-flash" class="gl-view">
+  <div class="gl-flash-wrap">
+    <h2 class="gl-title">闪卡</h2>
+    <p class="gl-sub">点卡片翻面：德语在前，中文和分类在后。</p>
+    <p class="gl-progress" id="gl-flash-progress">已掌握 0 / 717 · 还不熟 0</p>
+    <select class="gl-filter" id="gl-flash-filter" aria-label="按分类筛选"></select>
+    <div class="gl-card" id="gl-flash-card" role="button" tabindex="0" aria-label="翻转卡片">
+      <div class="gl-card-inner">
+        <div class="gl-card-face gl-card-front">
+          <div class="gl-card-de" id="gl-flash-de">词库加载中</div>
+          <div class="gl-card-hint">点一下看中文</div>
+        </div>
+        <div class="gl-card-face gl-card-back">
+          <div class="gl-card-zh" id="gl-flash-zh"></div>
+          <div class="gl-card-cat" id="gl-flash-cat"></div>
+          <div class="gl-card-hint">点一下翻回德语</div>
+        </div>
+      </div>
+    </div>
+    <div class="gl-row">
+      <button type="button" class="gl-btn" id="gl-flash-prev">上一张</button>
+      <button type="button" class="gl-btn" id="gl-flash-next">下一张</button>
+      <button type="button" class="gl-btn" id="gl-flash-shuffle">洗牌</button>
+    </div>
+    <div class="gl-row" style="margin-top:10px">
+      <button type="button" class="gl-btn gl-btn-good" id="gl-flash-known">认识</button>
+      <button type="button" class="gl-btn gl-btn-bad" id="gl-flash-unknown">不认识</button>
+    </div>
+  </div>
+</div>
+<div id="gl-view-write" class="gl-view">
+  <div class="gl-write-wrap">
+    <h2 class="gl-title">默写</h2>
+    <p class="gl-sub">看中文，写出德语。优先出你标记过「不认识」的词。</p>
+    <p class="gl-stats" id="gl-write-stats">答对 0 · 答错 0</p>
+    <div class="gl-prompt" id="gl-write-prompt">词库加载中</div>
+    <input class="gl-input" id="gl-write-input" type="text" placeholder="输入德语…" autocomplete="off" autocapitalize="off" spellcheck="false">
+    <div class="gl-row">
+      <button type="button" class="gl-btn gl-btn-primary" id="gl-write-check">检查</button>
+      <button type="button" class="gl-btn" id="gl-write-next">再来一题</button>
+    </div>
+    <div class="gl-result gl-result-empty" id="gl-write-result">写完点「检查」。</div>
+  </div>
+</div>
+      <div id="gl-view-listen" class="gl-view">
+  <div class="gl-card">
+    <p class="gl-title">听写</p>
+    <p class="gl-sub">先听，再默写。点「朗读」听一遍，听不清就点「慢速朗读」。单词和短句随机出题。</p>
+    <p id="gl-listen-note" class="gl-note">当前浏览器不支持语音朗读</p>
+    <div class="gl-row">
+      <button type="button" id="gl-listen-mode-word" class="gl-btn gl-btn-active">单词</button>
+      <button type="button" id="gl-listen-mode-sent" class="gl-btn">短句</button>
+      <button type="button" id="gl-listen-mode-mix" class="gl-btn">随机</button>
+    </div>
+    <div class="gl-row">
+      <button type="button" id="gl-listen-speak" class="gl-btn gl-btn-primary">朗读</button>
+      <button type="button" id="gl-listen-slow" class="gl-btn">慢速朗读</button>
+      <button type="button" id="gl-listen-again" class="gl-btn">再听一遍</button>
+      <button type="button" id="gl-listen-next" class="gl-btn gl-btn-ghost">下一题</button>
+    </div>
+    <input id="gl-listen-input" class="gl-input" type="text" placeholder="在这里输入你听到的德语…" autocomplete="off" autocapitalize="off" spellcheck="false">
+    <div class="gl-row">
+      <button type="button" id="gl-listen-check" class="gl-btn gl-btn-green">检查</button>
+      <button type="button" id="gl-listen-show" class="gl-btn gl-btn-ghost">看答案</button>
+    </div>
+    <p id="gl-listen-feedback" class="gl-feedback"></p>
+    <p id="gl-listen-answer" class="gl-answer"></p>
+    <p class="gl-hint">检查时忽略大小写和句末标点（. ? !）。答错会自动记入错题本。</p>
+    <p id="gl-listen-stats" class="gl-stats"></p>
+  </div>
+</div>
+<div id="gl-view-grammar" class="gl-view">
+  <div class="gl-card">
+    <p class="gl-title">语法互动</p>
+    <p class="gl-sub">四组选择题，点选项立刻出结果。分数会保存，下次回来还在。</p>
+  </div>
+  <div class="gl-group">
+    <p class="gl-group-title">A · 地点介词 Wo? / Wohin?</p>
+    <p class="gl-group-sub">Wo?（静止）用三格，Wohin?（移动）用四格。an, auf, hinter, in, neben, über, unter, vor, zwischen。</p>
+    <p id="gl-gram-score-a" class="gl-score"></p>
+    <div id="gl-gram-group-a"></div>
+    <button type="button" class="gl-reset" data-gl-reset="a">清空本组分数</button>
+  </div>
+  <div class="gl-group">
+    <p class="gl-group-title">B · 三格 / 四格动词支配</p>
+    <p class="gl-group-sub">helfen、danken、mit 用三格；besuchen、sehen、für、warten auf 用四格。</p>
+    <p id="gl-gram-score-b" class="gl-score"></p>
+    <div id="gl-gram-group-b"></div>
+    <button type="button" class="gl-reset" data-gl-reset="b">清空本组分数</button>
+  </div>
+  <div class="gl-group">
+    <p class="gl-group-title">C · 可分动词</p>
+    <p class="gl-group-sub">动词词干变位放第二位，前缀（an-, auf-, ein-, fern-…）放句末。</p>
+    <p id="gl-gram-score-c" class="gl-score"></p>
+    <div id="gl-gram-group-c"></div>
+    <button type="button" class="gl-reset" data-gl-reset="c">清空本组分数</button>
+  </div>
+  <div class="gl-group">
+    <p class="gl-group-title">D · 比较级 lieber + 冠词</p>
+    <p class="gl-group-sub">lieber 紧跟动词后面；ein 表「一个」，der/die/das 表「那个/已知的」，复数泛指和运动项目不用冠词。</p>
+    <p id="gl-gram-score-d" class="gl-score"></p>
+    <div id="gl-gram-group-d"></div>
+    <button type="button" class="gl-reset" data-gl-reset="d">清空本组分数</button>
+  </div>
+</div>
+      <div id="gl-view-ai" class="gl-view">
+  <div class="gl-panel">
+    <h2 class="gl-title">AI 陪练</h2>
+    <p class="gl-sub">用德语聊天、问语法。先选一个场景，或直接输入。</p>
+    <span class="gl-badge">本地智能 v1（未接模型）</span>
+    <div class="gl-scen">
+      <button type="button" class="gl-chip" data-gl-scen="greet">打招呼</button>
+      <button type="button" class="gl-chip" data-gl-scen="shop">购物</button>
+      <button type="button" class="gl-chip" data-gl-scen="doctor">看病</button>
+      <button type="button" class="gl-chip" data-gl-scen="phone">打电话</button>
+    </div>
+    <div class="gl-chat" id="gl-ai-chat"></div>
+    <div class="gl-row">
+      <input class="gl-input" id="gl-ai-input" type="text" placeholder="输入德语或中文问题…" autocomplete="off">
+      <button type="button" class="gl-btn" id="gl-ai-send">发送</button>
+    </div>
+    <p class="gl-note"><button type="button" class="gl-btn gl-ghost" id="gl-ai-errors">讲我的错</button></p>
+    <p class="gl-note">提示：可以问 Dativ / Akkusativ / 可分动词 / 冠词 / lieber / 比较级，也可以问 wie viel kostet…？</p>
+  </div>
+</div>
+<div id="gl-view-stats" class="gl-view">
+  <div class="gl-panel">
+    <h2 class="gl-title">智能分析</h2>
+    <p class="gl-sub">数据来自你的闪卡、默写、听写、语法和错题本，每次打开都会重新计算。</p>
+    <div id="gl-stats-body"></div>
+    <p class="gl-note" id="gl-stats-note"></p>
+  </div>
+</div>
+<div id="gl-view-checkin" class="gl-view">
+  <div class="gl-panel gl-center">
+    <h2 class="gl-title">每日打卡</h2>
+    <p class="gl-sub">每天点一下，坚持就是进步。</p>
+    <p class="gl-big" id="gl-checkin-streak">0 天</p>
+    <p class="gl-sub" id="gl-checkin-status">今天还没有打卡</p>
+    <button type="button" class="gl-btn gl-big" id="gl-checkin-btn">打卡</button>
+    <div class="gl-week" id="gl-checkin-week"></div>
+    <p class="gl-note" id="gl-checkin-total">累计打卡 0 天</p>
+  </div>
+</div>
+      <div id="gl-view-errors" class="gl-view">
+  <p class="gl-errors-note">错题只存在你的邀请码档案里，别人看不到，也不会出现在公共站上。</p>
+  <form class="gl-errors-form" id="gl-errors-form">
+    <input class="gl-errors-input" id="gl-errors-wrong" type="text" placeholder="错句（你写错的句子）" autocomplete="off">
+    <input class="gl-errors-input" id="gl-errors-right" type="text" placeholder="正确句" autocomplete="off">
+    <select class="gl-errors-select" id="gl-errors-type">
+      <option>冠词/零冠词</option>
+      <option>三格/四格</option>
+      <option>动词变位</option>
+      <option>词序</option>
+      <option>拼写/大写</option>
+      <option>漏词/漏动词</option>
+      <option>默写</option>
+      <option>听写</option>
+      <option>其他</option>
+    </select>
+    <input class="gl-errors-input" id="gl-errors-note" type="text" placeholder="备注（可选）" autocomplete="off">
+    <button class="gl-errors-btn" type="submit">添加</button>
+  </form>
+  <div class="gl-errors-toolbar">
+    <button class="gl-errors-btn" type="button" id="gl-errors-review-btn">复习</button>
+  </div>
+  <div class="gl-errors-review" id="gl-errors-review" hidden>
+    <p class="gl-errors-review-progress" id="gl-errors-review-progress"></p>
+    <p class="gl-errors-review-wrong" id="gl-errors-review-wrong"></p>
+    <p class="gl-errors-review-answer" id="gl-errors-review-answer" hidden></p>
+    <p class="gl-errors-review-zh" id="gl-errors-review-zh" hidden></p>
+    <div class="gl-errors-review-actions">
+      <button class="gl-errors-btn" type="button" id="gl-errors-show-answer">显答案</button>
+      <button class="gl-errors-btn gl-errors-btn-ghost" type="button" id="gl-errors-next">下一条</button>
+      <button class="gl-errors-btn gl-errors-btn-green" type="button" id="gl-errors-mastered">掌握了</button>
+      <button class="gl-errors-btn gl-errors-btn-ghost" type="button" id="gl-errors-exit-review">退出复习</button>
+    </div>
+  </div>
+  <div id="gl-errors-main">
+    <div class="gl-errors-toolbar" id="gl-errors-filters"></div>
+    <p class="gl-errors-count" id="gl-errors-count"></p>
+    <div class="gl-errors-list" id="gl-errors-list"></div>
+    <p class="gl-errors-empty" id="gl-errors-empty" hidden>错题本还是空的。去闪卡、默写、听写里练，错了会自动记进来，也可以手动添加。</p>
+  </div>
+</div>
+      <div id="gl-view-apply" class="gl-view">
+  <div class="gl-apply-head">
+    <h2>大学申请</h2>
+    <p>德国大学申请没有全国统一的申请表：先确认自己的学历能不能直接入学，再看目标专业走哪条申请通道，最后按学校自己的截止日期交材料。</p>
+  </div>
+
+  <section class="gl-apply-sec">
+    <h3><span class="gl-apply-num">01</span> 大学申请</h3>
+    <h4>第一步：查自己的学历能不能直接入学</h4>
+    <p>德国大学入学的前提是 Hochschulzugangsberechtigung（大学入学资格，简称 HZB），德国本土相当于 Abitur。外国学历是否等同，要在官方数据库里查：本科申请人用 DAAD 的入学资格数据库（DAAD Admission Database），按国家和证书类型查询；硕士申请人查 anabin（anabin.kmk.org），确认学校与学位是否被认可。查到的结果分直接入学、限专业入学、须先读预科三种。</p>
+    <h4>第二步：选申请通道</h4>
+    <ul>
+      <li><b>直接向大学申请：</b>部分大学和专业接受国际生直接通过本校网申系统递交材料。</li>
+      <li><b>经 uni-assist 申请：</b>约 180 所大学委托 uni-assist（Arbeits- und Servicestelle für internationale Studienbewerbungen）做材料预审。两种形式：标准程序（Standardverfahren）——在 My assist 提交申请，uni-assist 审核通过后直接转给大学；VPD 程序（Vorprüfungsdokumentation）——uni-assist 只出具一份预审证明，你再凭 VPD 自行向大学申请。uni-assist 只做审核，不决定录取，录取由大学决定。</li>
+      <li><b>hochschulstart：</b>医学、药学、兽医、牙科等全国限额专业，德国及欧盟申请人走 Stiftung für Hochschulzulassung（hochschulstart.de）集中分配；非欧盟申请人一般仍向大学或经 uni-assist 申请，具体以目标专业页面为准。</li>
+    </ul>
+    <div class="gl-apply-note gl-apply-note-blue">uni-assist 费用与时间（uni-assist.de 官网）：第一志愿 €75，同一学期内每多一个志愿 €30；VPD 通常在提交后 4–6 周出具，建议至少提前 8 周申请，VPD 自签发日起有效一年。费用/截止日期：未核实，请以官网为准——各大学自己的截止日期可能更早。</div>
+    <h4>没有直接入学资格：Studienkolleg / Feststellungsprüfung</h4>
+    <p>学历只够间接入学时，通常先读一年的预科 Studienkolleg，结业参加 Feststellungsprüfung（定级考试），通过后可申请对应专业方向的本科。预科分方向（T-Kurs 理工、M-Kurs 医学、W-Kurs 经济、G-Kurs 文科等），入学一般要通过 Aufnahmeprüfung（入学考试）。预科学制与入学德语要求（未核实），以目标 Studienkolleg 官网为准。</p>
+    <h4>中国申请人：APS 审核</h4>
+    <p>APS（Akademische Prüfstelle，留德人员审核部）是德国驻华使馆文化处与 DAAD 合作设立的机构，负责核实中国高校学历材料的真实性，并评定其对应的德国大学入学资格等级。中国学历申请人一般需要先通过 APS 审核再申请大学和签证（未核实：是否所有中国申请人一律必需、个别例外情形，请以 aps.org.cn 为准）。具体走哪种程序（是否面试或参加 TestAS）、所需材料与费用，按 aps.org.cn 当期公布的须知办理；按 aps.org.cn 2025 年 8 月版中国程序须知，审核费为 2,500 元人民币，全程通常 4–8 周（不同程序可能不同，请以官网为准）。</p>
+    <h4>语言证明</h4>
+    <p>德语授课专业一般须提交德语证明，常见且被广泛认可的有 TestDaF、DSH（须在德国参加）、Goethe-Zertifikat C2、telc Deutsch C1 Hochschule；部分专业也接受 Goethe-Zertifikat B2 / C1 或 ÖSD B2 / C1。具体要求哪个等级由每个专业自己定，申请前务必在该专业页面核对。英语授课专业则须提交英语证明（未核实：具体分数要求，请以专业页面为准）。</p>
+    <h4>一般截止日期</h4>
+    <p>DAAD 写明：多数大学冬季学期申请期为 5 月初至 7 月 15 日，夏季学期为 12 月初至 1 月 15 日；私立大学可能有不同截止日期。uni-assist 的截止日期通常与大学一致，材料与缴费都须在截止前到位。各专业实际日期以官网为准。</p>
+    <p class="gl-apply-source">来源：daad.de / uni-assist.de / anabin.kmk.org / aps.org.cn</p>
+  </section>
+
+  <section class="gl-apply-sec">
+    <h3><span class="gl-apply-num">02</span> 艺术生申请</h3>
+    <p>艺术、音乐、设计类专业除了学历与语言，还要过艺术能力关。核心是两样东西：</p>
+    <ul>
+      <li><b>作品集 Mappe / Mappenprüfung：</b>美术、设计类一般要提交个人作品集（原作、习作、速写本均可），学校看的是创作过程与主题连贯性，而不只是单张成品。作品数量、格式、是否须带原件到场，各校不同。</li>
+      <li><b>能力考试 Eignungsprüfung / Aufnahmeprüfung：</b>音乐、表演类多为现场演奏或演唱 audition；美术、设计类常在作品集初选通过后加现场实操考试与面试。录取通常分阶段：材料形式审查 → 作品集/录像初选 → 现场能力考试。</li>
+    </ul>
+    <p>艺术类专业一般没有 Numerus Clausus（NC），能不能进主要看能力考试结果，而不是高考分数。但这不等于门槛低：每所学校、每个专业的作品集要求、考试曲目、截止日期都不同，必须逐校在该校官网核对，不能套用别校的经验。</p>
+    <div class="gl-apply-note gl-apply-note-purple">举例：柏林艺术大学 UdK Berlin（udk-berlin.de 官方文件）：录取分形式审查、艺术初选、现场能力考试两到三阶段；除英语授课硕士外，所有专业都要求德语证明；艺术类专业申请时须 A2、入学注册时须 B2，艺术科学类专业申请时须 B1、入学注册时须 C1。注意该文件为 2023 年版，现行要求请以 UdK Berlin 官网为准；其他学校的语言要求各不相同（未核实：各校具体等级，请逐校核对官网）。</div>
+    <p>艺术生申请的截止日期各校差异很大，费用/截止日期：未核实，请以官网为准。建议把作品集准备时间倒推至少半年，并预留现场考试的赴德行程。</p>
+    <p class="gl-apply-source">来源：udk-berlin.de / daad.de（DAAD 院校数据库中各艺术院校的招生页）</p>
+  </section>
+
+  <section class="gl-apply-sec">
+    <h3><span class="gl-apply-num">03</span> 德国各大学要求</h3>
+    <p>各大学、各专业的要求不统一，但通用框架是一致的：</p>
+    <ul>
+      <li><b>入学资格：</b>Hochschulzugangsberechtigung。本科看中学毕业证书（结合 anabin / DAAD 入学资格数据库的评定）；硕士看本科学校与学位是否被认可（anabin 查 Institutionen 与 Hochschulabschlüsse）。</li>
+      <li><b>语言证明：</b>德语授课看 TestDaF / DSH / Goethe / telc 等证书，等级由专业定；英语授课看英语证明。</li>
+      <li><b>材料：</b>DAAD 列出的常规材料包括成绩单与科目总览（附官方翻译）、既往学历证书的认证件、护照复印件、证件照、语言证书认证件。一般只接受官方认证件与官方翻译件。</li>
+      <li><b>Numerus Clausus（NC）：</b>分两种。全国限额（医学、药学、兽医、牙科）全德统一；地方限额（zulassungsbeschränkt）只在部分学校、部分专业实行，除平均分外学校还可设动机信、考试、面试等附加选拔标准，且各校各专业不同。</li>
+      <li><b>截止日期：</b>每所大学、每个专业自己定，冬季学期一般 7 月 15 日前后、夏季学期 1 月 15 日前后，但艺术类与限额专业的日期常更早。费用/截止日期：未核实，请以官网为准。</li>
+    </ul>
+    <p>不点名具体大学：本页不列任何一所大学的具体分数、名额或截止日期，因为这些数字每年都变、且只对特定专业有效。查校方法：DAAD 院校数据库（daad.de）按专业检索，再点进该校该专业的官方招生页逐条核对。</p>
+    <p class="gl-apply-source">来源：daad.de / anabin.kmk.org / uni-assist.de</p>
+  </section>
+
+  <section class="gl-apply-sec">
+    <h3><span class="gl-apply-num">04</span> 文书</h3>
+    <h4>Motivationsschreiben（动机信）</h4>
+    <p>一封好的动机信一般回答四个问题，顺序可按自己的逻辑调整：</p>
+    <ul>
+      <li><b>为什么选这个专业：</b>哪段真实经历让你对这个方向产生兴趣，具体到一件事、一个项目，而不是泛泛的“我一直很喜欢”。</li>
+      <li><b>为什么选这所大学、这个项目：</b>提到该项目具体的课程、教授方向或实践资源，说明你确实读过它的培养方案。</li>
+      <li><b>你凭什么适合：</b>把已有经历（课程、实习、作品、语言）与该专业的要求一一对应，讲你能带来什么，而不是只讲你想得到什么。</li>
+      <li><b>你的目标：</b>读完之后想往哪个方向走，学业目标与职业目标各写一句，越具体越可信。</li>
+    </ul>
+    <h4>Lebenslauf（简历，表格形式）</h4>
+    <p>德国大学申请的简历一般用表格形式（tabellarischer Lebenslauf），按时间倒序排列，包含：个人信息、教育经历（学校、时间、专业/方向）、实习与工作经历、语言能力（附等级与证书）、技能与证书、课外活动或作品（如适用）。每段只写事实：时间、地点、做了什么，不写评价性形容词；如有照片，按目标学校要求决定是否附上（未核实：是否附照片各校要求不同，请以招生页为准）。</p>
+    <h4>通用建议</h4>
+    <ul>
+      <li>简洁：动机信一般一页左右，写满两页以上的要删。</li>
+      <li>诚实：经历、成绩、语言等级如实写，面试时会被追问细节。</li>
+      <li>针对每个项目单独写：不要一份动机信投所有学校，提到学校与项目名字的地方必须逐份改对。</li>
+      <li>语言与格式：德语授课用德语写，英语授课用英语写；写完后请德语水平高于自己的人通读一遍，检查语法与拼写。</li>
+    </ul>
+    <div class="gl-apply-note gl-apply-note-green">本页不提供动机信范文：范文容易被照搬，反而让招生官一眼看出是模板。按上面的结构，用自己的经历写，才是有效的动机信。</div>
+    <p class="gl-apply-source">来源：daad.de（申请流程与材料清单）</p>
+  </section>
+</div>
+    </div>
+  </div>
+</section>
+
 <footer class="site-footer">
   <div class="foot-in">
     <div class="foot-slogan">
@@ -1804,7 +2381,8 @@ button:active{transform:scale(.96)}
       <span class="fs-zh">一步一步，<b>走到永居。</b></span>
     </div>
     <p class="foot-note">1,771 条 2027 年入学岗位（雇主＋职业＋地点去重）· 岗位原文以雇主官网为准，投递前逐条复核。语言等级、工资、学制、开学日期以岗位原文为准。</p>
-    <nav aria-label="页脚栏目"><button type="button" data-goto="home">首页</button><button type="button" data-goto="board">岗位看板</button><button type="button" data-goto="apply">申请流程</button><button type="button" data-goto="documents">材料清单</button><button type="button" data-goto="visa">签证指南 §16a</button><button type="button" data-goto="recognition">学历认证</button><button type="button" data-goto="language">语言路径</button><button type="button" data-goto="costs">费用明细</button><button type="button" data-goto="residence">永居路径 §18c</button><button type="button" data-goto="timeline">时间规划</button><button type="button" data-goto="faq">常见问题</button><button type="button" data-goto="pitfalls">避坑指南</button></nav>
+    <p class="foot-credit">制作者：焦焦 &amp; Jerryruc</p>
+    <nav aria-label="页脚栏目"><button type="button" data-goto="home">首页</button><button type="button" data-goto="board">岗位看板</button><button type="button" data-goto="apply">申请流程</button><button type="button" data-goto="documents">材料清单</button><button type="button" data-goto="visa">签证指南 §16a</button><button type="button" data-goto="recognition">学历认证</button><button type="button" data-goto="language">语言路径</button><button type="button" data-goto="costs">费用明细</button><button type="button" data-goto="residence">永居路径 §18c</button><button type="button" data-goto="timeline">时间规划</button><button type="button" data-goto="faq">常见问题</button><button type="button" data-goto="pitfalls">避坑指南</button><button type="button" data-goto="learn">德语学习</button></nav>
   </div>
 </footer>
 <button type="button" id="toTop" aria-label="回到顶部"><svg viewBox="0 0 52 52" aria-hidden="true"><circle class="tt-ring-bg" cx="26" cy="26" r="22"/><circle class="tt-ring-fg" cx="26" cy="26" r="22"/></svg><span class="tt-arrow">&uarr;</span></button>
@@ -2280,8 +2858,8 @@ window.addEventListener("load", function(){ setTimeout(hideLoader, 350); });
 setTimeout(hideLoader, 1400);
 
 /* ---------- section switching with transition ---------- */
-var SECTIONS = ["home","board","apply","documents","visa","recognition","language","costs","residence","timeline","faq","pitfalls"];
-var TITLES = { home: "Ausbildung \u6307\u5357 \u00b7 \u5fb7\u56fd\u53cc\u5143\u5236\u57f9\u8bad\u5b8c\u5168\u6307\u5357", board: "\u5c97\u4f4d\u770b\u677f \u00b7 Ausbildung \u6307\u5357", apply: "\u7533\u8bf7\u6d41\u7a0b \u00b7 Ausbildung \u6307\u5357", documents: "\u6750\u6599\u6e05\u5355 \u00b7 Ausbildung \u6307\u5357", visa: "\u7b7e\u8bc1\u6307\u5357 \u00a716a \u00b7 Ausbildung \u6307\u5357", recognition: "\u5b66\u5386\u8ba4\u8bc1 \u00b7 Ausbildung \u6307\u5357", language: "\u8bed\u8a00\u8def\u5f84 \u00b7 Ausbildung \u6307\u5357", costs: "\u8d39\u7528\u660e\u7ec6 \u00b7 Ausbildung \u6307\u5357", residence: "\u6c38\u5c45\u8def\u5f84 \u00a718c \u00b7 Ausbildung \u6307\u5357", timeline: "\u65f6\u95f4\u89c4\u5212 \u00b7 Ausbildung \u6307\u5357", faq: "\u5e38\u89c1\u95ee\u9898 \u00b7 Ausbildung \u6307\u5357", pitfalls: "\u907f\u5751\u6307\u5357 \u00b7 Ausbildung \u6307\u5357" };
+var SECTIONS = ["home","board","apply","documents","visa","recognition","language","costs","residence","timeline","faq","pitfalls","learn"];
+var TITLES = { home: "Ausbildung \u6307\u5357 \u00b7 \u5fb7\u56fd\u53cc\u5143\u5236\u57f9\u8bad\u5b8c\u5168\u6307\u5357", board: "\u5c97\u4f4d\u770b\u677f \u00b7 Ausbildung \u6307\u5357", apply: "\u7533\u8bf7\u6d41\u7a0b \u00b7 Ausbildung \u6307\u5357", documents: "\u6750\u6599\u6e05\u5355 \u00b7 Ausbildung \u6307\u5357", visa: "\u7b7e\u8bc1\u6307\u5357 \u00a716a \u00b7 Ausbildung \u6307\u5357", recognition: "\u5b66\u5386\u8ba4\u8bc1 \u00b7 Ausbildung \u6307\u5357", language: "\u8bed\u8a00\u8def\u5f84 \u00b7 Ausbildung \u6307\u5357", costs: "\u8d39\u7528\u660e\u7ec6 \u00b7 Ausbildung \u6307\u5357", residence: "\u6c38\u5c45\u8def\u5f84 \u00a718c \u00b7 Ausbildung \u6307\u5357", timeline: "\u65f6\u95f4\u89c4\u5212 \u00b7 Ausbildung \u6307\u5357", faq: "\u5e38\u89c1\u95ee\u9898 \u00b7 Ausbildung \u6307\u5357", pitfalls: "\u907f\u5751\u6307\u5357 \u00b7 Ausbildung \u6307\u5357" , learn: "德语学习 · Ausbildung 指南"};
 var current = "home", switchTimer = null;
 function closeFsMenu(){
   var m = document.getElementById("fsMenu");
@@ -2565,5 +3143,854 @@ onScroll();
 if (toTop) toTop.addEventListener("click", function () { window.scrollTo({ top: 0, behavior: reduceMotion ? "auto" : "smooth" }); });
 })();
 </script>
+<script>
+window.GL_VOCAB = [{"de": "heißen", "zh": "叫作", "cat": "课堂与学习"}, {"de": "buchstabieren", "zh": "拼读", "cat": "课堂与学习"}, {"de": "wiederholen", "zh": "重复", "cat": "课堂与学习"}, {"de": "verstehen", "zh": "理解", "cat": "课堂与学习"}, {"de": "lesen", "zh": "读", "cat": "课堂与学习"}, {"de": "hören", "zh": "听", "cat": "课堂与学习"}, {"de": "sprechen", "zh": "说", "cat": "课堂与学习"}, {"de": "schreiben", "zh": "写", "cat": "课堂与学习"}, {"de": "fragen", "zh": "问", "cat": "课堂与学习"}, {"de": "antworten", "zh": "回答", "cat": "课堂与学习"}, {"de": "ergänzen", "zh": "补充", "cat": "课堂与学习"}, {"de": "markieren", "zh": "标记", "cat": "课堂与学习"}, {"de": "sammeln", "zh": "收集", "cat": "课堂与学习"}, {"de": "zuordnen", "zh": "配对", "cat": "课堂与学习"}, {"de": "laut", "zh": "大声地", "cat": "课堂与学习"}, {"de": "langsam", "zh": "慢慢地", "cat": "课堂与学习"}, {"de": "die Frage", "zh": "问题", "cat": "课堂与学习"}, {"de": "der Text", "zh": "课文", "cat": "课堂与学习"}, {"de": "das Wort", "zh": "词", "cat": "课堂与学习"}, {"de": "der Dialog", "zh": "对话", "cat": "课堂与学习"}, {"de": "die Tafel", "zh": "黑板", "cat": "课堂与学习"}, {"de": "die Uhr", "zh": "钟、表", "cat": "课堂与学习"}, {"de": "der Bleistift", "zh": "铅笔", "cat": "课堂与学习"}, {"de": "der Kuli", "zh": "圆珠笔", "cat": "课堂与学习"}, {"de": "der Textmarker", "zh": "荧光笔", "cat": "课堂与学习"}, {"de": "der Radiergummi", "zh": "橡皮", "cat": "课堂与学习"}, {"de": "der Stuhl", "zh": "椅子", "cat": "课堂与学习"}, {"de": "der Laptop", "zh": "笔记本电脑", "cat": "课堂与学习"}, {"de": "die Tasche", "zh": "包", "cat": "课堂与学习"}, {"de": "das Heft", "zh": "本子", "cat": "课堂与学习"}, {"de": "das Plakat", "zh": "海报", "cat": "课堂与学习"}, {"de": "die Tür", "zh": "门", "cat": "课堂与学习"}, {"de": "die Entschuldigung", "zh": "对不起", "cat": "课堂与学习"}, {"de": "die Bitte", "zh": "请求", "cat": "课堂与学习"}, {"de": "keine Ahnung", "zh": "不知道", "cat": "课堂与学习"}, {"de": "das Land, die Länder", "zh": "国家", "cat": "国家 · 语言 · 人"}, {"de": "die Sprache", "zh": "语言", "cat": "国家 · 语言 · 人"}, {"de": "die Muttersprache", "zh": "母语", "cat": "国家 · 语言 · 人"}, {"de": "die Schweiz", "zh": "瑞士", "cat": "国家 · 语言 · 人"}, {"de": "Österreich", "zh": "奥地利", "cat": "国家 · 语言 · 人"}, {"de": "Deutschland", "zh": "德国", "cat": "国家 · 语言 · 人"}, {"de": "die Heimat", "zh": "家乡", "cat": "国家 · 语言 · 人"}, {"de": "die Region", "zh": "地区", "cat": "国家 · 语言 · 人"}, {"de": "der Mensch, die Menschen", "zh": "人", "cat": "国家 · 语言 · 人"}, {"de": "der Wohnort", "zh": "居住地", "cat": "国家 · 语言 · 人"}, {"de": "der Sommer", "zh": "夏天", "cat": "国家 · 语言 · 人"}, {"de": "der/die Studierende", "zh": "大学生", "cat": "国家 · 语言 · 人"}, {"de": "international", "zh": "国际的", "cat": "国家 · 语言 · 人"}, {"de": "Englisch", "zh": "英语", "cat": "国家 · 语言 · 人"}, {"de": "Französisch", "zh": "法语", "cat": "国家 · 语言 · 人"}, {"de": "Italienisch", "zh": "意大利语", "cat": "国家 · 语言 · 人"}, {"de": "Türkisch", "zh": "土耳其语", "cat": "国家 · 语言 · 人"}, {"de": "Polnisch", "zh": "波兰语", "cat": "国家 · 语言 · 人"}, {"de": "Japanisch", "zh": "日语", "cat": "国家 · 语言 · 人"}, {"de": "Chinesisch", "zh": "汉语", "cat": "国家 · 语言 · 人"}, {"de": "Russisch", "zh": "俄语", "cat": "国家 · 语言 · 人"}, {"de": "Arabisch", "zh": "阿拉伯语", "cat": "国家 · 语言 · 人"}, {"de": "Norwegisch", "zh": "挪威语", "cat": "国家 · 语言 · 人"}, {"de": "Niederländisch", "zh": "荷兰语", "cat": "国家 · 语言 · 人"}, {"de": "Indonesisch", "zh": "印尼语", "cat": "国家 · 语言 · 人"}, {"de": "der Vorname", "zh": "名", "cat": "姓名 · 地址 · 日常通信"}, {"de": "der Familienname / der Nachname", "zh": "姓", "cat": "姓名 · 地址 · 日常通信"}, {"de": "die Adresse", "zh": "地址", "cat": "姓名 · 地址 · 日常通信"}, {"de": "die Straße", "zh": "街道", "cat": "姓名 · 地址 · 日常通信"}, {"de": "die Hausnummer", "zh": "门牌号", "cat": "姓名 · 地址 · 日常通信"}, {"de": "die Postleitzahl", "zh": "邮编", "cat": "姓名 · 地址 · 日常通信"}, {"de": "der Briefkasten", "zh": "信箱", "cat": "姓名 · 地址 · 日常通信"}, {"de": "die Postkarte", "zh": "明信片", "cat": "姓名 · 地址 · 日常通信"}, {"de": "die Antwort", "zh": "回答", "cat": "姓名 · 地址 · 日常通信"}, {"de": "die Handynummer", "zh": "手机号", "cat": "姓名 · 地址 · 日常通信"}, {"de": "herzlich willkommen", "zh": "热烈欢迎", "cat": "姓名 · 地址 · 日常通信"}, {"de": "Guten Morgen", "zh": "早上好", "cat": "姓名 · 地址 · 日常通信"}, {"de": "tschüss", "zh": "再见", "cat": "姓名 · 地址 · 日常通信"}, {"de": "sorry", "zh": "对不起", "cat": "姓名 · 地址 · 日常通信"}, {"de": "die Klingel", "zh": "门铃", "cat": "姓名 · 地址 · 日常通信"}, {"de": "das Paket", "zh": "包裹", "cat": "姓名 · 地址 · 日常通信"}, {"de": "der/die Absender/in", "zh": "寄件人", "cat": "姓名 · 地址 · 日常通信"}, {"de": "der/die Empfänger/in", "zh": "收件人", "cat": "姓名 · 地址 · 日常通信"}, {"de": "der Brief", "zh": "信", "cat": "姓名 · 地址 · 日常通信"}, {"de": "der/die Zusteller/in", "zh": "投递员", "cat": "姓名 · 地址 · 日常通信"}, {"de": "der Hund", "zh": "狗", "cat": "姓名 · 地址 · 日常通信"}, {"de": "die Zeit", "zh": "时间", "cat": "姓名 · 地址 · 日常通信"}, {"de": "sagen", "zh": "说", "cat": "姓名 · 地址 · 日常通信"}, {"de": "mögen", "zh": "喜欢", "cat": "姓名 · 地址 · 日常通信"}, {"de": "der Stress", "zh": "压力", "cat": "姓名 · 地址 · 日常通信"}, {"de": "das Tempo", "zh": "速度", "cat": "姓名 · 地址 · 日常通信"}, {"de": "aber", "zh": "但是", "cat": "姓名 · 地址 · 日常通信"}, {"de": "oder", "zh": "或者", "cat": "姓名 · 地址 · 日常通信"}, {"de": "der Kaffee", "zh": "咖啡", "cat": "食物与饮料（L3 / L4 / L12）"}, {"de": "der Tee", "zh": "茶", "cat": "食物与饮料（L3 / L4 / L12）"}, {"de": "der Kakao", "zh": "可可", "cat": "食物与饮料（L3 / L4 / L12）"}, {"de": "der Latte Macchiato", "zh": "拿铁玛奇朵", "cat": "食物与饮料（L3 / L4 / L12）"}, {"de": "der Cappuccino", "zh": "卡布奇诺", "cat": "食物与饮料（L3 / L4 / L12）"}, {"de": "der Espresso", "zh": "浓缩咖啡", "cat": "食物与饮料（L3 / L4 / L12）"}, {"de": "das Wasser", "zh": "水", "cat": "食物与饮料（L3 / L4 / L12）"}, {"de": "der Eistee", "zh": "冰茶", "cat": "食物与饮料（L3 / L4 / L12）"}, {"de": "der Saft", "zh": "果汁", "cat": "食物与饮料（L3 / L4 / L12）"}, {"de": "der Orangensaft", "zh": "橙汁", "cat": "食物与饮料（L3 / L4 / L12）"}, {"de": "der Apfelsaft", "zh": "苹果汁", "cat": "食物与饮料（L3 / L4 / L12）"}, {"de": "das Mineralwasser", "zh": "矿泉水", "cat": "食物与饮料（L3 / L4 / L12）"}, {"de": "die Cola", "zh": "可乐", "cat": "食物与饮料（L3 / L4 / L12）"}, {"de": "die Limonade", "zh": "柠檬汽水", "cat": "食物与饮料（L3 / L4 / L12）"}, {"de": "der Milchkaffee", "zh": "牛奶咖啡", "cat": "食物与饮料（L3 / L4 / L12）"}, {"de": "der Wein", "zh": "葡萄酒", "cat": "食物与饮料（L3 / L4 / L12）"}, {"de": "das Getränk", "zh": "饮料", "cat": "食物与饮料（L3 / L4 / L12）"}, {"de": "das Essen", "zh": "食物", "cat": "食物与饮料（L3 / L4 / L12）"}, {"de": "das Lebensmittel", "zh": "食品", "cat": "食物与饮料（L3 / L4 / L12）"}, {"de": "das Milchprodukt", "zh": "奶制品", "cat": "食物与饮料（L3 / L4 / L12）"}, {"de": "das Brot", "zh": "面包", "cat": "食物与饮料（L3 / L4 / L12）"}, {"de": "das Weißbrot", "zh": "白面包", "cat": "食物与饮料（L3 / L4 / L12）"}, {"de": "das Vollkornbrot", "zh": "全麦面包", "cat": "食物与饮料（L3 / L4 / L12）"}, {"de": "das Brötchen", "zh": "小面包", "cat": "食物与饮料（L3 / L4 / L12）"}, {"de": "die Butter", "zh": "黄油", "cat": "食物与饮料（L3 / L4 / L12）"}, {"de": "der Käse", "zh": "奶酪", "cat": "食物与饮料（L3 / L4 / L12）"}, {"de": "das Ei", "zh": "蛋", "cat": "食物与饮料（L3 / L4 / L12）"}, {"de": "die Wurst", "zh": "香肠", "cat": "食物与饮料（L3 / L4 / L12）"}, {"de": "die Weißwurst", "zh": "白香肠", "cat": "食物与饮料（L3 / L4 / L12）"}, {"de": "die Currywurst", "zh": "咖喱香肠", "cat": "食物与饮料（L3 / L4 / L12）"}, {"de": "die Salami", "zh": "萨拉米香肠", "cat": "食物与饮料（L3 / L4 / L12）"}, {"de": "der Schinken", "zh": "火腿", "cat": "食物与饮料（L3 / L4 / L12）"}, {"de": "das Fleisch", "zh": "肉", "cat": "食物与饮料（L3 / L4 / L12）"}, {"de": "das Schweinefleisch", "zh": "猪肉", "cat": "食物与饮料（L3 / L4 / L12）"}, {"de": "das Rind", "zh": "牛肉", "cat": "食物与饮料（L3 / L4 / L12）"}, {"de": "das Hähnchen", "zh": "鸡肉", "cat": "食物与饮料（L3 / L4 / L12）"}, {"de": "der Fisch", "zh": "鱼", "cat": "食物与饮料（L3 / L4 / L12）"}, {"de": "das Steak", "zh": "牛排", "cat": "食物与饮料（L3 / L4 / L12）"}, {"de": "das Schnitzel", "zh": "炸肉排", "cat": "食物与饮料（L3 / L4 / L12）"}, {"de": "die Kartoffel", "zh": "土豆", "cat": "食物与饮料（L3 / L4 / L12）"}, {"de": "der Kartoffelsalat", "zh": "土豆沙拉", "cat": "食物与饮料（L3 / L4 / L12）"}, {"de": "das Gemüse", "zh": "蔬菜", "cat": "食物与饮料（L3 / L4 / L12）"}, {"de": "die Tomate", "zh": "番茄", "cat": "食物与饮料（L3 / L4 / L12）"}, {"de": "die Gurke", "zh": "黄瓜", "cat": "食物与饮料（L3 / L4 / L12）"}, {"de": "die Zucchini", "zh": "西葫芦", "cat": "食物与饮料（L3 / L4 / L12）"}, {"de": "die Möhre", "zh": "胡萝卜", "cat": "食物与饮料（L3 / L4 / L12）"}, {"de": "die Zwiebel", "zh": "洋葱", "cat": "食物与饮料（L3 / L4 / L12）"}, {"de": "die Paprika", "zh": "甜椒", "cat": "食物与饮料（L3 / L4 / L12）"}, {"de": "der Pilz", "zh": "蘑菇", "cat": "食物与饮料（L3 / L4 / L12）"}, {"de": "die Limette", "zh": "青柠檬", "cat": "食物与饮料（L3 / L4 / L12）"}, {"de": "die Olive", "zh": "橄榄", "cat": "食物与饮料（L3 / L4 / L12）"}, {"de": "das Obst", "zh": "水果", "cat": "食物与饮料（L3 / L4 / L12）"}, {"de": "der Apfel", "zh": "苹果", "cat": "食物与饮料（L3 / L4 / L12）"}, {"de": "die Birne", "zh": "梨", "cat": "食物与饮料（L3 / L4 / L12）"}, {"de": "die Orange", "zh": "橙子", "cat": "食物与饮料（L3 / L4 / L12）"}, {"de": "die Feige", "zh": "无花果", "cat": "食物与饮料（L3 / L4 / L12）"}, {"de": "die Weintraube", "zh": "葡萄", "cat": "食物与饮料（L3 / L4 / L12）"}, {"de": "die Mandarine", "zh": "橘子", "cat": "食物与饮料（L3 / L4 / L12）"}, {"de": "die Mini-Tomate", "zh": "小番茄", "cat": "食物与饮料（L3 / L4 / L12）"}, {"de": "die Erdnuss", "zh": "花生", "cat": "食物与饮料（L3 / L4 / L12）"}, {"de": "die Nudel", "zh": "面条", "cat": "食物与饮料（L3 / L4 / L12）"}, {"de": "die Bandnudel", "zh": "宽面条", "cat": "食物与饮料（L3 / L4 / L12）"}, {"de": "die Reisnudel", "zh": "米粉", "cat": "食物与饮料（L3 / L4 / L12）"}, {"de": "der Reis", "zh": "米饭", "cat": "食物与饮料（L3 / L4 / L12）"}, {"de": "die Pasta", "zh": "意面", "cat": "食物与饮料（L3 / L4 / L12）"}, {"de": "die Spaghetti", "zh": "意大利面", "cat": "食物与饮料（L3 / L4 / L12）"}, {"de": "die Suppe", "zh": "汤", "cat": "食物与饮料（L3 / L4 / L12）"}, {"de": "die Tomatensuppe", "zh": "番茄汤", "cat": "食物与饮料（L3 / L4 / L12）"}, {"de": "der Salat", "zh": "沙拉", "cat": "食物与饮料（L3 / L4 / L12）"}, {"de": "der Gurkensalat", "zh": "黄瓜沙拉", "cat": "食物与饮料（L3 / L4 / L12）"}, {"de": "der Kopfsalat", "zh": "生菜", "cat": "食物与饮料（L3 / L4 / L12）"}, {"de": "die Pizza", "zh": "披萨", "cat": "食物与饮料（L3 / L4 / L12）"}, {"de": "der Hamburger", "zh": "汉堡", "cat": "食物与饮料（L3 / L4 / L12）"}, {"de": "die Pommes", "zh": "薯条", "cat": "食物与饮料（L3 / L4 / L12）"}, {"de": "das Sushi", "zh": "寿司", "cat": "食物与饮料（L3 / L4 / L12）"}, {"de": "das Gemüsecurry", "zh": "蔬菜咖喱", "cat": "食物与饮料（L3 / L4 / L12）"}, {"de": "der Tofu", "zh": "豆腐", "cat": "食物与饮料（L3 / L4 / L12）"}, {"de": "der Kuchen", "zh": "蛋糕", "cat": "食物与饮料（L3 / L4 / L12）"}, {"de": "das Croissant", "zh": "牛角包", "cat": "食物与饮料（L3 / L4 / L12）"}, {"de": "die Marmelade", "zh": "果酱", "cat": "食物与饮料（L3 / L4 / L12）"}, {"de": "die Erdbeermarmelade", "zh": "草莓果酱", "cat": "食物与饮料（L3 / L4 / L12）"}, {"de": "der Honig", "zh": "蜂蜜", "cat": "食物与饮料（L3 / L4 / L12）"}, {"de": "der Zucker", "zh": "糖", "cat": "食物与饮料（L3 / L4 / L12）"}, {"de": "die Sahne", "zh": "奶油", "cat": "食物与饮料（L3 / L4 / L12）"}, {"de": "der Pfeffer", "zh": "胡椒", "cat": "食物与饮料（L3 / L4 / L12）"}, {"de": "das Streetfood", "zh": "街头小吃", "cat": "食物与饮料（L3 / L4 / L12）"}, {"de": "der Snack", "zh": "零食", "cat": "食物与饮料（L3 / L4 / L12）"}, {"de": "das Gericht", "zh": "一道菜", "cat": "食物与饮料（L3 / L4 / L12）"}, {"de": "die Zutat", "zh": "配料", "cat": "食物与饮料（L3 / L4 / L12）"}, {"de": "die Spezialität", "zh": "特色菜", "cat": "食物与饮料（L3 / L4 / L12）"}, {"de": "die Rösti", "zh": "土豆饼", "cat": "食物与饮料（L3 / L4 / L12）"}, {"de": "das Tier", "zh": "动物", "cat": "食物与饮料（L3 / L4 / L12）"}, {"de": "die Speisekarte", "zh": "菜单", "cat": "食物与饮料（L3 / L4 / L12）"}, {"de": "die Vorspeise", "zh": "前菜", "cat": "食物与饮料（L3 / L4 / L12）"}, {"de": "das Hauptgericht", "zh": "主菜", "cat": "食物与饮料（L3 / L4 / L12）"}, {"de": "die Karte", "zh": "菜单、卡", "cat": "食物与饮料（L3 / L4 / L12）"}, {"de": "bestellen", "zh": "点单", "cat": "食物与饮料（L3 / L4 / L12）"}, {"de": "nehmen", "zh": "拿、要", "cat": "食物与饮料（L3 / L4 / L12）"}, {"de": "möchten", "zh": "想要", "cat": "食物与饮料（L3 / L4 / L12）"}, {"de": "trinken", "zh": "喝", "cat": "食物与饮料（L3 / L4 / L12）"}, {"de": "essen", "zh": "吃", "cat": "食物与饮料（L3 / L4 / L12）"}, {"de": "kochen", "zh": "做饭", "cat": "食物与饮料（L3 / L4 / L12）"}, {"de": "backen", "zh": "烘焙", "cat": "食物与饮料（L3 / L4 / L12）"}, {"de": "kosten", "zh": "花费、尝", "cat": "食物与饮料（L3 / L4 / L12）"}, {"de": "der Marktstand", "zh": "摊位", "cat": "食物与饮料（L3 / L4 / L12）"}, {"de": "der/die Verkäufer/in", "zh": "售货员", "cat": "食物与饮料（L3 / L4 / L12）"}, {"de": "die Packung", "zh": "一包", "cat": "食物与饮料（L3 / L4 / L12）"}, {"de": "die Flasche", "zh": "瓶", "cat": "食物与饮料（L3 / L4 / L12）"}, {"de": "die Dose", "zh": "罐", "cat": "食物与饮料（L3 / L4 / L12）"}, {"de": "das Glas", "zh": "杯", "cat": "食物与饮料（L3 / L4 / L12）"}, {"de": "der Liter", "zh": "升", "cat": "食物与饮料（L3 / L4 / L12）"}, {"de": "das Kilo(gramm)", "zh": "公斤", "cat": "食物与饮料（L3 / L4 / L12）"}, {"de": "das Gramm", "zh": "克", "cat": "食物与饮料（L3 / L4 / L12）"}, {"de": "das Stück", "zh": "一块", "cat": "食物与饮料（L3 / L4 / L12）"}, {"de": "das Viertel", "zh": "四分之一", "cat": "食物与饮料（L3 / L4 / L12）"}, {"de": "frisch", "zh": "新鲜的", "cat": "食物与饮料（L3 / L4 / L12）"}, {"de": "naturell", "zh": "原味的", "cat": "食物与饮料（L3 / L4 / L12）"}, {"de": "scharf", "zh": "辣的", "cat": "食物与饮料（L3 / L4 / L12）"}, {"de": "süß", "zh": "甜的", "cat": "食物与饮料（L3 / L4 / L12）"}, {"de": "lecker", "zh": "好吃的", "cat": "食物与饮料（L3 / L4 / L12）"}, {"de": "vegetarisch", "zh": "素食的", "cat": "食物与饮料（L3 / L4 / L12）"}, {"de": "der Hunger", "zh": "饥饿", "cat": "食物与饮料（L3 / L4 / L12）"}, {"de": "probieren", "zh": "尝一尝", "cat": "食物与饮料（L3 / L4 / L12）"}, {"de": "gießen", "zh": "浇", "cat": "食物与饮料（L3 / L4 / L12）"}, {"de": "braten", "zh": "煎、炸", "cat": "食物与饮料（L3 / L4 / L12）"}, {"de": "schneiden", "zh": "切", "cat": "食物与饮料（L3 / L4 / L12）"}, {"de": "putzen", "zh": "擦净", "cat": "食物与饮料（L3 / L4 / L12）"}, {"de": "das Portemonnaie", "zh": "钱包", "cat": "食物与饮料（L3 / L4 / L12）"}, {"de": "zahlen", "zh": "付款", "cat": "食物与饮料（L3 / L4 / L12）"}, {"de": "die Bar", "zh": "吧台", "cat": "食物与饮料（L3 / L4 / L12）"}, {"de": "schicken", "zh": "寄、发", "cat": "食物与饮料（L3 / L4 / L12）"}, {"de": "shoppen", "zh": "购物", "cat": "食物与饮料（L3 / L4 / L12）"}, {"de": "schleppen", "zh": "扛、提（重物）", "cat": "食物与饮料（L3 / L4 / L12）"}, {"de": "suchen", "zh": "找、寻找", "cat": "食物与饮料（L3 / L4 / L12）"}, {"de": "müssen", "zh": "必须", "cat": "食物与饮料（L3 / L4 / L12）"}, {"de": "nichts", "zh": "什么也没有", "cat": "食物与饮料（L3 / L4 / L12）"}, {"de": "auswählen", "zh": "挑选", "cat": "食物与饮料（L3 / L4 / L12）"}, {"de": "angeben", "zh": "告知（人数等）", "cat": "食物与饮料（L3 / L4 / L12）"}, {"de": "die Personenzahl", "zh": "人数", "cat": "食物与饮料（L3 / L4 / L12）"}, {"de": "die Foodbox", "zh": "食品盒", "cat": "食物与饮料（L3 / L4 / L12）"}, {"de": "der Online-Supermarkt", "zh": "网上超市", "cat": "食物与饮料（L3 / L4 / L12）"}, {"de": "geöffnet", "zh": "营业中的", "cat": "食物与饮料（L3 / L4 / L12）"}, {"de": "nach Hause", "zh": "回家", "cat": "食物与饮料（L3 / L4 / L12）"}, {"de": "die Million", "zh": "百万", "cat": "食物与饮料（L3 / L4 / L12）"}, {"de": "der Vorteil", "zh": "优点", "cat": "食物与饮料（L3 / L4 / L12）"}, {"de": "die Sekunde", "zh": "秒", "cat": "时间 · 日程 · 约会（L5）"}, {"de": "die Minute", "zh": "分钟", "cat": "时间 · 日程 · 约会（L5）"}, {"de": "die Stunde", "zh": "小时", "cat": "时间 · 日程 · 约会（L5）"}, {"de": "der Tag", "zh": "天", "cat": "时间 · 日程 · 约会（L5）"}, {"de": "der Monat", "zh": "月", "cat": "时间 · 日程 · 约会（L5）"}, {"de": "das Jahr", "zh": "年", "cat": "时间 · 日程 · 约会（L5）"}, {"de": "der Termin", "zh": "日程、约会", "cat": "时间 · 日程 · 约会（L5）"}, {"de": "heute", "zh": "今天", "cat": "时间 · 日程 · 约会（L5）"}, {"de": "morgen", "zh": "明天", "cat": "时间 · 日程 · 约会（L5）"}, {"de": "gestern", "zh": "昨天", "cat": "时间 · 日程 · 约会（L5）"}, {"de": "jetzt", "zh": "现在", "cat": "时间 · 日程 · 约会（L5）"}, {"de": "wann", "zh": "何时", "cat": "时间 · 日程 · 约会（L5）"}, {"de": "um … Uhr", "zh": "在…点", "cat": "时间 · 日程 · 约会（L5）"}, {"de": "halb", "zh": "半", "cat": "时间 · 日程 · 约会（L5）"}, {"de": "vor", "zh": "差（几点差几分）", "cat": "时间 · 日程 · 约会（L5）"}, {"de": "nach", "zh": "过（几点过几分）", "cat": "时间 · 日程 · 约会（L5）"}, {"de": "spät", "zh": "晚的", "cat": "时间 · 日程 · 约会（L5）"}, {"de": "früh", "zh": "早的", "cat": "时间 · 日程 · 约会（L5）"}, {"de": "lang", "zh": "长的", "cat": "时间 · 日程 · 约会（L5）"}, {"de": "der Morgen", "zh": "早晨", "cat": "时间 · 日程 · 约会（L5）"}, {"de": "der Vormittag", "zh": "上午", "cat": "时间 · 日程 · 约会（L5）"}, {"de": "der Mittag", "zh": "中午", "cat": "时间 · 日程 · 约会（L5）"}, {"de": "der Nachmittag", "zh": "下午", "cat": "时间 · 日程 · 约会（L5）"}, {"de": "der Abend", "zh": "晚上", "cat": "时间 · 日程 · 约会（L5）"}, {"de": "die Nacht", "zh": "夜里", "cat": "时间 · 日程 · 约会（L5）"}, {"de": "Guten Abend", "zh": "晚上好", "cat": "时间 · 日程 · 约会（L5）"}, {"de": "Gute Nacht", "zh": "晚安", "cat": "时间 · 日程 · 约会（L5）"}, {"de": "Montag", "zh": "周一", "cat": "时间 · 日程 · 约会（L5）"}, {"de": "Dienstag", "zh": "周二", "cat": "时间 · 日程 · 约会（L5）"}, {"de": "Mittwoch", "zh": "周三", "cat": "时间 · 日程 · 约会（L5）"}, {"de": "Donnerstag", "zh": "周四", "cat": "时间 · 日程 · 约会（L5）"}, {"de": "Freitag", "zh": "周五", "cat": "时间 · 日程 · 约会（L5）"}, {"de": "Samstag", "zh": "周六", "cat": "时间 · 日程 · 约会（L5）"}, {"de": "Sonntag", "zh": "周日", "cat": "时间 · 日程 · 约会（L5）"}, {"de": "das Wochenende", "zh": "周末", "cat": "时间 · 日程 · 约会（L5）"}, {"de": "der März", "zh": "三月", "cat": "时间 · 日程 · 约会（L5）"}, {"de": "der April", "zh": "四月", "cat": "时间 · 日程 · 约会（L5）"}, {"de": "der September", "zh": "九月", "cat": "时间 · 日程 · 约会（L5）"}, {"de": "der Oktober", "zh": "十月", "cat": "时间 · 日程 · 约会（L5）"}, {"de": "der Geburtstag", "zh": "生日", "cat": "时间 · 日程 · 约会（L5）"}, {"de": "freihaben", "zh": "休假", "cat": "时间 · 日程 · 约会（L5）"}, {"de": "ausschlafen", "zh": "睡懒觉", "cat": "时间 · 日程 · 约会（L5）"}, {"de": "aufstehen", "zh": "起床", "cat": "时间 · 日程 · 约会（L5）"}, {"de": "das Bett", "zh": "床", "cat": "时间 · 日程 · 约会（L5）"}, {"de": "frühstücken", "zh": "吃早餐", "cat": "时间 · 日程 · 约会（L5）"}, {"de": "schlafen", "zh": "睡觉", "cat": "时间 · 日程 · 约会（L5）"}, {"de": "dauern", "zh": "持续", "cat": "时间 · 日程 · 约会（L5）"}, {"de": "stattfinden", "zh": "举行", "cat": "时间 · 日程 · 约会（L5）"}, {"de": "passen", "zh": "合适", "cat": "时间 · 日程 · 约会（L5）"}, {"de": "einladen", "zh": "邀请", "cat": "时间 · 日程 · 约会（L5）"}, {"de": "der Gast", "zh": "客人", "cat": "时间 · 日程 · 约会（L5）"}, {"de": "egal", "zh": "无所谓", "cat": "时间 · 日程 · 约会（L5）"}, {"de": "das Quiz", "zh": "竞赛问答", "cat": "时间 · 日程 · 约会（L5）"}, {"de": "der Marathon", "zh": "马拉松", "cat": "时间 · 日程 · 约会（L5）"}, {"de": "siegen", "zh": "获胜", "cat": "时间 · 日程 · 约会（L5）"}, {"de": "der/die Sieger/in", "zh": "获胜者", "cat": "时间 · 日程 · 约会（L5）"}, {"de": "die Distanz", "zh": "距离", "cat": "时间 · 日程 · 约会（L5）"}, {"de": "der Kilometer", "zh": "公里", "cat": "时间 · 日程 · 约会（L5）"}, {"de": "vorbereiten", "zh": "准备", "cat": "时间 · 日程 · 约会（L5）"}, {"de": "der Test", "zh": "考试、测试", "cat": "时间 · 日程 · 约会（L5）"}, {"de": "leidtun", "zh": "抱歉（Es tut mir leid）", "cat": "时间 · 日程 · 约会（L5）"}, {"de": "die Stadt", "zh": "城市", "cat": "城市与交通（L6）"}, {"de": "das Stadtzentrum", "zh": "市中心", "cat": "城市与交通（L6）"}, {"de": "der Hauptbahnhof", "zh": "中央车站", "cat": "城市与交通（L6）"}, {"de": "der Bahnhof", "zh": "车站", "cat": "城市与交通（L6）"}, {"de": "die Haltestelle", "zh": "车站", "cat": "城市与交通（L6）"}, {"de": "die Sehenswürdigkeit", "zh": "景点", "cat": "城市与交通（L6）"}, {"de": "die Tour", "zh": "游览", "cat": "城市与交通（L6）"}, {"de": "der Treffpunkt", "zh": "见面地点", "cat": "城市与交通（L6）"}, {"de": "der Stadtpark", "zh": "城市公园", "cat": "城市与交通（L6）"}, {"de": "der Park", "zh": "公园", "cat": "城市与交通（L6）"}, {"de": "das Theater", "zh": "剧院", "cat": "城市与交通（L6）"}, {"de": "das Museum", "zh": "博物馆", "cat": "城市与交通（L6）"}, {"de": "das Opernhaus", "zh": "歌剧院", "cat": "城市与交通（L6）"}, {"de": "der Hafen", "zh": "港口", "cat": "城市与交通（L6）"}, {"de": "der Garten", "zh": "花园", "cat": "城市与交通（L6）"}, {"de": "der Zoo", "zh": "动物园", "cat": "城市与交通（L6）"}, {"de": "die Kuppel", "zh": "穹顶", "cat": "城市与交通（L6）"}, {"de": "das Panorama", "zh": "全景", "cat": "城市与交通（L6）"}, {"de": "die Universität", "zh": "大学", "cat": "城市与交通（L6）"}, {"de": "der Supermarkt", "zh": "超市", "cat": "城市与交通（L6）"}, {"de": "das Restaurant", "zh": "餐厅", "cat": "城市与交通（L6）"}, {"de": "das Café", "zh": "咖啡馆", "cat": "城市与交通（L6）"}, {"de": "die Brille", "zh": "眼镜", "cat": "城市与交通（L6）"}, {"de": "der Kopfhörer", "zh": "耳机", "cat": "城市与交通（L6）"}, {"de": "die Atmosphäre", "zh": "氛围", "cat": "城市与交通（L6）"}, {"de": "der/die Tourist/in", "zh": "游客", "cat": "城市与交通（L6）"}, {"de": "der/die Fotojournalist/in", "zh": "摄影记者", "cat": "城市与交通（L6）"}, {"de": "der/die Reiseführer/in", "zh": "导游", "cat": "城市与交通（L6）"}, {"de": "der Zug", "zh": "火车", "cat": "城市与交通（L6）"}, {"de": "der Bus", "zh": "公交车", "cat": "城市与交通（L6）"}, {"de": "die Buslinie", "zh": "公交线路", "cat": "城市与交通（L6）"}, {"de": "die S-Bahn", "zh": "城铁", "cat": "城市与交通（L6）"}, {"de": "die U-Bahn", "zh": "地铁", "cat": "城市与交通（L6）"}, {"de": "das Auto", "zh": "汽车", "cat": "城市与交通（L6）"}, {"de": "das Motorrad", "zh": "摩托车", "cat": "城市与交通（L6）"}, {"de": "das Fahrrad", "zh": "自行车", "cat": "城市与交通（L6）"}, {"de": "das Rad", "zh": "自行车", "cat": "城市与交通（L6）"}, {"de": "der E-Roller", "zh": "电动滑板车", "cat": "城市与交通（L6）"}, {"de": "fahren", "zh": "开、骑、坐车", "cat": "城市与交通（L6）"}, {"de": "abfahren", "zh": "出发", "cat": "城市与交通（L6）"}, {"de": "ankommen", "zh": "到达", "cat": "城市与交通（L6）"}, {"de": "umsteigen", "zh": "换乘", "cat": "城市与交通（L6）"}, {"de": "weiterfahren", "zh": "继续前行", "cat": "城市与交通（L6）"}, {"de": "die Direktverbindung", "zh": "直达车", "cat": "城市与交通（L6）"}, {"de": "ausfallen", "zh": "取消", "cat": "城市与交通（L6）"}, {"de": "pünktlich", "zh": "准时的", "cat": "城市与交通（L6）"}, {"de": "der Eingang", "zh": "入口", "cat": "城市与交通（L6）"}, {"de": "der Ausgang", "zh": "出口", "cat": "城市与交通（L6）"}, {"de": "die Richtung", "zh": "方向", "cat": "城市与交通（L6）"}, {"de": "abbiegen", "zh": "转弯", "cat": "城市与交通（L6）"}, {"de": "geradeaus", "zh": "直走", "cat": "城市与交通（L6）"}, {"de": "links", "zh": "左", "cat": "城市与交通（L6）"}, {"de": "rechts", "zh": "右", "cat": "城市与交通（L6）"}, {"de": "zu Fuß", "zh": "步行", "cat": "城市与交通（L6）"}, {"de": "weit", "zh": "远的", "cat": "城市与交通（L6）"}, {"de": "unterwegs", "zh": "在路上", "cat": "城市与交通（L6）"}, {"de": "helfen", "zh": "帮助", "cat": "城市与交通（L6）"}, {"de": "nachsehen", "zh": "查看", "cat": "城市与交通（L6）"}, {"de": "der Schlüssel", "zh": "钥匙", "cat": "城市与交通（L6）"}, {"de": "der USB-Stick U", "zh": "盘", "cat": "城市与交通（L6）"}, {"de": "gehören", "zh": "属于", "cat": "城市与交通（L6）"}, {"de": "die Reservierung", "zh": "预订", "cat": "城市与交通（L6）"}, {"de": "der Fotostopp", "zh": "拍照停留", "cat": "城市与交通（L6）"}, {"de": "das Selfie", "zh": "自拍", "cat": "城市与交通（L6）"}, {"de": "besuchen", "zh": "参观、拜访", "cat": "城市与交通（L6）"}, {"de": "berichten", "zh": "报道", "cat": "城市与交通（L6）"}, {"de": "der Tipp", "zh": "建议", "cat": "城市与交通（L6）"}, {"de": "der Favorit", "zh": "最爱", "cat": "城市与交通（L6）"}, {"de": "die Firma", "zh": "公司", "cat": "公司 · 办公室 · 学校（L7）"}, {"de": "der Arbeitsplatz", "zh": "工作岗位", "cat": "公司 · 办公室 · 学校（L7）"}, {"de": "der Arbeitstag", "zh": "工作日", "cat": "公司 · 办公室 · 学校（L7）"}, {"de": "das Büro", "zh": "办公室", "cat": "公司 · 办公室 · 学校（L7）"}, {"de": "die Etage", "zh": "楼层", "cat": "公司 · 办公室 · 学校（L7）"}, {"de": "das Erdgeschoss", "zh": "一楼", "cat": "公司 · 办公室 · 学校（L7）"}, {"de": "der Fahrstuhl", "zh": "电梯", "cat": "公司 · 办公室 · 学校（L7）"}, {"de": "der Aufzug", "zh": "电梯", "cat": "公司 · 办公室 · 学校（L7）"}, {"de": "die Empfangshalle", "zh": "接待大厅", "cat": "公司 · 办公室 · 学校（L7）"}, {"de": "der Konferenzraum", "zh": "会议室", "cat": "公司 · 办公室 · 学校（L7）"}, {"de": "die Kantine", "zh": "食堂", "cat": "公司 · 办公室 · 学校（L7）"}, {"de": "die Mensa", "zh": "学生食堂", "cat": "公司 · 办公室 · 学校（L7）"}, {"de": "der Kopierraum", "zh": "复印室", "cat": "公司 · 办公室 · 学校（L7）"}, {"de": "das Sekretariat", "zh": "秘书处", "cat": "公司 · 办公室 · 学校（L7）"}, {"de": "das Lehrerzimmer", "zh": "教师办公室", "cat": "公司 · 办公室 · 学校（L7）"}, {"de": "die Toilette", "zh": "洗手间", "cat": "公司 · 办公室 · 学校（L7）"}, {"de": "die Agentur", "zh": "公司、机构", "cat": "公司 · 办公室 · 学校（L7）"}, {"de": "das Gebäude", "zh": "大楼", "cat": "公司 · 办公室 · 学校（L7）"}, {"de": "das Intranet", "zh": "内网", "cat": "公司 · 办公室 · 学校（L7）"}, {"de": "der Computer", "zh": "电脑", "cat": "公司 · 办公室 · 学校（L7）"}, {"de": "das Tablet", "zh": "平板", "cat": "公司 · 办公室 · 学校（L7）"}, {"de": "die Maus", "zh": "鼠标", "cat": "公司 · 办公室 · 学校（L7）"}, {"de": "die Tastatur", "zh": "键盘", "cat": "公司 · 办公室 · 学校（L7）"}, {"de": "das Handy", "zh": "手机", "cat": "公司 · 办公室 · 学校（L7）"}, {"de": "das Telefon", "zh": "电话", "cat": "公司 · 办公室 · 学校（L7）"}, {"de": "der Notizblock", "zh": "记事本", "cat": "公司 · 办公室 · 学校（L7）"}, {"de": "der Stift", "zh": "笔", "cat": "公司 · 办公室 · 学校（L7）"}, {"de": "der Ordner", "zh": "文件夹", "cat": "公司 · 办公室 · 学校（L7）"}, {"de": "die Lampe", "zh": "灯", "cat": "公司 · 办公室 · 学校（L7）"}, {"de": "das Bild", "zh": "图片", "cat": "公司 · 办公室 · 学校（L7）"}, {"de": "das Magazin", "zh": "杂志", "cat": "公司 · 办公室 · 学校（L7）"}, {"de": "der Papierkorb", "zh": "废纸篓", "cat": "公司 · 办公室 · 学校（L7）"}, {"de": "das Fenster", "zh": "窗户", "cat": "公司 · 办公室 · 学校（L7）"}, {"de": "die E-Mail", "zh": "邮件", "cat": "公司 · 办公室 · 学校（L7）"}, {"de": "das Dokument", "zh": "文件", "cat": "公司 · 办公室 · 学校（L7）"}, {"de": "das Projekt", "zh": "项目", "cat": "公司 · 办公室 · 学校（L7）"}, {"de": "die Konferenz", "zh": "会议", "cat": "公司 · 办公室 · 学校（L7）"}, {"de": "die Telefonkonferenz", "zh": "电话会议", "cat": "公司 · 办公室 · 学校（L7）"}, {"de": "die Präsentation", "zh": "汇报演示", "cat": "公司 · 办公室 · 学校（L7）"}, {"de": "die Information", "zh": "信息", "cat": "公司 · 办公室 · 学校（L7）"}, {"de": "die Aufgabe", "zh": "任务", "cat": "公司 · 办公室 · 学校（L7）"}, {"de": "die Organisation", "zh": "组织", "cat": "公司 · 办公室 · 学校（L7）"}, {"de": "organisieren", "zh": "组织", "cat": "公司 · 办公室 · 学校（L7）"}, {"de": "erklären", "zh": "解释", "cat": "公司 · 办公室 · 学校（L7）"}, {"de": "kopieren", "zh": "复印", "cat": "公司 · 办公室 · 学校（L7）"}, {"de": "beantworten", "zh": "回答", "cat": "公司 · 办公室 · 学校（L7）"}, {"de": "anrufen", "zh": "打电话", "cat": "公司 · 办公室 · 学校（L7）"}, {"de": "ausschalten", "zh": "关掉", "cat": "公司 · 办公室 · 学校（L7）"}, {"de": "tun", "zh": "做", "cat": "公司 · 办公室 · 学校（L7）"}, {"de": "formell", "zh": "正式的", "cat": "公司 · 办公室 · 学校（L7）"}, {"de": "informell", "zh": "非正式的", "cat": "公司 · 办公室 · 学校（L7）"}, {"de": "wichtig", "zh": "重要的", "cat": "公司 · 办公室 · 学校（L7）"}, {"de": "neu", "zh": "新的", "cat": "公司 · 办公室 · 学校（L7）"}, {"de": "begrüßen", "zh": "问候", "cat": "公司 · 办公室 · 学校（L7）"}, {"de": "zeigen", "zh": "给…看", "cat": "公司 · 办公室 · 学校（L7）"}, {"de": "sich entschuldigen", "zh": "道歉", "cat": "公司 · 办公室 · 学校（L7）"}, {"de": "der Podcast", "zh": "播客", "cat": "公司 · 办公室 · 学校（L7）"}, {"de": "studieren", "zh": "上大学", "cat": "公司 · 办公室 · 学校（L7）"}, {"de": "das Studium", "zh": "大学学业", "cat": "公司 · 办公室 · 学校（L7）"}, {"de": "der/die Student/in", "zh": "大学生", "cat": "公司 · 办公室 · 学校（L7）"}, {"de": "der/die Schüler/in", "zh": "中小学生", "cat": "公司 · 办公室 · 学校（L7）"}, {"de": "bisher", "zh": "到目前为止", "cat": "公司 · 办公室 · 学校（L7）"}, {"de": "mehr", "zh": "更多", "cat": "公司 · 办公室 · 学校（L7）"}, {"de": "die Freizeit", "zh": "空闲时间", "cat": "兴趣爱好（L8）"}, {"de": "das Hobby", "zh": "爱好", "cat": "兴趣爱好（L8）"}, {"de": "der Ski", "zh": "滑雪板", "cat": "兴趣爱好（L8）"}, {"de": "Ski fahren", "zh": "滑雪", "cat": "兴趣爱好（L8）"}, {"de": "snowboarden", "zh": "滑单板", "cat": "兴趣爱好（L8）"}, {"de": "klettern", "zh": "攀登", "cat": "兴趣爱好（L8）"}, {"de": "das Eisklettern", "zh": "攀冰", "cat": "兴趣爱好（L8）"}, {"de": "wandern", "zh": "徒步", "cat": "兴趣爱好（L8）"}, {"de": "der Berg", "zh": "山", "cat": "兴趣爱好（L8）"}, {"de": "die Bergbahn", "zh": "山地缆车", "cat": "兴趣爱好（L8）"}, {"de": "tanzen", "zh": "跳舞", "cat": "兴趣爱好（L8）"}, {"de": "der Tanzkurs", "zh": "舞蹈课", "cat": "兴趣爱好（L8）"}, {"de": "der Kletterkurs", "zh": "攀岩课", "cat": "兴趣爱好（L8）"}, {"de": "die Gitarre", "zh": "吉他", "cat": "兴趣爱好（L8）"}, {"de": "das Yoga", "zh": "瑜伽", "cat": "兴趣爱好（L8）"}, {"de": "das Handlettering", "zh": "手写字体", "cat": "兴趣爱好（L8）"}, {"de": "das Tennis", "zh": "网球", "cat": "兴趣爱好（L8）"}, {"de": "der Fußball", "zh": "足球", "cat": "兴趣爱好（L8）"}, {"de": "das Sportprogramm", "zh": "体育活动", "cat": "兴趣爱好（L8）"}, {"de": "fernsehen", "zh": "看电视", "cat": "兴趣爱好（L8）"}, {"de": "der Film", "zh": "电影", "cat": "兴趣爱好（L8）"}, {"de": "das Konzert", "zh": "音乐会", "cat": "兴趣爱好（L8）"}, {"de": "die Band", "zh": "乐队", "cat": "兴趣爱好（L8）"}, {"de": "spielen", "zh": "玩", "cat": "兴趣爱好（L8）"}, {"de": "fotografieren", "zh": "拍照", "cat": "兴趣爱好（L8）"}, {"de": "kennen lernen", "zh": "结识", "cat": "兴趣爱好（L8）"}, {"de": "die Lust", "zh": "兴致", "cat": "兴趣爱好（L8）"}, {"de": "ein bisschen", "zh": "一点儿", "cat": "兴趣爱好（L8）"}, {"de": "toll", "zh": "很棒的", "cat": "兴趣爱好（L8）"}, {"de": "überall", "zh": "到处", "cat": "兴趣爱好（L8）"}, {"de": "einfach", "zh": "简单的", "cat": "兴趣爱好（L8）"}, {"de": "brauchen", "zh": "需要", "cat": "兴趣爱好（L8）"}, {"de": "das Internet", "zh": "互联网", "cat": "兴趣爱好（L8）"}, {"de": "warum", "zh": "为什么", "cat": "兴趣爱好（L8）"}, {"de": "attraktiv", "zh": "有魅力的", "cat": "兴趣爱好（L8）"}, {"de": "das Ausland", "zh": "国外", "cat": "兴趣爱好（L8）"}, {"de": "ideal", "zh": "理想的", "cat": "兴趣爱好（L8）"}, {"de": "die Kombination", "zh": "组合", "cat": "兴趣爱好（L8）"}, {"de": "der/die Sportstudierende", "zh": "体育专业学生", "cat": "兴趣爱好（L8）"}, {"de": "das Haus", "zh": "房子", "cat": "居住 · 家具 · 方位（L9，方位含 L7）"}, {"de": "die Wohnung", "zh": "公寓", "cat": "居住 · 家具 · 方位（L9，方位含 L7）"}, {"de": "das Zimmer", "zh": "房间", "cat": "居住 · 家具 · 方位（L9，方位含 L7）"}, {"de": "das Wohnzimmer", "zh": "客厅", "cat": "居住 · 家具 · 方位（L9，方位含 L7）"}, {"de": "das Arbeitszimmer", "zh": "书房", "cat": "居住 · 家具 · 方位（L9，方位含 L7）"}, {"de": "das Kinderzimmer", "zh": "儿童房", "cat": "居住 · 家具 · 方位（L9，方位含 L7）"}, {"de": "das Schlafzimmer", "zh": "卧室", "cat": "居住 · 家具 · 方位（L9，方位含 L7）"}, {"de": "das Badezimmer", "zh": "浴室", "cat": "居住 · 家具 · 方位（L9，方位含 L7）"}, {"de": "die Küche", "zh": "厨房", "cat": "居住 · 家具 · 方位（L9，方位含 L7）"}, {"de": "der Flur", "zh": "走廊", "cat": "居住 · 家具 · 方位（L9，方位含 L7）"}, {"de": "der Balkon", "zh": "阳台", "cat": "居住 · 家具 · 方位（L9，方位含 L7）"}, {"de": "das Homeoffice", "zh": "居家办公", "cat": "居住 · 家具 · 方位（L9，方位含 L7）"}, {"de": "die Wohngemeinschaft / die WG", "zh": "合租公寓", "cat": "居住 · 家具 · 方位（L9，方位含 L7）"}, {"de": "der/die Nachbar/in", "zh": "邻居", "cat": "居住 · 家具 · 方位（L9，方位含 L7）"}, {"de": "draußen", "zh": "外面、户外", "cat": "居住 · 家具 · 方位（L9，方位含 L7）"}, {"de": "zu Hause", "zh": "在家", "cat": "居住 · 家具 · 方位（L9，方位含 L7）"}, {"de": "das Möbel", "zh": "家具", "cat": "居住 · 家具 · 方位（L9，方位含 L7）"}, {"de": "das Sofa", "zh": "沙发", "cat": "居住 · 家具 · 方位（L9，方位含 L7）"}, {"de": "der Sessel", "zh": "扶手椅", "cat": "居住 · 家具 · 方位（L9，方位含 L7）"}, {"de": "der Schreibtisch", "zh": "书桌", "cat": "居住 · 家具 · 方位（L9，方位含 L7）"}, {"de": "der Tisch", "zh": "桌子", "cat": "居住 · 家具 · 方位（L9，方位含 L7）"}, {"de": "der Schrank", "zh": "柜子", "cat": "居住 · 家具 · 方位（L9，方位含 L7）"}, {"de": "das Bücherregal", "zh": "书架", "cat": "居住 · 家具 · 方位（L9，方位含 L7）"}, {"de": "die Kommode", "zh": "五斗橱", "cat": "居住 · 家具 · 方位（L9，方位含 L7）"}, {"de": "der Teppich", "zh": "地毯", "cat": "居住 · 家具 · 方位（L9，方位含 L7）"}, {"de": "der Fernseher", "zh": "电视机", "cat": "居住 · 家具 · 方位（L9，方位含 L7）"}, {"de": "der Herd", "zh": "炉灶", "cat": "居住 · 家具 · 方位（L9，方位含 L7）"}, {"de": "der Kühlschrank", "zh": "冰箱", "cat": "居住 · 家具 · 方位（L9，方位含 L7）"}, {"de": "die Spüle", "zh": "水槽", "cat": "居住 · 家具 · 方位（L9，方位含 L7）"}, {"de": "die Küchenuhr", "zh": "厨房钟", "cat": "居住 · 家具 · 方位（L9，方位含 L7）"}, {"de": "die Katze", "zh": "猫", "cat": "居住 · 家具 · 方位（L9，方位含 L7）"}, {"de": "die Zeitung", "zh": "报纸", "cat": "居住 · 家具 · 方位（L9，方位含 L7）"}, {"de": "das Tiny House", "zh": "小屋", "cat": "居住 · 家具 · 方位（L9，方位含 L7）"}, {"de": "der Trend", "zh": "趋势", "cat": "居住 · 家具 · 方位（L9，方位含 L7）"}, {"de": "mobil", "zh": "可移动的", "cat": "居住 · 家具 · 方位（L9，方位含 L7）"}, {"de": "elegant", "zh": "优雅的", "cat": "居住 · 家具 · 方位（L9，方位含 L7）"}, {"de": "renoviert", "zh": "装修过的", "cat": "居住 · 家具 · 方位（L9，方位含 L7）"}, {"de": "teilen", "zh": "共用、分享", "cat": "居住 · 家具 · 方位（L9，方位含 L7）"}, {"de": "jeder / jedes / jede", "zh": "每一个", "cat": "居住 · 家具 · 方位（L9，方位含 L7）"}, {"de": "sich entspannen", "zh": "放松", "cat": "居住 · 家具 · 方位（L9，方位含 L7）"}, {"de": "die Party", "zh": "聚会", "cat": "居住 · 家具 · 方位（L9，方位含 L7）"}, {"de": "auf", "zh": "在…上面", "cat": "居住 · 家具 · 方位（L9，方位含 L7）"}, {"de": "unter", "zh": "在…下面", "cat": "居住 · 家具 · 方位（L9，方位含 L7）"}, {"de": "neben", "zh": "在…旁边", "cat": "居住 · 家具 · 方位（L9，方位含 L7）"}, {"de": "zwischen", "zh": "在…之间", "cat": "居住 · 家具 · 方位（L9，方位含 L7）"}, {"de": "über", "zh": "在…上方", "cat": "居住 · 家具 · 方位（L9，方位含 L7）"}, {"de": "hinter", "zh": "在…后面", "cat": "居住 · 家具 · 方位（L9，方位含 L7）"}, {"de": "an", "zh": "在…旁、贴着", "cat": "居住 · 家具 · 方位（L9，方位含 L7）"}, {"de": "in", "zh": "在…里面", "cat": "居住 · 家具 · 方位（L9，方位含 L7）"}, {"de": "das Regal", "zh": "架子", "cat": "居住 · 家具 · 方位（L9，方位含 L7）"}, {"de": "die Wand", "zh": "墙", "cat": "居住 · 家具 · 方位（L9，方位含 L7）"}, {"de": "stehen", "zh": "立着", "cat": "居住 · 家具 · 方位（L9，方位含 L7）"}, {"de": "liegen", "zh": "躺着、放着", "cat": "居住 · 家具 · 方位（L9，方位含 L7）"}, {"de": "hängen", "zh": "挂着", "cat": "居住 · 家具 · 方位（L9，方位含 L7）"}, {"de": "die Familie", "zh": "家庭", "cat": "家庭（L10）"}, {"de": "die Eltern", "zh": "父母", "cat": "家庭（L10）"}, {"de": "die Mutter", "zh": "母亲", "cat": "家庭（L10）"}, {"de": "der Vater", "zh": "父亲", "cat": "家庭（L10）"}, {"de": "die Mama", "zh": "妈妈", "cat": "家庭（L10）"}, {"de": "der Papa", "zh": "爸爸", "cat": "家庭（L10）"}, {"de": "die Großeltern", "zh": "祖辈", "cat": "家庭（L10）"}, {"de": "die Großmutter", "zh": "祖母、外婆", "cat": "家庭（L10）"}, {"de": "der Großvater", "zh": "祖父、外公", "cat": "家庭（L10）"}, {"de": "die Oma", "zh": "奶奶、外婆", "cat": "家庭（L10）"}, {"de": "der Opa", "zh": "爷爷、外公", "cat": "家庭（L10）"}, {"de": "die Mutti", "zh": "妈妈（昵称）", "cat": "家庭（L10）"}, {"de": "der Papi", "zh": "爸爸（昵称）", "cat": "家庭（L10）"}, {"de": "der Onkel", "zh": "叔伯、舅舅", "cat": "家庭（L10）"}, {"de": "die Tante", "zh": "姑妈、阿姨", "cat": "家庭（L10）"}, {"de": "die Schwester", "zh": "姐姐、妹妹", "cat": "家庭（L10）"}, {"de": "der Bruder", "zh": "哥哥、弟弟", "cat": "家庭（L10）"}, {"de": "die Geschwister", "zh": "兄弟姐妹", "cat": "家庭（L10）"}, {"de": "der Sohn", "zh": "儿子", "cat": "家庭（L10）"}, {"de": "die Tochter", "zh": "女儿", "cat": "家庭（L10）"}, {"de": "das Kind", "zh": "孩子", "cat": "家庭（L10）"}, {"de": "der/die Cousin/Cousine", "zh": "表亲、堂亲", "cat": "家庭（L10）"}, {"de": "der Neffe", "zh": "侄子、外甥", "cat": "家庭（L10）"}, {"de": "die Nichte", "zh": "侄女、外甥女", "cat": "家庭（L10）"}, {"de": "das Enkelkind", "zh": "孙辈", "cat": "家庭（L10）"}, {"de": "der/die Enkel/in", "zh": "孙子、孙女", "cat": "家庭（L10）"}, {"de": "der/die Urenkel/in", "zh": "曾孙", "cat": "家庭（L10）"}, {"de": "das Alter", "zh": "年龄", "cat": "家庭（L10）"}, {"de": "der Familienstand", "zh": "婚姻状况", "cat": "家庭（L10）"}, {"de": "ledig", "zh": "未婚的", "cat": "家庭（L10）"}, {"de": "verheiratet", "zh": "已婚的", "cat": "家庭（L10）"}, {"de": "geschieden", "zh": "离婚的", "cat": "家庭（L10）"}, {"de": "heiraten", "zh": "结婚", "cat": "家庭（L10）"}, {"de": "nennen", "zh": "称呼", "cat": "家庭（L10）"}, {"de": "der Haushalt", "zh": "家务", "cat": "家庭（L10）"}, {"de": "der Kaffeeklatsch", "zh": "咖啡闲聊", "cat": "家庭（L10）"}, {"de": "privat", "zh": "私人的", "cat": "家庭（L10）"}, {"de": "stressig", "zh": "压力大的", "cat": "家庭（L10）"}, {"de": "nicht mehr", "zh": "不再", "cat": "家庭（L10）"}, {"de": "lachen", "zh": "笑", "cat": "家庭（L10）"}, {"de": "genau", "zh": "正是、完全对", "cat": "家庭（L10）"}, {"de": "die Generation", "zh": "一代人", "cat": "家庭（L10）"}, {"de": "der Beruf", "zh": "职业", "cat": "家庭（L10）"}, {"de": "wählen", "zh": "选择", "cat": "家庭（L10）"}, {"de": "bauen", "zh": "建造", "cat": "家庭（L10）"}, {"de": "gründen", "zh": "创立", "cat": "家庭（L10）"}, {"de": "leiten", "zh": "领导", "cat": "家庭（L10）"}, {"de": "der Betrieb", "zh": "企业", "cat": "家庭（L10）"}, {"de": "die Bäckerei", "zh": "面包店", "cat": "家庭（L10）"}, {"de": "die Großbäckerei", "zh": "大型面包房", "cat": "家庭（L10）"}, {"de": "der Backshop", "zh": "面包房", "cat": "家庭（L10）"}, {"de": "mieten", "zh": "租", "cat": "家庭（L10）"}, {"de": "der/die Angestellte", "zh": "职员", "cat": "家庭（L10）"}, {"de": "das Erfolgsrezept", "zh": "成功秘诀", "cat": "家庭（L10）"}, {"de": "der Job", "zh": "工作", "cat": "家庭（L10）"}, {"de": "der/die Blogger/in", "zh": "博主", "cat": "家庭（L10）"}, {"de": "die Leute", "zh": "人们", "cat": "家庭（L10）"}, {"de": "der/die Altenpfleger/in", "zh": "老年护工", "cat": "职业与工作日常（L11）"}, {"de": "der/die Arzt/Ärztin", "zh": "医生", "cat": "职业与工作日常（L11）"}, {"de": "der/die Architekt/in", "zh": "建筑师", "cat": "职业与工作日常（L11）"}, {"de": "der/die Physiotherapeut/in", "zh": "理疗师", "cat": "职业与工作日常（L11）"}, {"de": "der/die Mechatroniker/in", "zh": "机电师", "cat": "职业与工作日常（L11）"}, {"de": "der/die Automobilkaufmann/-frau", "zh": "汽车销售员", "cat": "职业与工作日常（L11）"}, {"de": "der/die Informatikkaufmann/-frau", "zh": "信息技术商务员", "cat": "职业与工作日常（L11）"}, {"de": "der/die Bankkaufmann/-frau", "zh": "银行职员", "cat": "职业与工作日常（L11）"}, {"de": "der/die Maurer/in", "zh": "泥瓦匠", "cat": "职业与工作日常（L11）"}, {"de": "der/die Kosmetiker/in", "zh": "美容师", "cat": "职业与工作日常（L11）"}, {"de": "der/die Programmierer/in", "zh": "程序员", "cat": "职业与工作日常（L11）"}, {"de": "der/die Entwickler/in", "zh": "开发者", "cat": "职业与工作日常（L11）"}, {"de": "der/die Journalist/in", "zh": "记者", "cat": "职业与工作日常（L11）"}, {"de": "der/die Kellner/in", "zh": "服务员", "cat": "职业与工作日常（L11）"}, {"de": "der/die Grafikdesigner/in", "zh": "平面设计师", "cat": "职业与工作日常（L11）"}, {"de": "der/die Bäcker/in", "zh": "面包师", "cat": "职业与工作日常（L11）"}, {"de": "der/die Professor/in", "zh": "教授", "cat": "职业与工作日常（L11）"}, {"de": "der/die Lehrer/in", "zh": "老师", "cat": "职业与工作日常（L11）"}, {"de": "der/die Mitarbeiter/in", "zh": "同事", "cat": "职业与工作日常（L11）"}, {"de": "der/die Assistent/in", "zh": "助理", "cat": "职业与工作日常（L11）"}, {"de": "der/die Chef/in", "zh": "老板", "cat": "职业与工作日常（L11）"}, {"de": "der/die Kunde/Kundin", "zh": "客户", "cat": "职业与工作日常（L11）"}, {"de": "der/die Patient/in", "zh": "病人", "cat": "职业与工作日常（L11）"}, {"de": "die Ausbildung", "zh": "职业培训", "cat": "职业与工作日常（L11）"}, {"de": "die Berufsfachschule", "zh": "职业学校", "cat": "职业与工作日常（L11）"}, {"de": "die Berufsschule", "zh": "职业学校", "cat": "职业与工作日常（L11）"}, {"de": "das Seniorenheim", "zh": "养老院", "cat": "职业与工作日常（L11）"}, {"de": "das Krankenhaus", "zh": "医院", "cat": "职业与工作日常（L11）"}, {"de": "die Werkstatt", "zh": "车间、修理厂", "cat": "职业与工作日常（L11）"}, {"de": "die Baustelle", "zh": "工地", "cat": "职业与工作日常（L11）"}, {"de": "das Autohaus", "zh": "汽车行", "cat": "职业与工作日常（L11）"}, {"de": "das Planungsbüro", "zh": "设计事务所", "cat": "职业与工作日常（L11）"}, {"de": "der Kosmetiksalon", "zh": "美容院", "cat": "职业与工作日常（L11）"}, {"de": "das Praktikum", "zh": "实习", "cat": "职业与工作日常（L11）"}, {"de": "die Redaktion", "zh": "编辑部", "cat": "职业与工作日常（L11）"}, {"de": "der Arbeitsort", "zh": "工作地点", "cat": "职业与工作日常（L11）"}, {"de": "der Alltag", "zh": "日常生活", "cat": "职业与工作日常（L11）"}, {"de": "die Mittagspause", "zh": "午休", "cat": "职业与工作日常（L11）"}, {"de": "der Schichtdienst", "zh": "轮班制", "cat": "职业与工作日常（L11）"}, {"de": "die Frühschicht", "zh": "早班", "cat": "职业与工作日常（L11）"}, {"de": "die Spätschicht", "zh": "晚班", "cat": "职业与工作日常（L11）"}, {"de": "die Nachtschicht", "zh": "夜班", "cat": "职业与工作日常（L11）"}, {"de": "die Altenpflege", "zh": "老年护理", "cat": "职业与工作日常（L11）"}, {"de": "das Medikament", "zh": "药物", "cat": "职业与工作日常（L11）"}, {"de": "der Leserbrief", "zh": "读者来信", "cat": "职业与工作日常（L11）"}, {"de": "das Treffen", "zh": "会面", "cat": "职业与工作日常（L11）"}, {"de": "das Interesse", "zh": "兴趣", "cat": "职业与工作日常（L11）"}, {"de": "beruflich", "zh": "职业的", "cat": "职业与工作日常（L11）"}, {"de": "eigentlich", "zh": "其实", "cat": "职业与工作日常（L11）"}, {"de": "früher", "zh": "以前", "cat": "职业与工作日常（L11）"}, {"de": "reparieren", "zh": "修理", "cat": "职业与工作日常（L11）"}, {"de": "verkaufen", "zh": "卖", "cat": "职业与工作日常（L11）"}, {"de": "kaufen", "zh": "买", "cat": "职业与工作日常（L11）"}, {"de": "der Check", "zh": "检查", "cat": "职业与工作日常（L11）"}, {"de": "mitmachen", "zh": "参加", "cat": "职业与工作日常（L11）"}, {"de": "duschen", "zh": "洗澡", "cat": "职业与工作日常（L11）"}, {"de": "sich anziehen", "zh": "穿衣", "cat": "职业与工作日常（L11）"}, {"de": "sich ausziehen", "zh": "脱衣", "cat": "职业与工作日常（L11）"}, {"de": "waschen", "zh": "洗", "cat": "职业与工作日常（L11）"}, {"de": "bringen", "zh": "拿来、送", "cat": "职业与工作日常（L11）"}, {"de": "die App", "zh": "应用", "cat": "职业与工作日常（L11）"}, {"de": "installieren", "zh": "安装", "cat": "职业与工作日常（L11）"}, {"de": "das Computerspiel", "zh": "电脑游戏", "cat": "职业与工作日常（L11）"}, {"de": "ausprobieren", "zh": "试用", "cat": "职业与工作日常（L11）"}, {"de": "beobachten", "zh": "观察", "cat": "职业与工作日常（L11）"}, {"de": "überlegen", "zh": "考虑", "cat": "职业与工作日常（L11）"}, {"de": "danach", "zh": "之后", "cat": "职业与工作日常（L11）"}, {"de": "die Bewerbung", "zh": "求职申请", "cat": "职业与工作日常（L11）"}, {"de": "verschicken", "zh": "寄出", "cat": "职业与工作日常（L11）"}, {"de": "der Erfolg", "zh": "成功", "cat": "职业与工作日常（L11）"}, {"de": "beenden", "zh": "完成、结束", "cat": "职业与工作日常（L11）"}, {"de": "anschauen", "zh": "看", "cat": "职业与工作日常（L11）"}, {"de": "betreuen", "zh": "照顾", "cat": "职业与工作日常（L11）"}, {"de": "untersuchen", "zh": "检查", "cat": "职业与工作日常（L11）"}, {"de": "planen", "zh": "计划、设计", "cat": "职业与工作日常（L11）"}, {"de": "informieren", "zh": "通知", "cat": "职业与工作日常（L11）"}, {"de": "der Gymnastik-Kurs", "zh": "体操课", "cat": "职业与工作日常（L11）"}, {"de": "die Übung", "zh": "练习", "cat": "职业与工作日常（L11）"}, {"de": "massieren", "zh": "按摩", "cat": "职业与工作日常（L11）"}, {"de": "aufschreiben", "zh": "记下", "cat": "职业与工作日常（L11）"}, {"de": "beraten", "zh": "给建议", "cat": "职业与工作日常（L11）"}, {"de": "das Gespräch", "zh": "谈话", "cat": "职业与工作日常（L11）"}, {"de": "meinen", "zh": "认为", "cat": "职业与工作日常（L11）"}, {"de": "die Hilfe", "zh": "帮助", "cat": "职业与工作日常（L11）"}, {"de": "das Ding", "zh": "东西", "cat": "职业与工作日常（L11）"}, {"de": "die Person", "zh": "人", "cat": "职业与工作日常（L11）"}, {"de": "gut", "zh": "好", "cat": "常用形容词 · 副词 · 小词"}, {"de": "schön", "zh": "漂亮", "cat": "常用形容词 · 副词 · 小词"}, {"de": "klein", "zh": "小的", "cat": "常用形容词 · 副词 · 小词"}, {"de": "groß", "zh": "大的", "cat": "常用形容词 · 副词 · 小词"}, {"de": "kurz", "zh": "短的", "cat": "常用形容词 · 副词 · 小词"}, {"de": "hell", "zh": "明亮的", "cat": "常用形容词 · 副词 · 小词"}, {"de": "dunkel", "zh": "暗的", "cat": "常用形容词 · 副词 · 小词"}, {"de": "leicht", "zh": "轻的、容易的", "cat": "常用形容词 · 副词 · 小词"}, {"de": "schwer", "zh": "重的、难的", "cat": "常用形容词 · 副词 · 小词"}, {"de": "teuer", "zh": "贵的", "cat": "常用形容词 · 副词 · 小词"}, {"de": "günstig", "zh": "便宜的", "cat": "常用形容词 · 副词 · 小词"}, {"de": "nett", "zh": "友好的", "cat": "常用形容词 · 副词 · 小词"}, {"de": "gemütlich", "zh": "舒适的", "cat": "常用形容词 · 副词 · 小词"}, {"de": "modern", "zh": "现代的", "cat": "常用形容词 · 副词 · 小词"}, {"de": "alt", "zh": "老的、旧的", "cat": "常用形容词 · 副词 · 小词"}, {"de": "kaputt", "zh": "坏了的", "cat": "常用形容词 · 副词 · 小词"}, {"de": "schnell", "zh": "快的", "cat": "常用形容词 · 副词 · 小词"}, {"de": "interessant", "zh": "有趣的", "cat": "常用形容词 · 副词 · 小词"}, {"de": "klasse", "zh": "很棒的", "cat": "常用形容词 · 副词 · 小词"}, {"de": "super", "zh": "超级", "cat": "常用形容词 · 副词 · 小词"}, {"de": "perfekt", "zh": "完美的", "cat": "常用形容词 · 副词 · 小词"}, {"de": "echt", "zh": "真的", "cat": "常用形容词 · 副词 · 小词"}, {"de": "langweilig", "zh": "无聊的", "cat": "常用形容词 · 副词 · 小词"}, {"de": "auch", "zh": "也", "cat": "常用形容词 · 副词 · 小词"}, {"de": "nur", "zh": "只", "cat": "常用形容词 · 副词 · 小词"}, {"de": "schon", "zh": "已经", "cat": "常用形容词 · 副词 · 小词"}, {"de": "immer", "zh": "总是", "cat": "常用形容词 · 副词 · 小词"}, {"de": "manchmal", "zh": "有时", "cat": "常用形容词 · 副词 · 小词"}, {"de": "nie", "zh": "从不", "cat": "常用形容词 · 副词 · 小词"}, {"de": "oft", "zh": "经常", "cat": "常用形容词 · 副词 · 小词"}, {"de": "sehr", "zh": "很", "cat": "常用形容词 · 副词 · 小词"}, {"de": "fast", "zh": "几乎", "cat": "常用形容词 · 副词 · 小词"}, {"de": "vielleicht", "zh": "也许", "cat": "常用形容词 · 副词 · 小词"}, {"de": "leider", "zh": "遗憾地", "cat": "常用形容词 · 副词 · 小词"}, {"de": "zum Glück", "zh": "幸好", "cat": "常用形容词 · 副词 · 小词"}, {"de": "zum Beispiel", "zh": "例如", "cat": "常用形容词 · 副词 · 小词"}, {"de": "also", "zh": "也就是说", "cat": "常用形容词 · 副词 · 小词"}, {"de": "dann", "zh": "然后", "cat": "常用形容词 · 副词 · 小词"}, {"de": "da", "zh": "在那里", "cat": "常用形容词 · 副词 · 小词"}, {"de": "dort", "zh": "那里", "cat": "常用形容词 · 副词 · 小词"}, {"de": "nicht", "zh": "不", "cat": "常用形容词 · 副词 · 小词"}, {"de": "kein", "zh": "没有（否定冠词）", "cat": "常用形容词 · 副词 · 小词"}, {"de": "ohne", "zh": "没有、不带", "cat": "常用形容词 · 副词 · 小词"}, {"de": "mit", "zh": "和、带着", "cat": "常用形容词 · 副词 · 小词"}, {"de": "für", "zh": "为了", "cat": "常用形容词 · 副词 · 小词"}, {"de": "von", "zh": "从、的", "cat": "常用形容词 · 副词 · 小词"}, {"de": "zu", "zh": "到、太", "cat": "常用形容词 · 副词 · 小词"}, {"de": "bei", "zh": "在…那里", "cat": "常用形容词 · 副词 · 小词"}, {"de": "durch", "zh": "穿过", "cat": "常用形容词 · 副词 · 小词"}, {"de": "dieser / dieses / diese", "zh": "这个", "cat": "常用形容词 · 副词 · 小词"}, {"de": "anderer", "zh": "另一个", "cat": "常用形容词 · 副词 · 小词"}, {"de": "sich freuen", "zh": "高兴", "cat": "常用形容词 · 副词 · 小词"}, {"de": "zurück", "zh": "回去", "cat": "常用形容词 · 副词 · 小词"}, {"de": "endlich", "zh": "终于", "cat": "常用形容词 · 副词 · 小词"}, {"de": "doch （", "zh": "语气词，反驳/强调）", "cat": "常用形容词 · 副词 · 小词"}, {"de": "mal （", "zh": "语气词，试试看）", "cat": "常用形容词 · 副词 · 小词"}];
+</script>
+<script>
+(function () {
+  'use strict';
+
+  var CODE_KEY = 'gl:code';
+  var CODE_RE = /^[A-Za-z0-9-]{3,32}$/;
+  var API = '/api/profile';
+  var syncTimer = null;
+
+  function keyPrefix(code) { return 'gl:' + code + ':'; }
+
+  function readCode() {
+    try {
+      var c = window.localStorage.getItem(CODE_KEY);
+      return c ? c : 'anon';
+    } catch (e) { return 'anon'; }
+  }
+
+  function refreshModules() {
+    try {
+      var mods = window.GLModules || {};
+      Object.keys(mods).forEach(function (name) {
+        if (name === 'invite') return;
+        var m = mods[name];
+        try {
+          if (m && typeof m.refresh === 'function') m.refresh();
+          else if (m && typeof m.init === 'function') m.init();
+        } catch (e) { /* never break the page */ }
+      });
+    } catch (e) { /* never break the page */ }
+  }
+
+  function applyProfile(profile) {
+    if (!profile || typeof profile !== 'object' || Array.isArray(profile)) return;
+    try {
+      var p = keyPrefix(readCode());
+      Object.keys(profile).forEach(function (k) {
+        try { window.localStorage.setItem(p + k, JSON.stringify(profile[k])); } catch (e) {}
+      });
+    } catch (e) { /* silent: keep localStorage only */ }
+  }
+
+  function loadFromCloud(code) {
+    if (!code || code === 'anon') return;
+    try {
+      fetch(API + '?code=' + encodeURIComponent(code), { method: 'GET' })
+        .then(function (res) { return res.ok ? res.json() : null; })
+        .then(function (data) {
+          if (data) applyProfile(data);
+          refreshModules();
+        })
+        .catch(function () { /* silent: keep localStorage only */ });
+    } catch (e) { /* silent */ }
+  }
+
+  function syncToCloud() {
+    var code = readCode();
+    if (code === 'anon') return;
+    try {
+      fetch(API + '?code=' + encodeURIComponent(code), {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(window.GLS.all())
+      }).catch(function () { /* silent: keep localStorage only */ });
+    } catch (e) { /* silent */ }
+  }
+
+  function scheduleSync() {
+    if (readCode() === 'anon') return;
+    if (syncTimer) clearTimeout(syncTimer);
+    syncTimer = setTimeout(function () { syncTimer = null; syncToCloud(); }, 800);
+  }
+
+  window.GLS = {
+    code: function () { return readCode(); },
+    setCode: function (c) {
+      if (typeof c !== 'string' || !CODE_RE.test(c)) return false;
+      try { window.localStorage.setItem(CODE_KEY, c); } catch (e) { return false; }
+      if (c !== 'anon') loadFromCloud(c);
+      refreshModules();
+      return true;
+    },
+    get: function (k, dflt) {
+      try {
+        var raw = window.localStorage.getItem(keyPrefix(readCode()) + k);
+        return raw === null ? dflt : JSON.parse(raw);
+      } catch (e) { return dflt; }
+    },
+    set: function (k, v) {
+      try { window.localStorage.setItem(keyPrefix(readCode()) + k, JSON.stringify(v)); } catch (e) { return; }
+      scheduleSync();
+    },
+    all: function () {
+      var out = {};
+      try {
+        var p = keyPrefix(readCode());
+        for (var i = 0; i < window.localStorage.length; i++) {
+          var key = window.localStorage.key(i);
+          if (key && key.indexOf(p) === 0) {
+            try { out[key.slice(p.length)] = JSON.parse(window.localStorage.getItem(key)); } catch (e) {}
+          }
+        }
+      } catch (e) { /* silent */ }
+      return out;
+    }
+  };
+
+  window.GLModules = window.GLModules || {};
+
+  function updateCurrent() {
+    var el = document.getElementById('gl-current-code');
+    if (el) el.textContent = window.GLS.code();
+  }
+
+  function setMsg(text) {
+    var m = document.getElementById('gl-invite-msg');
+    if (m) m.textContent = text || '';
+  }
+
+  function initInvite() {
+    updateCurrent();
+    var input = document.getElementById('gl-code-input');
+    var enterBtn = document.getElementById('gl-enter-btn');
+    var exitBtn = document.getElementById('gl-exit-btn');
+    if (!input || !enterBtn || !exitBtn) return;
+    if (enterBtn.dataset.glBound) return;
+    enterBtn.dataset.glBound = '1';
+    enterBtn.addEventListener('click', function () {
+      var c = (input.value || '').trim();
+      if (!window.GLS.setCode(c)) {
+        setMsg('邀请码格式不对：3–32 位字母、数字或 - 。');
+        return;
+      }
+      input.value = '';
+      setMsg('已切换到档案 ' + c + '。');
+      updateCurrent();
+    });
+    input.addEventListener('keydown', function (ev) {
+      if (ev.key === 'Enter') enterBtn.click();
+    });
+    exitBtn.addEventListener('click', function () {
+      window.GLS.setCode('anon');
+      input.value = '';
+      setMsg('已退出到匿名档案，进度只保存在本机。');
+      updateCurrent();
+    });
+  }
+
+  window.GLModules.invite = { init: initInvite, refresh: updateCurrent };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initInvite);
+  } else {
+    initInvite();
+  }
+  if (readCode() !== 'anon') loadFromCloud(readCode());
+})();
+</script>
+<script>
+(function(){
+  var GLS = window.GLS || { code:function(){try{return localStorage.getItem('gl:code')||'anon'}catch(e){return 'anon'}}, get:function(k,d){try{var v=localStorage.getItem('gl:'+(localStorage.getItem('gl:code')||'anon')+':'+k);return v==null?d:JSON.parse(v)}catch(e){return d}}, set:function(k,v){try{localStorage.setItem('gl:'+(localStorage.getItem('gl:code')||'anon')+':'+k,JSON.stringify(v))}catch(e){}} };
+  window.GLModules = window.GLModules || {};
+  function vocab(){ return (window.GL_VOCAB && window.GL_VOCAB.length) ? window.GL_VOCAB : []; }
+  function total(){ var v = vocab(); return v.length || 717; }
+  function pick(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
+  function byDe(de){ var v = vocab(); for (var i=0;i<v.length;i++){ if (v[i].de === de) return v[i]; } return null; }
+
+  window.GLModules.flash = function(){
+    var root = document.getElementById('gl-view-flash');
+    if (!root) return;
+    var list = [], idx = 0, flipped = false;
+    var card = document.getElementById('gl-flash-card');
+    var deEl = document.getElementById('gl-flash-de');
+    var zhEl = document.getElementById('gl-flash-zh');
+    var catEl = document.getElementById('gl-flash-cat');
+    var progEl = document.getElementById('gl-flash-progress');
+    var filterEl = document.getElementById('gl-flash-filter');
+    function known(){ return GLS.get('flash.known', []); }
+    function unknown(){ return GLS.get('flash.unknown', []); }
+    function renderProgress(){
+      progEl.textContent = '已掌握 ' + known().length + ' / ' + total() + ' · 还不熟 ' + unknown().length;
+    }
+    function applyFilter(){
+      var cat = filterEl.value || '全部';
+      var v = vocab();
+      list = (cat === '全部') ? v.slice() : v.filter(function(w){ return w.cat === cat; });
+      idx = 0; flipped = false;
+      render();
+    }
+    function render(){
+      if (!list.length){ deEl.textContent = '词库加载中'; zhEl.textContent = ''; catEl.textContent = ''; card.classList.remove('flipped'); return; }
+      var w = list[idx % list.length];
+      deEl.textContent = w.de;
+      zhEl.textContent = w.zh || '';
+      catEl.textContent = w.cat || '';
+      card.classList.toggle('flipped', flipped);
+      renderProgress();
+    }
+    function next(){ if (!list.length) return; idx = (idx + 1) % list.length; flipped = false; render(); }
+    function prev(){ if (!list.length) return; idx = (idx - 1 + list.length) % list.length; flipped = false; render(); }
+    function shuffle(){ for (var i = list.length - 1; i > 0; i--){ var j = Math.floor(Math.random()*(i+1)); var t = list[i]; list[i] = list[j]; list[j] = t; } idx = 0; flipped = false; render(); }
+    function mark(which){
+      if (!list.length) return;
+      var w = list[idx % list.length];
+      var k = known(), u = unknown();
+      if (which === 'known'){ if (k.indexOf(w.de) < 0) k.push(w.de); u = u.filter(function(x){ return x !== w.de; }); GLS.set('flash.known', k); GLS.set('flash.unknown', u); }
+      else { if (u.indexOf(w.de) < 0) u.push(w.de); k = k.filter(function(x){ return x !== w.de; }); GLS.set('flash.unknown', u); GLS.set('flash.known', k); }
+      next();
+    }
+    function buildFilter(){
+      var v = vocab(), cats = [], seen = {};
+      v.forEach(function(w){ if (w.cat && !seen[w.cat]){ seen[w.cat] = 1; cats.push(w.cat); } });
+      cats.sort();
+      filterEl.innerHTML = '';
+      var all = document.createElement('option'); all.value = '全部'; all.textContent = '全部分类'; filterEl.appendChild(all);
+      cats.forEach(function(c){ var o = document.createElement('option'); o.value = c; o.textContent = c; filterEl.appendChild(o); });
+    }
+    card.addEventListener('click', function(){ flipped = !flipped; card.classList.toggle('flipped', flipped); });
+    card.addEventListener('keydown', function(e){ if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); flipped = !flipped; card.classList.toggle('flipped', flipped); } });
+    document.getElementById('gl-flash-prev').addEventListener('click', prev);
+    document.getElementById('gl-flash-next').addEventListener('click', next);
+    document.getElementById('gl-flash-shuffle').addEventListener('click', shuffle);
+    document.getElementById('gl-flash-known').addEventListener('click', function(){ mark('known'); });
+    document.getElementById('gl-flash-unknown').addEventListener('click', function(){ mark('unknown'); });
+    filterEl.addEventListener('change', applyFilter);
+    buildFilter();
+    applyFilter();
+  };
+
+  window.GLModules.write = function(){
+    var root = document.getElementById('gl-view-write');
+    if (!root) return;
+    var promptEl = document.getElementById('gl-write-prompt');
+    var inputEl = document.getElementById('gl-write-input');
+    var resultEl = document.getElementById('gl-write-result');
+    var statsEl = document.getElementById('gl-write-stats');
+    var current = null, answered = false;
+    function stats(){ var s = GLS.get('write.stats', {ok:0, bad:0}); return {ok: s.ok||0, bad: s.bad||0}; }
+    function renderStats(){ var s = stats(); statsEl.textContent = '答对 ' + s.ok + ' · 答错 ' + s.bad; }
+    function nextWord(){
+      var v = vocab();
+      if (!v.length){ promptEl.textContent = '词库加载中'; current = null; return; }
+      var u = GLS.get('flash.unknown', []), k = GLS.get('flash.known', []);
+      var poolUnknown = v.filter(function(w){ return u.indexOf(w.de) >= 0; });
+      var poolUnmarked = v.filter(function(w){ return u.indexOf(w.de) < 0 && k.indexOf(w.de) < 0; });
+      var pool = poolUnknown.length ? poolUnknown : (poolUnmarked.length ? poolUnmarked : v);
+      var w = pick(pool);
+      if (current && pool.length > 1){ while (w === current) w = pick(pool); }
+      current = w; answered = false;
+      promptEl.textContent = w.zh || w.de;
+      inputEl.value = '';
+      resultEl.className = 'gl-result gl-result-empty';
+      resultEl.textContent = '写完点「检查」。';
+      inputEl.focus();
+    }
+    function check(){
+      if (!current || answered) return;
+      var ans = inputEl.value.trim();
+      if (!ans){ resultEl.className = 'gl-result gl-result-bad'; resultEl.textContent = '先输入德语再检查。'; return; }
+      var s = stats();
+      answered = true;
+      if (ans.toLowerCase() === current.de.toLowerCase()){
+        s.ok++;
+        resultEl.className = 'gl-result gl-result-ok';
+        resultEl.textContent = '正确！' + current.de;
+      } else {
+        s.bad++;
+        resultEl.className = 'gl-result gl-result-bad';
+        resultEl.textContent = '错误，正确是：' + current.de;
+        var errs = GLS.get('errors', []);
+        if (!Array.isArray(errs)) errs = [];
+        errs.push({de: current.de, zh: current.zh || '', type: '默写', note: '默写写错', ts: Date.now()});
+        if (errs.length > 500) errs = errs.slice(errs.length - 500);
+        GLS.set('errors', errs);
+      }
+      GLS.set('write.stats', s);
+      renderStats();
+    }
+    document.getElementById('gl-write-check').addEventListener('click', check);
+    document.getElementById('gl-write-next').addEventListener('click', nextWord);
+    inputEl.addEventListener('keydown', function(e){ if (e.key === 'Enter'){ e.preventDefault(); if (answered) nextWord(); else check(); } });
+    renderStats();
+    nextWord();
+  };
+})();
+</script>
+<script>
+(function () {
+  var GLS = window.GLS || { code:function(){try{return localStorage.getItem('gl:code')||'anon'}catch(e){return 'anon'}}, get:function(k,d){try{var v=localStorage.getItem('gl:'+(localStorage.getItem('gl:code')||'anon')+':'+k);return v==null?d:JSON.parse(v)}catch(e){return d}}, set:function(k,v){try{localStorage.setItem('gl:'+(localStorage.getItem('gl:code')||'anon')+':'+k,JSON.stringify(v))}catch(e){}} };
+  window.GLModules = window.GLModules || {};
+  function $(id) { return document.getElementById(id); }
+  function norm(s) { return (s || '').trim().toLowerCase().replace(/[.?!]+$/g, '').trim(); }
+
+  /* ---------- 听写 ---------- */
+  var SENTENCES = [
+    { de: 'Guten Morgen!', zh: '早上好！' },
+    { de: 'Wo ist der Bahnhof?', zh: '火车站在哪里？' },
+    { de: 'Ich heiße Anna.', zh: '我叫安娜。' },
+    { de: 'Wie viel kostet das?', zh: '这个多少钱？' },
+    { de: 'Ich komme aus China.', zh: '我来自中国。' },
+    { de: 'Wo wohnst du?', zh: '你住在哪里？' },
+    { de: 'Ich lerne Deutsch.', zh: '我在学德语。' },
+    { de: 'Das ist mein Freund.', zh: '这是我的朋友。' },
+    { de: 'Wie geht es dir?', zh: '你好吗？' },
+    { de: 'Ich habe einen Hund.', zh: '我有一只狗。' },
+    { de: 'Der Kaffee ist heiß.', zh: '咖啡很烫。' },
+    { de: 'Wir essen um zwölf Uhr.', zh: '我们十二点吃饭。' },
+    { de: 'Wo ist die Toilette?', zh: '厕所在哪里？' },
+    { de: 'Ich mag Cola lieber als Limonade.', zh: '比起柠檬汽水，我更喜欢可乐。' },
+    { de: 'Das Buch liegt auf dem Tisch.', zh: '书在桌子上。' },
+    { de: 'Ich stehe um sieben Uhr auf.', zh: '我七点起床。' },
+    { de: 'Kannst du mir helfen?', zh: '你能帮我吗？' },
+    { de: 'Ich kaufe Brot und Milch.', zh: '我买面包和牛奶。' },
+    { de: 'Es regnet heute.', zh: '今天下雨。' },
+    { de: 'Bis morgen!', zh: '明天见！' }
+  ];
+  window.GLModules.listen = function () {
+    var root = $('gl-view-listen');
+    if (!root) return;
+    var input = $('gl-listen-input'), fb = $('gl-listen-feedback'), ans = $('gl-listen-answer'),
+      statsEl = $('gl-listen-stats'), note = $('gl-listen-note');
+    var mode = 'word';
+    var current = null;
+    var stats = GLS.get('listen.stats', { ok: 0, bad: 0 }) || { ok: 0, bad: 0 };
+    function renderStats() {
+      statsEl.textContent = '听写统计：答对 ' + (stats.ok || 0) + ' · 答错 ' + (stats.bad || 0);
+    }
+    function supported() { return ('speechSynthesis' in window) && window.speechSynthesis; }
+    function speak(rate) {
+      if (!supported()) { note.classList.add('gl-note-show'); return; }
+      if (!current) return;
+      try { window.speechSynthesis.cancel(); } catch (e) {}
+      var u = new SpeechSynthesisUtterance(current.de);
+      u.lang = 'de-DE'; u.rate = rate || 1;
+      window.speechSynthesis.speak(u);
+    }
+    function pick() {
+      var vocab = (window.GL_VOCAB && window.GL_VOCAB.length) ? window.GL_VOCAB : null;
+      var useWord = mode === 'word' || (mode === 'mix' && vocab && Math.random() < 0.5);
+      if (useWord && vocab) {
+        var w = vocab[Math.floor(Math.random() * vocab.length)];
+        current = { de: w.de, zh: w.zh || '' };
+      } else if (mode === 'word' && !vocab) {
+        current = SENTENCES[Math.floor(Math.random() * SENTENCES.length)];
+      } else {
+        current = SENTENCES[Math.floor(Math.random() * SENTENCES.length)];
+      }
+      input.value = '';
+      fb.className = 'gl-feedback'; fb.textContent = '';
+      ans.textContent = current.zh ? '中文提示：' + current.zh : '';
+      input.focus();
+      speak(1);
+    }
+    function setMode(m, btn) {
+      mode = m;
+      ['gl-listen-mode-word', 'gl-listen-mode-sent', 'gl-listen-mode-mix'].forEach(function (id) {
+        $(id).classList.remove('gl-btn-active');
+      });
+      btn.classList.add('gl-btn-active');
+      pick();
+    }
+    function check() {
+      if (!current) return;
+      var val = norm(input.value), right = norm(current.de);
+      if (!val) { fb.className = 'gl-feedback gl-feedback-bad'; fb.textContent = '先输入你听到的内容，再点检查。'; return; }
+      if (val === right) {
+        stats.ok = (stats.ok || 0) + 1;
+        fb.className = 'gl-feedback gl-feedback-ok';
+        fb.textContent = '答对了！' + current.de + (current.zh ? '（' + current.zh + '）' : '');
+      } else {
+        stats.bad = (stats.bad || 0) + 1;
+        fb.className = 'gl-feedback gl-feedback-bad';
+        fb.textContent = '不对。正确答案：' + current.de + (current.zh ? '（' + current.zh + '）' : '');
+        try {
+          var errs = GLS.get('errors', []) || [];
+          errs.push({ de: current.de, zh: current.zh || '', type: '听写', note: '听写答错，你写的是：' + input.value.trim(), ts: Date.now() });
+          if (errs.length > 500) errs = errs.slice(errs.length - 500);
+          GLS.set('errors', errs);
+        } catch (e) {}
+      }
+      GLS.set('listen.stats', stats);
+      renderStats();
+      ans.textContent = current.de + (current.zh ? ' —— ' + current.zh : '');
+    }
+    $('gl-listen-mode-word').addEventListener('click', function () { setMode('word', this); });
+    $('gl-listen-mode-sent').addEventListener('click', function () { setMode('sent', this); });
+    $('gl-listen-mode-mix').addEventListener('click', function () { setMode('mix', this); });
+    $('gl-listen-speak').addEventListener('click', function () { speak(1); });
+    $('gl-listen-slow').addEventListener('click', function () { speak(0.6); });
+    $('gl-listen-again').addEventListener('click', function () { speak(1); });
+    $('gl-listen-next').addEventListener('click', pick);
+    $('gl-listen-check').addEventListener('click', check);
+    $('gl-listen-show').addEventListener('click', function () {
+      if (current) ans.textContent = current.de + (current.zh ? ' —— ' + current.zh : '');
+    });
+    input.addEventListener('keydown', function (e) { if (e.key === 'Enter') check(); });
+    if (!supported()) note.classList.add('gl-note-show');
+    renderStats();
+    pick();
+  };
+
+  /* ---------- 语法互动 ---------- */
+  var GRAMMAR = {
+    a: [
+      { q: 'Das Bild hängt ___ Wand.', options: ['an der', 'an die', 'in der', 'auf die'], answer: 0, why: 'Wo? 静止在墙上，用三格：an der Wand。' },
+      { q: 'Ich hänge das Bild ___ Wand.', options: ['an die', 'an der', 'in die', 'auf der'], answer: 0, why: 'Wohin? 挂到墙上去，方向用四格：an die Wand。' },
+      { q: 'Das Buch liegt ___ Tisch.', options: ['auf dem', 'auf den', 'unter dem', 'über den'], answer: 0, why: 'Wo? 书在桌上静止，用三格：auf dem Tisch。' },
+      { q: 'Ich lege das Buch ___ Tisch.', options: ['auf den', 'auf dem', 'in den', 'unter dem'], answer: 0, why: 'Wohin? 把书放到桌上，方向用四格：auf den Tisch。' },
+      { q: 'Die Katze sitzt ___ Stuhl.', options: ['unter dem', 'unter den', 'neben die', 'vor dem'], answer: 0, why: 'Wo? 猫坐在椅子下面静止，用三格：unter dem Stuhl。' },
+      { q: 'Die Kinder laufen ___ Garten.', options: ['in den', 'in dem', 'auf dem', 'hinter dem'], answer: 0, why: 'Wohin? 跑进花园，方向用四格：in den Garten。' },
+      { q: 'Wir sitzen ___ Tisch und essen.', options: ['am', 'ans', 'im', 'ins'], answer: 0, why: 'Wo? 坐在桌边吃饭，用三格：am Tisch（an dem）。' },
+      { q: 'Stell den Stuhl ___ Tisch!', options: ['neben den', 'neben dem', 'vor dem', 'zwischen dem'], answer: 0, why: 'Wohin? 把椅子放到桌子旁边，方向用四格：neben den Tisch。' }
+    ],
+    b: [
+      { q: 'Ich helfe ___ Mann.', options: ['dem', 'den', 'der', 'das'], answer: 0, why: 'helfen 支配三格：dem Mann。' },
+      { q: 'Wir besuchen ___ Oma.', options: ['die', 'der', 'dem', 'den'], answer: 0, why: 'besuchen 支配四格：die Oma（阴性四格还是 die）。' },
+      { q: 'Ich fahre mit ___ Bus zur Schule.', options: ['dem', 'den', 'der', 'das'], answer: 0, why: 'mit 支配三格：mit dem Bus。' },
+      { q: 'Das Geschenk ist für ___ Freund.', options: ['den', 'dem', 'der', 'des'], answer: 0, why: 'für 支配四格：für den Freund。' },
+      { q: 'Er dankt ___ Lehrerin.', options: ['der', 'die', 'den', 'das'], answer: 0, why: 'danken 支配三格，阴性三格是 der：der Lehrerin。' },
+      { q: 'Sie sieht ___ Film.', options: ['den', 'dem', 'der', 'des'], answer: 0, why: 'sehen 支配四格，阳性四格是 den：den Film。' },
+      { q: 'Ich spreche mit ___ Kindern.', options: ['den', 'die', 'der', 'das'], answer: 0, why: 'mit 支配三格，复数三格是 den：mit den Kindern。' },
+      { q: 'Wir warten auf ___ Zug.', options: ['den', 'dem', 'der', 'des'], answer: 0, why: 'warten auf 支配四格：auf den Zug。' }
+    ],
+    c: [
+      { q: '___ du Leon ___?', options: ['Rufst … an', 'Ruf … an', 'Anrufst … —', 'Rufst … auf'], answer: 0, why: 'anrufen：词干 rufst 变位放第二位，前缀 an 放句末。' },
+      { q: 'Ich ___ um sieben Uhr ___.', options: ['stehe … auf', 'stehe … an', 'aufstehe … —', 'stehe … ein'], answer: 0, why: 'aufstehen：ich stehe … auf，前缀 auf 在句末。' },
+      { q: 'Wir ___ heute im Supermarkt ___.', options: ['kaufen … ein', 'kaufen … an', 'einkaufen … —', 'kaufe … ein'], answer: 0, why: 'einkaufen：wir kaufen … ein，主语 wir 用 kaufen。' },
+      { q: 'Er ___ abends gern ___.', options: ['sieht … fern', 'sieht … an', 'fernsieht … —', 'seht … fern'], answer: 0, why: 'fernsehen：er sieht … fern，sehen 的 er 形式是 sieht。' },
+      { q: '___ bitte das Fenster ___!', options: ['Mach … auf', 'Mach … an', 'Aufmach … —', 'Machst … auf'], answer: 0, why: 'aufmachen 祈使句：Mach … auf！动词在句首，前缀在句末。' },
+      { q: 'Sie ___ morgen früh ___.', options: ['kommt … an', 'kommt … auf', 'ankommt … —', 'kommen … an'], answer: 0, why: 'ankommen：sie kommt … an，前缀 an 在句末。' },
+      { q: 'Ich ___ meine Jacke ___.', options: ['ziehe … an', 'ziehe … auf', 'anziehe … —', 'zieht … an'], answer: 0, why: 'anziehen：ich ziehe … an，穿上外套。' },
+      { q: 'Wann ___ wir ___?', options: ['gehen … aus', 'gehen … an', 'ausgehen … —', 'geht … aus'], answer: 0, why: 'ausgehen：wir gehen … aus，出门、出去玩。' }
+    ],
+    d: [
+      { q: 'Ich mag Cola ___ als Limonade.', options: ['lieber', 'liebst', 'am liebsten', 'lieberer'], answer: 0, why: 'lieber 紧跟在动词 mag 后面：Ich mag Cola lieber als …' },
+      { q: 'Ich spiele ___ Fußball.', options: ['—（不用冠词）', 'einen', 'den', 'dem'], answer: 0, why: '运动项目前不用冠词：Fußball spielen。' },
+      { q: 'Das ist ___ Jackett.', options: ['ein', 'der', '—（不用冠词）', 'den'], answer: 0, why: '第一次提到、表示「一件」，用不定冠词 ein。' },
+      { q: '___ Jackett ist blau.', options: ['Das', 'Ein', '—（不用冠词）', 'Den'], answer: 0, why: '已经提过的那件，用定冠词 das。' },
+      { q: 'Ich habe ___ Hund.', options: ['einen', 'ein', 'der', '—（不用冠词）'], answer: 0, why: 'haben + 四格，阳性不定冠词四格是 einen。' },
+      { q: 'Ich esse ___ Äpfel gern.', options: ['—（不用冠词）', 'einen', 'ein', 'den'], answer: 0, why: '复数泛指吃苹果，不用冠词。' },
+      { q: 'Er mag Tee ___ als Kaffee.', options: ['lieber', 'liebst', 'am liebsten', 'mehr'], answer: 0, why: 'lieber 紧跟在动词 mag 后面，表示「更喜欢」。' },
+      { q: '___ Sonne scheint heute.', options: ['Die', 'Eine', '—（不用冠词）', 'Den'], answer: 0, why: '独一无二的事物（太阳）用定冠词 die。' }
+    ]
+  };
+  window.GLModules.grammar = function () {
+    var root = $('gl-view-grammar');
+    if (!root) return;
+    var scores = GLS.get('grammar.scores', {}) || {};
+    function saveScores() { GLS.set('grammar.scores', scores); }
+    function renderScore(gid) {
+      var el = $('gl-gram-score-' + gid);
+      if (!el) return;
+      var s = scores[gid] || { ok: 0, total: 0 };
+      el.textContent = '本组分数：' + (s.ok || 0) + ' / ' + (s.total || 0);
+    }
+    Object.keys(GRAMMAR).forEach(function (gid) {
+      var box = $('gl-gram-group-' + gid);
+      if (!box) return;
+      box.innerHTML = '';
+      GRAMMAR[gid].forEach(function (item, qi) {
+        var qEl = document.createElement('div');
+        qEl.className = 'gl-q';
+        var t = document.createElement('p');
+        t.className = 'gl-q-text';
+        var num = document.createElement('span');
+        num.className = 'gl-q-num';
+        num.textContent = (qi + 1) + '.';
+        t.appendChild(num);
+        t.appendChild(document.createTextNode(item.q));
+        qEl.appendChild(t);
+        var opts = document.createElement('div');
+        opts.className = 'gl-opts';
+        var why = document.createElement('p');
+        why.className = 'gl-why';
+        var done = false;
+        item.options.forEach(function (opt, oi) {
+          var b = document.createElement('button');
+          b.type = 'button';
+          b.className = 'gl-opt';
+          b.textContent = opt;
+          b.addEventListener('click', function () {
+            if (done) return;
+            done = true;
+            var s = scores[gid] || { ok: 0, total: 0 };
+            s.total = (s.total || 0) + 1;
+            var btns = opts.querySelectorAll('.gl-opt');
+            for (var i = 0; i < btns.length; i++) {
+              if (i !== item.answer) btns[i].classList.add('gl-opt-dim');
+            }
+            if (oi === item.answer) {
+              s.ok = (s.ok || 0) + 1;
+              b.classList.add('gl-opt-correct');
+              why.textContent = '答对了！' + item.why;
+              why.className = 'gl-why gl-why-show';
+            } else {
+              b.classList.add('gl-opt-wrong');
+              btns[item.answer].classList.add('gl-opt-correct');
+              why.textContent = '不对。正确答案是「' + item.options[item.answer] + '」。' + item.why;
+              why.className = 'gl-why gl-why-show gl-why-bad';
+            }
+            scores[gid] = s;
+            saveScores();
+            renderScore(gid);
+          });
+          opts.appendChild(b);
+        });
+        qEl.appendChild(opts);
+        qEl.appendChild(why);
+        box.appendChild(qEl);
+      });
+      renderScore(gid);
+    });
+    if (!root.__glGramResetBound) {
+      root.__glGramResetBound = true;
+      var resets = root.querySelectorAll('.gl-reset');
+      for (var i = 0; i < resets.length; i++) {
+        resets[i].addEventListener('click', function () {
+          var gid = this.getAttribute('data-gl-reset');
+          scores[gid] = { ok: 0, total: 0 };
+          saveScores();
+          renderScore(gid);
+          window.GLModules.grammar();
+        });
+      }
+    }
+  };
+})();
+</script>
+<script>
+(function(){
+var GLS = window.GLS || { code:function(){try{return localStorage.getItem('gl:code')||'anon'}catch(e){return 'anon'}}, get:function(k,d){try{var v=localStorage.getItem('gl:'+(localStorage.getItem('gl:code')||'anon')+':'+k);return v==null?d:JSON.parse(v)}catch(e){return d}}, set:function(k,v){try{localStorage.setItem('gl:'+(localStorage.getItem('gl:code')||'anon')+':'+k,JSON.stringify(v))}catch(e){}} };
+window.GLModules = window.GLModules || {};
+// 真模型以后接在这里：把 window.GL_AI_BACKEND 设为 function(text, cb){ ... cb(模型回复) }
+window.GL_AI_BACKEND = null;
+function $(id){ return document.getElementById(id); }
+function esc(s){ return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+function todayStr(d){ d=d||new Date(); var m=d.getMonth()+1, day=d.getDate(); return d.getFullYear()+'-'+(m<10?'0':'')+m+'-'+(day<10?'0':'')+day; }
+function dateFromStr(s){ var p=String(s).split('-'); return new Date(+p[0], +p[1]-1, +p[2]); }
+function getCheckin(){ var c=GLS.get('checkin',{dates:[]}); if(!c||!c.dates||!Object.prototype.toString.call(c.dates).slice(8,-1)==='Array') return {dates:[]}; return c; }
+function streakFrom(dates){ var set={}; dates.forEach(function(d){ set[d]=1; }); var d=new Date(); if(!set[todayStr(d)]) d.setDate(d.getDate()-1); var n=0; while(set[todayStr(d)]){ n++; d.setDate(d.getDate()-1); } return n; }
+function pct(ok,total){ if(!total) return 0; return Math.round(ok/total*100); }
+
+/* ---------- 1. AI 陪练 ---------- */
+var SCEN = {
+  greet: 'Hallo! Wie geht es dir?\n你好！你好吗？\n可以这样回：Mir geht es gut, danke. Und dir?',
+  shop: 'Guten Tag! Was möchten Sie kaufen?\n你好！您想买什么？\n可以这样回：Ich möchte Brot kaufen.',
+  doctor: 'Guten Tag! Was tut Ihnen weh?\n你好！您哪里疼？\n可以这样回：Mein Kopf tut weh. / Ich bin krank.',
+  phone: 'Guten Tag! Hier ist Anna. Mit wem spreche ich?\n你好！我是安娜。请问您是哪位？\n可以这样回：Guten Tag! Hier ist Li Ming.'
+};
+var RULES = [
+  {k:['dativ','三格'], t:'三格 Dativ：表示“给谁 / 在哪里 / 和谁一起”，常跟 mit, bei, nach, von, zu。\n例：Ich lerne mit meinen Freunden.（我和朋友们一起学习。）\n口诀：静止、伴随 → 三格。'},
+  {k:['akkusativ','四格'], t:'四格 Akkusativ：表示动作的直接对象、“去哪里”。\n例：Ich kaufe einen Apfel. / Ich gehe in die Schule.\n口诀：动作打到谁、去向哪里 → 四格。'},
+  {k:['wechselpräposition','wechselpräpositionen','介词'], t:' Wechselpräpositionen（ Wechsel 介词：in, an, auf, unter, über, vor, hinter, neben, zwischen）：\n静止在哪里 → 三格：Ich bin in der Schule.\n移动去哪里 → 四格：Ich gehe in die Schule.'},
+  {k:['trennbare','可分动词'], t:'可分动词 trennbare Verben：前缀分开，放在句末。\n例：anrufen → Rufst du Leon an?（你给 Leon 打电话吗？）\n现在时：前缀去句末；完成时：ge- 插在中间，如 angerufen。'},
+  {k:['artikel','冠词'], t:'冠词 Artikel：der（阳性）/ die（阴性）/ das（中性），复数都是 die。\n不定冠词：ein（阳/中）/ eine（阴）。复数前不用 ein/eine。\n例：ein Mann, eine Frau, ein Kind, die Kinder。'},
+  {k:['lieber','比较级'], t:'比较级：lieber 是 gern 的比较级，放在动词后面。\n例：Ich mag Cola lieber als Limonade.（我更喜欢可乐，不喜欢柠檬水。）\n注意：lieber 紧跟在 mag / trinke 等动词后面。'},
+  {k:['wie viel','kostet','kosten','preis'], t:'问价格：Wie viel kostet das?（这个多少钱？）\n回答：Das kostet 5 Euro. / Es kostet 2 Euro 50.\n数字：eins, zwei, drei, vier, fünf…'},
+  {k:['kaufen','brot','apfel','milch','supermarkt','einkaufen'], t:'购物：Ich möchte Brot kaufen.（我想买面包。）\nWas kostet das Brot?（面包多少钱？）\nIch bezahle mit Karte.（我用卡付款。）'},
+  {k:['krank','schmerzen','arzt','kopf','fieber','weh'], t:'看病：Ich bin krank.（我生病了。）\nMein Kopf tut weh.（我头疼。）\nIch habe Fieber.（我发烧了。）\nIch brauche einen Termin beim Arzt.（我需要约医生。）'},
+  {k:['anrufen','telefon','anruf'], t:'打电话：Ich rufe dich an.（我给你打电话。）\nKann ich bitte mit Anna sprechen?（请问可以和 Anna 通话吗？）\nMeine Nummer ist …（我的电话是……）'},
+  {k:['hallo','guten tag','guten morgen','guten abend','tschüss','tschuss','wie geht'], t:'Hallo! Wie geht es dir?\n你好！你好吗？\n回答：Mir geht es gut, danke. Und dir?（我很好，谢谢。你呢？）'},
+  {k:['danke','bitte'], t:'Gern geschehen! / Bitte schön!\n不客气！\n再练一句：Danke für deine Hilfe.（谢谢你的帮助。）'},
+  {k:['name','heißt','heißen'], t:'Ich heiße Li Ming.（我叫李明。）\nWie heißt du?（你叫什么名字？）'}
+];
+function localReply(text){
+  var t=' '+String(text||'').toLowerCase()+' ';
+  for(var i=0;i<RULES.length;i++){
+    var r=RULES[i];
+    for(var j=0;j<r.k.length;j++){ if(t.indexOf(r.k[j])>-1) return r.t; }
+  }
+  return 'Entschuldigung, das habe ich nicht verstanden.\n对不起，我没听懂。\n提示：可以点上面的场景（打招呼 / 购物 / 看病 / 打电话），或者问一个语法词，比如：Dativ、三格、可分动词、冠词、lieber。';
+}
+function appendMsg(who, text){
+  var box=$('gl-ai-chat'); if(!box) return;
+  var d=document.createElement('div');
+  d.className='gl-msg '+(who==='user'?'gl-user':'gl-ai');
+  d.textContent=text;
+  box.appendChild(d);
+  box.scrollTop=box.scrollHeight;
+}
+function respond(userText){
+  // 真模型接入口：以后把 window.GL_AI_BACKEND 设为 function(text, cb){...}，这里会优先走模型，不再走本地规则。
+  if(window.GL_AI_BACKEND){ window.GL_AI_BACKEND(userText, function(reply){ appendMsg('ai', reply); }); return; }
+  appendMsg('ai', localReply(userText));
+}
+function aiInit(){
+  var root=$('gl-view-ai'); if(!root) return;
+  if(root.getAttribute('data-gl-init')) return;
+  root.setAttribute('data-gl-init','1');
+  var box=$('gl-ai-chat');
+  if(box && !box.children.length) appendMsg('ai','Hallo! Ich bin dein Lernpartner. Wähle oben ein Szenario oder schreib mir etwas.\n你好！我是你的学习伙伴。选一个场景，或直接给我发消息吧。');
+  var chips=root.querySelectorAll('[data-gl-scen]');
+  for(var i=0;i<chips.length;i++){
+    chips[i].addEventListener('click', function(){
+      var k=this.getAttribute('data-gl-scen');
+      var all=root.querySelectorAll('[data-gl-scen]');
+      for(var j=0;j<all.length;j++) all[j].classList.remove('gl-on');
+      this.classList.add('gl-on');
+      appendMsg('ai', SCEN[k]||SCEN.greet);
+    });
+  }
+  function send(){
+    var inp=$('gl-ai-input'); if(!inp) return;
+    var v=inp.value.replace(/^\s+|\s+$/g,''); if(!v) return;
+    appendMsg('user', v); inp.value=''; inp.focus();
+    respond(v);
+  }
+  var btn=$('gl-ai-send'); if(btn) btn.addEventListener('click', send);
+  var inp=$('gl-ai-input'); if(inp) inp.addEventListener('keydown', function(e){ if(e.key==='Enter') send(); });
+  var errBtn=$('gl-ai-errors');
+  if(errBtn) errBtn.addEventListener('click', function(){
+    var errs=GLS.get('errors',[]);
+    if(!errs||!errs.length){ appendMsg('ai','Du hast noch keine Fehler im Fehlerheft.\n你的错题本还是空的，先去练一练，错题会自动记下来。'); return; }
+    var counts={}, ex={};
+    errs.forEach(function(e){ var t=e.type||'其他'; counts[t]=(counts[t]||0)+1; if(!ex[t]) ex[t]=e; });
+    var top='', topN=0;
+    for(var k in counts){ if(counts[k]>topN){ topN=counts[k]; top=top; } }
+    var e=ex[top];
+    var tip={ '大写/拼写':'名词首字母要大写，写完再检查一遍。','三格/四格':'先判断是“给谁/在哪里”（三格）还是“打到谁/去哪里”（四格）。','动词变位':'ich 后面动词去掉 -en，加 -e。','冠词/零冠词':'复数前不用 ein/eine，der/die/das 要和性数配合。','词序':'动词放第二位，时间地点按顺序放后面。' }[top]||'把这条抄一遍，下次遇到先想一想再写。';
+    appendMsg('ai','Dein häufigster Fehlertyp ist: '+top+'（'+topN+' 次）\n你最常错的类型是：'+top+'（共 '+topN+' 次）\n例子：'+(e.de||'')+'（'+(e.zh||'')+'）\n小提示：'+tip);
+  });
+}
+
+/* ---------- 2. 智能分析 ---------- */
+function barRow(label, numText, p, cls){
+  return '<div class="gl-stat"><div class="gl-stat-head"><span>'+esc(label)+'</span><span class="gl-stat-num">'+esc(numText)+'</span></div><div class="gl-bar"><span class="gl-bar-fill '+(cls||'')+'" style="width:'+Math.max(0,Math.min(100,p))+'%"></span></div></div>';
+}
+function refreshStats(){
+  var body=$('gl-stats-body'); if(!body) return;
+  var vocabN=(window.GL_VOCAB&&window.GL_VOCAB.length)?window.GL_VOCAB.length:717;
+  var known=GLS.get('flash.known',[]); var knownN=(known&&known.length)?known.length:0;
+  var w=GLS.get('write.stats',{ok:0,bad:0})||{ok:0,bad:0};
+  var l=GLS.get('listen.stats',{ok:0,bad:0})||{ok:0,bad:0};
+  var g=GLS.get('grammar.scores',{})||{};
+  var errs=GLS.get('errors',[])||[];
+  var ck=getCheckin();
+  var html='';
+  html+=barRow('闪卡掌握率', knownN+' / '+vocabN+' 词 · '+pct(knownN,vocabN)+'%', pct(knownN,vocabN), 'gl-blue');
+  html+=barRow('默写正确率', (w.ok||0)+' 对 / '+((w.ok||0)+(w.bad||0))+' 题 · '+pct(w.ok,(w.ok||0)+(w.bad||0))+'%', pct(w.ok,(w.ok||0)+(w.bad||0)), 'gl-purple');
+  html+=barRow('听写正确率', (l.ok||0)+' 对 / '+((l.ok||0)+(l.bad||0))+' 题 · '+pct(l.ok,(l.ok||0)+(l.bad||0))+'%', pct(l.ok,(l.ok||0)+(l.bad||0)), 'gl-teal');
+  var gKeys=Object.keys(g);
+  if(!gKeys.length){ html+=barRow('语法练习','还没有语法练习记录 · 0%',0,'gl-orange'); }
+  else{
+    gKeys.forEach(function(k){
+      var s=g[k]||{}; var ok=s.ok||0, tot=s.total||0;
+      html+=barRow('语法 · '+k, ok+' / '+tot+' · '+pct(ok,tot)+'%', pct(ok,tot), 'gl-orange');
+    });
+  }
+  html+='<div class="gl-stat"><div class="gl-stat-head"><span>错题按类型</span><span class="gl-stat-num">共 '+errs.length+' 条</span></div>';
+  if(!errs.length){ html+='<p class="gl-note">还没有错题。</p>'; }
+  else{
+    var counts={}; errs.forEach(function(e){ var t=e.type||'其他'; counts[t]=(counts[t]||0)+1; });
+    var items=Object.keys(counts).map(function(k){ return {k:k,n:counts[k]}; }).sort(function(a,b){ return b.n-a.n; });
+    html+='<ul class="gl-list">';
+    items.forEach(function(it){ html+='<li class="gl-list-item"><span>'+esc(it.k)+'</span><span>'+it.n+' 条</span></li>'; });
+    html+='</ul>';
+  }
+  html+='</div>';
+  html+=barRow('打卡连续天数', streakFrom(ck.dates)+' 天 · 累计 '+ck.dates.length+' 天', ck.dates.length?Math.min(100,streakFrom(ck.dates)/7*100):0, 'gl-pink');
+  body.innerHTML=html;
+  var note=$('gl-stats-note');
+  var hasData=knownN||((w.ok||0)+(w.bad||0))||((l.ok||0)+(l.bad||0))||gKeys.length||errs.length||ck.dates.length;
+  if(note) note.textContent=hasData?'数字会随你的练习自动更新。':'还没有练习数据，先去练一练，数据会在这里出现。';
+}
+function statsInit(){
+  var root=$('gl-view-stats'); if(!root) return;
+  refreshStats();
+}
+
+/* ---------- 3. 每日打卡 ---------- */
+function renderCheckin(){
+  var root=$('gl-view-checkin'); if(!root) return;
+  var ck=getCheckin();
+  var today=todayStr();
+  var done=ck.dates.indexOf(today)>-1;
+  var streak=streakFrom(ck.dates);
+  var st=$('gl-checkin-streak'); if(st) st.textContent=streak+' 天';
+  var status=$('gl-checkin-status'); if(status) status.textContent=done?'今日已打卡，继续保持。':'今天还没有打卡';
+  var btn=$('gl-checkin-btn');
+  if(btn){ btn.textContent=done?'今日已打卡':'打卡'; if(done){ btn.classList.add('gl-done'); } else { btn.classList.remove('gl-done'); } }
+  var tot=$('gl-checkin-total'); if(tot) tot.textContent='累计打卡 '+ck.dates.length+' 天';
+  var week=$('gl-checkin-week'); if(week){
+    var now=new Date(); var dow=(now.getDay()+6)%7; var mon=new Date(now); mon.setDate(now.getDate()-dow);
+    var labels=['一','二','三','四','五','六','日']; var h='';
+    for(var i=0;i<7;i++){
+      var d=new Date(mon); d.setDate(mon.getDate()+i); var ds=todayStr(d);
+      var on=ck.dates.indexOf(ds)>-1; var isToday=ds===today;
+      h+='<div class="gl-day">'+labels[i]+'<div class="gl-dot'+(on?' gl-on':'')+(isToday?' gl-today':'')+'">'+d.getDate()+'</div></div>';
+    }
+    week.innerHTML=h;
+  }
+}
+function checkinInit(){
+  var root=$('gl-view-checkin'); if(!root) return;
+  if(root.getAttribute('data-gl-init')) return;
+  root.setAttribute('data-gl-init','1');
+  renderCheckin();
+  var btn=$('gl-checkin-btn');
+  if(btn) btn.addEventListener('click', function(){
+    var ck=getCheckin(); var today=todayStr();
+    if(ck.dates.indexOf(today)===-1){ ck.dates.push(today); ck.dates.sort(); GLS.set('checkin', ck); }
+    renderCheckin();
+  });
+}
+
+window.GLModules.ai=aiInit;
+window.GLModules.stats=statsInit;
+window.GLModules.stats.refresh=refreshStats;
+window.GLModules.checkin=checkinInit;
+})();
+</script>
+<script>
+(function(){
+var GLS = window.GLS || { code:function(){try{return localStorage.getItem('gl:code')||'anon'}catch(e){return 'anon'}}, get:function(k,d){try{var v=localStorage.getItem('gl:'+(localStorage.getItem('gl:code')||'anon')+':'+k);return v==null?d:JSON.parse(v)}catch(e){return d}}, set:function(k,v){try{localStorage.setItem('gl:'+(localStorage.getItem('gl:code')||'anon')+':'+k,JSON.stringify(v))}catch(e){}} };
+var root=document.getElementById('gl-view-errors');
+if(!root)return;
+var TYPES=['冠词/零冠词','三格/四格','动词变位','词序','拼写/大写','漏词/漏动词','默写','听写','其他'];
+var filter='全部';
+var reviewIdx=0, reviewing=false, answerShown=false;
+function $(id){return document.getElementById(id)}
+function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
+function load(){var a=GLS.get('errors',[]);return Array.isArray(a)?a:[]}
+function save(a){GLS.set('errors',a)}
+function fmtDate(ts){try{return new Date(ts).toLocaleDateString('zh-CN')}catch(e){return ''}}
+function counts(list){var c={};list.forEach(function(e){var t=e.type||'其他';c[t]=(c[t]||0)+1});return c}
+function filtered(list){return filter==='全部'?list:list.filter(function(e){return (e.type||'其他')===filter})}
+function renderFilters(list){
+  var box=$('gl-errors-filters');if(!box)return;box.innerHTML='';
+  var c=counts(list);
+  var all=document.createElement('button');all.type='button';all.className='gl-errors-filter'+(filter==='全部'?' gl-errors-filter-on':'');all.textContent='全部';all.onclick=function(){filter='全部';render()};box.appendChild(all);
+  TYPES.forEach(function(t){if(!c[t])return;var b=document.createElement('button');b.type='button';b.className='gl-errors-filter'+(filter===t?' gl-errors-filter-on':'');b.textContent=t+' '+c[t];b.onclick=function(){filter=t;render()};box.appendChild(b)});
+}
+function renderList(list){
+  var box=$('gl-errors-list');if(!box)return;box.innerHTML='';
+  var c=counts(load());
+  $('gl-errors-count').textContent='共 '+load().length+' 条'+TYPES.filter(function(t){return c[t]>0}).map(function(t){return ' · '+t+' '+c[t]+' 条'}).join('');
+  $('gl-errors-empty').hidden=list.length>0;
+  list.forEach(function(e){
+    var item=document.createElement('div');item.className='gl-errors-item';
+    var wrong=e.wrong?esc(e.wrong):'—';
+    var html='<p class="gl-errors-wrong">'+wrong+'</p><p class="gl-errors-right">'+esc(e.de||'')+'</p>';
+    if(e.zh)html+='<p class="gl-errors-zh">'+esc(e.zh)+'</p>';
+    if(e.note)html+='<p class="gl-errors-note-text">'+esc(e.note)+'</p>';
+    html+='<div class="gl-errors-meta"><span><span class="gl-errors-tag">'+esc(e.type||'其他')+'</span> <span class="gl-errors-date">'+esc(fmtDate(e.ts))+'</span></span></div>';
+    item.innerHTML=html;
+    var del=document.createElement('button');del.type='button';del.className='gl-errors-btn gl-errors-btn-red';del.textContent='删除';
+    del.onclick=function(){if(!confirm('确定删除这条错题吗？'))return;var all=load();var i=all.indexOf(e);if(i>-1){all.splice(i,1);save(all)}render()};
+    item.querySelector('.gl-errors-meta').appendChild(del);
+    box.appendChild(item);
+  });
+}
+function renderReview(){
+  var list=filtered(load());
+  var panel=$('gl-errors-review');
+  if(!reviewing||!list.length){panel.hidden=true;$('gl-errors-main').hidden=false;reviewing=false;return}
+  panel.hidden=false;$('gl-errors-main').hidden=true;
+  if(reviewIdx>=list.length)reviewIdx=0;
+  var e=list[reviewIdx];
+  $('gl-errors-review-progress').textContent='第 '+(reviewIdx+1)+' / '+list.length+' 条';
+  $('gl-errors-review-wrong').textContent=e.wrong||'—';
+  $('gl-errors-review-answer').hidden=!answerShown;
+  $('gl-errors-review-answer').textContent=e.de||'';
+  $('gl-errors-review-zh').hidden=!answerShown||!e.zh;
+  $('gl-errors-review-zh').textContent=e.zh||'';
+  $('gl-errors-show-answer').textContent=answerShown?'已显示答案':'显答案';
+}
+function render(){if(reviewing){renderReview()}else{renderFilters(load());renderList(filtered(load()))}}
+function refresh(){var list=load();if(filter!=='全部'&&!counts(list)[filter])filter='全部';if(reviewing&&!filtered(list).length){reviewing=false}render()}
+$('gl-errors-form').addEventListener('submit',function(ev){
+  ev.preventDefault();
+  var wrong=$('gl-errors-wrong').value.trim(), right=$('gl-errors-right').value.trim();
+  if(!wrong||!right){alert('请填写错句和正确句。');return}
+  var all=load();
+  all.unshift({de:right,wrong:wrong,zh:'',type:$('gl-errors-type').value,note:$('gl-errors-note').value.trim(),ts:Date.now()});
+  save(all);
+  $('gl-errors-wrong').value='';$('gl-errors-right').value='';$('gl-errors-note').value='';
+  render();
+});
+$('gl-errors-review-btn').onclick=function(){
+  if(!load().length){alert('错题本还是空的，先去练一练吧。');return}
+  reviewing=true;reviewIdx=0;answerShown=false;render();
+};
+$('gl-errors-show-answer').onclick=function(){answerShown=true;renderReview()};
+$('gl-errors-next').onclick=function(){var n=filtered(load()).length;if(!n)return;reviewIdx=(reviewIdx+1)%n;answerShown=false;renderReview()};
+$('gl-errors-mastered').onclick=function(){
+  var list=filtered(load());if(!list.length)return;
+  if(!confirm('确定已经掌握这条，可以从错题本里删掉吗？'))return;
+  var e=list[reviewIdx];var all=load();var i=all.indexOf(e);if(i>-1){all.splice(i,1);save(all)}
+  answerShown=false;
+  if(!load().length){reviewing=false;render();return}
+  if(reviewIdx>=filtered(load()).length)reviewIdx=0;
+  render();
+};
+$('gl-errors-exit-review').onclick=function(){reviewing=false;render()};
+window.GLModules=window.GLModules||{};
+window.GLModules.errors={refresh:refresh};
+refresh();
+})();
+</script>
+<script>
+window.GLModules = window.GLModules || {};
+window.GLModules.apply = {
+  init: function () { /* content-only module: no interactive behaviour */ }
+};
+</script>
+
+<script>
+(function(){
+  function tryCall(fn){ try{ if(typeof fn==='function') fn(); }catch(e){ console.error(e); } }
+  var M = window.GLModules || {};
+  /* flash/write/listen/grammar/ai/stats/checkin register bare init functions; invite/errors self-init; apply is a no-op */
+  ['flash','write','listen','grammar','ai','stats','checkin'].forEach(function(n){ tryCall(M[n]); });
+  function refreshDynamic(){
+    try{ if(M.stats && typeof M.stats.refresh==='function') M.stats.refresh(); }catch(e){}
+    try{ if(M.errors && typeof M.errors.refresh==='function') M.errors.refresh(); }catch(e){}
+  }
+  var tabs = document.querySelectorAll('[data-gl-tab]');
+  function showTab(id){
+    Array.prototype.forEach.call(document.querySelectorAll('.gl-view'), function(v){ v.classList.toggle('gl-on', v.id==='gl-view-'+id); });
+    Array.prototype.forEach.call(tabs, function(b){ b.classList.toggle('on', b.getAttribute('data-gl-tab')===id); });
+    if(id==='stats'||id==='errors') refreshDynamic();
+  }
+  Array.prototype.forEach.call(tabs, function(b){ b.addEventListener('click', function(){ showTab(b.getAttribute('data-gl-tab')); }); });
+  showTab('invite');
+  document.addEventListener('click', function(e){
+    var t = e.target && e.target.closest ? e.target.closest('[data-goto="learn"]') : null;
+    if(t) setTimeout(refreshDynamic, 250);
+  });
+  /* switching invite code changes the whole profile namespace: reload so every module inits from the new code's data (cloud profile re-loads on start) */
+  function armReload(btnId, delay){
+    var b = document.getElementById(btnId);
+    if(!b) return;
+    b.addEventListener('click', function(){
+      setTimeout(function(){
+        try{
+          var code = (window.GLS && window.GLS.code) ? window.GLS.code() : null;
+          if(btnId==='gl-exit-btn' || (code && code!=='anon')) window.location.reload();
+        }catch(e){}
+      }, delay);
+    });
+  }
+  armReload('gl-enter-btn', 900);
+  armReload('gl-exit-btn', 300);
+})();
+</script>
+
 </body>
 </html>
