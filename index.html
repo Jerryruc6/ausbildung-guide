@@ -45,16 +45,7 @@ img{max-width:100%}
 
 /* ---------- fixed chrome: progress, cursor, to-top ---------- */
 #scrollbar{position:fixed;top:0;left:0;height:3px;background:var(--blue);width:0;z-index:120}
-#cursorDot,#cursorRing{position:fixed;top:0;left:0;pointer-events:none;z-index:150;border-radius:50%;display:none}
 @media (pointer:fine){
-  #cursorDot,#cursorRing{display:block}
-  #cursorDot{width:8px;height:8px;background:var(--blue);transform:translate(-50%,-50%)}
-  #cursorRing{width:36px;height:36px;border:1.5px solid var(--blue);transform:translate(-50%,-50%);transition:width .25s,height .25s,opacity .25s;opacity:.7}
-  #cursorRing.big{width:64px;height:64px;opacity:1}
-  #cursorRing .cursor-label{display:none;position:absolute;inset:0;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:var(--blue);letter-spacing:.02em;pointer-events:none}
-  #cursorRing.label{width:76px;height:76px;opacity:1;background:var(--cream)}
-  #cursorRing.label .cursor-label{display:flex}
-  html.no-fx #cursorDot,html.no-fx #cursorRing{display:none !important}
 .motion-toggle{display:inline-flex;align-items:center;gap:6px;margin:12px 0 0;padding:5px 12px;border:1px solid var(--line);border-radius:999px;background:transparent;color:var(--mut);font:inherit;font-size:12px;cursor:pointer}
 .motion-toggle .mt-dot{width:7px;height:7px;border-radius:50%;background:var(--blue);flex:none}
 .motion-toggle.off .mt-dot{background:var(--mut);opacity:.45}
@@ -1059,49 +1050,16 @@ button{touch-action:manipulation}
   .hero-liquid{transition:none}
 }
 
-/* 3D 模型展示 (Item 6)：首页 Hero 下的城堡模型，沿用本站配色与圆角 */
-.showcase{max-width:1060px;margin:56px auto 0;padding:28px 20px 0;border-top:1px solid var(--line)}
-.showcase-title{font-family:var(--disp);font-weight:800;font-size:26px;line-height:1.25;margin:0 0 6px}
-.showcase-hint{color:var(--mut);margin:0 0 14px}
-.showcase-stage{border:1px solid var(--line);border-radius:20px;overflow:hidden;background:#fafaf8}
-.showcase-canvas{display:block;width:100%;height:420px;touch-action:none;cursor:grab}
-.showcase-canvas:active{cursor:grabbing}
-.showcase-fallback{border:1px solid var(--line);border-radius:20px;background:#fafaf8;padding:28px;text-align:center}
-.showcase-controls{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
-.showcase-btn{border:1px solid var(--line);background:#fff;border-radius:8px;padding:8px 14px;font:inherit;cursor:pointer}
-.showcase-btn:active{transform:translateY(1px)}
-@media(max-width:640px){.showcase-canvas{height:320px}}
-@media(prefers-reduced-motion:reduce){.showcase-btn:active{transform:none}}
 
-/* 德国生活画廊 (Item 7)：弧形卡片流（纯 CSS 3D，无 WebGL）；flat 时为平铺横滚行 */
-.life-gallery{perspective:1100px;overflow:hidden;padding:10px 0 6px}
-.life-gallery.flat{overflow-x:auto}
-/* 视频网格吸附 (Item 7)：scrub 吸到网格态时轨道换行成网格、溢出可见 */
-.life-gallery.grid{overflow:visible}
-.life-gallery.grid .life-gallery-track{flex-wrap:wrap;cursor:default}
 
-/* 页脚 Ballpit (Item 9)：德语单词小球，鼠标可推；Canvas 2D 轻量物理 */
-.ballpit{margin-top:28px;height:180px;position:relative;overflow:hidden;border-top:1px solid var(--line)}
-.ballpit-canvas{display:block;width:100%;height:100%;touch-action:pan-y;cursor:grab}
-.ballpit-canvas:active{cursor:grabbing}
-@media(prefers-reduced-motion:reduce){.ballpit-canvas{cursor:default}}
-.life-gallery-track{display:flex;gap:14px;will-change:transform;cursor:grab;touch-action:pan-y}
-.life-gallery-track:active{cursor:grabbing}
-.life-gcard{flex:0 0 240px;border:1px solid var(--line);border-radius:20px;background:#fff;padding:18px;text-align:left;cursor:pointer;font:inherit}
-.life-gcard h4{margin:0 0 8px;font-size:17px;line-height:1.35}
-.life-gcard p{margin:0;color:var(--mut);font-size:14px;line-height:1.55}
-.life-gallery.flat .life-gcard{transform:none !important}
-.life-gallery-detail{position:fixed;inset:0;z-index:140;background:rgba(16,20,24,.45);display:flex;align-items:flex-start;justify-content:center;padding:8vh 16px 16px;overflow:auto}
-.life-gallery-detail[hidden]{display:none}
-.life-gallery-detail-body{background:#fafaf8;border-radius:20px;max-width:760px;width:100%;padding:28px;position:relative}
-.life-gallery-close{position:sticky;top:0;float:right;width:36px;height:36px;border:1px solid var(--line);border-radius:8px;background:#fff;font-size:20px;line-height:1;cursor:pointer}
-@media(prefers-reduced-motion:reduce){.life-gcard{transition:none}}
 
-/* 加载页 3D 气泡进度环 (Item 8)：CSS 3D 圆环，气泡随进度点亮；默认隐藏，建成后才显示 */
-.loader-3d{display:none;width:120px;height:120px;margin:22px auto 0;perspective:420px}
-.loader-ring{position:relative;width:100%;height:100%;transform-style:preserve-3d;transform:rotateX(62deg)}
-.loader-bubble{position:absolute;left:50%;top:50%;width:14px;height:14px;margin:-7px 0 0 -7px;border-radius:50%;background:#fafaf8;border:1px solid rgba(22,26,16,.25)}
-.loader-bubble.lit{background:#1d4ed8;border-color:#1d4ed8}
+/* 3D render scenes: Hero 带（自带画布）+ 章节带（共用 fixed 画布，scissor 多视图） */
+.hero-scene{max-width:1200px;margin:56px auto 0;border-radius:20px;overflow:hidden;position:relative;height:560px;background:linear-gradient(180deg,#b8d2e6 0%,#dfe9f0 55%,#f4f1e6 100%)}
+.hero-scene-canvas{display:block;width:100%;height:100%}
+.chapter-scene{height:420px;margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw);background:linear-gradient(180deg,#b8d2e6 0%,#dfe9f0 55%,#f4f1e6 100%)}
+.scene3d-canvas{position:fixed;inset:0;width:100vw;height:100vh;z-index:-1;pointer-events:none}
+html.scene-live .chapter-scene{background:transparent}
+@media(max-width:640px){.hero-scene{height:380px;margin-top:36px}.chapter-scene{height:300px}}
 </style>
 <style>
 /* ===== Schaum 沫 premium overlay (build/premium.css) ===== */
@@ -2796,10 +2754,9 @@ html.cx-js .cx-reveal.in{opacity:1;transform:translateY(0)}
 <div id="loader" role="button" aria-label="点击跳过加载动画" data-i18n-aria="site.001"><div class="loader-in">
 <div class="loader-word"><span>S</span><span>C</span><span>H</span><span>A</span><span>U</span><span>M</span><span class="lb">沫</span></div>
 <div class="loader-sub">德语学习 &middot; 正在为你准备</div>
-<div class="loader-3d" id="loader3d" aria-hidden="true"><div class="loader-ring" id="loaderRing"></div></div>
 <div class="loader-bar"><span></span></div>
 </div></div>
-<div id="scrollbar"></div><div id="cursorDot"></div><div id="cursorRing"><span class="cursor-label" aria-hidden="true"></span></div>
+<div id="scrollbar"></div>
 
 <header class="site-header" id="siteHeader">
   <div class="site-header-in">
@@ -2836,7 +2793,7 @@ html.cx-js .cx-reveal.in{opacity:1;transform:translateY(0)}
     <p class="lead cx-lead" data-i18n="hero.003">在这里学德语、了解德国生活、办好德国申请。一处一处，慢慢来。</p>
     
     <div class="hero-cta-row">
-      <button type="button" class="btn-cta magnetic" data-goto="learn" data-i18n="hero.004">开始学德语 <span class="arr">&rarr;</span></button>
+      <button type="button" class="btn-cta" data-goto="learn" data-i18n="hero.004">开始学德语 <span class="arr">&rarr;</span></button>
       <button type="button" class="hero-link" data-goto="life" data-i18n="hero.005">看看德国生活 <span class="arr">&rarr;</span></button>
       <button type="button" class="hero-link" data-goto="admission" data-scroll="pathPicker" data-i18n="hero.017">先选一条路 <span class="arr">&rarr;</span></button>
     </div>
@@ -2910,31 +2867,7 @@ html.cx-js .cx-reveal.in{opacity:1;transform:translateY(0)}
 <div class="hero-corner hero-corner-l" aria-hidden="true"><span class="hc-arrow">&darr;</span><span data-i18n="hero.scrollHint">向下滚动，继续探索</span></div>
 <div class="hero-corner hero-corner-r" aria-hidden="true" data-i18n="hero.corner">DEUTSCHLAND · 德国</div>
   </div>
-<div class="showcase" id="showcase">
-  <h2 class="showcase-title" data-i18n="showcase.title">3D 模型：新天鹅堡</h2>
-  <p class="showcase-hint" data-i18n="showcase.hint">拖动旋转 · 松手回正</p>
-  <div class="showcase-stage"><canvas class="showcase-canvas" id="showcaseCanvas" data-lenis-prevent role="img" aria-label="Neuschwanstein Castle 3D"></canvas></div>
-  <div class="showcase-fallback" id="showcaseFallback" hidden>
-    <svg viewBox="0 0 200 120" width="200" height="120" role="img" aria-label="Neuschwanstein Castle">
-      <rect x="10" y="92" width="180" height="8" fill="#101418"/>
-      <rect x="30" y="52" width="26" height="48" fill="#101418"/>
-      <polygon points="28,52 43,28 58,52" fill="#101418"/>
-      <rect x="70" y="66" width="60" height="34" fill="#101418"/>
-      <rect x="70" y="59" width="60" height="7" fill="#101418"/>
-      <rect x="140" y="46" width="26" height="54" fill="#101418"/>
-      <polygon points="138,46 153,20 168,46" fill="#101418"/>
-      <rect x="152" y="10" width="2" height="12" fill="#1d4ed8"/>
-      <rect x="154" y="10" width="10" height="6" fill="#1d4ed8"/>
-    </svg>
-  </div>
-  <div class="showcase-controls" role="group" aria-label="模型控制">
-    <button type="button" class="showcase-btn" id="showcaseZoomOut" data-i18n="showcase.zoomOut">缩小</button>
-    <button type="button" class="showcase-btn" id="showcaseZoomIn" data-i18n="showcase.zoomIn">放大</button>
-    <button type="button" class="showcase-btn" id="showcaseLight" data-i18n="showcase.light">切换光线</button>
-    <button type="button" class="showcase-btn" id="showcaseReset" data-i18n="showcase.reset">复位</button>
-  </div>
-</div>
-</section>
+<div class="hero-scene" id="heroScene" data-scene="hero" aria-hidden="true"><canvas class="hero-scene-canvas" id="heroSceneCanvas" aria-hidden="true"></canvas></div></section>
 <section class="block">
   <div class="big-grid">
     <button type="button" class="big-card cx-card cx-reveal" data-goto="learn">
@@ -3156,6 +3089,8 @@ html.cx-js .cx-reveal.in{opacity:1;transform:translateY(0)}
           </div>
         </div>
       </header>
+
+      <div class="chapter-scene" id="scene-board" data-scene="board" aria-hidden="true"></div>
 
       <div class="toolbar">
         <div class="search-row">
@@ -3451,6 +3386,7 @@ html.cx-js .cx-reveal.in{opacity:1;transform:translateY(0)}
           <h2 data-i18n="apply.001">从找岗位到签合同，一步一步</h2>
           <p class="g-lead cx-lead" data-i18n="apply.002">Ausbildung 的申请，走的是企业招人的流程：企业发布岗位 → 你投递材料 → 企业筛选面试 → 双方签培训合同（Ausbildungsvertrag）→ 合同在 IHK/HWK 登记、职业学校报名 → 你拿合同去办签证。下面 8 步按实际先后顺序展开，每一步写清做什么、用什么工具、容易卡在哪。</p>
         </div>
+<div class="chapter-scene" id="scene-apply" data-scene="apply" aria-hidden="true"></div>
 
         <div class="cx-stat-row cx-reveal">
           <div class="cx-stat"><div class="cx-stat-num">8</div><div class="cx-stat-label">全流程步骤</div></div>
@@ -3721,6 +3657,7 @@ html.cx-js .cx-reveal.in{opacity:1;transform:translateY(0)}
           <h2 data-i18n="docs.001">全部文件一张表：翻译、公证、Apostille</h2>
           <p class="g-lead cx-lead" data-i18n="docs.002">申请、认证、签证三件事要用的文件高度重叠，一次备齐、反复使用。核心原则：<b>先问接收方要什么规格，再去办</b><span data-i18n="docs.003">——翻译找谁做、要不要公证、要不要 Apostille，各州、各机构、甚至各雇主的要求都不同，办错了既花钱又耽误时间。下表是通行做法，具体以接收方书面要求为准。</span></p>
         </div>
+<div class="chapter-scene" id="scene-documents" data-scene="documents" aria-hidden="true"></div>
 
         <div class="g-sec cx-reveal">
           <h3 data-i18n="docs.004">文件总表</h3>
@@ -3924,6 +3861,7 @@ html.cx-js .cx-reveal.in{opacity:1;transform:translateY(0)}
           <h2 data-i18n="visa.001">§16a 培训签证，一步一步办</h2>
           <p class="g-lead cx-lead" data-i18n="visa.002">来德国做双元制培训，办的是《居留法》§16a 的培训居留签证（国家签证，D 类）。顺序不能颠倒：<b>先有培训合同，再办签证</b><span data-i18n="visa.003">。本章按递交前、递交、审核、入境后四段展开；具体材料清单以德国驻华使领馆官网当期公布为准，本站列的是通行版本。</span></p>
         </div>
+<div class="chapter-scene" id="scene-visa" data-scene="visa" aria-hidden="true"></div>
 
         <div class="g-sec cx-reveal">
           <h3 data-i18n="visa.004">申请条件（四项缺一不可）</h3>
@@ -4212,6 +4150,7 @@ html.cx-js .cx-reveal.in{opacity:1;transform:translateY(0)}
           <h2 data-i18n="recog.001">中国学历在德国怎么认证（Anerkennung）</h2>
           <p class="g-lead cx-lead" data-i18n="recog.002">德国雇主和职业学校看不懂中国毕业证对应德国哪一级学历——认证就是由德国官方机构出一纸决定（Bescheid），把你的学历认定为等同 Hauptschulabschluss（初级）或 mittlere Reife / Realschulabschluss（中级）等德国学历级别。很多岗位的准入线写的是德国学历名，没有认证决定，申请在第一关就卡住。本章覆盖中国最常见的五种学历——中专、职高、普高、大专、大学本科，每种单独说怎么办、能认到哪一级、注意什么；没有官方对照表的地方直接写明，不编关系。</p>
         </div>
+<div class="chapter-scene" id="scene-recognition" data-scene="recognition" aria-hidden="true"></div>
 
         <div class="g-sec cx-reveal">
           <h3 data-i18n="recog.003">先分清两个「认证」，别办错</h3>
@@ -4416,6 +4355,7 @@ html.cx-js .cx-reveal.in{opacity:1;transform:translateY(0)}
           <h2 data-i18n="lang.001">A1 → A2 → B1 → B2：每一级能干什么</h2>
           <p class="g-lead cx-lead" data-i18n="lang.002">德语是这条路的第一道门槛，也是最可控的一道：它不看天赋看时间投入。本章讲清四件事——每个级别对应什么能力、在 Ausbildung 的哪个环节被卡、考什么试、以及一条真实在读学员的时间线长什么样。</p>
         </div>
+<div class="chapter-scene" id="scene-language" data-scene="language" aria-hidden="true"></div>
 
         <div class="g-sec cx-reveal">
           <h3 data-i18n="lang.003">级别对照：能力与用途</h3>
@@ -4575,6 +4515,7 @@ html.cx-js .cx-reveal.in{opacity:1;transform:translateY(0)}
           <h2 data-i18n="costs.001">全过程要花多少钱，钱花在哪</h2>
           <p class="g-lead cx-lead" data-i18n="costs.002">走 Ausbildung 这条路，花销在出国发展的选择里算比较低的：不收学费、培训期有工资、签证资金门槛远低于留学。真正的花钱阶段集中在<b>出国之前</b><span data-i18n="costs.003">（语言学习与考试、文件、机票）和</span><b>抵德第一个月</b><span data-i18n="costs.004">（押金与安顿）。下表为 2026 年价格水平的估算区间（人民币，欧元按 1 € ≈ ¥8 粗算），个人情况差异很大，请按自己的城市与学习方式对号入座。</span></p>
         </div>
+<div class="chapter-scene" id="scene-costs" data-scene="costs" aria-hidden="true"></div>
 
         <div class="g-sec cx-reveal">
           <h3 data-i18n="costs.005">分阶段费用估算</h3>
@@ -4775,6 +4716,7 @@ html.cx-js .cx-reveal.in{opacity:1;transform:translateY(0)}
           <h2 data-i18n="res.001">§18c：从培训毕业到永居的完整路径</h2>
           <p class="g-lead cx-lead" data-i18n="res.002">这条路的终点设计得很清楚：《居留法》§18c 给在德国完成合格职业培训、并以技术工人身份工作满 2 年的人开了一条比普通就业更快的永居（Niederlassungserlaubnis）通道。本章把条件逐条拆开，并算清时间账。</p>
         </div>
+<div class="chapter-scene" id="scene-residence" data-scene="residence" aria-hidden="true"></div>
 
         <div class="g-sec cx-reveal">
           <h3 data-i18n="res.003">路径全景</h3>
@@ -4947,6 +4889,7 @@ html.cx-js .cx-reveal.in{opacity:1;transform:translateY(0)}
           <h2 data-i18n="time.001">时间规划器：把你的关键日期算出来</h2>
           <p class="g-lead cx-lead" data-i18n="time.002">这条路成败一半在时间衔接：语言考试、认证、投递、签证、开学，任何一段脱节都可能错过一整年。下面先用规划器按你的情况算日期，再对照一条完整的示例时间线检查节奏。</p>
         </div>
+<div class="chapter-scene" id="scene-timeline" data-scene="timeline" aria-hidden="true"></div>
 
 <nav class="cx-toc cx-reveal" aria-label="本章导航" data-i18n-aria="time.003">
           <a class="cx-chip" href="#cx-timeline-race">申请日程</a>
@@ -5152,6 +5095,7 @@ html.cx-js .cx-reveal.in{opacity:1;transform:translateY(0)}
           <h2 data-i18n="home.033">常见问题 FAQ</h2>
           <p class="g-lead cx-lead" data-i18n="faq.001">把最常被问到的问题集中答完。涉及居留与合同的个案差异很大，答案给出通行规则与判断方法，最终以主管部门、外管局和你合同的书面文本为准。点问题展开。</p>
         </div>
+<div class="chapter-scene" id="scene-faq" data-scene="faq" aria-hidden="true"></div>
 
 <nav class="cx-toc cx-reveal" aria-label="问题快速跳转" data-i18n-aria="faq.002">
           <a class="cx-chip" href="#faq-q1">培训期间能打工吗？</a>
@@ -5342,6 +5286,7 @@ html.cx-js .cx-reveal.in{opacity:1;transform:translateY(0)}
           <h2 data-i18n="pit.001">已核实的坑：每一个都来自真实岗位原文</h2>
           <p class="g-lead cx-lead" data-i18n="pit.002">这一章的条目不是泛泛提醒，而是对着 1,771 条岗位原文一条一条核出来的具体陷阱——标题党语言要求、校区之间互相矛盾的口径、免费课程的时间陷阱、学制与永居的暗线。投任何岗位之前，把这一章过一遍。</p>
         </div>
+<div class="chapter-scene" id="scene-pitfalls" data-scene="pitfalls" aria-hidden="true"></div>
 
 <div class="cx-stat-row">
           <div class="cx-stat cx-reveal"><span class="cx-stat-num">10</span><span class="cx-stat-label">已核实的坑</span></div>
@@ -5591,6 +5536,7 @@ html.cx-js .cx-reveal.in{opacity:1;transform:translateY(0)}
           <h2 data-i18n="path.heading">不止 Ausbildung：11 条赴德途径</h2>
           <p class="g-lead cx-lead">本章只写中国护照、在中国境内申请的情形。11 条途径按官方来源逐条核实，查不到的标「未核实」；金额为 2026 年官方口径，每年调整，申请前以负责使领馆最新须知为准。Ausbildung（§16a）见本站岗位看板，本章不再重复。</p>
         </div>
+<div class="chapter-scene" id="scene-pathways" data-scene="pathways" aria-hidden="true"></div>
 
         <div class="callout warn cx-callout cx-callout--warn cx-reveal"><span class="co-t">先说没有的路：打工度假</span><p>中德之间没有打工度假协议。德国的打工度假 / 青年流动协议只覆盖 12 个国家和地区，中国大陆不在其中。所以“先去打工度假、再转别的”这条路对中国大陆护照不存在。最接近的是互惠生 Au-pair 与义工 FSJ / BFD，但两者都不是打工度假，都有严格的时长和目的限制。</p></div>
 
@@ -6252,6 +6198,7 @@ html.cx-js .cx-reveal.in{opacity:1;transform:translateY(0)}
       <h2 data-i18n="learn.017">德语学习：听说读写、闪卡、默写、听写、错题、AI 陪练、大学申请</h2>
       <p class="g-lead cx-lead" data-i18n="learn.018">练德语的地方。邀请码就是你的账号：输码进入，进度、错题、打卡都存在你的档案里，换手机输码找回。不用注册、不用验证码。你的错题只在你自己的档案里，别人看不到。</p>
     </div>
+    <div class="chapter-scene" id="scene-learn" data-scene="learn" aria-hidden="true"></div>
     <div class="learn-goals cx-card cx-reveal" id="learnGoals">
   <div class="hn-tag" data-i18n="hero.006">MEINE ZIELE &middot; 我的目标</div>
 
@@ -7103,6 +7050,7 @@ html.cx-js .cx-reveal.in{opacity:1;transform:translateY(0)}
       <h2 data-i18n="life.001">德国生活：<span class="em">到了德国之后</span></h2>
       <p class="g-lead cx-lead" data-i18n="life.002">培训、上学只是开头，租房、落户、保险、银行、手机、交通、超市、续签、打工、带猫……这些琐事才是每天的生活。这一章只写官方来源能对上的东西，写不准的地方标了「未核实」，别当定论。</p>
     </div>
+    <div class="chapter-scene" id="scene-life" data-scene="life" aria-hidden="true"></div>
 
     <div class="chip-row cx-toc" aria-label="本章主题" data-i18n-aria="life.003">
       <a class="chip" href="#life-pet" data-i18n="life.004">带猫去德国</a>
@@ -7214,14 +7162,6 @@ html.cx-js .cx-reveal.in{opacity:1;transform:translateY(0)}
 </script>
 
 
-    <div class="life-gallery" id="lifeGallery">
-  <div class="life-gallery-track" id="lifeGalleryTrack" data-lenis-prevent></div>
-</div>
-<div class="life-gallery-detail" id="lifeGalleryDetail" hidden>
-  <div class="life-gallery-detail-body" id="lifeGalleryDetailBody">
-    <button type="button" class="life-gallery-close" id="lifeGalleryClose" data-i18n-aria="gallery.close" aria-label="关闭">×</button>
-  </div>
-</div>
 <div class="g-sec cx-card cx-reveal cx-acc-item open" id="life-pet">
       <h3 data-i18n="life.013">1 · 带猫去德国 <span class="em">（狗也一样）</span></h3>
       <button type="button" class="cx-acc-head" aria-expanded="true">从中国带猫（狗同理）去德国，核心是一条时间线：芯片 → 狂犬疫苗 → 采血送检 → 等 90 天 → 办动物卫生证书 → 经指定入境点入境。</button>
@@ -7419,6 +7359,7 @@ html.cx-js .cx-reveal.in{opacity:1;transform:translateY(0)}
       <h2 data-i18n="nav.005">德国申请</h2>
       <p class="g-lead cx-lead" data-i18n="admit.001">去德国读书，还是去德国学一门手艺，两条路都在这里。先看清自己要走哪条，再往下走。</p>
     </div>
+    <div class="chapter-scene" id="scene-admission" data-scene="admission" aria-hidden="true"></div>
     <div class="path-picker cx-card cx-reveal" id="pathPicker">
       <h3 data-i18n="path.pickTitle">先选一条路</h3>
       <p class="pp-lead" data-i18n="path.pickLead">四条路，条件和时间完全不同。选一条，下面的步骤和时间规划器会按这条路重算；随时可以改。</p>
@@ -7490,7 +7431,6 @@ html.cx-js .cx-reveal.in{opacity:1;transform:translateY(0)}
     <p class="foot-credit" data-i18n="site.006">制作者：焦焦 &amp; Jerryruc</p>
     <button type="button" id="motionToggle" class="motion-toggle" aria-pressed="true"><span class="mt-dot" aria-hidden="true"></span><span data-i18n="fx.motion">动效</span></button>
     <nav aria-label="页脚栏目" data-i18n-aria="site.007"><button type="button" data-goto="home" data-i18n="nav.002">首页</button><button type="button" data-goto="learn" data-i18n="nav.003">德语学习</button><button type="button" data-goto="life" data-i18n="nav.004">德国生活</button><button type="button" data-goto="admission" data-i18n="nav.005">德国申请</button><button type="button" data-goto="learn" data-gl-tab="apply" data-i18n="nav.006">大学申请</button><button type="button" data-goto="board" data-i18n="nav.007">双元制岗位</button><button type="button" data-goto="apply" data-i18n="nav.008">申请流程</button><button type="button" data-goto="documents" data-i18n="nav.009">材料清单</button><button type="button" data-goto="visa" data-i18n="nav.010">签证指南 §16a</button><button type="button" data-goto="recognition" data-i18n="nav.011">学历认证</button><button type="button" data-goto="language" data-i18n="nav.012">语言路径</button><button type="button" data-goto="costs" data-i18n="nav.013">费用明细</button><button type="button" data-goto="residence" data-i18n="nav.014">永居路径 §18c</button><button type="button" data-goto="timeline" data-i18n="nav.015">时间规划</button><button type="button" data-goto="faq" data-i18n="nav.016">常见问题</button><button type="button" data-goto="pitfalls" data-i18n="nav.017">避坑指南</button></nav>
-    <div class="ballpit" id="ballpit"><canvas class="ballpit-canvas" id="ballpitCanvas" aria-hidden="true"></canvas></div>
   </div>
 </footer>
 <button type="button" id="toTop" aria-label="回到顶部" data-i18n-aria="site.008"><svg viewBox="0 0 52 52" aria-hidden="true"><circle class="tt-ring-bg" cx="26" cy="26" r="22"/><circle class="tt-ring-fg" cx="26" cy="26" r="22"/></svg><span class="tt-arrow">&uarr;</span></button>
@@ -8149,57 +8089,6 @@ if (reduceMotion && loader) { loader.style.transition = "none"; hideLoader(); }
 if (loader) loader.addEventListener("click", hideLoader);
 window.addEventListener("load", function(){ setTimeout(hideLoader, 350); });
 setTimeout(hideLoader, 1400);
-/* ---------- loader 3D 气泡进度环 (Item 8)：24 个气泡围成倾斜 3D 圆环，随进度点亮 ----------
-   纯 CSS 3D（Three.js 由地图懒加载，加载页时还不存在，且加载页要零等待）。
-   进度按 1.1 秒走满；hideLoader 触发时补满一次再滑走。减动效/低端机不建环，
-   只留细进度条。peak 记录未完成前的最大进度，供验证进度确实走过中间值。 */
-var loader3d = { state: "idle", progress: 0, peak: 0, built: 0, lit: 0, spin: 0 };
-window.__schaumLoader3d = loader3d;
-(function loaderRing() {
-  var ring = document.getElementById("loaderRing");
-  var wrap = document.getElementById("loader3d");
-  if (!ring || !wrap || !loader) { loader3d.state = "no-dom"; return; }
-  if (reduceMotion) { loader3d.state = "skipped-reduced"; return; }
-  try {
-    var hc = navigator.hardwareConcurrency || 0, dm = navigator.deviceMemory || 0;
-    if (hc > 0 && hc <= 4 && dm > 0 && dm <= 4) { loader3d.state = "skipped-lowend"; return; }
-  } catch (e) {}
-  var N = 24, bubbles = [];
-  for (var i = 0; i < N; i++) {
-    var b = document.createElement("span");
-    b.className = "loader-bubble";
-    b.style.transform = "rotateY(" + (i * 15) + "deg) translateZ(52px)";
-    ring.appendChild(b);
-    bubbles.push(b);
-  }
-  wrap.style.display = "block";
-  /* 状态即记录：加载器 750ms 后就从 DOM 移除，气泡数/点亮数/旋转角只留
-     在这里，验证读状态而不是赌 DOM 还在（慢解析时 1400ms 兜底先触发）。 */
-  loader3d.built = bubbles.length;
-  var t0 = performance.now(), spin = 0;
-  function paint(p, s) {
-    var lit = Math.round(p * N);
-    loader3d.lit = lit;
-    loader3d.spin = s;
-    for (var j = 0; j < N; j++) bubbles[j].classList.toggle("lit", j < lit);
-    ring.style.transform = "rotateX(62deg) rotateZ(" + s + "deg)";
-  }
-  function frame(now) {
-    if (loaderDone || !loader.parentNode) {
-      loader3d.progress = 1;
-      paint(1, spin);
-      return;
-    }
-    var p = Math.min(1, (now - t0) / 1100);
-    loader3d.progress = p;
-    if (p > loader3d.peak) loader3d.peak = p;
-    spin = (spin + 1.2) % 360;
-    paint(p, spin);
-    requestAnimationFrame(frame);
-  }
-  loader3d.state = "ready";
-  requestAnimationFrame(frame);
-})();
 
 
 /* ---------- section switching with transition ---------- */
@@ -8414,82 +8303,6 @@ function tickCd(){
 tickCd();
 setInterval(tickCd, 1000);
 
-/* ---------- custom cursor + magnetic + tilt (desktop, Item 2) ---------- */
-/* 旧版只有 finePointer && !reduceMotion 时启动、无运行时开关；Item 2 改为可启停：
-   window.__schaumFxCursor.enable()/disable()，由动效总开关（__schaumMotion 的
-   fx 注册表）调用。触屏（非 fine pointer）始终关闭；减动效时不启动。
-   悬停卡片时圆环放大并显示「查看」标签；磁吸扩展到 .btn-cta 与 .hero-link。 */
-window.__schaumFxCursor = (function () {
-  var dot = document.getElementById("cursorDot"), ring = document.getElementById("cursorRing");
-  var label = ring ? ring.querySelector(".cursor-label") : null;
-  var mx = -100, my = -100, rx = -100, ry = -100;
-  var rafId = 0, started = false;
-  function onMove(e) {
-    mx = e.clientX; my = e.clientY;
-    if (dot) { dot.style.left = mx + "px"; dot.style.top = my + "px"; }
-  }
-  function loop() {
-    rx += (mx - rx) * 0.16; ry += (my - ry) * 0.16;
-    if (ring) { ring.style.left = rx + "px"; ring.style.top = ry + "px"; }
-    rafId = requestAnimationFrame(loop);
-  }
-  function onOver(e) {
-    if (!ring || !started) return;
-    var tgt = e.target;
-    var inter = tgt && tgt.closest ? tgt.closest("a,button,.chip,.job,.job-occ,summary,select,input,.path-step") : null;
-    var card = tgt && tgt.closest ? tgt.closest(".big-card,.dir-card,.g-sec,.gl-apply-sec") : null;
-    ring.classList.toggle("big", !!inter);
-    ring.classList.toggle("label", !!card);
-    if (label) label.textContent = card ? t("fx.view") : "";
-  }
-  function bindMagnetic(el) {
-    el.addEventListener("mousemove", function (e) {
-      if (!started) return;
-      var r = el.getBoundingClientRect();
-      var dx = (e.clientX - (r.left + r.width / 2)) * 0.18;
-      var dy = (e.clientY - (r.top + r.height / 2)) * 0.28;
-      el.style.transform = "translate(" + dx.toFixed(1) + "px," + dy.toFixed(1) + "px)";
-    });
-    el.addEventListener("mouseleave", function () { el.style.transform = ""; });
-  }
-  function bindTilt(el) {
-    el.addEventListener("mousemove", function (e) {
-      if (!started) return;
-      var r = el.getBoundingClientRect();
-      var px = (e.clientX - r.left) / r.width - 0.5;
-      var py = (e.clientY - r.top) / r.height - 0.5;
-      el.style.transform = "perspective(700px) rotateY(" + (px * 5).toFixed(2) + "deg) rotateX(" + (-py * 5).toFixed(2) + "deg) translateY(-4px)";
-    });
-    el.addEventListener("mouseleave", function () { el.style.transform = ""; });
-  }
-  function start() {
-    if (started || !finePointer || reduceMotion) return false;
-    started = true;
-    document.addEventListener("mousemove", onMove);
-    document.addEventListener("mouseover", onOver);
-    document.querySelectorAll(".magnetic,.btn-cta,.hero-link").forEach(bindMagnetic);
-    document.querySelectorAll(".path-step, .dir-card, .src-card, .pit-card, .rule-card").forEach(bindTilt);
-    if (dot) dot.style.display = "";
-    if (ring) ring.style.display = "";
-    rafId = requestAnimationFrame(loop);
-    return true;
-  }
-  function stop() {
-    if (!started) return false;
-    started = false;
-    if (rafId) { try { cancelAnimationFrame(rafId); } catch (err) {} rafId = 0; }
-    document.removeEventListener("mousemove", onMove);
-    document.removeEventListener("mouseover", onOver);
-    document.querySelectorAll(".magnetic,.btn-cta,.hero-link,.path-step,.dir-card,.src-card,.pit-card,.rule-card").forEach(function (el) { el.style.transform = ""; });
-    if (dot) dot.style.display = "none";
-    if (ring) ring.style.display = "none";
-    if (ring) { ring.classList.remove("big"); ring.classList.remove("label"); }
-    return true;
-  }
-  var api = { enable: start, disable: stop, isActive: function () { return started; } };
-  if (finePointer && !reduceMotion) start();
-  return api;
-})();
 
 /* ---------- job list: staggered entrance + hover hint + title click ---------- */
 var jobList = document.getElementById("list");
@@ -14073,651 +13886,897 @@ try{ initUnis(); }catch(e){}
 </script>
 
 <script>
-/* Schaum 沫 · 3D 模型展示 (Item 6)：程序化新天鹅堡。
-   拖动旋转（指针事件，触屏可用），松手后惯性 + 弹簧回正到 0°；闲置 2 秒后
-   轻摆（±0.25rad 正弦）；滚轮/按钮缩放（相机 5–12），光线切换（白天/暮色），
-   复位回 0°。无 WebGL/Three.js 时显示静态 SVG 城堡剪影。
-   动效：减动效/低端机/开关关闭时不循环、不轻摆，拖动直接操作、松手立即回正；
-   离屏时 IntersectionObserver 暂停循环。开关句柄 __schaumFxShowcase。 */
+/* Schaum 沫 · 真 3D 渲染场景 (3D render)
+   Hero 一整块真 3D 德国场景（新天鹅堡式城堡 + 阿尔卑斯地形 + 河谷）与
+   15 个章节 3D 开场背景：真实几何 + 真实光照（方向光 + 半球光 + 阴影）+
+   雾 + 大气纵深，相机飞行由滚动 scrub 驱动。
+   渲染策略：Hero 用独立画布（放在 #hero 内的圆角带里）；15 个章节共用一块
+   fixed 画布（z-index:-1，scissor 多视图，只渲视口内矩形），WebGL 上下文
+   总数只有 2 个（地图 1 + 共享场景 1）+ Hero 1 个。
+   减动效 / 低端机 / 动效开关关闭时不建场景，只留 CSS 渐变回落。
+   状态：window.__schaumScene3D；开关句柄：window.__schaumFxScene3D（Scene3D）。 */
 (function () {
   "use strict";
-  var STATUS = { state: "idle", reason: "", angle: 0, rotY: 0, camZ: 8, light: "day", meshes: 0 };
-  function setStatus(s, r) { STATUS.state = s; STATUS.reason = r || ""; window.__schaumShowcase = STATUS; }
-  window.__schaumShowcase = STATUS;
-  var box = document.getElementById("showcase");
-  var canvas = document.getElementById("showcaseCanvas");
-  var fallback = document.getElementById("showcaseFallback");
-  if (!box || !canvas) { setStatus("fallback", "no-dom"); return; }
+  var STATUS = { state: "idle", reason: "", scenes: 0, meshes: 0, hero: false, visible: 0 };
+  function setStatus(s, r) { STATUS.state = s; if (r !== undefined) STATUS.reason = r; window.__schaumScene3D = STATUS; }
+  window.__schaumScene3D = STATUS;
+  var doc = document;
+  var root = doc.documentElement;
+  var sceneOff = false;      /* 动效总开关是否关闭 */
+  var booted = false;
+  var raf = 0;
+  var THREE = null;
+
+  /* ---------- 环境判断（与地图块同口径） ---------- */
   function reducedMotion() {
-    try { return !!(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches); }
-    catch (err) { return false; }
+    try { return window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches; }
+    catch (e) { return false; }
+  }
+  function lowEnd() {
+    try {
+      var hc = navigator.hardwareConcurrency || 0, dm = navigator.deviceMemory || 0;
+      if (hc > 0 && hc <= 4 && dm > 0 && dm <= 4) return true;
+      if (navigator.connection && navigator.connection.saveData) return true;
+    } catch (e) {}
+    return false;
   }
   function webglOK() {
-    if (typeof window.WebGLRenderingContext === "undefined") return false;
     try {
-      var c = document.createElement("canvas");
-      return !!(c.getContext("webgl") || c.getContext("experimental-webgl"));
-    } catch (err) { return false; }
+      if (!window.WebGLRenderingContext) return false;
+      var c = doc.createElement("canvas");
+      return !!(c.getContext("webgl2") || c.getContext("webgl"));
+    } catch (e) { return false; }
   }
-  var fxOff = false;
-  function fxOn() {
-    if (fxOff) return false;
-    if (reducedMotion()) return false;
-    if (window.__schaumPerf && window.__schaumPerf.lowEnd) return false;
-    return true;
+  function motionOn() { return !sceneOff && !reducedMotion() && !lowEnd(); }
+  function clamp01(x) { return x < 0 ? 0 : x > 1 ? 1 : x; }
+  function lerp(a, b, t) { return a + (b - a) * t; }
+  function smooth(x) { x = clamp01(x); return x * x * (3 - 2 * x); }
+
+  /* ---------- 3D kit：材质 / 基础几何 / 噪声 / 地形 / 松树 / 山 / 云 ---------- */
+  function std(color, rough, metal, extra) {
+    var p = { color: color, roughness: (rough == null ? 0.85 : rough), metalness: (metal || 0) };
+    if (extra) for (var k in extra) p[k] = extra[k];
+    return new THREE.MeshStandardMaterial(p);
   }
-  function showFallback(reason) {
-    setStatus("fallback", reason);
-    try { canvas.style.display = "none"; } catch (e) {}
-    if (fallback) fallback.hidden = false;
+  function box(w, h, d, mat, x, y, z, ry) {
+    var m = new THREE.Mesh(new THREE.BoxGeometry(w, h, d), mat);
+    m.position.set(x, y, z); if (ry) m.rotation.y = ry; return m;
   }
-  if (!webglOK() || typeof window.THREE === "undefined") {
-    showFallback(!webglOK() ? "no-webgl" : "no-three");
-  } else {
-    /* 搭建中任一步抛错（如残缺的 THREE）都静默回落到静态剪影，不抛错。 */
-    try { boot(); } catch (err) { showFallback("build-fail"); }
+  function cyl(rt, rb, h, mat, x, y, z, seg) {
+    var m = new THREE.Mesh(new THREE.CylinderGeometry(rt, rb, h, seg || 14), mat);
+    m.position.set(x, y, z); return m;
+  }
+  function cone(r, h, mat, x, y, z, seg) {
+    var m = new THREE.Mesh(new THREE.ConeGeometry(r, h, seg || 12), mat);
+    m.position.set(x, y, z); return m;
+  }
+  function sph(r, mat, x, y, z, ws, hs) {
+    var m = new THREE.Mesh(new THREE.SphereGeometry(r, ws || 18, hs || 12), mat);
+    m.position.set(x, y, z); return m;
+  }
+  function hash2(x, y, s) {
+    var v = Math.sin(x * 127.1 + y * 311.7 + s * 74.7) * 43758.5453;
+    return v - Math.floor(v);
+  }
+  function vnoise(x, y, s) {
+    var xi = Math.floor(x), yi = Math.floor(y), xf = x - xi, yf = y - yi;
+    var u = xf * xf * (3 - 2 * xf), v = yf * yf * (3 - 2 * yf);
+    return hash2(xi, yi, s) * (1 - u) * (1 - v) + hash2(xi + 1, yi, s) * u * (1 - v)
+      + hash2(xi, yi + 1, s) * (1 - u) * v + hash2(xi + 1, yi + 1, s) * u * v;
+  }
+  function fbm(x, y, s) {
+    return vnoise(x, y, s) * 0.6 + vnoise(x * 2.1, y * 2.1, s + 7) * 0.28 + vnoise(x * 4.3, y * 4.3, s + 13) * 0.12;
+  }
+  function hexRgb(hex) { return [((hex >> 16) & 255) / 255, ((hex >> 8) & 255) / 255, (hex & 255) / 255]; }
+  function mix3(a, b, t) {
+    return [lerp(a[0], b[0], t), lerp(a[1], b[1], t), lerp(a[2], b[2], t)];
+  }
+  /* 地形：确定性值噪声位移 + 按高度/坡度顶点着色（草地→岩石→雪） */
+  function terrain(w, d, seg, amp, seed, cols) {
+    var geo = new THREE.PlaneGeometry(w, d, seg, Math.max(8, Math.round(seg * d / w)));
+    geo.rotateX(-Math.PI / 2);
+    var pos = geo.attributes.position;
+    var n = pos.count, colArr = new Float32Array(n * 3);
+    var cG = hexRgb(cols.grass), cR = hexRgb(cols.rock), cS = hexRgb(cols.snow || 0xeef2f4);
+    var i, x, z, h, t, c;
+    for (i = 0; i < n; i++) {
+      x = pos.getX(i); z = pos.getZ(i);
+      h = (fbm(x * 0.09 + seed, z * 0.09 + seed, seed) - 0.5) * 2 * amp;
+      /* 中部河谷压平：越靠近中心带越平 */
+      h *= 0.3 + 0.7 * Math.min(1, Math.abs(z) / 16);
+      pos.setY(i, h);
+      t = clamp01((h + amp * 0.35) / (amp * 1.05));
+      c = t < 0.55 ? mix3(cG, cR, t / 0.55) : mix3(cR, cS, (t - 0.55) / 0.45);
+      colArr[i * 3] = c[0]; colArr[i * 3 + 1] = c[1]; colArr[i * 3 + 2] = c[2];
+    }
+    geo.setAttribute("color", new THREE.BufferAttribute(colArr, 3));
+    geo.computeVertexNormals();
+    var m = new THREE.Mesh(geo, new THREE.MeshStandardMaterial({ vertexColors: true, roughness: 0.95, metalness: 0 }));
+    m.receiveShadow = true;
+    return m;
+  }
+  function water(w, d, x, z, color) {
+    var m = new THREE.Mesh(new THREE.PlaneGeometry(w, d),
+      new THREE.MeshStandardMaterial({ color: color || 0x7fa8c4, roughness: 0.12, metalness: 0.35, transparent: true, opacity: 0.92 }));
+    m.rotation.x = -Math.PI / 2;
+    m.position.set(x || 0, -0.45, z || 0);
+    return m;
+  }
+  /* 松树：InstancedMesh（每场景约 30–60 棵），中心 clear 圈内不种 */
+  function pineField(g, count, areaW, areaD, seed, sMin, sMax, clear) {
+    var trunkGeo = new THREE.CylinderGeometry(0.14, 0.22, 1.4, 6);
+    var folGeo = new THREE.ConeGeometry(1.25, 3.2, 8);
+    var trunks = new THREE.InstancedMesh(trunkGeo, std(0x6b4a2f, 0.9, 0), count);
+    var fols = new THREE.InstancedMesh(folGeo, std(0x2e4d33, 0.9, 0), count);
+    var m = new THREE.Matrix4(), rot = new THREE.Matrix4(), sc = new THREE.Matrix4();
+    var placed = 0, tries = 0, x, z, s, a;
+    while (placed < count && tries < count * 6) {
+      tries++;
+      x = (hash2(tries, 3, seed) - 0.5) * areaW;
+      z = (hash2(tries, 7, seed) - 0.5) * areaD;
+      if (clear && Math.hypot(x - clear[0], z - clear[1]) < clear[2]) continue;
+      s = sMin + hash2(tries, 11, seed) * (sMax - sMin);
+      a = hash2(tries, 17, seed) * Math.PI * 2;
+      rot.makeRotationY(a); sc.makeScale(s, s, s);
+      m.makeTranslation(x, 0.7 * s, z); m.multiply(rot); m.multiply(sc);
+      trunks.setMatrixAt(placed, m);
+      m.makeTranslation(x, (1.4 + 1.6) * s, z); m.multiply(rot); m.multiply(sc);
+      fols.setMatrixAt(placed, m);
+      placed++;
+    }
+    trunks.count = placed; fols.count = placed;
+    trunks.instanceMatrix.needsUpdate = true; fols.instanceMatrix.needsUpdate = true;
+    trunks.castShadow = true; fols.castShadow = true;
+    g.add(trunks); g.add(fols);
+  }
+  /* 远山：岩石锥 + 雪顶 */
+  function mountainRange(g, seed, zBase, n, spread, hMin, hMax) {
+    var i, x, h, r, z, m, cap;
+    for (i = 0; i < n; i++) {
+      x = (hash2(i, 5, seed) - 0.5) * spread;
+      z = zBase - hash2(i, 9, seed) * 16;
+      h = hMin + hash2(i, 13, seed) * (hMax - hMin);
+      r = h * 0.62;
+      m = cone(r, h, std(0x5d6b78, 0.95, 0), x, h / 2 - 1.5, z, 7);
+      m.rotation.y = hash2(i, 21, seed) * Math.PI;
+      g.add(m);
+      cap = cone(r * 0.34, h * 0.3, std(0xf2f5f7, 0.9, 0), x, h - 1.5 - h * 0.15, z, 7);
+      cap.rotation.y = m.rotation.y;
+      g.add(cap);
+    }
+  }
+  /* 云：扁球组，缓慢漂移（由主循环按时间偏移） */
+  function cloudGroup(g, seed, n) {
+    var grp = new THREE.Group();
+    var mat = new THREE.MeshStandardMaterial({ color: 0xffffff, roughness: 1, metalness: 0, transparent: true, opacity: 0.88 });
+    var i, x, y, z, s, c, j;
+    for (i = 0; i < n; i++) {
+      c = new THREE.Group();
+      s = 2.2 + hash2(i, 23, seed) * 2.6;
+      for (j = 0; j < 3; j++) {
+        var b = sph(1, mat, (j - 1) * 1.4, hash2(i, j + 31, seed) * 0.5, 0, 10, 8);
+        b.scale.set(1.6, 0.55, 1);
+        c.add(b);
+      }
+      x = (hash2(i, 37, seed) - 0.5) * 56;
+      y = 15 + hash2(i, 41, seed) * 8;
+      z = -14 - hash2(i, 43, seed) * 22;
+      c.position.set(x, y, z);
+      c.scale.set(s, s, s);
+      grp.add(c);
+    }
+    g.add(grp);
+    return grp;
+  }
+  /* 共用小构件 */
+  function tower(x, z, h, r, roofColor, wallColor) {
+    var g = new THREE.Group();
+    g.add(cyl(r, r * 1.08, h, std(wallColor || 0xe8e2d4, 0.85, 0), 0, h / 2, 0, 12));
+    g.add(cone(r * 1.25, h * 0.42, std(roofColor || 0x2b4a6f, 0.7, 0), 0, h + h * 0.21, 0, 12));
+    g.position.set(x, 0, z);
+    return g;
+  }
+  function house(x, z, w, d, h, wallColor, roofColor, ry) {
+    var g = new THREE.Group();
+    g.add(box(w, h, d, std(wallColor || 0xf0e9d8, 0.85, 0), 0, h / 2, 0));
+    var roof = cone(Math.max(w, d) * 0.72, h * 0.55, std(roofColor || 0xa34d3a, 0.8, 0), 0, h + h * 0.27, 0, 4);
+    roof.rotation.y = Math.PI / 4;
+    roof.scale.set(w / Math.max(w, d), 1, d / Math.max(w, d));
+    g.add(roof);
+    g.position.set(x, 0, z);
+    if (ry) g.rotation.y = ry;
+    return g;
+  }
+  function windowStrip(g, w, h, x, y, z, ry) {
+    var m = box(w, h, 0.12, std(0x1a2733, 0.4, 0.2, { emissive: 0x2a3a4a, emissiveIntensity: 0.5 }), x, y, z, ry);
+    g.add(m);
+    return m;
+  }
+
+  /* ---------- 地标建造器：每个返回一个 Group，放在原点附近 ---------- */
+  /* Hero：新天鹅堡式城堡（岩石基座 + 主楼 + 塔楼 + 锥顶 + 窗 + 旗） */
+  function buildHeroCastle(g) {
+    var rock = cone(9, 11, std(0x6f7076, 0.95, 0), 2, 4, -8, 9);
+    rock.scale.set(1.25, 1, 1);
+    rock.castShadow = true; g.add(rock);
+    var castle = new THREE.Group();
+    var wall = std(0xf0ead9, 0.85, 0), roofB = std(0x2b4a6f, 0.7, 0), dark = std(0x24313e, 0.5, 0.1);
+    var keep = box(5.5, 7, 3.6, wall, 0, 3.5, 0);
+    keep.castShadow = true; castle.add(keep);
+    castle.add(box(6.2, 0.9, 4.2, wall, 0, 7.3, 0));
+    var i;
+    for (i = 0; i < 5; i++) castle.add(box(0.5, 0.7, 0.5, wall, -2.6 + i * 1.3, 8.1, 1.9));
+    castle.add(cone(1.1, 3.4, roofB, 0, 9.6, 0, 4));
+    var t1 = tower(-3.4, 1.2, 9, 1.3, 0x2b4a6f, 0xf0ead9);
+    t1.children[0].castShadow = true; castle.add(t1);
+    var t2 = tower(3.2, -1, 7, 1.1, 0x2b4a6f, 0xf0ead9);
+    castle.add(t2);
+    var t3 = tower(-2.6, -1.6, 5.5, 0.9, 0x7a2e2e, 0xf0ead9);
+    castle.add(t3);
+    castle.add(box(3.2, 2.6, 2.2, wall, 2.8, 1.3, 1.6, 0.15));
+    castle.add(box(2.2, 1.8, 1.6, wall, -1.8, 0.9, 2.2, -0.2));
+    /* 窗：深色窄条 */
+    var wy;
+    for (wy = 0; wy < 3; wy++) {
+      windowStrip(castle, 0.5, 1.1, -1.6, 2.2 + wy * 2, 1.85, 0);
+      windowStrip(castle, 0.5, 1.1, 1.4, 2.2 + wy * 2, 1.85, 0);
+    }
+    /* 旗 */
+    castle.add(cyl(0.05, 0.05, 2.4, dark, 0, 11.4, 0, 6));
+    var flag = box(1.3, 0.7, 0.05, std(0x1d4ed8, 0.7, 0), 0.68, 12.2, 0, 0);
+    castle.add(flag);
+    castle.position.set(2, 9.2, -8);
+    g.add(castle);
+    /* 河谷：前景小河 + 石滩 */
+    g.add(water(10, 46, -12, 2, 0x8fb4cc));
+    g.add(box(2.2, 0.4, 40, std(0x9a948a, 0.95, 0), -6.5, -0.2, 0));
+  }
+  /* 岗位看板：法兰克福天际线 */
+  function buildSkyline(g) {
+    var glass = std(0x2b3442, 0.3, 0.5), glass2 = std(0x3a4a5e, 0.3, 0.5), conc = std(0xd8d2c4, 0.85, 0);
+    var defs = [[-14, 10, 5, 5], [-9, 14, 4.5, 4.5], [-4.5, 18, 5, 5], [0, 12, 6, 5], [5, 16, 4.5, 4.5], [10, 11, 5, 5], [15, 8, 4, 4]];
+    var i, d, b;
+    for (i = 0; i < defs.length; i++) {
+      d = defs[i];
+      b = box(d[2], d[1], d[3], (i % 2 ? glass : glass2), d[0], d[1] / 2, -10);
+      b.castShadow = true; g.add(b);
+      g.add(box(d[2] * 0.9, 0.4, d[3] * 0.9, conc, d[0], d[1] + 0.2, -10));
+    }
+    /* 商业银行大厦式尖顶塔 */
+    var tw = box(5, 22, 5, glass, -4.5, 11, -10);
+    tw.castShadow = true; g.add(tw);
+    g.add(cone(3.2, 5, conc, -4.5, 24.5, -10, 4));
+    g.add(water(70, 14, 0, 8, 0x7fa8c4));
+    g.add(box(70, 0.5, 3, std(0x8a8578, 0.95, 0), 0, -0.2, 2));
+  }
+  /* 申请：勃兰登堡门 */
+  function buildBrandenburg(g) {
+    var stone = std(0xd9cfae, 0.85, 0), dark = std(0x3a3326, 0.7, 0.3);
+    var i;
+    for (i = 0; i < 6; i++) {
+      var c = cyl(0.55, 0.62, 9, stone, -7.5 + i * 3, 4.5, 0, 12);
+      c.castShadow = true; g.add(c);
+      var c2 = cyl(0.55, 0.62, 9, stone, -7.5 + i * 3, 4.5, -4, 12);
+      c2.castShadow = true; g.add(c2);
+    }
+    g.add(box(19, 1.6, 6.5, stone, 0, 9.8, -2));
+    g.add(box(17, 1.2, 5.5, stone, 0, 11.4, -2));
+    /* 四马战车：底座 + 四马 + 人物剪影 */
+    g.add(box(4.6, 0.8, 2.4, dark, 0, 12.6, -2));
+    for (i = 0; i < 4; i++) {
+      var h = box(1.1, 0.7, 0.5, dark, -1.5 + i * 1, 13.6, -2);
+      h.rotation.y = 0.2; g.add(h);
+    }
+    g.add(box(0.5, 1.4, 0.4, dark, 0.4, 13.9, -2));
+    g.add(box(3, 1.6, 1.2, dark, 0, 14.6, -2, 0.1));
+    /* 台阶 + 草坪 + 树 */
+    g.add(box(22, 0.5, 9, std(0xcfc4a8, 0.9, 0), 0, 0.25, 0.5));
+    g.add(box(22, 0.5, 3, std(0xcfc4a8, 0.9, 0), 0, 0.75, 3.5));
+  }
+  /* 材料：海德堡城堡（红砂岩废墟 + 老桥） */
+  function buildHeidelberg(g) {
+    var sand = std(0x9a5f4a, 0.9, 0), sand2 = std(0x8a5240, 0.9, 0);
+    var hill = cone(14, 9, std(0x5a6b4a, 0.95, 0), 0, 3, -12, 9);
+    hill.scale.set(1.4, 1, 1); g.add(hill);
+    var c = new THREE.Group();
+    c.add(box(9, 6, 4, sand, 0, 3, 0));
+    c.add(box(6, 4.5, 3.5, sand2, -5, 2.2, 0.5, 0.2));
+    c.add(box(5, 5.5, 3.5, sand, 5, 2.7, -0.5, -0.15));
+    var t1 = tower(-3.5, 1.5, 10, 1.8, 0x5a6b4a, 0x9a5f4a);
+    t1.children[0].castShadow = true; c.add(t1);
+    var t2 = cyl(1.6, 1.9, 7, sand2, 4.5, 3.5, 1.5, 12);
+    c.add(t2);
+    c.add(cone(1.9, 1.2, sand2, 4.5, 7.6, 1.5, 12));
+    c.position.set(0, 8.2, -12);
+    g.add(c);
+    g.add(water(70, 12, 0, 10, 0x7fa8c4));
+    /* 老桥：桥面 + 两座门塔 */
+    g.add(box(30, 0.8, 2.6, std(0xc9bfa5, 0.9, 0), 0, 0.6, 4));
+    g.add(tower(-12, 4, 6, 1.1, 0x7a2e2e, 0xd8cdb8));
+    g.add(tower(12, 4, 6, 1.1, 0x7a2e2e, 0xd8cdb8));
+  }
+  /* 签证：科隆大教堂（双尖塔 + 莱茵河） */
+  function buildCologne(g) {
+    var stone = std(0xcfc7b4, 0.85, 0), dark = std(0x3a4148, 0.6, 0.2);
+    var nave = box(9, 9, 20, stone, 0, 4.5, -8);
+    nave.castShadow = true; g.add(nave);
+    g.add(box(13, 6, 5, stone, 0, 3, -8));
+    var i, t;
+    for (i = -1; i <= 1; i += 2) {
+      t = box(3.2, 26, 3.2, stone, i * 3.4, 13, 3.5);
+      t.castShadow = true; g.add(t);
+      g.add(cone(2.2, 9, dark, i * 3.4, 30.5, 3.5, 4));
+      g.add(box(3.6, 1, 3.6, stone, i * 3.4, 26.4, 3.5));
+    }
+    var rose = cyl(1.6, 1.6, 0.3, std(0x2a2f36, 0.6, 0.1), 0, 6, 2.1, 20);
+    rose.rotation.x = Math.PI / 2;
+    g.add(rose);
+    g.add(box(9.5, 0.8, 20.5, std(0x8a8578, 0.9, 0), 0, 9.2, -8));
+    g.add(water(70, 16, 0, 10, 0x7fa8c4));
+    g.add(box(40, 0.7, 2.4, std(0x5d6b78, 0.8, 0.2), 0, 0.5, 4));
+  }
+  /* 认证：慕尼黑圣母教堂（双圆顶） */
+  function buildFrauenkirche(g) {
+    var brick = std(0xb98a6a, 0.85, 0), copper = std(0x4a7a6a, 0.6, 0.3), roof = std(0x8a3a2e, 0.8, 0);
+    var nave = box(10, 8, 16, brick, 0, 4, -6);
+    nave.castShadow = true; g.add(nave);
+    var roofM = cone(8.5, 3.4, roof, 0, 9.7, -6, 4);
+    roofM.rotation.y = Math.PI / 4; roofM.scale.set(1, 1, 1.6); g.add(roofM);
+    var i, t, dome;
+    for (i = -1; i <= 1; i += 2) {
+      t = cyl(1.9, 2.1, 15, brick, i * 4, 7.5, 3, 14);
+      t.castShadow = true; g.add(t);
+      dome = sph(2.3, copper, i * 4, 16.4, 3, 14, 10);
+      dome.scale.set(1, 1.25, 1); g.add(dome);
+      g.add(cyl(0.12, 0.12, 1.6, copper, i * 4, 19.4, 3, 6));
+    }
+    g.add(box(6, 5, 4, std(0xd8cdb8, 0.85, 0), -12, 2.5, 2, 0.2));
+    g.add(box(6, 4, 4, std(0xe8e2d4, 0.85, 0), 12, 2, 2, -0.2));
+    g.add(house(-9, 8, 3.4, 3, 2.6, 0xf0e9d8, 0x8a3a2e, 0.3));
+    g.add(house(9, 8, 3.4, 3, 2.6, 0xf0e9d8, 0x2b4a6f, -0.3));
+  }
+  /* 语言：莱茵河洛雷莱（峭壁 + 城堡遗迹 + 小船） */
+  function buildLorelei(g) {
+    var rock = cone(10, 16, std(0x4a5560, 0.95, 0), -10, 6, -14, 8);
+    rock.scale.set(1.2, 1, 1); rock.castShadow = true; g.add(rock);
+    var ruin = new THREE.Group();
+    ruin.add(box(4, 3.5, 3, std(0x8a8578, 0.9, 0), 0, 1.7, 0));
+    ruin.add(box(2.6, 5, 2.6, std(0x8a8578, 0.9, 0), 2.4, 2.5, 0.5));
+    ruin.add(box(1.4, 2, 1.4, std(0x8a8578, 0.9, 0), -2, 1, 0.8));
+    ruin.position.set(-10, 13.5, -14);
+    g.add(ruin);
+    g.add(water(70, 20, 4, 6, 0x6f9dbd));
+    /* 小船：船体 + 帆 */
+    var boat = new THREE.Group();
+    boat.add(box(3.4, 0.7, 1.1, std(0x5d4030, 0.8, 0), 0, 0.3, 0));
+    boat.add(cyl(0.06, 0.06, 3, std(0x3a3326, 0.7, 0), 0, 1.8, 0, 6));
+    var sail = cone(0.9, 2.4, std(0xf0ead9, 0.85, 0), 0.7, 2.2, 0, 3);
+    sail.scale.set(1, 1, 0.18); boat.add(sail);
+    boat.position.set(6, -0.2, 8); boat.rotation.y = -0.5;
+    g.add(boat);
+    var v;
+    for (v = 0; v < 4; v++) g.add(house(12 + v * 4.5, -2 - v * 2, 3.2, 2.8, 2.4, 0xf0e9d8, 0x8a3a2e, 0.2));
+  }
+  /* 花费：汉堡港（龙门吊 + 集装箱 + 货船 + 灯塔） */
+  function buildHarbor(g) {
+    var steel = std(0x3a5a7a, 0.5, 0.4), rust = std(0x9a4a2e, 0.7, 0.2);
+    var i, crane;
+    for (i = -1; i <= 1; i++) {
+      crane = new THREE.Group();
+      crane.add(box(0.8, 10, 0.8, steel, -2.5, 5, 0));
+      crane.add(box(0.8, 10, 0.8, steel, 2.5, 5, 0));
+      crane.add(box(7, 0.9, 1.2, steel, 0, 10, 0));
+      var jib = box(9, 0.7, 0.9, steel, 5, 10.6, 0);
+      jib.rotation.z = 0.18; crane.add(jib);
+      crane.add(box(1.2, 1.6, 1.2, rust, 6.5, 9.2, 0));
+      crane.position.set(i * 12, 0, -10);
+      g.add(crane);
+    }
+    var cols = [0x2b6a8a, 0xa34d3a, 0x4a7a3a, 0xc9a13a, 0x6a4a8a];
+    for (i = 0; i < 10; i++) {
+      var cx = -14 + (i % 5) * 3.2, cz = -4 - Math.floor(i / 5) * 2.8;
+      var cy = 1.1 + (i % 3) * 1.2;
+      g.add(box(2.8, 2.2, 2.4, std(cols[i % 5], 0.7, 0.2), cx, cy, cz, 0.05));
+    }
+    var ship = new THREE.Group();
+    ship.add(box(16, 2.4, 4, rust, 0, 1.2, 0));
+    ship.add(box(4, 3.4, 3.4, std(0xe8e2d4, 0.8, 0), -5, 4, 0));
+    for (i = 0; i < 4; i++) ship.add(box(2.4, 2, 2.2, std(cols[i % 5], 0.7, 0.2), -1 + i * 3, 3.4, 0));
+    ship.position.set(0, -0.2, 10); ship.rotation.y = 0.15;
+    g.add(ship);
+    var lh = cyl(1, 1.3, 12, std(0xd8d2c4, 0.8, 0), 16, 6, -6, 12);
+    lh.castShadow = true; g.add(lh);
+    g.add(cyl(1.15, 1.15, 1.4, std(0xa34d3a, 0.7, 0), 16, 4, -6, 12));
+    g.add(sph(0.9, std(0xffd27a, 0.3, 0, { emissive: 0xffd27a, emissiveIntensity: 0.9 }), 16, 12.8, -6, 12, 8));
+    g.add(water(70, 40, 0, 4, 0x5f8aa8));
+  }
+  /* 居留：罗腾堡（半木结构小镇 + 城门） */
+  function buildRothenburg(g) {
+    var i, h;
+    for (i = 0; i < 7; i++) {
+      var x = -15 + i * 5, z = -8 - (i % 2) * 3;
+      h = house(x, z, 3.6, 3.2, 2.6 + (i % 3) * 0.6, 0xf0e9d8, (i % 2 ? 0x8a3a2e : 0x2b4a6f), (i % 3 - 1) * 0.12);
+      /* 木筋：正面两道深色横条 */
+      h.add(box(3.7, 0.14, 0.06, std(0x4a3524, 0.85, 0), 0, 1.2, 1.62));
+      h.add(box(3.7, 0.14, 0.06, std(0x4a3524, 0.85, 0), 0, 2.2, 1.62));
+      g.add(h);
+    }
+    var gate = new THREE.Group();
+    gate.add(box(3.4, 8, 2.4, std(0xc9bfa5, 0.85, 0), -2, 4, 0));
+    gate.add(box(3.4, 8, 2.4, std(0xc9bfa5, 0.85, 0), 2, 4, 0));
+    gate.add(box(8, 2, 2.4, std(0xc9bfa5, 0.85, 0), 0, 9, 0));
+    gate.add(box(1.8, 3.4, 0.3, std(0x24313e, 0.6, 0), 0, 1.7, 1.25));
+    gate.add(cone(2.6, 3, std(0x7a2e2e, 0.75, 0), 0, 11.4, 0, 4));
+    gate.position.set(0, 0, 6);
+    g.add(gate);
+    g.add(cyl(2.6, 2.8, 0.4, std(0x8a8578, 0.9, 0), 0, 0.2, 12, 16));
+  }
+  /* 时间线：莱茵河谷（葡萄园坡 + 两座城堡遗迹 + 河船） */
+  function buildRhineValley(g) {
+    var slope = cone(16, 10, std(0x6a7a3a, 0.95, 0), -14, 4, -12, 8);
+    slope.scale.set(1.3, 1, 1); g.add(slope);
+    var slope2 = cone(14, 8, std(0x7a8a4a, 0.95, 0), 14, 3, -14, 8);
+    slope2.scale.set(1.3, 1, 1); g.add(slope2);
+    var r1 = new THREE.Group();
+    r1.add(box(3.4, 4, 3, std(0x8a8578, 0.9, 0), 0, 2, 0));
+    r1.add(cyl(1.1, 1.3, 6, std(0x8a8578, 0.9, 0), 2.4, 3, 0.4, 10));
+    r1.position.set(-14, 8.6, -12); g.add(r1);
+    var r2 = new THREE.Group();
+    r2.add(box(3, 3, 2.6, std(0x9a948a, 0.9, 0), 0, 1.5, 0));
+    r2.add(cone(1.2, 2.6, std(0x7a2e2e, 0.75, 0), 0, 4.2, 0, 4));
+    r2.position.set(14, 7.4, -14); g.add(r2);
+    g.add(water(70, 18, 0, 8, 0x6f9dbd));
+    var boat = new THREE.Group();
+    boat.add(box(5, 0.9, 1.6, std(0xe8e2d4, 0.8, 0), 0, 0.4, 0));
+    boat.add(box(2.4, 1.6, 1.2, std(0x2b4a6f, 0.7, 0), -0.6, 1.6, 0));
+    boat.position.set(-2, -0.2, 8); boat.rotation.y = 0.4;
+    g.add(boat);
+    var v;
+    for (v = 0; v < 5; v++) g.add(house(-16 + v * 8, 2, 3, 2.6, 2.2, 0xf0e9d8, 0x8a3a2e, 0.1));
+  }
+  /* 常见问题：德累斯顿圣母教堂（石质大圆顶 + 易北河） */
+  function buildDresden(g) {
+    var stone = std(0xd8cdb8, 0.85, 0), stone2 = std(0xc9bfa5, 0.85, 0);
+    var drum = cyl(4.2, 4.6, 5, stone, 0, 2.5, -6, 18);
+    drum.castShadow = true; g.add(drum);
+    var dome = sph(4.6, stone, 0, 5, -6, 20, 12);
+    dome.scale.set(1, 0.72, 1); g.add(dome);
+    g.add(cyl(0.9, 1.1, 3, stone2, 0, 8.6, -6, 10));
+    g.add(cone(0.9, 2.2, std(0x4a7a6a, 0.6, 0.3), 0, 11.2, -6, 10));
+    g.add(box(8, 5, 10, stone2, 0, 2.5, 2, 0.05));
+    g.add(box(6, 4, 6, stone2, -10, 2, 0, 0.3));
+    g.add(box(6, 4.5, 6, stone2, 10, 2.2, 0, -0.3));
+    g.add(house(-8, 8, 3.4, 3, 2.6, 0xf0e9d8, 0x8a3a2e, 0.2));
+    g.add(house(8, 8, 3.4, 3, 2.6, 0xf0e9d8, 0x2b4a6f, -0.2));
+    g.add(water(70, 12, 0, 12, 0x7fa8c4));
+  }
+  /* 避坑：黑森林（密林 + 湖 + 木屋，雾最重） */
+  function buildBlackForest(g) {
+    var lake = water(26, 18, 0, 8, 0x3d5a6a);
+    g.add(lake);
+    var cabin = new THREE.Group();
+    cabin.add(box(4, 2.6, 3.4, std(0x6b4a2f, 0.9, 0), 0, 1.3, 0));
+    var rf = cone(3.4, 1.8, std(0x4a3524, 0.85, 0), 0, 3.5, 0, 4);
+    rf.rotation.y = Math.PI / 4; rf.scale.set(1.2, 1, 0.95); cabin.add(rf);
+    cabin.add(box(0.5, 1.4, 0.5, std(0x8a8578, 0.9, 0), 1.2, 4, -0.8));
+    cabin.add(box(1, 1.6, 0.1, std(0xffd27a, 0.5, 0, { emissive: 0xffd27a, emissiveIntensity: 0.5 }), 0, 1.2, 1.75));
+    cabin.position.set(0, 0, 2);
+    g.add(cabin);
+    var i, m;
+    for (i = 0; i < 5; i++) {
+      m = cone(8 + i * 2, 12 + i * 2, std(0x3a4a3a, 0.95, 0), -22 + i * 11, 5, -24 - i, 7);
+      g.add(m);
+    }
+  }
+  /* 赴德途径：阿尔卑斯垭口（高峰 + 盘山路 + 小教堂） */
+  function buildAlpsPass(g) {
+    var i, x, h, r, m, cap;
+    for (i = 0; i < 6; i++) {
+      x = -28 + i * 11;
+      h = 20 + hash2(i, 51, 9) * 14;
+      r = h * 0.55;
+      m = cone(r, h, std(0x6b7683, 0.95, 0), x, h / 2 - 2, -30, 7);
+      m.rotation.y = hash2(i, 53, 9) * Math.PI; g.add(m);
+      cap = cone(r * 0.36, h * 0.32, std(0xf2f5f7, 0.9, 0), x, h - 2 - h * 0.16, -30, 7);
+      cap.rotation.y = m.rotation.y; g.add(cap);
+    }
+    g.add(water(30, 14, 0, 10, 0x5f9dbd));
+    var road = new THREE.Group();
+    for (i = 0; i < 6; i++) {
+      var seg = box(7, 0.25, 1.4, std(0x8a8578, 0.9, 0), -8 + (i % 2) * 8, 0.5 + i * 1.1, -18 + i * 2.4, (i % 2 ? 0.35 : -0.35));
+      road.add(seg);
+    }
+    g.add(road);
+    var chapel = new THREE.Group();
+    chapel.add(box(3, 2.4, 2.6, std(0xf0ead9, 0.85, 0), 0, 1.2, 0));
+    chapel.add(cone(1.8, 1.8, std(0x7a2e2e, 0.75, 0), 0, 3.3, 0, 4));
+    chapel.add(cyl(0.05, 0.05, 1.2, std(0x24313e, 0.6, 0), 0, 4.6, 0, 6));
+    chapel.position.set(8, 0, 4);
+    g.add(chapel);
+  }
+  /* 学习：吕贝克霍尔斯滕门（双圆塔 + 阶梯山墙） */
+  function buildHolstentor(g) {
+    var brick = std(0x8a4a3a, 0.85, 0), brick2 = std(0x9a5a4a, 0.85, 0), dark = std(0x2b3442, 0.7, 0);
+    var i, t;
+    for (i = -1; i <= 1; i += 2) {
+      t = cyl(2.6, 2.8, 12, brick, i * 5.4, 6, 0, 16);
+      t.castShadow = true; g.add(t);
+      g.add(cone(3, 3.6, dark, i * 5.4, 13.8, 0, 16));
+      g.add(cyl(2.65, 2.65, 0.3, brick2, i * 5.4, 2, 0, 16));
+    }
+    g.add(box(5.4, 10, 3.4, brick2, 0, 5, 0));
+    g.add(box(1.6, 0.5, 3.5, dark, 0, 9.6, 0));
+    var step;
+    for (i = 0; i < 4; i++) {
+      step = box(5.4 - i * 1.2, 0.9, 3.4, brick2, 0, 10.6 + i * 0.9, 0);
+      g.add(step);
+    }
+    g.add(box(1.8, 3.6, 0.4, std(0x24313e, 0.6, 0), 0, 1.8, 1.75));
+    g.add(box(14, 0.6, 2, std(0x8a8578, 0.9, 0), -12, 0.3, 4));
+    g.add(box(14, 0.6, 2, std(0x8a8578, 0.9, 0), 12, 0.3, 4));
+    g.add(water(70, 10, 0, 10, 0x7fa8c4));
+  }
+  /* 生活：博登湖（湖面 + 帆船 + 远山） */
+  function buildConstance(g) {
+    g.add(water(70, 44, 0, 2, 0x6f9dbd));
+    var i, boat;
+    for (i = 0; i < 3; i++) {
+      boat = new THREE.Group();
+      boat.add(box(3.2, 0.6, 1, std(0xe8e2d4, 0.8, 0), 0, 0.3, 0));
+      boat.add(cyl(0.05, 0.05, 2.8, std(0x3a3326, 0.7, 0), 0, 1.7, 0, 6));
+      var sail = cone(0.85, 2.2, std(0xf0ead9, 0.85, 0), 0.65, 2, 0, 3);
+      sail.scale.set(1, 1, 0.16); boat.add(sail);
+      boat.position.set(-12 + i * 11, -0.2, 4 + (i % 2) * 6);
+      boat.rotation.y = -0.4 + i * 0.35;
+      g.add(boat);
+    }
+    for (i = 0; i < 4; i++) g.add(house(-14 + i * 9, -6, 3.2, 2.8, 2.4, 0xf0e9d8, (i % 2 ? 0x8a3a2e : 0x2b4a6f), 0.15));
+    var m;
+    for (i = 0; i < 4; i++) {
+      m = cone(9 + i * 2, 12 + i * 2, std(0x5d6b78, 0.95, 0), -24 + i * 16, 5, -34, 7);
+      g.add(m);
+      var cap = cone(3.2, 3.6, std(0xf2f5f7, 0.9, 0), -24 + i * 16, 12.5 + i, -34, 7);
+      g.add(cap);
+    }
+  }
+  /* 入学：柏林电视塔 + 大教堂圆顶 */
+  function buildTvTower(g) {
+    var conc = std(0xb8b2a4, 0.8, 0.1), steel = std(0x8a94a0, 0.4, 0.6);
+    var tw = cyl(1.4, 2, 26, conc, 0, 13, -8, 16);
+    tw.castShadow = true; g.add(tw);
+    var ball = sph(2.6, steel, 0, 26.5, -8, 20, 14);
+    g.add(ball);
+    g.add(cyl(0.18, 0.18, 6, steel, 0, 31, -8, 6));
+    var dome = sph(4, std(0x4a7a6a, 0.5, 0.4), -11, 4, -12, 18, 12);
+    dome.scale.set(1, 0.8, 1); g.add(dome);
+    g.add(cyl(3.4, 3.8, 3.4, std(0xd8cdb8, 0.85, 0), -11, 1.7, -12, 14));
+    var i;
+    for (i = 0; i < 5; i++) g.add(box(4 + (i % 3), 5 + (i % 4) * 2, 4, std(0x9aa2ac, 0.7, 0.2), -16 + i * 8, 2.5 + (i % 4), -2, (i % 2 ? 0.1 : -0.1)));
+    g.add(water(70, 12, 0, 10, 0x7fa8c4));
+  }
+
+  /* ---------- 场景定义：16 个（Hero + 15 章节） ---------- */
+  var FLIGHT_DEFAULT = {
+    from: { pos: [26, 14, 34], look: [0, 5, -2] },
+    mid: { pos: [14, 9, 22], look: [0, 5, -2] },
+    to: { pos: [7, 6.5, 14], look: [0, 6, -4] }
+  };
+  var SCENES = [
+    { key: "hero", band: "heroScene", sky: 0xbfd9ea, fog: [0xcfe0ea, 30, 110], sun: [18, 26, 14], sunColor: 0xfff2d8, sunInt: 1.25, hemi: 0.75,
+      amp: 5, seed: 3, grass: 0x6a8a4a, rock: 0x8a8578, trees: 48, mountains: true, water: false,
+      build: buildHeroCastle,
+      flight: { from: { pos: [30, 16, 40], look: [2, 8, -8] }, mid: { pos: [16, 10, 26], look: [2, 8, -8] }, to: { pos: [8, 7, 16], look: [2, 9, -8] } } },
+    { key: "board", band: "scene-board", sky: 0xc7d6e2, fog: [0xd3dee6, 25, 95], sun: [16, 24, 12], sunColor: 0xfff2d8, sunInt: 1.15, hemi: 0.7,
+      amp: 2, seed: 11, grass: 0x7a8a5a, rock: 0x8a8578, trees: 24, mountains: false, water: false, build: buildSkyline, flight: FLIGHT_DEFAULT },
+    { key: "apply", band: "scene-apply", sky: 0xc2d4e6, fog: [0xd0dee8, 25, 95], sun: [16, 24, 12], sunColor: 0xfff2d8, sunInt: 1.15, hemi: 0.7,
+      amp: 1.5, seed: 21, grass: 0x7a9a5a, rock: 0x8a8578, trees: 30, mountains: false, water: false, build: buildBrandenburg, flight: FLIGHT_DEFAULT },
+    { key: "documents", band: "scene-documents", sky: 0xc9d8e2, fog: [0xd4e0e8, 25, 95], sun: [-14, 22, 14], sunColor: 0xfff2d8, sunInt: 1.15, hemi: 0.7,
+      amp: 3.5, seed: 31, grass: 0x6a8a4a, rock: 0x8a8578, trees: 36, mountains: true, water: false, build: buildHeidelberg, flight: FLIGHT_DEFAULT },
+    { key: "visa", band: "scene-visa", sky: 0xbdd0e4, fog: [0xccdbe8, 25, 95], sun: [16, 24, 12], sunColor: 0xfff2d8, sunInt: 1.15, hemi: 0.7,
+      amp: 2, seed: 41, grass: 0x7a8a5a, rock: 0x8a8578, trees: 24, mountains: false, water: false, build: buildCologne, flight: FLIGHT_DEFAULT },
+    { key: "recognition", band: "scene-recognition", sky: 0xc4d6e6, fog: [0xd2dee8, 25, 95], sun: [16, 24, 12], sunColor: 0xfff2d8, sunInt: 1.15, hemi: 0.7,
+      amp: 1.5, seed: 51, grass: 0x7a9a5a, rock: 0x8a8578, trees: 24, mountains: false, water: false, build: buildFrauenkirche, flight: FLIGHT_DEFAULT },
+    { key: "language", band: "scene-language", sky: 0xbcd2e6, fog: [0xccdbe8, 25, 95], sun: [-16, 22, 14], sunColor: 0xfff2d8, sunInt: 1.15, hemi: 0.7,
+      amp: 4, seed: 61, grass: 0x6a8a4a, rock: 0x5d6b78, trees: 36, mountains: true, water: false, build: buildLorelei, flight: FLIGHT_DEFAULT },
+    { key: "costs", band: "scene-costs", sky: 0xc0d0e0, fog: [0xcdd9e2, 25, 95], sun: [16, 24, 12], sunColor: 0xfff2d8, sunInt: 1.15, hemi: 0.7,
+      amp: 1.5, seed: 71, grass: 0x7a8a5a, rock: 0x8a8578, trees: 18, mountains: false, water: false, build: buildHarbor, flight: FLIGHT_DEFAULT },
+    { key: "residence", band: "scene-residence", sky: 0xc8d8e2, fog: [0xd4e0e8, 25, 95], sun: [16, 24, 12], sunColor: 0xfff2d8, sunInt: 1.15, hemi: 0.7,
+      amp: 1.5, seed: 81, grass: 0x7a9a5a, rock: 0x8a8578, trees: 24, mountains: false, water: false, build: buildRothenburg, flight: FLIGHT_DEFAULT },
+    { key: "timeline", band: "scene-timeline", sky: 0xbed2e2, fog: [0xccdbe8, 25, 95], sun: [-16, 22, 14], sunColor: 0xfff2d8, sunInt: 1.15, hemi: 0.7,
+      amp: 3.5, seed: 91, grass: 0x6a8a4a, rock: 0x8a8578, trees: 30, mountains: true, water: false, build: buildRhineValley, flight: FLIGHT_DEFAULT },
+    { key: "faq", band: "scene-faq", sky: 0xc6d4e4, fog: [0xd2dee8, 25, 95], sun: [16, 24, 12], sunColor: 0xfff2d8, sunInt: 1.15, hemi: 0.7,
+      amp: 1.5, seed: 101, grass: 0x7a9a5a, rock: 0x8a8578, trees: 24, mountains: false, water: false, build: buildDresden, flight: FLIGHT_DEFAULT },
+    { key: "pitfalls", band: "scene-pitfalls", sky: 0xaebfca, fog: [0xb8c8d2, 12, 58], sun: [10, 18, 10], sunColor: 0xe8eef2, sunInt: 0.9, hemi: 0.6,
+      amp: 3, seed: 111, grass: 0x3a5a3a, rock: 0x5d6b78, trees: 60, mountains: false, water: false, build: buildBlackForest, flight: FLIGHT_DEFAULT },
+    { key: "pathways", band: "scene-pathways", sky: 0xb4d2ea, fog: [0xc4dcee, 28, 105], sun: [18, 26, 14], sunColor: 0xfff2d8, sunInt: 1.2, hemi: 0.7,
+      amp: 4.5, seed: 121, grass: 0x5a7a4a, rock: 0x8a8578, trees: 30, mountains: true, water: false, build: buildAlpsPass, flight: FLIGHT_DEFAULT },
+    { key: "learn", band: "scene-learn", sky: 0xc2d6e4, fog: [0xd0dee8, 25, 95], sun: [16, 24, 12], sunColor: 0xfff2d8, sunInt: 1.15, hemi: 0.7,
+      amp: 1.5, seed: 131, grass: 0x7a9a5a, rock: 0x8a8578, trees: 24, mountains: false, water: false, build: buildHolstentor, flight: FLIGHT_DEFAULT },
+    { key: "life", band: "scene-life", sky: 0xbcd8ea, fog: [0xccdcee, 28, 105], sun: [18, 26, 14], sunColor: 0xfff2d8, sunInt: 1.2, hemi: 0.7,
+      amp: 2, seed: 141, grass: 0x7a8a5a, rock: 0x8a8578, trees: 24, mountains: true, water: false, build: buildConstance, flight: FLIGHT_DEFAULT },
+    { key: "admission", band: "scene-admission", sky: 0xc0d2e6, fog: [0xccdbe8, 25, 95], sun: [16, 24, 12], sunColor: 0xfff2d8, sunInt: 1.15, hemi: 0.7,
+      amp: 1.5, seed: 151, grass: 0x7a9a5a, rock: 0x8a8578, trees: 24, mountains: false, water: false, build: buildTvTower, flight: FLIGHT_DEFAULT }
+  ];
+
+  /* ---------- 引擎 ---------- */
+  var built = [];          /* {def, el, scene, camera, flight, progress, visible, clouds} */
+  var heroScene = null;
+  var sharedRenderer = null, sharedCanvas = null;
+  var heroRenderer = null, heroCanvas = null;
+  var flightTimer = 0;
+  var flightTriggers = []; /* 追踪的 ScrollTrigger：动效关闭时全部杀掉（与叙事/连续流同口径） */
+
+  function makeRenderer(canvas, shadow) {
+    var r = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
+    r.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.5));
+    r.setClearColor(0x000000, 0);
+    if (THREE.PCFSoftShadowMap) r.shadowMap.type = THREE.PCFSoftShadowMap;
+    r.shadowMap.enabled = !!shadow;
+    if (THREE.sRGBEncoding) r.outputEncoding = THREE.sRGBEncoding;
+    if (THREE.ACESFilmicToneMapping) { r.toneMapping = THREE.ACESFilmicToneMapping; r.toneMappingExposure = 1.05; }
+    return r;
+  }
+  function buildScene(def) {
+    var scene = new THREE.Scene();
+    scene.background = new THREE.Color(def.sky);
+    scene.fog = new THREE.Fog(def.fog[0], def.fog[1], def.fog[2]);
+    var sun = new THREE.DirectionalLight(def.sunColor, def.sunInt);
+    sun.position.set(def.sun[0], def.sun[1], def.sun[2]);
+    if (def.key === "hero") {
+      sun.castShadow = true;
+      try {
+        sun.shadow.mapSize.set(1024, 1024);
+        sun.shadow.camera.left = -26; sun.shadow.camera.right = 26;
+        sun.shadow.camera.top = 26; sun.shadow.camera.bottom = -26;
+        sun.shadow.camera.near = 1; sun.shadow.camera.far = 90;
+        sun.shadow.bias = -0.0005;
+      } catch (e) {}
+    }
+    scene.add(sun);
+    scene.add(new THREE.HemisphereLight(def.sky, 0x8a7f66, def.hemi));
+    scene.add(new THREE.AmbientLight(0xffffff, 0.15));
+    var g = new THREE.Group();
+    g.add(terrain(72, 50, 56, def.amp, def.seed, { grass: def.grass, rock: def.rock }));
+    if (def.trees) pineField(g, def.trees, 64, 42, def.seed + 1, 0.8, 1.6, [0, -6, 11]);
+    if (def.mountains) mountainRange(g, def.seed + 2, -30, 6, 64, 12, 22);
+    var clouds = cloudGroup(g, def.seed + 3, 5);
+    def.build(g);
+    scene.add(g);
+    var camera = new THREE.PerspectiveCamera(42, 16 / 9, 0.1, 400);
+    camera.position.set(def.flight.from.pos[0], def.flight.from.pos[1], def.flight.from.pos[2]);
+    camera.lookAt(def.flight.from.look[0], def.flight.from.look[1], def.flight.from.look[2]);
+    var meshes = 0;
+    g.traverse(function (o) { if (o && o.isMesh) meshes++; });
+    STATUS.meshes += meshes;
+    return { def: def, scene: scene, camera: camera, flight: def.flight, progress: 0, visible: false, clouds: clouds, el: null };
+  }
+  function flightCam(sc, t) {
+    var f = sc.flight, p = sc.progress, a, b, q;
+    if (p < 0.5) { a = f.from; b = f.mid; q = smooth(p * 2); }
+    else { a = f.mid; b = f.to; q = smooth((p - 0.5) * 2); }
+    var px = lerp(a.pos[0], b.pos[0], q) + Math.sin(t * 0.00035 + sc.def.seed) * 0.25;
+    var py = lerp(a.pos[1], b.pos[1], q) + Math.cos(t * 0.00028 + sc.def.seed * 1.7) * 0.12;
+    var pz = lerp(a.pos[2], b.pos[2], q);
+    var lx = lerp(a.look[0], b.look[0], q), ly = lerp(a.look[1], b.look[1], q), lz = lerp(a.look[2], b.look[2], q);
+    sc.camera.position.set(px, py, pz);
+    sc.camera.lookAt(lx, ly, lz);
+  }
+  var heroW = 0, heroH = 0, sharedW = 0, sharedH = 0;
+  function renderHero(t) {
+    if (!heroScene || !heroRenderer || !heroCanvas) return;
+    var w = heroCanvas.clientWidth || heroCanvas.parentNode.clientWidth || 1;
+    var h = heroCanvas.clientHeight || heroCanvas.parentNode.clientHeight || 1;
+    if (heroW !== w || heroH !== h) { heroW = w; heroH = h; heroRenderer.setSize(w, h, false); }
+    var asp = w / h;
+    if (Math.abs(heroScene.camera.aspect - asp) > 0.01) { heroScene.camera.aspect = asp; heroScene.camera.updateProjectionMatrix(); }
+    flightCam(heroScene, t);
+    if (heroScene.clouds) heroScene.clouds.position.x = Math.sin(t * 0.00002) * 1.5;
+    heroRenderer.render(heroScene.scene, heroScene.camera);
+  }
+  function renderChapters(t) {
+    if (!sharedRenderer) return;
+    var vw = window.innerWidth, vh = window.innerHeight;
+    if (sharedW !== vw || sharedH !== vh) { sharedW = vw; sharedH = vh; sharedRenderer.setSize(vw, vh, false); }
+    sharedRenderer.setScissorTest(true);
+    var i, sc, r, x, y, w, h;
+    for (i = 0; i < built.length; i++) {
+      sc = built[i];
+      if (!sc.visible || !sc.el) continue;
+      r = sc.el.getBoundingClientRect();
+      if (r.bottom < -40 || r.top > vh + 40 || r.width < 4 || r.height < 4) continue;
+      x = Math.max(0, Math.floor(r.left)); y = Math.max(0, Math.floor(vh - r.bottom));
+      w = Math.min(vw - x, Math.ceil(r.width)); h = Math.min(vh - y, Math.ceil(r.height));
+      if (w <= 0 || h <= 0) continue;
+      var asp = w / h;
+      if (Math.abs(sc.camera.aspect - asp) > 0.01) { sc.camera.aspect = asp; sc.camera.updateProjectionMatrix(); }
+      flightCam(sc, t);
+      if (sc.clouds) sc.clouds.position.x = Math.sin(t * 0.00002 + sc.def.seed) * 1.2;
+      sharedRenderer.setViewport(x, y, w, h);
+      sharedRenderer.setScissor(x, y, w, h);
+      sharedRenderer.render(sc.scene, sc.camera);
+    }
+    sharedRenderer.setScissorTest(false);
+  }
+  function loop(t) {
+    raf = 0;
+    if (!motionOn() || !booted) return;
+    var any = false, i, vis = 0;
+    if (heroScene && heroScene.visible) { renderHero(t); any = true; vis++; }
+    for (i = 0; i < built.length; i++) if (built[i].visible) { vis++; any = true; }
+    if (any) renderChapters(t);
+    STATUS.visible = vis;
+    if (any) raf = requestAnimationFrame(loop);
+  }
+  function kick() {
+    if (!raf && motionOn() && booted) raf = requestAnimationFrame(loop);
+  }
+  function trackFlight(st) { if (st) flightTriggers.push(st); return st; }
+  function killFlights() {
+    flightTriggers.forEach(function (st) { try { if (st && st.kill) st.kill(); } catch (e) {} });
+    flightTriggers = [];
+    if (flightTimer) { clearInterval(flightTimer); flightTimer = 0; }
+  }
+  function buildFlights() {
+    if (!window.gsap || !window.ScrollTrigger) return false;
+    var i, sc;
+    try {
+      for (i = 0; i < built.length; i++) {
+        sc = built[i];
+        if (!sc.el) continue;
+        (function (s) {
+          trackFlight(window.ScrollTrigger.create({
+            trigger: s.el, start: "top bottom", end: "bottom top", scrub: 1,
+            id: "flight-" + s.def.key,
+            onUpdate: function (self) { s.progress = self.progress; }
+          }));
+        })(sc);
+      }
+      if (heroScene) {
+        var heroEl = doc.getElementById("hero");
+        if (heroEl) {
+          trackFlight(window.ScrollTrigger.create({
+            trigger: heroEl, start: "top top", end: "+=100%", scrub: 1,
+            id: "flight-hero",
+            onUpdate: function (self) { heroScene.progress = self.progress; }
+          }));
+        }
+      }
+      return true;
+    } catch (e) { return false; }
+  }
+  function buildFlightsRetry() {
+    if (buildFlights()) return;
+    if (!motionOn()) return;
+    if (flightTimer) clearInterval(flightTimer);
+    flightTimer = setInterval(function () {
+      if (buildFlights() || !motionOn()) { clearInterval(flightTimer); flightTimer = 0; }
+    }, 500);
+    setTimeout(function () { if (flightTimer) { clearInterval(flightTimer); flightTimer = 0; } }, 10000);
+  }
+  function observeVisibility() {
+    if (typeof IntersectionObserver === "undefined") {
+      var i;
+      if (heroScene) heroScene.visible = true;
+      for (i = 0; i < built.length; i++) built[i].visible = true;
+      kick();
+      return;
+    }
+    var io = new IntersectionObserver(function (entries) {
+      var changed = false;
+      entries.forEach(function (en) {
+        var k = en.target.getAttribute("data-scene-key");
+        var j;
+        if (k === "hero") { if (heroScene) { heroScene.visible = en.isIntersecting; changed = true; } return; }
+        for (j = 0; j < built.length; j++) {
+          if (built[j].def.key === k) { built[j].visible = en.isIntersecting; changed = true; }
+        }
+      });
+      if (changed) kick();
+    }, { rootMargin: "120px" });
+    if (heroScene && heroScene.el) io.observe(heroScene.el);
+    var i2;
+    for (i2 = 0; i2 < built.length; i2++) if (built[i2].el) io.observe(built[i2].el);
+  }
+  function onResize() {
+    if (!booted) return;
+    if (sharedRenderer) sharedRenderer.setSize(window.innerWidth, window.innerHeight, false);
+    kick();
+  }
+
+  /* ---------- 加载 THREE / 启动 / 动效开关句柄 ---------- */
+  function ensureThree(cb) {
+    if (typeof window.THREE !== "undefined") { cb(true); return; }
+    var existing = doc.querySelector('script[src*="three@0.152.2/build/three.min.js"]');
+    var done = false;
+    var timer = setTimeout(function () { if (!done) { done = true; cb(false); } }, 8000);
+    function ok() { if (done) return; done = true; clearTimeout(timer); cb(!!window.THREE); }
+    if (existing) {
+      existing.addEventListener("load", ok);
+      existing.addEventListener("error", ok);
+      return;
+    }
+    var s = doc.createElement("script");
+    s.src = "https://cdn.jsdelivr.net/npm/three@0.152.2/build/three.min.js";
+    s.onload = ok; s.onerror = ok;
+    doc.head.appendChild(s);
+  }
+  function bootNow() {
+    var i, def, el, sc;
+    heroCanvas = doc.getElementById("heroSceneCanvas");
+    var heroEl = doc.getElementById("heroScene");
+    sharedCanvas = doc.createElement("canvas");
+    sharedCanvas.id = "scene3dCanvas";
+    sharedCanvas.className = "scene3d-canvas";
+    sharedCanvas.setAttribute("aria-hidden", "true");
+    doc.body.appendChild(sharedCanvas);
+    sharedRenderer = makeRenderer(sharedCanvas, false);
+    sharedRenderer.setSize(window.innerWidth, window.innerHeight, false);
+    if (heroCanvas && heroEl) {
+      heroRenderer = makeRenderer(heroCanvas, true);
+      heroRenderer.setSize(heroCanvas.clientWidth || 1200, heroCanvas.clientHeight || 560, false);
+    }
+    for (i = 0; i < SCENES.length; i++) {
+      def = SCENES[i];
+      el = doc.getElementById(def.band);
+      if (!el) continue;
+      el.setAttribute("data-scene-key", def.key);
+      sc = buildScene(def);
+      sc.el = el;
+      if (def.key === "hero") { heroScene = sc; heroScene.el = heroEl; }
+      else built.push(sc);
+    }
+    STATUS.scenes = built.length + (heroScene ? 1 : 0);
+    booted = true;
+    root.classList.add("scene-live");
+    setStatus("ready", "");
+    observeVisibility();
+    buildFlightsRetry();
+    window.addEventListener("resize", onResize);
+    kick();
   }
   function boot() {
-    var THREE = window.THREE;
-    var renderer;
-    try {
-      renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, alpha: true });
-    } catch (err) { showFallback("renderer-fail"); return; }
-    try { renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2)); } catch (e) {}
-    var scene = new THREE.Scene();
-    var camera = new THREE.PerspectiveCamera(42, 2, 0.1, 100);
-    var camZ = 8;
-    camera.position.set(0, 2.6, camZ);
-    camera.lookAt(0, 1.3, 0);
-    var ambient = new THREE.AmbientLight(0xffffff, 0.75);
-    var sun = new THREE.DirectionalLight(0xffffff, 0.9);
-    sun.position.set(4, 8, 6);
-    scene.add(ambient);
-    scene.add(sun);
-    var INK = 0x101418, PAPER = 0xfafaf8, BLUE = 0x1d4ed8, STONE = 0xe8e6df;
-    function mat(color) { return new THREE.MeshStandardMaterial({ color: color, roughness: 0.9, metalness: 0 }); }
-    function bx(w, h, d, color, x, y, z) {
-      var m = new THREE.Mesh(new THREE.BoxGeometry(w, h, d), mat(color));
-      m.position.set(x, y, z); return m;
-    }
-    function cyl(rt, rb, h, color, x, y, z, seg) {
-      var m = new THREE.Mesh(new THREE.CylinderGeometry(rt, rb, h, seg || 12), mat(color));
-      m.position.set(x, y, z); return m;
-    }
-    function cone(r, h, color, x, y, z, seg) {
-      var m = new THREE.Mesh(new THREE.ConeGeometry(r, h, seg || 12), mat(color));
-      m.position.set(x, y, z); return m;
-    }
-    /* ---- 程序化新天鹅堡：纸面墙 + 墨色锥顶 + 深蓝旗 ---- */
-    var castle = new THREE.Group();
-    var ground = new THREE.Mesh(new THREE.PlaneGeometry(11, 7), mat(STONE));
-    ground.rotation.x = -Math.PI / 2;
-    ground.position.y = 0;
-    scene.add(ground);
-    castle.add(bx(6.4, 0.4, 4.4, PAPER, 0, 0.2, 0));
-    castle.add(bx(2.4, 2.6, 2.0, PAPER, 0.4, 1.7, 0));
-    castle.add(bx(2.6, 1.6, 1.8, PAPER, -1.8, 1.2, 0.2));
-    for (var ci = 0; ci < 5; ci++) castle.add(bx(0.28, 0.3, 0.28, PAPER, -0.6 + ci * 0.6, 3.15, 0.95));
-    var towers = [[-2.9, -1.8], [2.9, -1.8], [-2.9, 1.8], [2.9, 1.8]];
-    towers.forEach(function (p) {
-      castle.add(cyl(0.42, 0.48, 3.0, PAPER, p[0], 1.9, p[1]));
-      castle.add(cone(0.58, 1.1, INK, p[0], 3.95, p[1]));
-      var fin = new THREE.Mesh(new THREE.SphereGeometry(0.09, 8, 8), mat(BLUE));
-      fin.position.set(p[0], 4.55, p[1]);
-      castle.add(fin);
-    });
-    castle.add(cyl(0.5, 0.55, 3.8, PAPER, 0.4, 2.3, -0.9));
-    castle.add(cone(0.66, 1.3, INK, 0.4, 4.85, -0.9));
-    castle.add(cyl(0.03, 0.03, 0.9, INK, 0.4, 5.9, -0.9, 6));
-    castle.add(bx(0.5, 0.3, 0.02, BLUE, 0.68, 6.15, -0.9));
-    castle.add(bx(1.0, 1.2, 0.5, PAPER, 0.4, 1.0, 2.05));
-    castle.add(bx(0.5, 0.8, 0.06, INK, 0.4, 0.8, 2.32));
-    scene.add(castle);
-    STATUS.meshes = castle.children.length;
-    /* ---- 状态与循环 ---- */
-    var angle = 0, vel = 0, dragging = false, lastX = 0, lastMoveT = 0;
-    var lastInteract = performance.now();
-    var swayAmp = 0, visible = true, raf = 0, last = performance.now();
-    var lightMode = "day";
-    function resize() {
-      var w = box.clientWidth || 640;
-      var h = canvas.clientHeight || 420;
-      try { renderer.setSize(w, h, false); } catch (e) {}
-      camera.aspect = w / h;
-      try { camera.updateProjectionMatrix(); } catch (e) {}
-    }
-    function applyLight() {
-      if (lightMode === "dusk") {
-        ambient.intensity = 0.3; sun.intensity = 0.35;
-        canvas.style.background = "#101418";
-      } else {
-        ambient.intensity = 0.75; sun.intensity = 0.9;
-        canvas.style.background = "#fafaf8";
-      }
-    }
-    function render() {
-      var now = performance.now();
-      var idle = now - lastInteract > 2000;
-      var targetAmp = (fxOn() && idle && !dragging) ? 0.25 : 0;
-      swayAmp += (targetAmp - swayAmp) * 0.06;
-      castle.rotation.y = angle + Math.sin(now * 0.0004) * swayAmp;
-      camera.position.z = camZ;
-      try { camera.lookAt(0, 1.3, 0); } catch (e) {}
-      try { renderer.render(scene, camera); } catch (e) {}
-      STATUS.angle = angle;
-      STATUS.rotY = castle.rotation.y;
-      STATUS.camZ = camZ;
-      STATUS.light = lightMode;
-    }
-    function loop(now) {
-      raf = 0;
-      if (!visible) return;
-      var tnow = now || performance.now();
-      var dt = Math.min(0.05, (tnow - last) / 1000 || 0.016);
-      last = tnow;
-      if (!dragging) {
-        angle += vel * dt;
-        vel *= Math.pow(0.01, dt);
-        angle += (0 - angle) * Math.min(1, dt * 8);
-        if (Math.abs(angle) < 0.005 && Math.abs(vel) < 0.001) { angle = 0; vel = 0; }
-      }
-      render();
-      if (fxOn()) raf = requestAnimationFrame(loop);
-    }
-    function kick() { if (!raf && visible && fxOn()) raf = requestAnimationFrame(loop); }
-    /* ---- 拖动旋转 ---- */
-    function posX(ev) {
-      if (ev.touches && ev.touches[0]) return ev.touches[0].clientX;
-      return ev.clientX;
-    }
-    canvas.addEventListener("pointerdown", function (ev) {
-      dragging = true; lastX = posX(ev); lastMoveT = performance.now(); vel = 0;
-      lastInteract = performance.now();
-      try { canvas.setPointerCapture(ev.pointerId); } catch (e) {}
-    });
-    canvas.addEventListener("pointermove", function (ev) {
-      if (!dragging) return;
-      var now = performance.now();
-      var dx = posX(ev) - lastX;
-      var dtm = Math.max(1, now - lastMoveT) / 1000;
-      angle += dx * 0.008;
-      vel = Math.max(-3, Math.min(3, (dx * 0.008) / dtm));
-      lastX = posX(ev); lastMoveT = now; lastInteract = now;
-      render();
-    });
-    function endDrag() {
-      if (!dragging) return;
-      dragging = false;
-      lastInteract = performance.now();
-      if (!fxOn()) { angle = 0; vel = 0; render(); return; }
-      kick();
-    }
-    canvas.addEventListener("pointerup", endDrag);
-    canvas.addEventListener("pointercancel", endDrag);
-    canvas.addEventListener("pointerleave", endDrag);
-    /* ---- 缩放 / 光线 / 复位 ---- */
-    canvas.addEventListener("wheel", function (ev) {
-      ev.preventDefault();
-      camZ = Math.max(5, Math.min(12, camZ + (ev.deltaY > 0 ? 0.5 : -0.5)));
-      lastInteract = performance.now();
-      render();
-    }, { passive: false });
-    function bindBtn(id, fn) {
-      var b = document.getElementById(id);
-      if (b) b.addEventListener("click", function () { fn(); lastInteract = performance.now(); render(); });
-    }
-    bindBtn("showcaseZoomIn", function () { camZ = Math.max(5, Math.min(12, camZ - 0.5)); });
-    bindBtn("showcaseZoomOut", function () { camZ = Math.max(5, Math.min(12, camZ + 0.5)); });
-    bindBtn("showcaseLight", function () { lightMode = (lightMode === "day") ? "dusk" : "day"; applyLight(); });
-    bindBtn("showcaseReset", function () { angle = 0; vel = 0; camZ = 8; lightMode = "day"; applyLight(); });
-    if (typeof IntersectionObserver !== "undefined") {
-      var io = new IntersectionObserver(function (entries) {
-        visible = entries[0] && entries[0].isIntersecting !== false;
-        if (visible) { last = performance.now(); kick(); }
-      });
-      try { io.observe(box); } catch (e) {}
-    }
-    window.addEventListener("resize", function () { resize(); render(); });
-    resize();
-    applyLight();
-    render();
-    setStatus("ready", "");
-    kick();
-    /* 开关句柄（放 boot 内，才能碰到 angle/vel/raf 等闭包状态；若 boot 未跑，
-       句柄不存在，总开关也就不注册它）。 */
-    window.__schaumFxShowcase = {
-      enable: function () { fxOff = false; lastInteract = performance.now(); kick(); return true; },
-      disable: function () {
-        fxOff = true; angle = 0; vel = 0;
-        if (raf) { try { cancelAnimationFrame(raf); } catch (e) {} raf = 0; }
-        render(); return true;
-      },
-      isActive: function () { return !fxOff; }
-    };
-  }
-})();
-</script>
-
-<script>
-/* Schaum 沫 · 卡片画廊 (Item 7)：德国生活 10 篇文章的弧形卡片流。
-   卡片由站内真实文章（#sec-life .g-sec.cx-card）现取现建：标题取 h3、
-   摘要取手风琴头，不编造条目；原文列表不动，始终可用（平铺回落）。
-   弧形为纯 CSS 3D（rotateY + translateZ + 缩放，随卡片离中心距离算），
-   拖动/滚轮浏览；点卡片（拖动小于 6px 才算点按）把整篇文章克隆进详情
-   浮层（去掉克隆体内的 id，避免重复 id），Esc/点背景/点 × 关闭。
-   减动效/低端机/开关关闭时为平铺横滚行（flat），无弧形。 */
-(function () {
-  "use strict";
-  var STATUS = { state: "idle", reason: "", count: 0, open: null, trackX: 0, grid: 0 };
-  function setStatus(s, r) { STATUS.state = s; STATUS.reason = r || ""; window.__schaumGallery = STATUS; }
-  window.__schaumGallery = STATUS;
-  var gallery = document.getElementById("lifeGallery");
-  var track = document.getElementById("lifeGalleryTrack");
-  var detail = document.getElementById("lifeGalleryDetail");
-  var detailBody = document.getElementById("lifeGalleryDetailBody");
-  var closeBtn = document.getElementById("lifeGalleryClose");
-  if (!gallery || !track || !detail) { setStatus("fallback", "no-dom"); return; }
-  var articles = Array.prototype.slice.call(document.querySelectorAll("#sec-life .g-sec.cx-card"));
-  if (!articles.length) { setStatus("fallback", "no-articles"); return; }
-  var fxOff = false;
-  function reducedMotion() {
-    try { return !!(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches); }
-    catch (err) { return false; }
-  }
-  function fxOn() {
-    if (fxOff) return false;
-    if (reducedMotion()) return false;
-    if (window.__schaumPerf && window.__schaumPerf.lowEnd) return false;
-    return true;
-  }
-  var PITCH = 254, CARD_W = 240;
-  var trackX = 0, dragDX = 0, dragging = false, startX = 0, startTX = 0;
-  var gridP = 0, gridST = null, savedTX = 0;
-  /* ---- 建卡片 ---- */
-  articles.forEach(function (art) {
-    var h3 = art.querySelector("h3");
-    var head = art.querySelector(".cx-acc-head");
-    var title = h3 ? h3.textContent.replace(/\s+/g, " ").trim() : "";
-    var excerpt = head ? head.textContent.replace(/\s+/g, " ").trim() : "";
-    var card = document.createElement("button");
-    card.type = "button";
-    card.className = "life-gcard";
-    card.setAttribute("data-article", art.id || "");
-    var h4 = document.createElement("h4");
-    h4.textContent = title;
-    var p = document.createElement("p");
-    p.textContent = excerpt;
-    card.appendChild(h4);
-    card.appendChild(p);
-    card.addEventListener("click", function () {
-      if (Math.abs(dragDX) < 6) openDetail(art);
-    });
-    track.appendChild(card);
-  });
-  STATUS.count = articles.length;
-  /* ---- 弧形布局 ---- */
-  function layout() {
-    var cw = gallery.clientWidth || 640;
-    var maxX = Math.min(0, cw - articles.length * PITCH);
-    trackX = Math.max(maxX, Math.min(0, trackX));
-    STATUS.trackX = trackX;
-    gallery.classList.toggle("flat", !fxOn());
-    if (!fxOn()) {
-      gallery.classList.remove("grid");
-      gridP = 0;
-      track.style.transform = "";
-      Array.prototype.forEach.call(track.children, function (c) { c.style.transform = ""; });
-      return;
-    }
-    gallery.classList.toggle("grid", gridP > 0.5);
-    STATUS.grid = gridP;
-    track.style.transform = "translateX(" + trackX + "px)";
-    var center = cw / 2;
-    /* 视频网格吸附：弧度随 gridP 实时收拢（gridP=1 时全平、成网格）。 */
-    var arc = 1 - gridP;
-    Array.prototype.forEach.call(track.children, function (card, i) {
-      var cx = trackX + i * PITCH + CARD_W / 2;
-      var a = Math.max(-1, Math.min(1, (cx - center) / (cw / 2)));
-      var rot = -a * 28 * arc;
-      var tz = -Math.abs(a) * 60 * arc;
-      var sc = 1 - Math.abs(a) * 0.08 * arc;
-      card.style.transform = "rotateY(" + rot.toFixed(1) + "deg) translateZ(" + tz.toFixed(0) + "px) scale(" + sc.toFixed(3) + ")";
+    if (booted) return;
+    if (!motionOn()) { setStatus("fallback", reducedMotion() ? "reduced-motion" : lowEnd() ? "low-end" : "off"); return; }
+    if (!webglOK()) { setStatus("fallback", "no-webgl"); return; }
+    ensureThree(function (ok) {
+      if (!ok || typeof window.THREE === "undefined") { setStatus("fallback", "no-three"); return; }
+      THREE = window.THREE;
+      try { bootNow(); }
+      catch (e) { setStatus("fallback", "boot-error"); }
     });
   }
-
-  /* ---- 视频网格吸附（Item 7）：画廊滚入视口时，弧形卡片随 scrub 进度
-     实时吸到整齐网格（rotateY/translateZ → 0，轨道换行成网格）；滚回去
-     则回到弧形。网格态（gridP > 0.5）下拖动与滚轮交给页面滚动。 */
-  function setGrid(p) {
-    gridP = Math.max(0, Math.min(1, p || 0));
-    if (gridP > 0.5 && savedTX === 0 && trackX !== 0) savedTX = trackX;
-    if (gridP > 0.5) trackX = savedTX * (1 - gridP);
-    else if (savedTX !== 0) { trackX = savedTX; savedTX = 0; }
-    layout();
-  }
-  function buildGridTrigger() {
-    if (gridST) { try { gridST.kill(); } catch (e) {} gridST = null; }
-    if (!fxOn()) return;
-    if (typeof ScrollTrigger === "undefined" || !ScrollTrigger || typeof ScrollTrigger.create !== "function") return;
-    try {
-      gridST = ScrollTrigger.create({
-        trigger: gallery, start: "top 90%", end: "top 35%", scrub: 1,
-        onUpdate: function (self) {
-          var life = document.getElementById("sec-life");
-          if (!life || !life.classList.contains("active")) return;
-          var pr = self && typeof self.progress === "number" ? self.progress : 0;
-          setGrid(pr);
-        }
-      });
-    } catch (e) { gridST = null; }
-  }
-  /* ---- 拖动 / 滚轮 ---- */
-  track.addEventListener("pointerdown", function (ev) {
-    if (gridP > 0.5) return;
-    dragging = true; dragDX = 0; startX = ev.clientX; startTX = trackX;
-    try { track.setPointerCapture(ev.pointerId); } catch (e) {}
-  });
-  track.addEventListener("pointermove", function (ev) {
-    if (!dragging) return;
-    dragDX = ev.clientX - startX;
-    trackX = startTX + dragDX;
-    layout();
-  });
-  function endDrag() { dragging = false; }
-  track.addEventListener("pointerup", endDrag);
-  track.addEventListener("pointercancel", endDrag);
-  track.addEventListener("pointerleave", endDrag);
-  track.addEventListener("wheel", function (ev) {
-    if (gridP > 0.5) return;
-    ev.preventDefault();
-    trackX -= (ev.deltaX || ev.deltaY);
-    layout();
-  }, { passive: false });
-  /* ---- 详情浮层 ---- */
-  var prevOverflow = "";
-  function openDetail(art) {
-    var clone = art.cloneNode(true);
-    clone.removeAttribute("id");
-    clone.setAttribute("data-clone", "1");
-    Array.prototype.forEach.call(clone.querySelectorAll("[id]"), function (el) { el.removeAttribute("id"); });
-    while (detailBody.children.length > 1) detailBody.removeChild(detailBody.lastChild);
-    detailBody.appendChild(clone);
-    detail.hidden = false;
-    STATUS.open = art.id || "";
-    prevOverflow = document.body.style.overflow || "";
-    document.body.style.overflow = "hidden";
-    try { closeBtn.focus(); } catch (e) {}
-  }
-  function closeDetail() {
-    if (detail.hidden) return;
-    detail.hidden = true;
-    STATUS.open = null;
-    document.body.style.overflow = prevOverflow;
-  }
-  closeBtn.addEventListener("click", closeDetail);
-  detail.addEventListener("click", function (ev) { if (ev.target === detail) closeDetail(); });
-  document.addEventListener("keydown", function (ev) {
-    if (ev.key === "Escape") closeDetail();
-  });
-  window.addEventListener("resize", layout);
-  layout();
-  buildGridTrigger();
-  setStatus("ready", "");
-  window.__schaumFxGallery = {
-    enable: function () { fxOff = false; layout(); buildGridTrigger(); return true; },
-    disable: function () {
-      fxOff = true; closeDetail();
-      if (gridST) { try { gridST.kill(); } catch (e) {} gridST = null; }
-      gridP = 0; savedTX = 0; layout(); return true;
-    },
-    isActive: function () { return !fxOff; }
-  };
-})();
-</script>
-
-<script>
-/* Schaum 沫 · 页脚 Ballpit (Item 9)：德语单词小球，鼠标可推。
-   纯 Canvas 2D 轻量物理（无新库）：重力 + 墙面/地面反弹 + 球间弹性碰撞
-   + 鼠标推力（指针附近的球被推开）。单词取自站内 GL_VOCAB（只读，不改），
-   去冠词、取 3–10 字母的短词，封顶 40 个。
-   懒初始化：只在页脚第一次进入视口时才拿 Canvas 2D、建球（省首屏开销；
-   无 IntersectionObserver 时保持休眠，绝不调用 getContext）。离屏时
-   IntersectionObserver 暂停；减动效/低端机/开关关闭时为静态排布（单词照
-   常可见，只是不动）；拿不到可用 2D 上下文时隐藏整个球坑。
-   开关句柄 __schaumFxBallpit（总开关已注册 "Ballpit"），状态 __schaumBallpit。 */
-(function () {
-  "use strict";
-  var MAX_BALLS = 40, H = 180;
-  var STATUS = { state: "idle", reason: "", count: 0, paused: true, words: [], balls: [] };
-  function setStatus(s, r) { STATUS.state = s; STATUS.reason = r || ""; window.__schaumBallpit = STATUS; }
-  window.__schaumBallpit = STATUS;
-  var wrap = document.getElementById("ballpit");
-  var canvas = document.getElementById("ballpitCanvas");
-  if (!wrap || !canvas) { setStatus("fallback", "no-dom"); return; }
-  var fxOff = false, visible = true, raf = 0, initialized = false, ctx = null;
-  function reducedMotion() {
-    try { return !!(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches); }
-    catch (err) { return false; }
-  }
-  function fxOn() {
-    if (fxOff) return false;
-    if (reducedMotion()) return false;
-    if (window.__schaumPerf && window.__schaumPerf.lowEnd) return false;
-    return true;
-  }
-  /* ---- 单词：取 GL_VOCAB 的 .de，去冠词、取短词，定步长均匀取 40 个 ---- */
-  function pickWords() {
-    var vocab = (typeof window !== "undefined" && window.GL_VOCAB) || [];
-    var seen = {}, out = [];
-    for (var i = 0; i < vocab.length; i++) {
-      var de = vocab[i] && vocab[i].de;
-      if (!de || typeof de !== "string") continue;
-      var w = de.replace(/^(der|die|das)\s+/i, "").split(/[\s,;]+/)[0];
-      if (!w || w === "sich" || w.length < 3 || w.length > 10) continue;
-      if (seen[w]) continue;
-      seen[w] = 1;
-      out.push(w);
-    }
-    if (out.length <= MAX_BALLS) return out;
-    var step = out.length / MAX_BALLS, picked = [];
-    for (var j = 0; j < MAX_BALLS; j++) picked.push(out[Math.floor(j * step)]);
-    return picked;
-  }
-  var words = pickWords();
-  var W = 0, dpr = 1;
-  var balls = [];
-  var pointer = { x: -9999, y: -9999, down: false };
-  function resize() {
-    var w = wrap.clientWidth || 640;
-    dpr = 1;
-    try { dpr = Math.min(2, window.devicePixelRatio || 1); } catch (e) {}
-    W = w;
-    canvas.width = Math.round(w * dpr);
-    canvas.height = Math.round(H * dpr);
-    canvas.style.height = H + "px";
-    balls.forEach(function (b) {
-      b.x = Math.max(b.r, Math.min(W - b.r, b.x));
-      b.y = Math.max(b.r, Math.min(H - b.r, b.y));
-    });
-  }
-  function buildBalls() {
-    balls = [];
-    words.forEach(function (wd, i) {
-      var r = 22 + (wd.length > 7 ? 4 : 0);
-      balls.push({ x: 0, y: 0, vx: 0, vy: 0, r: r, r0: r, word: wd, blue: i % 7 === 0 });
-    });
-    STATUS.count = balls.length;
-    STATUS.words = words.slice();
-  }
-  function layoutStatic() {
-    /* 静态排布：网格铺满，单词照常可见（半径按格子收小，不重叠）。 */
-    var n = balls.length;
-    if (!n) return;
-    var cols = Math.max(1, Math.ceil(Math.sqrt(n * W / H)));
-    var rows = Math.ceil(n / cols);
-    var cellW = W / cols, cellH = H / rows;
-    var gridR = Math.max(10, Math.min(cellW, cellH) / 2 - 2);
-    balls.forEach(function (b, i) {
-      b.r = Math.min(b.r0, gridR);
-      b.x = cellW * (i % cols) + cellW / 2;
-      b.y = cellH * Math.floor(i / cols) + cellH / 2;
-      b.vx = 0; b.vy = 0;
-    });
-  }
-  function scatter() {
-    balls.forEach(function (b) {
-      b.r = b.r0;
-      b.x = b.r + Math.random() * Math.max(1, W - 2 * b.r);
-      b.y = b.r + Math.random() * Math.max(1, H / 2);
-      b.vx = (Math.random() - 0.5) * 2;
-      b.vy = 0;
-    });
-  }
-  function draw() {
-    if (!ctx) return;
-    ctx.save();
-    ctx.scale(dpr, dpr);
-    ctx.clearRect(0, 0, W, H);
-    ctx.textAlign = "center";
-    ctx.textBaseline = "middle";
-    balls.forEach(function (b) {
-      ctx.beginPath();
-      ctx.arc(b.x, b.y, b.r, 0, Math.PI * 2);
-      ctx.fillStyle = "#ffffff";
-      ctx.fill();
-      ctx.lineWidth = 1;
-      ctx.strokeStyle = b.blue ? "#1d4ed8" : "rgba(16,20,24,.25)";
-      ctx.stroke();
-      ctx.fillStyle = b.blue ? "#1d4ed8" : "#101418";
-      ctx.font = "12px system-ui, sans-serif";
-      ctx.fillText(b.word, b.x, b.y + 0.5);
-    });
-    ctx.restore();
-    STATUS.balls = balls.map(function (b) { return { x: +b.x.toFixed(1), y: +b.y.toFixed(1), r: b.r, word: b.word }; });
-  }
-  function step() {
-    var i, j, b, o, dx, dy, d, min, nx, ny, push, rel;
-    /* 鼠标推力：指针附近的球被推开（按下时更强）。 */
-    balls.forEach(function (bb) {
-      var mdx = bb.x - pointer.x, mdy = bb.y - pointer.y;
-      var md = Math.sqrt(mdx * mdx + mdy * mdy);
-      if (md < 110 && md > 0.01) {
-        var f = (1 - md / 110) * (pointer.down ? 1.6 : 0.7);
-        bb.vx += (mdx / md) * f;
-        bb.vy += (mdy / md) * f;
-      }
-    });
-    for (i = 0; i < balls.length; i++) {
-      b = balls[i];
-      b.vy += 0.15;
-      b.vx *= 0.995; b.vy *= 0.995;
-      b.x += b.vx; b.y += b.vy;
-      if (b.x < b.r) { b.x = b.r; b.vx = Math.abs(b.vx) * 0.7; }
-      if (b.x > W - b.r) { b.x = W - b.r; b.vx = -Math.abs(b.vx) * 0.7; }
-      if (b.y < b.r) { b.y = b.r; b.vy = Math.abs(b.vy) * 0.7; }
-      if (b.y > H - b.r) { b.y = H - b.r; b.vy = -Math.abs(b.vy) * 0.7; if (Math.abs(b.vy) < 0.4) b.vy = 0; }
-    }
-    /* 球间碰撞：沿连线推开 + 交换法向速度（轻量弹性）。 */
-    for (i = 0; i < balls.length; i++) {
-      for (j = i + 1; j < balls.length; j++) {
-        b = balls[i]; o = balls[j];
-        dx = o.x - b.x; dy = o.y - b.y;
-        min = b.r + o.r;
-        d = Math.sqrt(dx * dx + dy * dy);
-        if (d > 0.01 && d < min) {
-          nx = dx / d; ny = dy / d;
-          push = (min - d) / 2;
-          b.x -= nx * push; b.y -= ny * push;
-          o.x += nx * push; o.y += ny * push;
-          rel = (o.vx - b.vx) * nx + (o.vy - b.vy) * ny;
-          if (rel < 0) {
-            b.vx += rel * nx; b.vy += rel * ny;
-            o.vx -= rel * nx; o.vy -= rel * ny;
-          }
-        }
-      }
-    }
-  }
-  function loop() {
-    raf = 0;
-    if (!ctx || !fxOn() || !visible) { STATUS.paused = true; return; }
-    STATUS.paused = false;
-    step();
-    draw();
-    raf = requestAnimationFrame(loop);
-  }
-  function kick() { if (!ctx || !raf && fxOn() && visible) raf = requestAnimationFrame(loop); }
-  function renderStatic() {
-    if (raf) { try { cancelAnimationFrame(raf); } catch (e) {} raf = 0; }
-    STATUS.paused = true;
-    layoutStatic();
-    draw();
-  }
-  function sync() {
-    if (!initialized) return;
-    if (fxOn() && visible) kick();
-    else renderStatic();
-  }
-  /* 懒初始化：只在页脚第一次进入视口时才拿 Canvas 2D、建球。上下文须是
-     真能画的（save/fillText/arc 存在），否则视为不可用、隐藏球坑。 */
-  function ensureInit() {
-    if (initialized) return;
-    try { ctx = canvas.getContext("2d"); } catch (e) { ctx = null; }
-    if (!ctx || typeof ctx.save !== "function" || typeof ctx.fillText !== "function" || typeof ctx.arc !== "function") {
-      ctx = null;
-      initialized = true;
-      wrap.style.display = "none";
-      setStatus("fallback", "no-canvas-2d");
-      return;
-    }
-    initialized = true;
-    resize();
-    buildBalls();
-    if (fxOn()) { scatter(); kick(); }
-    else renderStatic();
-    setStatus("ready", "");
-  }
-  /* ---- 指针 ---- */
-  function pointerPos(ev) {
-    var r = canvas.getBoundingClientRect();
-    return { x: (ev.clientX || 0) - r.left, y: (ev.clientY || 0) - r.top };
-  }
-  canvas.addEventListener("pointermove", function (ev) {
-    var p = pointerPos(ev);
-    pointer.x = p.x; pointer.y = p.y;
-  });
-  canvas.addEventListener("pointerdown", function (ev) {
-    pointer.down = true;
-    var p = pointerPos(ev);
-    pointer.x = p.x; pointer.y = p.y;
-  });
-  ["pointerup", "pointerleave", "pointercancel"].forEach(function (t) {
-    canvas.addEventListener(t, function () { pointer.down = false; pointer.x = -9999; pointer.y = -9999; });
-  });
-  /* ---- 进视口初始化、离屏暂停 ---- */
-  if (typeof IntersectionObserver !== "undefined") {
-    try {
-      new IntersectionObserver(function (entries) {
-        visible = entries[0] ? entries[0].isIntersecting : true;
-        if (visible) ensureInit();
-        sync();
-      }).observe(wrap);
-    } catch (e) {}
-  }
-  window.addEventListener("resize", function () { if (!initialized) return; resize(); if (!fxOn() || !visible) draw(); });
-  window.__schaumFxBallpit = {
+  var fx = {
     enable: function () {
-      fxOff = false;
-      if (!initialized) return true;
-      if (!ctx) return false;
-      if (visible) { scatter(); kick(); } else renderStatic();
+      sceneOff = false;
+      if (booted) {
+        root.classList.add("scene-live");
+        if (sharedCanvas) sharedCanvas.style.display = "";
+        if (heroCanvas) heroCanvas.style.display = "";
+        buildFlightsRetry();
+        kick();
+      } else {
+        boot();
+      }
       return true;
     },
-    disable: function () { fxOff = true; if (initialized && ctx) renderStatic(); return true; },
-    isActive: function () { return !fxOff; }
+    disable: function () {
+      sceneOff = true;
+      if (raf) { cancelAnimationFrame(raf); raf = 0; }
+      killFlights();
+      root.classList.remove("scene-live");
+      if (sharedCanvas) sharedCanvas.style.display = "none";
+      if (heroCanvas) heroCanvas.style.display = "none";
+      return true;
+    },
+    isActive: function () { return !sceneOff && booted && STATUS.state === "ready"; }
   };
+  window.__schaumFxScene3D = fx;
+  if (motionOn()) boot();
+  else setStatus("fallback", reducedMotion() ? "reduced-motion" : lowEnd() ? "low-end" : "off");
 })();
 </script>
+
+
 
 <script>
 
@@ -14751,7 +14810,7 @@ try{ initUnis(); }catch(e){}
   }
   function registerAll() {
     if (!motion || typeof motion.registerFx !== "function") return;
-    var handles = ["Cursor", "PageFx", "Flow", "MapFx", "Narrative", "Showcase", "Gallery", "Ballpit"];
+    var handles = ["PageFx", "Flow", "MapFx", "Narrative", "Scene3D"];
     handles.forEach(function (h) {
       var handle = window["__schaumFx" + h];
       if (handle) motion.registerFx(h.toLowerCase(), handle);
