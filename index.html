@@ -2730,7 +2730,7 @@ html.cx-js .cx-reveal.in{opacity:1;transform:translateY(0)}
 </style>
 </head>
 <body>
-<div id="gate" class="gate" role="dialog" aria-modal="true" aria-labelledby="gate-title" aria-describedby="gate-note">
+<div id="gate" class="gate" data-lenis-prevent role="dialog" aria-modal="true" aria-labelledby="gate-title" aria-describedby="gate-note">
   <div class="gate-card">
     <div class="gate-rainbow" aria-hidden="true"></div>
     <div class="lang-switch gate-lang" role="group" aria-label="Language / 语言"><button type="button" data-lang="zh" class="on" aria-pressed="true">中文</button><button type="button" data-lang="en" aria-pressed="false">EN</button><button type="button" data-lang="de" aria-pressed="false">DE</button></div>
@@ -2770,7 +2770,7 @@ html.cx-js .cx-reveal.in{opacity:1;transform:translateY(0)}
     <div class="fs-wall-big">SCHAUM 沫</div>
     <div class="fs-wall-stats">德语学习<br>德国生活<br>德国申请</div>
   </div>
-  <nav class="fs-nav" aria-label="全部栏目" data-i18n-aria="site.003"><button type="button" data-goto="home" data-i18n="nav.002"><i>01</i>首页</button><button type="button" data-goto="learn" data-i18n="nav.003"><i>02</i>德语学习</button><button type="button" data-goto="life" data-i18n="nav.004"><i>03</i>德国生活</button><button type="button" data-goto="admission" data-i18n="nav.005"><i>04</i>德国申请</button><button type="button" data-goto="learn" data-gl-tab="apply" data-i18n="nav.006"><i>05</i>大学申请</button><button type="button" data-goto="board" data-i18n="nav.007"><i>06</i>双元制岗位</button><button type="button" data-goto="apply" data-i18n="nav.008"><i>07</i>申请流程</button><button type="button" data-goto="documents" data-i18n="nav.009"><i>08</i>材料清单</button><button type="button" data-goto="visa" data-i18n="nav.010"><i>09</i>签证指南 §16a</button><button type="button" data-goto="recognition" data-i18n="nav.011"><i>10</i>学历认证</button><button type="button" data-goto="language" data-i18n="nav.012"><i>11</i>语言路径</button><button type="button" data-goto="costs" data-i18n="nav.013"><i>12</i>费用明细</button><button type="button" data-goto="residence" data-i18n="nav.014"><i>13</i>永居路径 §18c</button><button type="button" data-goto="timeline" data-i18n="nav.015"><i>14</i>时间规划</button><button type="button" data-goto="faq" data-i18n="nav.016"><i>15</i>常见问题</button><button type="button" data-goto="pitfalls" data-i18n="nav.017"><i>16</i>避坑指南</button><button type="button" data-goto="pathways"><i>17</i><span data-i18n="path.title">赴德途径</span></button></nav>
+  <nav class="fs-nav" data-lenis-prevent aria-label="全部栏目" data-i18n-aria="site.003"><button type="button" data-goto="home" data-i18n="nav.002"><i>01</i>首页</button><button type="button" data-goto="learn" data-i18n="nav.003"><i>02</i>德语学习</button><button type="button" data-goto="life" data-i18n="nav.004"><i>03</i>德国生活</button><button type="button" data-goto="admission" data-i18n="nav.005"><i>04</i>德国申请</button><button type="button" data-goto="learn" data-gl-tab="apply" data-i18n="nav.006"><i>05</i>大学申请</button><button type="button" data-goto="board" data-i18n="nav.007"><i>06</i>双元制岗位</button><button type="button" data-goto="apply" data-i18n="nav.008"><i>07</i>申请流程</button><button type="button" data-goto="documents" data-i18n="nav.009"><i>08</i>材料清单</button><button type="button" data-goto="visa" data-i18n="nav.010"><i>09</i>签证指南 §16a</button><button type="button" data-goto="recognition" data-i18n="nav.011"><i>10</i>学历认证</button><button type="button" data-goto="language" data-i18n="nav.012"><i>11</i>语言路径</button><button type="button" data-goto="costs" data-i18n="nav.013"><i>12</i>费用明细</button><button type="button" data-goto="residence" data-i18n="nav.014"><i>13</i>永居路径 §18c</button><button type="button" data-goto="timeline" data-i18n="nav.015"><i>14</i>时间规划</button><button type="button" data-goto="faq" data-i18n="nav.016"><i>15</i>常见问题</button><button type="button" data-goto="pitfalls" data-i18n="nav.017"><i>16</i>避坑指南</button><button type="button" data-goto="pathways"><i>17</i><span data-i18n="path.title">赴德途径</span></button></nav>
   <button type="button" class="fs-close" id="fsClose" aria-label="关闭菜单" data-i18n-aria="site.004">&#10005;</button>
 </div>
 <main>
@@ -2844,7 +2844,7 @@ html.cx-js .cx-reveal.in{opacity:1;transform:translateY(0)}
   </g>
 </svg>
   <div class="map-3d" id="map3d">
-    <div class="map-3d-stage"><canvas class="map-3d-canvas" id="map3dCanvas" role="img" aria-label="Deutschlandkarte 3D"></canvas></div>
+    <div class="map-3d-stage"><canvas class="map-3d-canvas" id="map3dCanvas" data-lenis-prevent role="img" aria-label="Deutschlandkarte 3D"></canvas></div>
     <p class="map-3d-hint" data-i18n="map.3dHint">拖动可以旋转地图，点一个州查看。</p>
   </div>
   <div class="map-mode" role="group" aria-label="地图模式">
@@ -6728,7 +6728,7 @@ html.cx-js .cx-reveal.in{opacity:1;transform:translateY(0)}
       <button type="button" class="gl-chip cx-chip" data-gl-scen="market" data-i18n="learn.075">超市购物</button>
     </div>
     <p class="gl-ai-engine" id="gl-ai-engine">免费中转</p>
-    <div class="gl-chat" id="gl-ai-chat"></div>
+    <div class="gl-chat" id="gl-ai-chat" data-lenis-prevent></div>
     <div class="gl-row">
       <input class="gl-input" id="gl-ai-input" type="text" placeholder="输入德语或中文问题…" autocomplete="off" data-i18n-ph="learn.076">
       <button type="button" class="gl-btn" id="gl-ai-send" data-i18n="learn.077">发送</button>
@@ -8081,13 +8081,14 @@ function closeFsMenu(){
 function smoothTop(){
   try {
     if (typeof reduceMotion !== 'undefined' && reduceMotion) { window.scrollTo(0, 0); return; }
+    if (typeof window.__schaumScrollTop === "function") { window.__schaumScrollTop(); return; }
     if (window.scrollTo) window.scrollTo({ top: 0, behavior: 'smooth' });
   } catch (e) { try { window.scrollTo(0, 0); } catch (e2) {} }
 }
 function showSection(id, opts){
   opts = opts || {};
   function scrollToTarget(){
-    if (opts.scrollTo) { var el = document.getElementById(opts.scrollTo); if (el) { try { if (typeof el.scrollIntoView === "function") el.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "start" }); } catch (e) {} return; } }
+    if (opts.scrollTo) { var el = document.getElementById(opts.scrollTo); if (el) { try { if (typeof window.__schaumScrollToEl === "function") { window.__schaumScrollToEl(el); } else if (typeof el.scrollIntoView === "function") el.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "start" }); } catch (e) {} return; } }
     smoothTop();
   }
   if (SECTIONS.indexOf(id) === -1) id = "home";
@@ -8387,7 +8388,7 @@ window.addEventListener("scroll", function () {
 window.addEventListener("resize", refreshScrollCache, { passive: true });
 refreshScrollCache();
 onScroll();
-if (toTop) toTop.addEventListener("click", function () { window.scrollTo({ top: 0, behavior: reduceMotion ? "auto" : "smooth" }); });
+if (toTop) toTop.addEventListener("click", function () { if (reduceMotion) { window.scrollTo(0, 0); return; } if (typeof window.__schaumScrollTop === "function") { window.__schaumScrollTop(); return; } window.scrollTo({ top: 0, behavior: "smooth" }); });
 })();
 </script>
 <script>
@@ -13067,5 +13068,154 @@ try{ initUnis(); }catch(e){}
   <button type="button" class="tab-item" data-goto="life"><span class="tab-ico">活</span><span data-i18n="tab.life">生活</span></button>
   <button type="button" class="tab-item" data-goto="learn" data-scroll="learnGoals"><span class="tab-ico">我</span><span data-i18n="tab.mine">我的</span></button>
 </nav>
+
+<script>
+/* Schaum 沫 · 平滑滚动 (Item 1)：Lenis + GSAP ScrollTrigger。
+   加载：GSAP 3.12.5 + ScrollTrigger + Lenis 1.1.14，jsdelivr CDN，顺序加载、
+   10 秒总超时；任一失败静默回落原生滚动，不报错、不破版。
+   同步：lenis.on('scroll', ScrollTrigger.update) + gsap.ticker 驱动
+   lenis.raf，lagSmoothing(0)。触屏原生滚动（syncTouch: false）。
+   跳转：data-goto 经 window.__schaumScrollTop / __schaumScrollToEl 走
+   lenis.scrollTo（0.8 秒）；Lenis 未启用时走原有原生滚动，180ms 出 /
+   320ms 入的分区切换感觉不变。
+   减动效：prefers-reduced-motion 时不建 Lenis，原生滚动不变。
+   开关：window.__schaumMotion.enable() / .disable() / .isActive() /
+   .scrollTo()，供以后的动效总开关调用。
+   data-lenis-prevent 标在 3D 地图画布（滚轮缩放）、邀请码门、全屏菜单、
+   AI 对话框（各自内部滚动）上，滚轮在这些元素上不触发页面平滑滚动。 */
+(function () {
+  "use strict";
+  var STATUS = { state: "idle", reason: "", lenis: false, gsap: false };
+  var lenis = null;
+  var loading = false, loaded = false, tickerAdded = false;
+  var reduced = false;
+  try { reduced = !!(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches); } catch (err) { reduced = false; }
+
+  function setStatus(s, r) {
+    STATUS.state = s; STATUS.reason = r || "";
+    STATUS.lenis = !!lenis;
+    STATUS.gsap = !!(window.gsap && window.ScrollTrigger);
+    window.__schaumMotion = API;
+  }
+
+  function defineHooks() {
+    window.__schaumScrollTop = function () {
+      if (lenis) { try { lenis.scrollTo(0, { duration: 0.8 }); } catch (err) {} }
+    };
+    window.__schaumScrollToEl = function (el) {
+      if (lenis && el) { try { lenis.scrollTo(el, { duration: 0.8 }); } catch (err) {} }
+    };
+  }
+  function clearHooks() {
+    try { delete window.__schaumScrollTop; } catch (err) { window.__schaumScrollTop = undefined; }
+    try { delete window.__schaumScrollToEl; } catch (err) { window.__schaumScrollToEl = undefined; }
+  }
+
+  function onGsapTick(time) { if (lenis) { try { lenis.raf(time * 1000); } catch (err) {} } }
+
+  function init() {
+    if (lenis) return true;
+    if (reduced) { setStatus("off", "reduced-motion"); return false; }
+    if (typeof window.Lenis === "undefined" || typeof window.gsap === "undefined" || typeof window.ScrollTrigger === "undefined") {
+      setStatus("fallback", "libs-missing"); return false;
+    }
+    try {
+      window.gsap.registerPlugin(window.ScrollTrigger);
+      lenis = new window.Lenis({ duration: 1.1, smoothWheel: true, syncTouch: false });
+      lenis.on("scroll", window.ScrollTrigger.update);
+      if (!tickerAdded) { window.gsap.ticker.add(onGsapTick); tickerAdded = true; }
+      window.gsap.ticker.lagSmoothing(0);
+      defineHooks();
+      setStatus("ready", "");
+      return true;
+    } catch (err) {
+      lenis = null;
+      clearHooks();
+      setStatus("fallback", "init-error");
+      return false;
+    }
+  }
+
+  var LIBS = [
+    "https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js",
+    "https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js",
+    "https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"
+  ];
+  function loadScript(src, cb) {
+    var s = document.createElement("script");
+    var done = false;
+    s.onload = function () { if (done) return; done = true; cb(null); };
+    s.onerror = function () { if (done) return; done = true; cb(new Error("load-failed:" + src)); };
+    s.src = src;
+    document.head.appendChild(s);
+  }
+  function loadLibs(cb) {
+    if (loaded) { cb(null); return; }
+    if (loading) { return; }
+    loading = true;
+    var finished = false;
+    var timer = null;
+    function finish(err) {
+      if (finished) return; finished = true;
+      if (timer) clearTimeout(timer);
+      loading = false;
+      cb(err);
+    }
+    timer = setTimeout(function () { setStatus("fallback", "cdn-timeout"); finish(new Error("cdn-timeout")); }, 10000);
+    loadScript(LIBS[0], function (e0) {
+      if (finished) return;
+      if (e0) { setStatus("fallback", "cdn-error-gsap"); finish(e0); return; }
+      loadScript(LIBS[1], function (e1) {
+        if (finished) return;
+        if (e1) { setStatus("fallback", "cdn-error-scrolltrigger"); finish(e1); return; }
+        loadScript(LIBS[2], function (e2) {
+          if (finished) return;
+          if (e2) { setStatus("fallback", "cdn-error-lenis"); finish(e2); return; }
+          loaded = true;
+          finish(null);
+        });
+      });
+    });
+  }
+
+  function enable() {
+    if (lenis) return true;
+    if (reduced) { setStatus("off", "reduced-motion"); return false; }
+    if (typeof window.Lenis !== "undefined" && typeof window.gsap !== "undefined" && typeof window.ScrollTrigger !== "undefined") {
+      loaded = true;
+      return init();
+    }
+    if (loading) return false;
+    loadLibs(function (err) { if (!err) init(); });
+    return false;
+  }
+  function disable() {
+    if (lenis) { try { lenis.destroy(); } catch (err) {} lenis = null; }
+    clearHooks();
+    setStatus("off", "disabled");
+    return true;
+  }
+
+  var API = {
+    state: STATUS,
+    enable: enable,
+    disable: disable,
+    isActive: function () { return !!lenis; },
+    scrollTo: function (target, opts) {
+      if (!lenis) return false;
+      try { lenis.scrollTo(target, opts || { duration: 0.8 }); return true; } catch (err) { return false; }
+    }
+  };
+  window.__schaumMotion = API;
+
+  if (reduced) { setStatus("off", "reduced-motion"); }
+  else if (typeof window.Lenis !== "undefined" && typeof window.gsap !== "undefined" && typeof window.ScrollTrigger !== "undefined") {
+    loaded = true;
+    init();
+  } else {
+    loadLibs(function (err) { if (!err) init(); });
+  }
+})();
+</script>
 </body>
 </html>
