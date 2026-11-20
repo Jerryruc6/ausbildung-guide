@@ -103,14 +103,14 @@ img{max-width:100%}
 
 /* ---------- sections & transitions ---------- */
 main{display:block}
-.page-section{display:none}
+/* 连续流：全部章节常驻一页，显隐不再由 .active 控制；
+   章节切换 = 平滑滚到该章，内容揭示由 scrub 跟手驱动，见 flow 块。
+   secIn 动画名保留：premium 覆盖层另行重定义它并仍在使用。 */
+.page-section{display:block}
 .page-section.active{display:block}
-.page-section.entering>.wrap>*{animation:secIn .32s var(--ease) both}
-.page-section.entering>.wrap>*:nth-child(2){animation-delay:.04s}
-.page-section.entering>.wrap>*:nth-child(3){animation-delay:.08s}
-.page-section.entering>.wrap>*:nth-child(4){animation-delay:.12s}
+[data-reveal].flow-scrub{transition:none}
+html.cx-js .cx-reveal.flow-scrub{transition:none}
 @keyframes secIn{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
-.page-section.leaving{opacity:0;transform:translateY(10px);transition:opacity .18s,transform .18s}
 .wrap{max-width:1200px;margin:0 auto;padding:0 24px}
 [data-reveal]{opacity:0;transform:translateY(28px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
 [data-reveal].in{opacity:1;transform:none}
@@ -611,9 +611,6 @@ button:active{transform:scale(.96)}
   html{scroll-behavior:auto}
 }
 
-.page-section.entering .ht-w{animation:htUp .8s var(--ease) both}
-.page-section.entering .ht-line:nth-child(1) .ht-w:nth-child(2){animation-delay:.14s}
-.page-section.entering .hero-script{animation:secIn .6s var(--ease) .3s both}
 #list.swapping{animation:listSwap .3s var(--ease)}
 @keyframes listSwap{from{opacity:.35}to{opacity:1}}
 @media (max-width:768px){.job-hint{display:none}}
@@ -1056,14 +1053,10 @@ button{touch-action:manipulation}
 .wotd-marquee{overflow:hidden;margin-top:14px;padding-top:10px;border-top:1px solid #e7e5e0;font-size:12px;letter-spacing:.08em;opacity:.55;white-space:nowrap}
 .wotd-track{display:inline-flex;animation:wotdScroll 60s linear infinite}
 @keyframes wotdScroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-/* 分区入场小时间线：标题先到，导语随后 */
-.sec.active .g-head h2{animation:secIn .32s var(--ease) both}
-.sec.active .g-head .g-lead{animation:secIn .32s var(--ease) .06s both}
 /* 减动效：全部新动效停掉 */
 @media(prefers-reduced-motion:reduce){
   .hero-drift,.wotd-track,.hero-liquid-handle{animation:none}
   .hero-liquid{transition:none}
-  .sec.active .g-head h2,.sec.active .g-head .g-lead{animation:none}
 }
 
 /* 3D 模型展示 (Item 6)：首页 Hero 下的城堡模型，沿用本站配色与圆角 */
@@ -1319,7 +1312,6 @@ html.pm-scrolled .site-header{
   from{opacity:0;transform:translateY(18px)}
   to{opacity:1;transform:none}
 }
-.page-section.entering>.wrap>*{animation-duration:.32s}
 .gl-view.gl-on{animation-duration:.4s}
 #list.swapping{animation-duration:.25s}
 /* 彩虹字母呼吸微光：只动继承来的 text-shadow，不动 transform/opacity，
@@ -8151,8 +8143,6 @@ function hideLoader(){
   if (loaderDone || !loader) return; loaderDone = true;
   loader.classList.add("done");
   setTimeout(function(){ if (loader.parentNode) loader.parentNode.removeChild(loader); }, 750);
-  var home = document.getElementById("sec-home");
-  if (home) { home.classList.add("entering"); setTimeout(function(){ home.classList.remove("entering"); }, 700); }
 }
 /* 减动效：加载动画立即跳过，不建 3D 环（Item 8）。 */
 if (reduceMotion && loader) { loader.style.transition = "none"; hideLoader(); }
@@ -8215,7 +8205,7 @@ window.__schaumLoader3d = loader3d;
 /* ---------- section switching with transition ---------- */
 var SECTIONS = ["home","board","apply","documents","visa","recognition","language","costs","residence","timeline","faq","pitfalls","pathways","life","learn","admission"];
 var TITLES = { home: t('site.029'), board: t('site.030'), apply: t('site.031'), documents: t('site.032'), visa: t('site.033'), recognition: t('site.034'), language: t('site.035'), costs: t('site.036'), residence: t('site.037'), timeline: t('site.038'), faq: t('site.039'), pitfalls: t('site.040'), pathways: t('path.title') + ' · Schaum 沫', life: t('site.041'), learn: t('site.042'), admission: t('site.043') };
-var current = "home", switchTimer = null;
+var current = "home";
 function closeFsMenu(){
   var m = document.getElementById("fsMenu");
   if (m) { m.classList.remove("open"); m.setAttribute("aria-hidden", "true"); var bl = m.querySelectorAll(".fs-nav button"); for (var i = 0; i < bl.length; i++) { bl[i].style.transitionDelay = "0s"; } }
@@ -8229,17 +8219,10 @@ function smoothTop(){
     if (window.scrollTo) window.scrollTo({ top: 0, behavior: 'smooth' });
   } catch (e) { try { window.scrollTo(0, 0); } catch (e2) {} }
 }
-function showSection(id, opts){
-  opts = opts || {};
-  function scrollToTarget(){
-    if (opts.scrollTo) { var el = document.getElementById(opts.scrollTo); if (el) { try { if (typeof window.__schaumScrollToEl === "function") { window.__schaumScrollToEl(el); } else if (typeof el.scrollIntoView === "function") el.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "start" }); } catch (e) {} return; } }
-    smoothTop();
-  }
-  if (SECTIONS.indexOf(id) === -1) id = "home";
-  if (id === current && document.getElementById("sec-" + id).classList.contains("active")) { closeFsMenu(); scrollToTarget(); return; }
-  var prev = document.getElementById("sec-" + current);
-  var next = document.getElementById("sec-" + id);
-  if (!next) return;
+function setCurrentChapter(id){
+  var sec = document.getElementById("sec-" + id);
+  if (!sec) return;
+  if (id === current && sec.classList.contains("active")) return;
   Array.prototype.forEach.call(document.querySelectorAll("#siteNav [data-goto]"), function (b) {
     var on = b.getAttribute("data-goto") === id;
     b.classList.toggle("on", on);
@@ -8248,23 +8231,44 @@ function showSection(id, opts){
   Array.prototype.forEach.call(document.querySelectorAll(".fs-nav [data-goto]"), function (b) {
     b.classList.toggle("on", b.getAttribute("data-goto") === id);
   });
+  Array.prototype.forEach.call(document.querySelectorAll(".app-tabbar [data-goto]"), function (b) {
+    b.classList.toggle("on", b.getAttribute("data-goto") === id);
+  });
   document.title = TITLES[id] || TITLES.home;
-  closeFsMenu();
+  var prev = document.getElementById("sec-" + current);
+  if (prev) prev.classList.remove("active");
+  sec.classList.add("active");
   current = id;
-  if (switchTimer) clearTimeout(switchTimer);
-  function swap(){
-    if (prev) { prev.classList.remove("active"); prev.classList.remove("leaving"); }
-    next.classList.add("active");
-    next.classList.add("entering");
-    scrollToTarget();
-    if (typeof refreshScrollCache === "function") refreshScrollCache();
-    setTimeout(function(){ next.classList.remove("entering"); }, 500);
-    revealScan();
+}
+/* 连续流的滚动跟随（flow 块在另一个 <script> 里）经这个句柄定当前章。 */
+window.__schaumSetCurrentChapter = setCurrentChapter;
+function scrollToChapter(id, scrollToId){
+  var el = null;
+  if (scrollToId) el = document.getElementById(scrollToId);
+  if (!el) el = document.getElementById("sec-" + id);
+  if (el) {
+    if (typeof window.__schaumScrollToEl === "function") { try { window.__schaumScrollToEl(el); } catch (e) {} return; }
+    /* 无 Lenis：原生滚到章节顶部（减动效瞬切；其余平滑）。用 window.scrollTo
+       而不用 scrollIntoView，保证无 Lenis 时滚动调用仍可观测。 */
+    var top = 0;
+    try { top = el.getBoundingClientRect().top + (window.scrollY || 0); } catch (e) {}
+    if (reduceMotion) { try { window.scrollTo(0, top); } catch (e) {} return; }
+    try { window.scrollTo({ top: top, behavior: "smooth" }); } catch (e) { try { window.scrollTo(0, top); } catch (e2) {} }
+    return;
   }
-  if (reduceMotion || !prev) { swap(); return; }
-  if (typeof window.__schaumPageTransition === "function" && window.__schaumPageTransition(swap)) return;
-  prev.classList.add("leaving");
-  switchTimer = setTimeout(swap, 180);
+  smoothTop();
+}
+function showSection(id, opts){
+  opts = opts || {};
+  if (SECTIONS.indexOf(id) === -1) id = "home";
+  var sec = document.getElementById("sec-" + id);
+  if (!sec) return;
+  closeFsMenu();
+  setCurrentChapter(id);
+  /* 编程式跳转后 1 秒内滚动跟随不抢导航态。 */
+  try { window.__schaumSuppressSpyUntil = Date.now() + 1000; } catch (e) {}
+  scrollToChapter(id, opts.scrollTo);
+  if (typeof refreshScrollCache === "function") refreshScrollCache();
 }
 document.addEventListener("click", function (e) {
   var t = e.target.closest ? e.target.closest("[data-goto]") : null;
@@ -8343,6 +8347,8 @@ function revealScan(){
     if (el.dataset.rv) return;
     el.dataset.rv = "1";
     el.setAttribute("data-reveal", "");
+    /* 连续流接管时由 flow 建 scrub 揭示；接管不成的走旧的 IO 淡入（无 IO 时直接显示）。 */
+    if (typeof window.__schaumFlowReveal === "function") { try { if (window.__schaumFlowReveal(el)) return; } catch (e) {} }
     el.style.transitionDelay = Math.min((i % 6) * 70, 350) + "ms";
     if (io) io.observe(el); else el.classList.add("in");
   });
@@ -12001,7 +12007,6 @@ try{ initUnis(); }catch(e){}
   .goal-row--enter,.daily-row--enter,.gl-diy-deck--enter,.gl-diy-card--enter,.glp-quiz--enter{animation:none}
   .goal-row--leave,.daily-row--leave,.gl-diy-deck--leave,.gl-diy-card--leave,.glp-quiz--leave{transition:none}
   .gl-card-inner{transition:none}
-  .page-section.entering>.wrap>*{animation:none}
 }
 </style>
 <script>
@@ -13323,8 +13328,8 @@ try{ initUnis(); }catch(e){}
    同步：lenis.on('scroll', ScrollTrigger.update) + gsap.ticker 驱动
    lenis.raf，lagSmoothing(0)。触屏原生滚动（syncTouch: false）。
    跳转：data-goto 经 window.__schaumScrollTop / __schaumScrollToEl 走
-   lenis.scrollTo（0.8 秒）；Lenis 未启用时走原有原生滚动，180ms 出 /
-   320ms 入的分区切换感觉不变。
+   lenis.scrollTo（0.8 秒）；Lenis 未启用时走原有原生滚动。连续流：
+   goto 滚到章节，不再换区淡入淡出。
    减动效：prefers-reduced-motion 时不建 Lenis，原生滚动不变。
    开关：window.__schaumMotion.enable() / .disable() / .isActive() /
    .scrollTo()，供以后的动效总开关调用。
@@ -13486,11 +13491,14 @@ try{ initUnis(); }catch(e){}
 
 <script>
 /* Schaum 沫 · 页面转场 (Item 3)：WebGL 着色器溶解 / 半调遮罩。
-   showSection 换区时走这里：0-450ms 遮罩盖住（溶解边缘带噪点与半调圆点、
-   轻微横向扭曲），中点执行 swap，450-900ms 遮罩退去；总计约 0.9 秒。
-   无 WebGL、减动效、低端机或动效关闭时返回 false，showSection 走原有
-   180ms 淡出路径。连续快速切换：新转场先立即执行待执行的 swap，再重开。
-   画布 pointer-events 永远 none，不拦截点击；rAF 停滞时有 1.3 秒强制收尾。 */
+   连续流：遮罩改由滚动驱动——flow 在每道章节边界建 scrub 触发器，
+   以三角进度（盖住→揭示）调 wipe()，边界处溶解扫过、永不硬切。
+   transition(swap) 保留为编程式转场 API：0-450ms 遮罩盖住（溶解边缘带
+   噪点与半调圆点、轻微横向扭曲），中点执行 swap，450-900ms 遮罩退去；
+   总计约 0.9 秒。showSection 不再调它。
+   无 WebGL、减动效、低端机或动效关闭时返回 false；连续快速切换先立即
+   执行待执行的 swap 再重开。画布 pointer-events 永远 none，不拦截点击；
+   rAF 停滞时有 1.3 秒强制收尾。 */
 (function () {
   "use strict";
   var COVER = 450, REVEAL = 450;
@@ -13629,31 +13637,42 @@ try{ initUnis(); }catch(e){}
     rafId = requestAnimationFrame(frame);
     return true;
   }
+  /* 滚动驱动的边界 wipe：flow 调这个画遮罩。进度 0..1（0=全开，1=全盖），
+     内部封顶 0.85——滚动扫过边界时只做重溶解，不做全黑闪。 */
+  function wipe(p) {
+    p = Math.max(0, Math.min(1, Number(p) || 0));
+    if (!fxOn()) return false;
+    if (!buildGL()) return false;
+    draw(p * 0.85, (typeof performance !== "undefined" && performance.now) ? performance.now() : Date.now());
+    return true;
+  }
   window.__schaumPageTransition = transition;
   window.__schaumFxPageFx = {
     enable: function () { off = false; return true; },
     disable: function () { off = true; if (running) finish(); return true; },
-    isActive: function () { return !off; }
+    isActive: function () { return !off; },
+    wipe: wipe,
+    clear: function () { if (off) return true; try { draw(0, 0); } catch (e) {} return true; }
   };
 })();
 </script>
 
 <script>
-/* Schaum 沫 · 滚动叙事 (Item 5)：章节揭示 + 章节运镜。
-   - 章节揭示：每个分区激活时，为其 .g-sec 章节块建 GSAP ScrollTrigger
-     揭示（opacity 0→1 + y 24→0，0.5s，power3.out，start 'top 88%'，once）。
-     用 gsap.fromTo：GSAP/ScrollTrigger 加载失败时什么都不隐藏，内容原样可见。
-   - 章节运镜：分区切换时把章节序号交给 3D 地图（setChapter），地图相机
+/* Schaum 沫 · 滚动叙事 (Item 5)：章节运镜 + 章节内 scrub。
+   - 章节揭示已并入连续流（flow）：全部 .g-sec 与 [data-reveal] / .cx-reveal
+     由 flow 建 scrub 跟手揭示，不再按分区激活逐个建 once 揭示。
+   - 章节运镜：分区激活时把章节序号交给 3D 地图（setChapter），地图相机
      缓慢转到该章角度；回首页时转回 0。减动效/低端机/开关关闭时地图不转。
-   - 触发：MutationObserver 监听 .page-section.active 的变化（覆盖淡入
-     与 WebGL 转场两种切换路径），无需改 showSection。
+   - 本分区内 scrub：滚动时相机随进度连续走章（起始为本分区的章序号，
+     滚到底再进约 1.5 章）；眉题只在 0.5–0.75 窗口内强调。
+   - 触发：MutationObserver 监听 .page-section.active 的变化（导航点击与
+     滚动跟随都会改 .active），无需改 showSection。
    - 开关：window.__schaumFxNarrative（enable/disable/isActive/refresh），
      由动效总开关注册；disable 时杀掉全部触发器并清掉行内透明/位移。 */
 (function () {
   "use strict";
   var narrOff = false;
   var triggers = [];
-  var blocks = [];
   function reducedMotion() {
     try {
       return !!(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches);
@@ -13670,13 +13689,6 @@ try{ initUnis(); }catch(e){}
   function clearTracked() {
     triggers.forEach(function (st) { try { if (st && st.kill) st.kill(); } catch (e) {} });
     triggers = [];
-    blocks.forEach(function (el) {
-      try {
-        if (window.gsap && gsap.set) gsap.set(el, { clearProps: "opacity,transform" });
-        else { el.style.opacity = ""; el.style.transform = ""; }
-      } catch (e) {}
-    });
-    blocks = [];
     /* 视频 scrub 眉题：离开分区时把不透明度还给样式表（静态文字始终可见）。 */
     if (eyebrowEl) { try { eyebrowEl.style.opacity = ""; } catch (e) {} eyebrowEl = null; }
     scrubST = null;
@@ -13687,21 +13699,6 @@ try{ initUnis(); }catch(e){}
   function buildFor(section) {
     clearTracked();
     if (!fxOn() || !section) return;
-    var list;
-    try { list = section.querySelectorAll(".g-sec:not([data-clone])"); } catch (e) { list = null; }
-    if (list && list.length) {
-      Array.prototype.forEach.call(list, function (el) {
-        blocks.push(el);
-        var tw;
-        try {
-          tw = gsap.fromTo(el, { opacity: 0, y: 24 }, {
-            opacity: 1, y: 0, duration: 0.5, ease: "power3.out", overwrite: "auto",
-            scrollTrigger: { trigger: el, start: "top 88%", once: true }
-          });
-        } catch (e) { tw = null; }
-        if (tw && tw.scrollTrigger) triggers.push(tw.scrollTrigger);
-      });
-    }
     buildScrub(section);
     buildPin();
     try { ScrollTrigger.refresh(); } catch (e) {}
@@ -13843,6 +13840,235 @@ try{ initUnis(); }catch(e){}
     isActive: function () { return !narrOff; },
     refresh: function () { buildFor(activeSection()); return true; }
   };
+})();
+</script>
+
+<script>
+/* Schaum 沫 · 连续滚动流 (Continuous flow)：把 PPT 式分区切换改成一趟连续滚动旅程。
+   - 全部章节常驻一页；showSection 只定当前章 + 平滑滚到章节，不再换区。
+   - 章节到达：.g-head 经到达触发器做 clip-path 光圈揭示（85%→45%）。
+   - 章节场景：.g-head 到顶后钉住 25vh（纸面底 + 发丝线，像粘性章节眉题）。
+   - 章节边界：PageFx 溶解/半调遮罩改由滚动驱动（三角进度），边界处盖住再揭示。
+   - 内容揭示：[data-reveal] 与 .cx-reveal（含 .g-sec）改由 scrub 跟手揭示。
+   - 章节跟随：IntersectionObserver 中带跟随当前章；编程式跳转 1 秒内不跟随。
+   - 减动效/低端机/开关关/无 GSAP 时不建触发器，内容全部静态可见。
+   - 库晚到（CDN 异步）：解析时建不上就 load 时重试 + 500ms 轮询（最多 10 秒）。 */
+(function () {
+  "use strict";
+  var flowOff = false;
+  var built = false;
+  var triggers = [];
+  var heads = [];
+  var spyObs = null, spyTimer = 0, lastSpyId = null;
+  function reducedMotion() {
+    try { return !!(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches); }
+    catch (err) { return false; }
+  }
+  function lowEnd() {
+    try {
+      if (window.__schaumPerf) return !!window.__schaumPerf.lowEnd;
+      /* __schaumPerf 由页尾的动效总开关定义，flow 在它之前解析；未定义时
+         按同一口径现算（核 ≤4 且内存 ≤4GB 才算低端；iOS 无 deviceMemory，
+         不参与判断，iPhone/iPad 默认不降级）。 */
+      var hc = 0, dm = 0;
+      try { hc = navigator.hardwareConcurrency || 0; } catch (e) {}
+      try { dm = navigator.deviceMemory || 0; } catch (e) {}
+      return (hc > 0 && hc <= 4) && (dm > 0 && dm <= 4);
+    } catch (e) { return false; }
+  }
+  function libsOK() {
+    try {
+      return typeof window.gsap !== "undefined" && window.gsap && typeof window.gsap.fromTo === "function" &&
+        typeof window.ScrollTrigger !== "undefined" && window.ScrollTrigger && typeof window.ScrollTrigger.create === "function";
+    } catch (e) { return false; }
+  }
+  function flowOn() { return !flowOff && !reducedMotion() && !lowEnd() && libsOK(); }
+  function clamp01(p) { p = Number(p); if (isNaN(p)) p = 0; return p < 0 ? 0 : (p > 1 ? 1 : p); }
+  function track(st) { if (st) triggers.push(st); return st; }
+  function killAll() {
+    triggers.forEach(function (st) { try { if (st && st.kill) st.kill(); } catch (e) {} });
+    triggers = [];
+  }
+  /* ---- 内容揭示：一个元素只建一个 scrub 触发器（[data-reveal] 与 .cx-reveal 有重叠） ---- */
+  function takeReveal(el) {
+    if (!el) return false;
+    /* 已 .in 的元素也建 scrub 触发器：无 IO 的环境里 revealScan 会直接加
+       .in，若跳过它们就一个揭示触发器都建不起来；scrub 建成后由它接管显隐
+       （行内样式优先于 .in 的 CSS），建不成则保留 .in 可见。 */
+    el.classList.add("flow-scrub");
+    try { el.style.transitionDelay = ""; } catch (e) {}
+    var tw = null;
+    try {
+      tw = window.gsap.fromTo(el, { opacity: 0, y: 28 }, {
+        opacity: 1, y: 0, ease: "none",
+        scrollTrigger: { trigger: el, start: "top 95%", end: "top 80%", scrub: true }
+      });
+    } catch (e) { tw = null; }
+    if (tw && tw.scrollTrigger) {
+      track(tw.scrollTrigger);
+      try { el.classList.remove("in"); } catch (e) {}
+      return true;
+    }
+    try { el.classList.remove("flow-scrub"); el.classList.add("in"); } catch (e) {}
+    return true;
+  }
+  function buildReveals() {
+    var list = null;
+    try { list = document.querySelectorAll("[data-reveal], .cx-reveal"); } catch (e) { list = null; }
+    if (!list) return;
+    Array.prototype.forEach.call(list, function (el) { takeReveal(el); });
+  }
+  /* ---- 章节到达 + 钉住 ---- */
+  function pinStyle(head, on) {
+    try {
+      if (on) { head.style.background = "var(--paper)"; head.style.boxShadow = "0 1px 0 var(--line)"; }
+      else { head.style.background = ""; head.style.boxShadow = ""; }
+    } catch (e) {}
+  }
+  function buildChapters() {
+    var secs = null;
+    try { secs = document.querySelectorAll(".page-section"); } catch (e) { secs = null; }
+    if (!secs) return;
+    Array.prototype.forEach.call(secs, function (sec) {
+      var head = null;
+      try { head = sec.querySelector(".g-head"); } catch (e) {}
+      if (!head) return;
+      heads.push(head);
+      var at = null;
+      try {
+        at = window.ScrollTrigger.create({
+          trigger: head, start: "top 85%", end: "top 45%", scrub: true,
+          onUpdate: function (self) {
+            var p = clamp01(self && self.progress);
+            try { head.style.clipPath = (p >= 1) ? "" : "inset(0 0 " + ((1 - p) * 100).toFixed(1) + "% 0)"; } catch (e) {}
+          }
+        });
+      } catch (e) { at = null; }
+      track(at);
+      var pin = null;
+      try {
+        pin = window.ScrollTrigger.create({
+          trigger: head, start: "top top", end: "+=25%", pin: true, scrub: true, anticipatePin: 1,
+          onEnter: function () { pinStyle(head, true); },
+          onLeave: function () { pinStyle(head, false); },
+          onEnterBack: function () { pinStyle(head, true); },
+          onLeaveBack: function () { pinStyle(head, false); }
+        });
+      } catch (e) { pin = null; }
+      track(pin);
+    });
+  }
+  /* ---- 章节边界 wipe ---- */
+  function buildWipe() {
+    var fx = null;
+    try { fx = window.__schaumFxPageFx; } catch (e) {}
+    if (!fx || typeof fx.wipe !== "function") return;
+    var secs = null;
+    try { secs = document.querySelectorAll(".page-section"); } catch (e) { secs = null; }
+    if (!secs) return;
+    for (var i = 1; i < secs.length; i++) {
+      (function (sec) {
+        var st = null;
+        try {
+          st = window.ScrollTrigger.create({
+            trigger: sec, start: "top 88%", end: "top 45%", scrub: true,
+            onUpdate: function (self) {
+              var p = clamp01(self && self.progress);
+              var m = p < 0.5 ? p * 2 : 2 - 2 * p;
+              try { fx.wipe(m); } catch (e) {}
+            }
+          });
+        } catch (e) { st = null; }
+        track(st);
+      })(secs[i]);
+    }
+  }
+  /* ---- 章节跟随（导航态跟滚动走） ---- */
+  function applySpy() {
+    spyTimer = 0;
+    if (!lastSpyId) return;
+    var until = 0;
+    try { until = window.__schaumSuppressSpyUntil || 0; } catch (e) {}
+    if (until && Date.now() < until) return;
+    try { if (typeof window.__schaumSetCurrentChapter === "function") window.__schaumSetCurrentChapter(lastSpyId); else if (typeof setCurrentChapter === "function") setCurrentChapter(lastSpyId); } catch (e) {}
+  }
+  function buildSpy() {
+    if (spyObs) return;
+    if (typeof window.IntersectionObserver === "undefined") return;
+    try {
+      spyObs = new window.IntersectionObserver(function (entries) {
+        for (var i = 0; i < entries.length; i++) {
+          var en = entries[i];
+          if (en.isIntersecting && en.target && en.target.id) lastSpyId = en.target.id.replace(/^sec-/, "");
+        }
+        if (spyTimer) clearTimeout(spyTimer);
+        spyTimer = setTimeout(applySpy, 120);
+      }, { rootMargin: "-45% 0px -45% 0px", threshold: 0 });
+      var secs = document.querySelectorAll(".page-section");
+      for (var j = 0; j < secs.length; j++) spyObs.observe(secs[j]);
+    } catch (e) { spyObs = null; }
+  }
+  function clearFlowStyles() {
+    var els = null;
+    try { els = document.querySelectorAll("[data-reveal], .cx-reveal"); } catch (e) {}
+    if (els) Array.prototype.forEach.call(els, function (el) {
+      try {
+        el.classList.remove("flow-scrub");
+        el.classList.add("in");
+        el.style.opacity = ""; el.style.transform = ""; el.style.transitionDelay = ""; el.style.transition = "";
+      } catch (e) {}
+    });
+    heads.forEach(function (h) {
+      try { h.style.clipPath = ""; h.style.background = ""; h.style.boxShadow = ""; } catch (e) {}
+    });
+    heads = [];
+    try { var fx = window.__schaumFxPageFx; if (fx && typeof fx.clear === "function") fx.clear(); } catch (e) {}
+  }
+  function build() {
+    if (built) return true;
+    if (!flowOn()) return false;
+    buildReveals();
+    buildChapters();
+    buildWipe();
+    built = true;
+    try { if (window.ScrollTrigger && window.ScrollTrigger.refresh) window.ScrollTrigger.refresh(); } catch (e) {}
+    return true;
+  }
+  function disable() {
+    flowOff = true;
+    killAll();
+    clearFlowStyles();
+    built = false;
+    return true;
+  }
+  function enable() {
+    flowOff = false;
+    killAll();
+    clearFlowStyles();
+    built = false;
+    return build();
+  }
+  /* revealScan 后来补标的元素也接管（只在已建成时；否则走 IO 旧路）。 */
+  window.__schaumFlowReveal = function (el) {
+    if (!built || !flowOn()) return false;
+    return takeReveal(el);
+  };
+  window.__schaumFxFlow = {
+    enable: enable,
+    disable: disable,
+    isActive: function () { return !flowOff && built; },
+    refresh: enable
+  };
+  buildSpy();
+  if (!build()) {
+    var tries = 0;
+    var timer = setInterval(function () {
+      tries++;
+      if (built || tries > 20) { clearInterval(timer); return; }
+      build();
+    }, 500);
+    window.addEventListener("load", function () { build(); });
+  }
 })();
 </script>
 
@@ -14525,7 +14751,7 @@ try{ initUnis(); }catch(e){}
   }
   function registerAll() {
     if (!motion || typeof motion.registerFx !== "function") return;
-    var handles = ["Cursor", "PageFx", "MapFx", "Narrative", "Showcase", "Gallery", "Ballpit"];
+    var handles = ["Cursor", "PageFx", "Flow", "MapFx", "Narrative", "Showcase", "Gallery", "Ballpit"];
     handles.forEach(function (h) {
       var handle = window["__schaumFx" + h];
       if (handle) motion.registerFx(h.toLowerCase(), handle);
