@@ -7806,42 +7806,54 @@ try{ initUnis(); }catch(e){}
 </script>
 <script>
 /* ===== 进站邀请码登录门 ===== */
-/* Schaum 沫 · 进站邀请码登录门 gate.js
+/* Schaum 沫 · 进站邀请码登录门 gate-hashed.js（替代 gate.js）
    注入方式：以内联 script 注入到 </body> 之前、全部已有脚本之后执行（不要再包 script 标签）。
    只操作自己的 #gate 元素与 window.GLS / localStorage 'gl:code'；
    不改动页面已有任何 JS、id、class，不读不写其他节点。
    全部防御式：每一步都包在 try/catch 里，绝不抛错；任一步失败时登录门保持显示
    （fail-closed），站内内容不暴露。码不写进 URL，不打印到控制台。
-   白名单：11 个邀请码写在下方常量里（内测阶段前端本地校验的既定做法，
-   后端通了再走云端校验）。码会出现在页面源码里，这是内测阶段已知并接受的做法。 */
+
+   与 gate.js 的唯一区别：白名单不再是明文邀请码，而是邀请码的 SHA-256 摘要
+   （ALLOW_HASHES）。原因：2026-11-20 08:25（北京时间）提交 8fc7374 把含 11 个
+   明文邀请码的 gate.js 推到了公开仓库 Jerryruc6/ausbildung-guide，任何人打开
+   仓库或查看网页源码都能直接看到全部邀请码——包括主人码。旧码已全部作废并轮换，
+   新码只存在本地 codes.md，线上只留摘要。
+   诚实说明：摘要不是真正的服务端校验。懂行的人仍可对 8 位码做离线穷举，
+   单文件站的内容本来就在 HTML 里，门只是内测期的“请勿进入”牌子。真正的
+   校验等 Cloudflare 后端（Worker＋KV）通了再做；在此之前不要把敏感内容
+   只押在邀请码上。 */
 (function () {
   'use strict';
 
   var CODE_KEY = 'gl:code';
   /* 沿用站内已有的 CODE_RE 规则：3–32 位字母、数字或 - */
   var CODE_RE = /^[A-Za-z0-9-]{3,32}$/;
-  /* 白名单：1 个主人码 + 10 个朋友码（见 deutsch-lernzentrum/codes.md），全部大写比对 */
-  var ALLOW = [
-    'JOJO-QWTX-WCV8',
-    'JOJO-CFYV-D6X4',
-    'JOJO-4UFF-X6HU',
-    'JOJO-PLZT-FB9T',
-    'JOJO-Z8Y8-JQ3C',
-    'JOJO-9SRM-C4YQ',
-    'JOJO-WLRB-SFJC',
-    'JOJO-CMD2-FN4D',
-    'JOJO-5X9H-BZFW',
-    'JOJO-7DVV-6AZC',
-    'JOJO-YZRY-WGHM'
+  /* 白名单摘要：11 个邀请码的 SHA-256（大写码原文 UTF-8 的 hex 小写摘要），
+     由 gen-hashes 步骤自本地 codes.md 生成；此处只有摘要，没有任何明文码。
+     轮换码时只改这张表，不动其他逻辑。 */
+  var ALLOW_HASHES = [
+    '6711aabeac50fef5b65d1030a02552ffbe3f164817b9d73c82f88a2ba8e9b6df',
+    'b238336cf03bd7834ef1db867c8f71f92da72a2c0eee9d26b3e8ea31c41edde9',
+    '8d298ccba4fb6ead8f85df1eb314795c99e7334be8c6a30cf0775f6e14a3a2e5',
+    'e70ee3bb1705d3a5fd4109092c911f6e1cda24e00fa851c1070f66a83c1d3522',
+    'a8e21e236092fa0f2ac6c9c1688e3f99e4490d48e4544a7ea44937ce101c4c98',
+    'e5ec5c8e8fb4f20bd28caac6b8d83e915c215930f2c741c86c06e426075de134',
+    'bd2e9d169573122cd52f7fac44c9c680b979786e18026216f7642d30cc3e2737',
+    'd3e89bab40a7d57a5a053a921ba4ea13a035a3d04e32ed7cae931792237adbbc',
+    '442df0ccd68a9d409bb7deb6b56845e43f38f2f2d7a0ce4ec3f2b03db40bc11c',
+    '2957a4539339f5f37c470f13b49c4a429d49ac1252f439c59b183386af114664',
+    '1153606dfc8d3d32b05e318c9f5821be124ae68c79e5694ef5a16c6749c09ebb'
   ];
   var MSG_FORMAT = '邀请码格式不对：3–32 位字母、数字或 -。';
   var MSG_WRONG = '邀请码不对，请检查后重新输入。';
+  var MSG_NOCRYPTO = '浏览器不支持安全校验，请用 https 打开本站再试。';
   var FADE_MS = 240;
 
   var gate = null;
   var form = null;
   var input = null;
   var msg = null;
+  var submitBtn = null;
   var hideTimer = null;
   var hidden = false;
 
@@ -7861,17 +7873,46 @@ try{ initUnis(); }catch(e){}
     }
   }
 
-  function isAllowed(code) {
+  function sha256Hex(str) {
     try {
-      if (!code || typeof code !== 'string') return false;
-      var up = code.toUpperCase();
-      if (up === 'ANON') return false;
-      for (var i = 0; i < ALLOW.length; i++) {
-        if (ALLOW[i] === up) return true;
+      if (!window.crypto || !window.crypto.subtle || typeof window.crypto.subtle.digest !== 'function') {
+        return Promise.reject(new Error('no-subtle'));
       }
-      return false;
+      var data = null;
+      try {
+        data = new TextEncoder().encode(str);
+      } catch (e) {
+        return Promise.reject(e);
+      }
+      return window.crypto.subtle.digest('SHA-256', data).then(function (buf) {
+        var bytes = new Uint8Array(buf);
+        var hex = '';
+        var i;
+        for (i = 0; i < bytes.length; i++) {
+          hex += ('0' + bytes[i].toString(16)).slice(-2);
+        }
+        return hex;
+      });
     } catch (e) {
-      return false;
+      return Promise.reject(e);
+    }
+  }
+
+  /* 摘要比对：输入码大写后算 SHA-256，与白名单摘要逐项比对。 */
+  function isAllowedAsync(code) {
+    try {
+      if (!code || typeof code !== 'string') return Promise.resolve(false);
+      var up = code.toUpperCase();
+      if (up === 'ANON') return Promise.resolve(false);
+      return sha256Hex(up).then(function (hex) {
+        var i;
+        for (i = 0; i < ALLOW_HASHES.length; i++) {
+          if (ALLOW_HASHES[i] === hex) return true;
+        }
+        return false;
+      }).catch(function () { return false; });
+    } catch (e) {
+      return Promise.resolve(false);
     }
   }
 
@@ -7941,6 +7982,16 @@ try{ initUnis(); }catch(e){}
     } catch (e) { /* never break */ }
   }
 
+  function setBusy(busy) {
+    try {
+      if (submitBtn) {
+        submitBtn.disabled = !!busy;
+        if (busy) submitBtn.textContent = '验证中…';
+        else submitBtn.textContent = '进入';
+      }
+    } catch (e) { /* never break */ }
+  }
+
   function submitCode() {
     if (!input) return;
     var code = '';
@@ -7950,27 +8001,38 @@ try{ initUnis(); }catch(e){}
       showError(MSG_FORMAT);
       return;
     }
-    /* 第二步：白名单校验（全部大写比对） */
-    if (!isAllowed(code)) {
-      showError(MSG_WRONG);
-      return;
-    }
-    /* 输对：优先走 GLS.setCode（内部存 localStorage 并尝试云端同步，
-       后端未通时静默本地模式）；没有 GLS 时直接写 localStorage。
-       GLS.setCode 极少数情况下返回 false 时也直接写一份，保证门能打开、码能记住。 */
-    var saved = false;
-    try {
-      if (window.GLS && typeof window.GLS.setCode === 'function') {
-        saved = !!window.GLS.setCode(code);
+    /* 第二步：摘要校验（异步；校验期间按钮禁用，失败时门保持显示） */
+    setBusy(true);
+    isAllowedAsync(code).then(function (ok) {
+      setBusy(false);
+      if (!ok) {
+        /* 区分两种失败：浏览器不支持 subtle 时提示换 https，其余一律“码不对” */
+        try {
+          if (!window.crypto || !window.crypto.subtle) { showError(MSG_NOCRYPTO); return; }
+        } catch (e) { /* fall through */ }
+        showError(MSG_WRONG);
+        return;
       }
-    } catch (e) { saved = false; }
-    if (!saved) {
+      /* 输对：优先走 GLS.setCode（内部存 localStorage 并尝试云端同步，
+         后端未通时静默本地模式）；没有 GLS 时直接写 localStorage。
+         GLS.setCode 极少数情况下返回 false 时也直接写一份，保证门能打开、码能记住。 */
+      var saved = false;
       try {
-        window.localStorage.setItem(CODE_KEY, code);
-      } catch (e) { /* 存储失败也不挡进站：本次会话内门已打开 */ }
-    }
-    clearError();
-    hideGate(false);
+        if (window.GLS && typeof window.GLS.setCode === 'function') {
+          saved = !!window.GLS.setCode(code);
+        }
+      } catch (e) { saved = false; }
+      if (!saved) {
+        try {
+          window.localStorage.setItem(CODE_KEY, code);
+        } catch (e) { /* 存储失败也不挡进站：本次会话内门已打开 */ }
+      }
+      clearError();
+      hideGate(false);
+    }).catch(function () {
+      setBusy(false);
+      showError(MSG_WRONG);
+    });
   }
 
   function init() {
@@ -7980,14 +8042,17 @@ try{ initUnis(); }catch(e){}
       form = document.getElementById('gate-form');
       input = document.getElementById('gate-code-input');
       msg = document.getElementById('gate-msg');
+      submitBtn = document.getElementById('gate-enter-btn');
 
-      /* 已登录（白名单内的码）：直接隐藏登录门，显示站内内容 */
-      if (isAllowed(readStoredCode())) {
-        hideGate(true);
-        return;
-      }
-
-      showGate();
+      /* 已登录（白名单内的码）：直接隐藏登录门，显示站内内容。
+         存过的码也要先算摘要再比对，算不出摘要时一律按未登录处理（fail-closed）。 */
+      isAllowedAsync(readStoredCode()).then(function (ok) {
+        if (ok) {
+          hideGate(true);
+          return;
+        }
+        showGate();
+      }).catch(function () { showGate(); });
 
       if (form) {
         /* 回车提交：表单 submit 即覆盖回车与按钮两种入口 */
@@ -8028,6 +8093,7 @@ try{ initUnis(); }catch(e){}
   'use strict';
 
   /* ---------------- 12 道题：词汇 + 语法，A1 → B1 渐进 ----------------
+     2026-11-20 修：renderQ 每题打乱选项顺序（旧版 11/12 题答案都在 A 位）。
      考点只用最基础、最无争议的初级德语；每题 4 选项、唯一正确答案。 */
   var QUESTIONS = [
     { level: 'A1', q: 'Welches Wort bedeutet „房子"?', options: ['das Haus', 'das Auto', 'das Wasser', 'das Buch'], answer: 0,
@@ -8168,7 +8234,18 @@ try{ initUnis(); }catch(e){}
       if (nextBtn) { nextBtn.hidden = true; nextBtn.textContent = (idx === TOTAL - 1) ? '查看结果' : '下一题'; }
       if (optsEl) {
         optsEl.innerHTML = '';
-        item.options.forEach(function (opt, i) {
+        /* 选项顺序每题打乱：正确答案不再固定在 A 位（旧版 12 题里 11 题答案都是 A，
+           一路点 A 就能拿满分定到 B1）。洗牌后 _answerPos 才是本题正确答案的显示位置。 */
+        var order = [0, 1, 2, 3];
+        var ri, rj, rt;
+        for (ri = order.length - 1; ri > 0; ri--) {
+          rj = Math.floor(Math.random() * (ri + 1));
+          rt = order[ri]; order[ri] = order[rj]; order[rj] = rt;
+        }
+        item._order = order;
+        item._answerPos = order.indexOf(item.answer);
+        order.forEach(function (oi, i) {
+          var opt = item.options[oi];
           var b = document.createElement('button');
           b.type = 'button';
           b.className = 'glp-opt';
@@ -8192,13 +8269,13 @@ try{ initUnis(); }catch(e){}
       if (answered) return;
       answered = true;
       var item = QUESTIONS[idx];
-      var ok = (i === item.answer);
+      var ok = (i === item._answerPos);
       if (ok) score++;
       var btns = optsEl ? optsEl.querySelectorAll('.glp-opt') : [];
       var j;
       for (j = 0; j < btns.length; j++) {
         btns[j].disabled = true;
-        if (j === item.answer) btns[j].classList.add('glp-ok');
+        if (j === item._answerPos) btns[j].classList.add('glp-ok');
         else if (j === i) btns[j].classList.add('glp-bad');
       }
       if (explainEl) {
