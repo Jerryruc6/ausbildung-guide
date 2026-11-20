@@ -292,8 +292,6 @@ ol.steps ul{margin:10px 0 0;padding-left:20px}
 .chip:hover{border-color:var(--blue);color:var(--blue);transform:translateY(-2px)}
 .chip[aria-pressed="true"]{background:var(--blue);border-color:var(--blue);color:#fff}
 .chip .cnt{font-size:12px;opacity:.7;margin-left:5px;font-variant-numeric:tabular-nums}
-.chip.pop{animation:pop .35s var(--spring)}
-@keyframes pop{40%{transform:scale(1.12)}}
 .clear-chip{border-style:dashed}
 .result-line{margin:20px 0 6px;font-size:14px;color:var(--mut)}
 .result-line b{color:var(--blue);font-variant-numeric:tabular-nums}
@@ -317,13 +315,11 @@ ol.steps ul{margin:10px 0 0;padding-left:20px}
 .badge.status-ok{border-color:var(--blue);color:var(--blue)}
 .job-meta{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:13px;color:var(--mut);margin-top:10px}
 .sal b{color:var(--blue);font-size:15px}
-.star-btn{flex:0 0 auto;width:44px;height:44px;border-radius:50%;border:1.5px solid var(--line);background:transparent;display:flex;align-items:center;justify-content:center;transition:transform .25s var(--spring),border-color .2s,background .2s;align-self:flex-start}
-.star-btn:hover{border-color:var(--amber);transform:scale(1.12) rotate(-8deg)}
+.star-btn{flex:0 0 auto;width:44px;height:44px;border-radius:50%;border:1.5px solid var(--line);background:transparent;display:flex;align-items:center;justify-content:center;transition:border-color 320ms var(--ease),background-color 320ms var(--ease);align-self:flex-start}
+.star-btn:hover{border-color:var(--amber)}
 .star-btn svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.6;transition:fill .2s,stroke .2s}
 .job.starred .star-btn{background:var(--amber);border-color:var(--amber);color:#fff}
 .job.starred .star-btn svg{fill:#fff;stroke:#fff}
-.star-btn.pop{animation:starpop .45s var(--spring)}
-@keyframes starpop{30%{transform:scale(1.45) rotate(12deg)}60%{transform:scale(.9)}}
 .job-foot{margin-top:12px}
 .detail-btn{background:none;border:1.5px solid var(--line);border-radius:999px;padding:9px 16px;font-size:13px;font-weight:700;color:var(--ink);transition:all .25s var(--ease)}
 .detail-btn:hover{border-color:var(--blue);color:var(--blue);transform:translateY(-1px)}
@@ -1320,7 +1316,7 @@ main{overflow-x:clip}
 .guide-link{background:transparent;border:1px solid var(--line);border-radius:999px;padding:10px 18px;font-size:14px;font-weight:700;color:var(--ink);cursor:pointer;transition:all .2s var(--ease);font-family:inherit}
 .guide-link:hover{border-color:var(--ink);background:var(--ink);color:var(--cream)}
 /* 我的目标：细线分隔的清单，不抢 Hero 的风头 */
-.hero-goals{margin-top:40px;border-top:1px solid var(--line);padding-top:20px}
+.learn-goals{margin-top:28px}
 .hero-slogan:empty{display:none}
 .goal-row{display:flex;align-items:baseline;gap:12px;padding:13px 0;border-bottom:1px solid var(--line)}
 .goal-row:last-of-type{border-bottom:0}
@@ -1465,24 +1461,24 @@ main{overflow-x:clip}
 .hero-stats .hstat:nth-child(2)::before{background:var(--blue)}
 .hero-stats .hstat:nth-child(3)::before{background:var(--purple)}
 .hero-stats .hstat:nth-child(4)::before{background:var(--orange)}
-/* 我的目标：从“Hero 里的一段细线清单”升级为“白 Hero 上的一张米色卡片”
+/* 我的目标：学习板块顶部的一张米色卡片
    （学 Apple：卡片是内容分组，不是装饰；卡片内表单全部落到白底输入框） */
-.hero-goals{
-  margin-top:52px;
-  max-width:760px;
+.learn-goals{
+  margin-top:28px;
+  max-width:none;
   padding:26px 28px;
   background:var(--cream);
   border:1px solid var(--line);
   border-radius:var(--pm2-r-md);
 }
-.hero-goals .goal-row{padding:12px 0}
-.hero-goals .goal-cat{border-color:rgba(22,26,16,.20);background:#fff}
-.hero-goals .goal-title{letter-spacing:-.005em}
-.hero-goals .goal-form{gap:10px}
-.hero-goals .goal-form input,
-.hero-goals .goal-form select{background:#fff;border-radius:12px}
-.hero-goals .goal-add{border-radius:999px;padding:12px 22px}
-.hero-goals .hn-note{margin-top:14px}
+.learn-goals .goal-row{padding:12px 0}
+.learn-goals .goal-cat{border-color:rgba(22,26,16,.20);background:#fff}
+.learn-goals .goal-title{letter-spacing:-.005em}
+.learn-goals .goal-form{gap:10px}
+.learn-goals .goal-form input,
+.learn-goals .goal-form select{background:#fff;border-radius:12px}
+.learn-goals .goal-add{border-radius:10px;padding:12px 22px}
+.learn-goals .hn-note{margin-top:14px}
 
 /* ==========================================================================
    2. 三大入口卡 —— 产品瓷砖（学 Apple：白瓷砖 + 28px 圆角 + 近乎零阴影；
@@ -1758,7 +1754,7 @@ table.g-tbl td{border-bottom:1px solid var(--line);padding:16px 16px 16px 0}
 @media (max-width:768px){
   .hero-in{padding:72px 16px 56px}
   .hero .lead{font-size:17px}
-  .hero-goals{padding:20px;margin-top:40px}
+  .learn-goals{padding:20px;margin-top:20px}
   .block{padding:64px 0}
   .g-head{padding:56px 0 22px}
   .g-sec h3{font-size:24px}
@@ -2201,11 +2197,13 @@ html.cx-js .cx-reveal.in{opacity:1;transform:translateY(0)}
 #sec-home .dir-grid .dir-card.cx-card:hover{border-color:var(--cx-blue-line)}
 #sec-home .dir-card.cx-card .cn{color:var(--cx-blue)}
 #sec-home .dir-card[hidden]{display:none}
-#heroGoals.cx-card{padding:20px 22px;border-top:3px solid var(--cx-blue)}
+#learnGoals.cx-card{padding:20px 22px;border-top:3px solid var(--cx-blue)}
 
 @media (prefers-reduced-motion:reduce){
   html.cx-js .cx-reveal{opacity:1;transform:none;transition:none}
   .cx-card,.cx-step-body,.cx-acc-body{transition:none}
+  .ix-fade,.glp-state.on{animation:none}
+  .ix-home .ix-face,.ix-board .ix-job,.ix-apply .ix-fill,.ix-documents .ix-fill,.ix-panel,.ix-btn,.ix-opt,.ix-tab,.ix-chip,.ix-item,.ix-dot,.glp-fill,.glp-btn,.glp-opt{transition:none}
 }
 </style>
 <style>
@@ -2445,7 +2443,7 @@ html.cx-js .cx-reveal.in{opacity:1;transform:translateY(0)}
 #gl-placement .glp-rainbow{
   height:3px;
   margin:0 -28px 24px;
-  background:linear-gradient(90deg,#1d4ed8 0%,#0f7b4d 34%,#e67700 67%,#d6336c 100%);
+  background:var(--cx-blue,#1d4ed8);
 }
 
 /* 三态切换 */
@@ -2478,7 +2476,7 @@ html.cx-js .cx-reveal.in{opacity:1;transform:translateY(0)}
 #gl-placement .glp-meta li{
   padding:6px 12px;
   border:1px solid var(--cx-line,#e7e5e0);
-  border-radius:999px;
+  border-radius:10px;
   background:var(--cx-paper,#fafaf8);
   font-size:13px;font-weight:600;line-height:1.4;
 }
@@ -2487,10 +2485,10 @@ html.cx-js .cx-reveal.in{opacity:1;transform:translateY(0)}
 /* 按钮 */
 #gl-placement .glp-actions{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin-top:18px}
 #gl-placement .glp-btn{
-  border-radius:999px;
+  border-radius:10px;
   padding:12px 24px;
   font-size:15px;font-weight:700;line-height:1.4;
-  transition:opacity 240ms ease-out,background-color 240ms ease-out,border-color 240ms ease-out;
+  transition:opacity 320ms var(--ease),background-color 320ms var(--ease),border-color 320ms var(--ease);
 }
 #gl-placement .glp-btn-primary{
   background:var(--cx-blue,#1d4ed8);
@@ -2518,7 +2516,7 @@ html.cx-js .cx-reveal.in{opacity:1;transform:translateY(0)}
 #gl-placement .glp-qnum{font-size:14px;font-weight:700;color:var(--cx-text,#26292e)}
 #gl-placement .glp-qtag{
   padding:3px 10px;
-  border-radius:999px;
+  border-radius:8px;
   background:var(--cx-blue-soft,rgba(29,78,216,.06));
   border:1px solid var(--cx-blue-line,rgba(29,78,216,.35));
   color:var(--cx-blue,#1d4ed8);
@@ -2533,7 +2531,7 @@ html.cx-js .cx-reveal.in{opacity:1;transform:translateY(0)}
 #gl-placement .glp-fill{
   height:100%;width:0;border-radius:999px;
   background:var(--cx-blue,#1d4ed8);
-  transition:width 240ms ease-out;
+  transition:width 320ms var(--ease);
 }
 #gl-placement .glp-q{
   margin:0 0 18px;
@@ -2550,7 +2548,7 @@ html.cx-js .cx-reveal.in{opacity:1;transform:translateY(0)}
   border-radius:14px;
   font-size:16px;line-height:1.5;
   color:var(--cx-text,#26292e);
-  transition:border-color 240ms ease-out,background-color 240ms ease-out,opacity 240ms ease-out;
+  transition:border-color 320ms var(--ease),background-color 320ms var(--ease),opacity 320ms var(--ease);
 }
 #gl-placement .glp-opt:hover:not(:disabled){border-color:var(--cx-blue,#1d4ed8)}
 #gl-placement .glp-opt:disabled{cursor:default;opacity:.92}
@@ -2604,7 +2602,7 @@ html.cx-js .cx-reveal.in{opacity:1;transform:translateY(0)}
   background:var(--cx-card,#fff);
   border:1px solid var(--cx-line,#e7e5e0);
   border-radius:16px;
-  transition:border-color 240ms ease-out,box-shadow 240ms ease-out;
+  transition:border-color 320ms var(--ease),box-shadow 320ms var(--ease);
 }
 #gl-placement .glp-rec:hover{border-color:var(--cx-blue-line,rgba(29,78,216,.35));box-shadow:0 12px 28px -18px rgba(16,20,24,.28)}
 #gl-placement .glp-rec-cat{display:block;font-size:15px;font-weight:700;line-height:1.5;color:var(--cx-ink,#101418)}
@@ -2654,7 +2652,6 @@ html.cx-js .cx-reveal.in{opacity:1;transform:translateY(0)}
   #hero .lead { order: 4; }
   #hero .map-wrap { order: 5; margin-top: 22px; }
   #hero .hero-cta-row { order: 6; }
-  #hero #heroGoals { order: 7; }
 }
 </style>
 </head>
@@ -2721,35 +2718,6 @@ html.cx-js .cx-reveal.in{opacity:1;transform:translateY(0)}
       <button type="button" class="btn-cta magnetic" data-goto="learn" data-i18n="hero.004">开始学德语 <span class="arr">&rarr;</span></button>
       <button type="button" class="btn-ghost magnetic" data-goto="life" data-i18n="hero.005">看看德国生活 <span class="arr">&rarr;</span></button>
     </div>
-    <div class="hero-goals cx-card cx-reveal" id="heroGoals">
-  <div class="hn-tag" data-i18n="hero.006">MEINE ZIELE &middot; 我的目标</div>
-
-  <div class="goals-sec">
-    <div class="goals-sec-head">长期目标</div>
-    <div class="goal-list" id="goalList"></div>
-    <form class="goal-form" id="goalForm" autocomplete="off">
-      <input type="text" id="goalTitle" placeholder="目标，比如：考出 B1" maxlength="24" required data-i18n-ph="hero.007">
-      <select id="goalCat" aria-label="目标分类" data-i18n-aria="hero.008">
-        <option value="语言考试" data-i18n="hero.009">语言考试</option>
-        <option value="学习任务" data-i18n="hero.010">学习任务</option>
-        <option value="生活" data-i18n="hero.011">生活</option>
-        <option value="其他" data-i18n="hero.012">其他</option>
-      </select>
-      <input type="date" id="goalDate">
-      <button type="submit" class="goal-add" id="goalSubmit" data-i18n="hero.013">＋ 添加目标</button>
-      <button type="button" class="goal-cancel" id="goalCancel" hidden data-i18n="hero.014">取消</button>
-    </form>
-  </div>
-
-  <div class="goals-sec">
-    <div class="goals-sec-head">今日目标 <span class="goals-date" id="dailyDate"></span></div>
-    <div class="daily-list" id="dailyList"></div>
-    <form class="daily-form" id="dailyForm" autocomplete="off">
-      <input type="text" id="dailyTitle" placeholder="今天要做的事，比如：背 30 个单词" maxlength="40" required data-i18n-ph="hero.015">
-      <button type="submit" class="goal-add" data-i18n="hero.016">＋ 添加</button>
-    </form>
-  </div>
-</div>
 <div class="map-wrap" id="heroMap">
   <svg class="map-svg" viewBox="-6 -6 580 776" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" role="group" aria-label="Deutschlandkarte: 16 Bundesländer, zum Auswählen">
   <defs>
@@ -2892,12 +2860,12 @@ html.cx-js .cx-reveal.in{opacity:1;transform:translateY(0)}
 </div>
 <style>
 .ix-home{background:#fafaf8;border:1px solid #e5e2dc;border-radius:20px;padding:18px 20px;color:#101418;margin:0 0 24px}
-.ix-home .ix-bar{height:3px;border-radius:99px;background:linear-gradient(90deg,#f87171,#fbbf24,#34d399,#60a5fa,#a78bfa);margin-bottom:12px}
+.ix-home .ix-bar{height:1px;border-radius:0;background:#e5e2dc;margin-bottom:12px}
 .ix-home .ix-title{font-size:17px;font-weight:700;margin:0 0 4px}
 .ix-home .ix-sub{font-size:13px;color:#5b6470;margin:0 0 14px}
 .ix-home .ix-word-card{display:block;width:100%;text-align:left;background:#fff;border:1px solid #e5e2dc;border-radius:20px;padding:22px 20px;cursor:pointer;position:relative;min-height:132px;color:#101418;font:inherit}
 .ix-home .ix-word-card:focus-visible{outline:2px solid #1d4ed8;outline-offset:2px}
-.ix-home .ix-face{display:flex;flex-direction:column;gap:6px;transition:opacity 240ms ease,transform 240ms ease}
+.ix-home .ix-face{display:flex;flex-direction:column;gap:6px;transition:opacity 320ms var(--ease),transform 320ms var(--ease)}
 .ix-home .ix-back{position:absolute;inset:22px 20px;opacity:0;transform:translateY(6px);pointer-events:none}
 .ix-home .ix-word-card.ix-flipped .ix-front{opacity:0;transform:translateY(-6px)}
 .ix-home .ix-word-card.ix-flipped .ix-back{opacity:1;transform:translateY(0)}
@@ -2906,7 +2874,7 @@ html.cx-js .cx-reveal.in{opacity:1;transform:translateY(0)}
 .ix-home .ix-word-cat{font-size:12px;color:#5b6470}
 .ix-home .ix-word-hint{font-size:12px;color:#1d4ed8}
 .ix-home .ix-row{display:flex;align-items:center;gap:12px;margin-top:14px}
-.ix-home .ix-btn{background:#1d4ed8;color:#fff;border:0;border-radius:999px;padding:9px 18px;font-size:14px;cursor:pointer}
+.ix-home .ix-btn{background:#1d4ed8;color:#fff;border:0;border-radius:10px;padding:9px 18px;font-size:14px;cursor:pointer}
 .ix-home .ix-btn:focus-visible{outline:2px solid #1d4ed8;outline-offset:2px}
 .ix-home .ix-note{font-size:12px;color:#5b6470}
 </style>
@@ -3074,21 +3042,21 @@ html.cx-js .cx-reveal.in{opacity:1;transform:translateY(0)}
 </div>
 <style>
 .ix-board{background:#fafaf8;border:1px solid #e5e2dc;border-radius:20px;padding:18px 20px;color:#101418;margin:0 0 24px}
-.ix-board .ix-bar{height:3px;border-radius:99px;background:linear-gradient(90deg,#f87171,#fbbf24,#34d399,#60a5fa,#a78bfa);margin-bottom:12px}
+.ix-board .ix-bar{height:1px;border-radius:0;background:#e5e2dc;margin-bottom:12px}
 .ix-board .ix-title{font-size:17px;font-weight:700;margin:0 0 4px}
 .ix-board .ix-sub{font-size:13px;color:#5b6470;margin:0 0 14px}
 .ix-board .ix-row{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
-.ix-board .ix-btn{background:#1d4ed8;color:#fff;border:0;border-radius:999px;padding:9px 18px;font-size:14px;cursor:pointer}
+.ix-board .ix-btn{background:#1d4ed8;color:#fff;border:0;border-radius:10px;padding:9px 18px;font-size:14px;cursor:pointer}
 .ix-board .ix-btn:focus-visible{outline:2px solid #1d4ed8;outline-offset:2px}
 .ix-board .ix-note{font-size:12px;color:#5b6470}
 .ix-board .ix-result{margin-top:14px}
 .ix-board .ix-empty{font-size:14px;color:#5b6470;margin:0}
-.ix-board .ix-job{background:#fff;border:1px solid #e5e2dc;border-radius:20px;padding:16px 18px;transition:opacity 240ms ease,transform 240ms ease}
+.ix-board .ix-job{background:#fff;border:1px solid #e5e2dc;border-radius:20px;padding:16px 18px;transition:opacity 320ms var(--ease),transform 320ms var(--ease)}
 .ix-board .ix-job.ix-in{opacity:0;transform:translateY(6px)}
 .ix-board .ix-occ{font-size:18px;font-weight:700;margin:0 0 4px}
 .ix-board .ix-emp{font-size:13px;color:#5b6470;margin:0 0 10px}
 .ix-board .ix-chips{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 10px}
-.ix-board .ix-chip{font-size:12px;background:#fafaf8;border:1px solid #e5e2dc;border-radius:999px;padding:4px 10px}
+.ix-board .ix-chip{font-size:12px;background:#fafaf8;border:1px solid #e5e2dc;border-radius:10px;padding:4px 10px}
 .ix-board .ix-chip.ix-blue{color:#1d4ed8;border-color:#1d4ed8}
 .ix-board .ix-fit{font-size:13px;margin:0 0 10px}
 .ix-board .ix-link{font-size:14px;color:#1d4ed8;text-decoration:none}
@@ -3520,16 +3488,16 @@ html.cx-js .cx-reveal.in{opacity:1;transform:translateY(0)}
 </div>
 <style>
 .ix-apply{background:#fafaf8;border:1px solid #e5e2dc;border-radius:20px;padding:18px 20px;color:#101418;margin:0 0 24px}
-.ix-apply .ix-bar{height:3px;border-radius:99px;background:linear-gradient(90deg,#f87171,#fbbf24,#34d399,#60a5fa,#a78bfa);margin-bottom:12px}
+.ix-apply .ix-bar{height:1px;border-radius:0;background:#e5e2dc;margin-bottom:12px}
 .ix-apply .ix-title{font-size:17px;font-weight:700;margin:0 0 4px}
 .ix-apply .ix-sub{font-size:13px;color:#5b6470;margin:0 0 14px}
 .ix-apply .ix-progress{height:8px;border-radius:99px;background:#e9e6e0;overflow:hidden}
-.ix-apply .ix-fill{height:100%;width:0%;border-radius:99px;background:#1d4ed8;transition:width 240ms ease}
+.ix-apply .ix-fill{height:100%;width:0%;border-radius:99px;background:#1d4ed8;transition:width 320ms var(--ease)}
 .ix-apply .ix-count{font-size:13px;margin:8px 0 12px}
 .ix-apply .ix-steps{list-style:none;margin:0;padding:0;display:grid;gap:8px}
 .ix-apply .ix-check{display:flex;gap:10px;align-items:flex-start;background:#fff;border:1px solid #e5e2dc;border-radius:20px;padding:10px 12px;cursor:pointer;font-size:14px}
 .ix-apply .ix-check input{margin-top:2px;accent-color:#1d4ed8}
-.ix-apply .ix-done{font-size:14px;color:#1d4ed8;margin:14px 0 0;transition:opacity 240ms ease,transform 240ms ease}
+.ix-apply .ix-done{font-size:14px;color:#1d4ed8;margin:14px 0 0;transition:opacity 320ms var(--ease),transform 320ms var(--ease)}
 </style>
 <script>
 (function () {
@@ -3648,14 +3616,14 @@ html.cx-js .cx-reveal.in{opacity:1;transform:translateY(0)}
 </div>
 <style>
 .ix-documents{background:#fafaf8;border:1px solid #e5e2dc;border-radius:20px;padding:18px 20px;color:#101418;margin:0 0 24px}
-.ix-documents .ix-bar{height:3px;border-radius:99px;background:linear-gradient(90deg,#f87171,#fbbf24,#34d399,#60a5fa,#a78bfa);margin-bottom:12px}
+.ix-documents .ix-bar{height:1px;border-radius:0;background:#e5e2dc;margin-bottom:12px}
 .ix-documents .ix-title{font-size:17px;font-weight:700;margin:0 0 4px}
 .ix-documents .ix-sub{font-size:13px;color:#5b6470;margin:0 0 14px}
 .ix-documents .ix-progress{height:8px;border-radius:99px;background:#e9e6e0;overflow:hidden}
-.ix-documents .ix-fill{height:100%;width:0%;border-radius:99px;background:#1d4ed8;transition:width 240ms ease}
+.ix-documents .ix-fill{height:100%;width:0%;border-radius:99px;background:#1d4ed8;transition:width 320ms var(--ease)}
 .ix-documents .ix-count{font-size:14px;margin:8px 0 4px}
 .ix-documents .ix-missing{font-size:13px;color:#5b6470;margin:0}
-.ix-documents .ix-done{font-size:14px;color:#1d4ed8;margin:10px 0 0;transition:opacity 240ms ease,transform 240ms ease}
+.ix-documents .ix-done{font-size:14px;color:#1d4ed8;margin:10px 0 0;transition:opacity 320ms var(--ease),transform 320ms var(--ease)}
 </style>
 <script>
 (function () {
@@ -3851,7 +3819,7 @@ html.cx-js .cx-reveal.in{opacity:1;transform:translateY(0)}
 </div>
 <style>
 .ix-visa{background:#fafaf8;border:1px solid #e5e2dc;border-radius:20px;padding:18px 20px;color:#101418;margin:0 0 24px}
-.ix-visa .ix-bar{height:3px;border-radius:99px;background:linear-gradient(90deg,#f87171,#fbbf24,#34d399,#60a5fa,#a78bfa);margin-bottom:12px}
+.ix-visa .ix-bar{height:1px;border-radius:0;background:#e5e2dc;margin-bottom:12px}
 .ix-visa .ix-title{font-size:17px;font-weight:700;margin:0 0 4px}
 .ix-visa .ix-sub{font-size:13px;color:#5b6470;margin:0 0 10px}
 .ix-visa .ix-count{font-size:13px;margin:0 0 12px}
@@ -3859,15 +3827,15 @@ html.cx-js .cx-reveal.in{opacity:1;transform:translateY(0)}
 .ix-visa .ix-q{background:#fff;border:1px solid #e5e2dc;border-radius:20px;padding:14px 16px}
 .ix-visa .ix-q-text{font-size:14px;margin:0 0 10px}
 .ix-visa .ix-q-tag{display:block;font-size:12px;color:#5b6470;margin-bottom:4px}
-.ix-visa .ix-opts{display:flex;gap:8px}
-.ix-visa .ix-opt{background:#fff;border:1px solid #d8d5cf;border-radius:999px;padding:7px 18px;font-size:14px;cursor:pointer;color:#101418}
+.ix-visa .ix-opts{display:grid;gap:8px}
+.ix-visa .ix-opt{background:#fff;border:1px solid #d8d5cf;border-radius:10px;padding:10px 14px;font-size:14px;cursor:pointer;color:#101418;text-align:left}
 .ix-visa .ix-opt:focus-visible{outline:2px solid #1d4ed8;outline-offset:2px}
 .ix-visa .ix-opt:disabled{cursor:default;opacity:.55}
 .ix-visa .ix-opt.ix-picked{border-color:#1d4ed8;color:#1d4ed8}
-.ix-visa .ix-feedback{font-size:13px;margin:10px 0 0;transition:opacity 240ms ease,transform 240ms ease}
+.ix-visa .ix-feedback{font-size:13px;margin:10px 0 0;transition:opacity 320ms var(--ease),transform 320ms var(--ease)}
 .ix-visa .ix-feedback.ix-ok{color:#1d4ed8}
-.ix-visa .ix-verdict{font-size:14px;background:#fff;border:1px solid #1d4ed8;border-radius:20px;padding:14px 16px;margin-top:14px;transition:opacity 240ms ease,transform 240ms ease}
-.ix-visa .ix-btn{margin-top:12px;background:#1d4ed8;color:#fff;border:0;border-radius:999px;padding:9px 18px;font-size:14px;cursor:pointer}
+.ix-visa .ix-verdict{font-size:14px;background:#fff;border:1px solid #1d4ed8;border-radius:20px;padding:14px 16px;margin-top:14px;transition:opacity 320ms var(--ease),transform 320ms var(--ease)}
+.ix-visa .ix-btn{margin-top:12px;background:#1d4ed8;color:#fff;border:0;border-radius:10px;padding:9px 18px;font-size:14px;cursor:pointer}
 .ix-visa .ix-btn.ix-ghost{background:#fff;border:1px solid #d8d5cf;color:#101418}
 </style>
 <script>
@@ -4173,14 +4141,14 @@ html.cx-js .cx-reveal.in{opacity:1;transform:translateY(0)}
 </div>
 <style>
 .ix-recognition{background:#fafaf8;border:1px solid #e5e2dc;border-radius:20px;padding:18px 20px;color:#101418;margin:0 0 24px}
-.ix-recognition .ix-bar{height:3px;border-radius:99px;background:linear-gradient(90deg,#f87171,#fbbf24,#34d399,#60a5fa,#a78bfa);margin-bottom:12px}
+.ix-recognition .ix-bar{height:1px;border-radius:0;background:#e5e2dc;margin-bottom:12px}
 .ix-recognition .ix-title{font-size:17px;font-weight:700;margin:0 0 4px}
 .ix-recognition .ix-sub{font-size:13px;color:#5b6470;margin:0 0 14px}
 .ix-recognition .ix-tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
-.ix-recognition .ix-tab{background:#fff;border:1px solid #d8d5cf;border-radius:999px;padding:8px 16px;font-size:14px;cursor:pointer;color:#101418}
+.ix-recognition .ix-tab{background:#fff;border:1px solid #d8d5cf;border-radius:10px;padding:8px 16px;font-size:14px;cursor:pointer;color:#101418}
 .ix-recognition .ix-tab:focus-visible{outline:2px solid #1d4ed8;outline-offset:2px}
 .ix-recognition .ix-tab.ix-active{background:#1d4ed8;border-color:#1d4ed8;color:#fff}
-.ix-recognition .ix-panel{background:#fff;border:1px solid #e5e2dc;border-radius:20px;padding:16px 18px;transition:opacity 240ms ease,transform 240ms ease}
+.ix-recognition .ix-panel{background:#fff;border:1px solid #e5e2dc;border-radius:20px;padding:16px 18px;transition:opacity 320ms var(--ease),transform 320ms var(--ease)}
 .ix-recognition .ix-panel.ix-in{opacity:0;transform:translateY(6px)}
 .ix-recognition .ix-panel h4{font-size:16px;margin:0 0 10px}
 .ix-recognition .ix-panel p{font-size:14px;margin:0 0 8px}
@@ -4321,7 +4289,7 @@ html.cx-js .cx-reveal.in{opacity:1;transform:translateY(0)}
 </div>
 <style>
 .ix-language{background:#fafaf8;border:1px solid #e5e2dc;border-radius:20px;padding:18px 20px;color:#101418;margin:0 0 24px}
-.ix-language .ix-bar{height:3px;border-radius:99px;background:linear-gradient(90deg,#f87171,#fbbf24,#34d399,#60a5fa,#a78bfa);margin-bottom:12px}
+.ix-language .ix-bar{height:1px;border-radius:0;background:#e5e2dc;margin-bottom:12px}
 .ix-language .ix-title{font-size:17px;font-weight:700;margin:0 0 4px}
 .ix-language .ix-sub{font-size:13px;color:#5b6470;margin:0 0 14px}
 .ix-language .ix-ladder{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:12px}
@@ -4330,7 +4298,7 @@ html.cx-js .cx-reveal.in{opacity:1;transform:translateY(0)}
 .ix-language .ix-rung.ix-active{background:#1d4ed8;border-color:#1d4ed8;color:#fff}
 .ix-language .ix-lv{font-size:18px;font-weight:700}
 .ix-language .ix-lv-sub{font-size:11px;opacity:.75}
-.ix-language .ix-panel{background:#fff;border:1px solid #e5e2dc;border-radius:20px;padding:16px 18px;transition:opacity 240ms ease,transform 240ms ease}
+.ix-language .ix-panel{background:#fff;border:1px solid #e5e2dc;border-radius:20px;padding:16px 18px;transition:opacity 320ms var(--ease),transform 320ms var(--ease)}
 .ix-language .ix-panel.ix-in{opacity:0;transform:translateY(6px)}
 .ix-language .ix-panel h4{font-size:16px;margin:0 0 10px}
 .ix-language .ix-panel p{font-size:14px;margin:0 0 8px}
@@ -4533,7 +4501,7 @@ html.cx-js .cx-reveal.in{opacity:1;transform:translateY(0)}
 </div>
 <style>
 .ix-costs{background:#fafaf8;border:1px solid #e5e2dc;border-radius:20px;padding:18px 20px;color:#101418;margin:0 0 24px}
-.ix-costs .ix-bar{height:3px;border-radius:99px;background:linear-gradient(90deg,#f87171,#fbbf24,#34d399,#60a5fa,#a78bfa);margin-bottom:12px}
+.ix-costs .ix-bar{height:1px;border-radius:0;background:#e5e2dc;margin-bottom:12px}
 .ix-costs .ix-title{font-size:17px;font-weight:700;margin:0 0 4px}
 .ix-costs .ix-sub{font-size:13px;color:#5b6470;margin:0 0 14px}
 .ix-costs .ix-rows{display:grid;gap:14px}
@@ -4696,7 +4664,7 @@ html.cx-js .cx-reveal.in{opacity:1;transform:translateY(0)}
 
 <style>
 .ix-res{background:#fafaf8;border:1px solid #e7e5e0;border-radius:20px;padding:20px;margin:16px 0;color:#101418}
-.ix-res .ix-bar{height:3px;border-radius:99px;background:linear-gradient(90deg,#f87171,#fbbf24,#34d399,#60a5fa,#a78bfa);margin-bottom:14px}
+.ix-res .ix-bar{height:1px;border-radius:0;background:#e5e2dc;margin-bottom:14px}
 .ix-res h3{margin:0 0 6px;font-size:17px;line-height:1.4}
 .ix-res .ix-lead{font-size:14px;line-height:1.7;margin:0 0 14px;opacity:.85}
 .ix-res .ix-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin-bottom:14px}
@@ -4705,7 +4673,7 @@ html.cx-js .cx-reveal.in{opacity:1;transform:translateY(0)}
 .ix-res input,.ix-res select{width:100%;box-sizing:border-box;border:1px solid #d8d5cf;border-radius:12px;padding:9px 12px;font-size:14px;background:#fff;color:#101418}
 .ix-res .ix-check{display:flex;gap:8px;align-items:flex-start;font-size:13px;line-height:1.6;margin:0 0 14px}
 .ix-res .ix-check input{width:auto;margin-top:3px}
-.ix-res .ix-btn{background:#1d4ed8;color:#fff;border:0;border-radius:999px;padding:9px 20px;font-size:14px;cursor:pointer;transition:opacity 240ms ease,transform 240ms ease}
+.ix-res .ix-btn{background:#1d4ed8;color:#fff;border:0;border-radius:10px;padding:9px 20px;font-size:14px;cursor:pointer;transition:opacity 320ms var(--ease),transform 320ms var(--ease)}
 .ix-res .ix-btn:hover{opacity:.88}
 .ix-res .ix-btn:active{transform:translateY(1px)}
 .ix-res .ix-out{margin-top:16px;border-top:1px solid #e7e5e0;padding-top:14px}
@@ -4714,7 +4682,7 @@ html.cx-js .cx-reveal.in{opacity:1;transform:translateY(0)}
 .ix-res .ix-row b{color:#1d4ed8;white-space:nowrap}
 .ix-res .ix-note{font-size:13px;line-height:1.7;opacity:.75;margin:10px 0 0}
 .ix-res .ix-warn{font-size:13px;line-height:1.7;margin:10px 0 0;padding:10px 12px;border:1px solid #d8d5cf;border-radius:12px}
-.ix-fade{animation:ix-fade 240ms ease both}
+.ix-fade{animation:ix-fade 320ms var(--ease) both}
 @keyframes ix-fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
 </style>
 <div class="ix-res" id="ix-residence">
@@ -4894,7 +4862,7 @@ html.cx-js .cx-reveal.in{opacity:1;transform:translateY(0)}
 
 <style>
 .ix-tl{background:#fafaf8;border:1px solid #e7e5e0;border-radius:20px;padding:20px;margin:16px 0;color:#101418}
-.ix-tl .ix-bar{height:3px;border-radius:99px;background:linear-gradient(90deg,#f87171,#fbbf24,#34d399,#60a5fa,#a78bfa);margin-bottom:14px}
+.ix-tl .ix-bar{height:1px;border-radius:0;background:#e5e2dc;margin-bottom:14px}
 .ix-tl h3{margin:0 0 6px;font-size:17px;line-height:1.4}
 .ix-tl .ix-lead{font-size:14px;line-height:1.7;margin:0 0 14px;opacity:.85}
 .ix-tl .ix-cur{font-size:15px;font-weight:700;color:#1d4ed8;margin:0 0 8px}
@@ -4905,7 +4873,7 @@ html.cx-js .cx-reveal.in{opacity:1;transform:translateY(0)}
 .ix-tl .ix-row b{color:#1d4ed8;white-space:nowrap}
 .ix-tl .ix-note{font-size:13px;line-height:1.7;opacity:.75;margin:10px 0 0}
 .ix-tl .ix-warn{font-size:13px;line-height:1.7;margin:10px 0 0;padding:10px 12px;border:1px solid #d8d5cf;border-radius:12px}
-.ix-fade{animation:ix-fade 240ms ease both}
+.ix-fade{animation:ix-fade 320ms var(--ease) both}
 @keyframes ix-fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
 </style>
 <div class="ix-tl" id="ix-timeline">
@@ -5030,17 +4998,17 @@ html.cx-js .cx-reveal.in{opacity:1;transform:translateY(0)}
 
 <style>
 .ix-faq{background:#fafaf8;border:1px solid #e7e5e0;border-radius:20px;padding:20px;margin:16px 0;color:#101418}
-.ix-faq .ix-bar{height:3px;border-radius:99px;background:linear-gradient(90deg,#f87171,#fbbf24,#34d399,#60a5fa,#a78bfa);margin-bottom:14px}
+.ix-faq .ix-bar{height:1px;border-radius:0;background:#e5e2dc;margin-bottom:14px}
 .ix-faq h3{margin:0 0 6px;font-size:17px;line-height:1.4}
 .ix-faq .ix-row{display:flex;gap:10px;align-items:center}
 .ix-faq input{flex:1;min-width:0;border:1px solid #d8d5cf;border-radius:12px;padding:10px 12px;font-size:14px;background:#fff;color:#101418}
-.ix-faq .ix-btn{background:#1d4ed8;color:#fff;border:0;border-radius:999px;padding:9px 18px;font-size:14px;cursor:pointer;white-space:nowrap;transition:opacity 240ms ease,transform 240ms ease}
+.ix-faq .ix-btn{background:#1d4ed8;color:#fff;border:0;border-radius:10px;padding:9px 18px;font-size:14px;cursor:pointer;white-space:nowrap;transition:opacity 320ms var(--ease),transform 320ms var(--ease)}
 .ix-faq .ix-btn:hover{opacity:.88}
 .ix-faq .ix-btn:active{transform:translateY(1px)}
 .ix-faq .ix-btn-ghost{background:transparent;color:#101418;border:1px solid #d8d5cf}
 .ix-faq .ix-count{font-size:13px;line-height:1.6;opacity:.75;margin:10px 0 0}
 .ix-faq .ix-empty{font-size:14px;line-height:1.7;margin:10px 0 0;padding:10px 12px;border:1px solid #d8d5cf;border-radius:12px}
-.ix-fade{animation:ix-fade 240ms ease both}
+.ix-fade{animation:ix-fade 320ms var(--ease) both}
 @keyframes ix-fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
 </style>
 <div class="ix-faq" id="ix-faq">
@@ -5289,23 +5257,24 @@ html.cx-js .cx-reveal.in{opacity:1;transform:translateY(0)}
 
 <style>
 .ix-pit{background:#fafaf8;border:1px solid #e7e5e0;border-radius:20px;padding:20px;margin:16px 0;color:#101418}
-.ix-pit .ix-bar{height:3px;border-radius:99px;background:linear-gradient(90deg,#f87171,#fbbf24,#34d399,#60a5fa,#a78bfa);margin-bottom:14px}
+.ix-pit .ix-bar{height:1px;border-radius:0;background:#e5e2dc;margin-bottom:14px}
 .ix-pit h3{margin:0 0 6px;font-size:17px;line-height:1.4}
 .ix-pit .ix-lead{font-size:14px;line-height:1.7;margin:0 0 14px;opacity:.85}
 .ix-pit .ix-score{font-size:14px;font-weight:700;color:#1d4ed8;margin:0 0 14px}
 .ix-pit .ix-card{border:1px solid #e7e5e0;border-radius:20px;padding:16px;margin-bottom:12px;background:#fff}
 .ix-pit .ix-q{font-size:14px;line-height:1.7;margin:0 0 12px}
 .ix-pit .ix-q b{display:block;font-size:12px;opacity:.6;margin-bottom:4px;font-weight:600}
-.ix-pit .ix-opts{display:flex;gap:10px;flex-wrap:wrap}
-.ix-pit .ix-btn{background:#1d4ed8;color:#fff;border:0;border-radius:999px;padding:8px 18px;font-size:14px;cursor:pointer;transition:opacity 240ms ease,transform 240ms ease}
+.ix-pit .ix-opts{display:grid;gap:8px}
+.ix-pit .ix-btn{background:#1d4ed8;color:#fff;border:0;border-radius:10px;padding:8px 18px;font-size:14px;cursor:pointer;transition:opacity 320ms var(--ease),transform 320ms var(--ease)}
 .ix-pit .ix-btn:hover{opacity:.88}
 .ix-pit .ix-btn:active{transform:translateY(1px)}
 .ix-pit .ix-btn-ghost{background:transparent;color:#101418;border:1px solid #d8d5cf}
 .ix-pit .ix-btn:disabled{opacity:.45;cursor:default}
-.ix-pit .ix-btn-picked{background:#101418}
+.ix-pit .ix-opts .ix-btn{background:#fff;color:#101418;border:1px solid #d8d5cf;text-align:left;width:100%}
+.ix-pit .ix-opts .ix-btn.ix-btn-picked{background:rgba(29,78,216,.06);border-color:#1d4ed8;color:#1d4ed8}
 .ix-pit .ix-why{font-size:13px;line-height:1.7;margin:12px 0 0;padding:10px 12px;border:1px solid #d8d5cf;border-radius:12px}
 .ix-pit .ix-why b{color:#1d4ed8}
-.ix-fade{animation:ix-fade 240ms ease both}
+.ix-fade{animation:ix-fade 320ms var(--ease) both}
 @keyframes ix-fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
 </style>
 <div class="ix-pit" id="ix-pitfalls">
@@ -6111,6 +6080,35 @@ html.cx-js .cx-reveal.in{opacity:1;transform:translateY(0)}
       <h2 data-i18n="learn.017">德语学习：听说读写、闪卡、默写、听写、错题、AI 陪练、大学申请</h2>
       <p class="g-lead cx-lead" data-i18n="learn.018">练德语的地方。邀请码就是你的账号：输码进入，进度、错题、打卡都存在你的档案里，换手机输码找回。不用注册、不用验证码。你的错题只在你自己的档案里，别人看不到。</p>
     </div>
+    <div class="learn-goals cx-card cx-reveal" id="learnGoals">
+  <div class="hn-tag" data-i18n="hero.006">MEINE ZIELE &middot; 我的目标</div>
+
+  <div class="goals-sec">
+    <div class="goals-sec-head">长期目标</div>
+    <div class="goal-list" id="goalList"></div>
+    <form class="goal-form" id="goalForm" autocomplete="off">
+      <input type="text" id="goalTitle" placeholder="目标，比如：考出 B1" maxlength="24" required data-i18n-ph="hero.007">
+      <select id="goalCat" aria-label="目标分类" data-i18n-aria="hero.008">
+        <option value="语言考试" data-i18n="hero.009">语言考试</option>
+        <option value="学习任务" data-i18n="hero.010">学习任务</option>
+        <option value="生活" data-i18n="hero.011">生活</option>
+        <option value="其他" data-i18n="hero.012">其他</option>
+      </select>
+      <input type="date" id="goalDate">
+      <button type="submit" class="goal-add" id="goalSubmit" data-i18n="hero.013">＋ 添加目标</button>
+      <button type="button" class="goal-cancel" id="goalCancel" hidden data-i18n="hero.014">取消</button>
+    </form>
+  </div>
+
+  <div class="goals-sec">
+    <div class="goals-sec-head">今日目标 <span class="goals-date" id="dailyDate"></span></div>
+    <div class="daily-list" id="dailyList"></div>
+    <form class="daily-form" id="dailyForm" autocomplete="off">
+      <input type="text" id="dailyTitle" placeholder="今天要做的事，比如：背 30 个单词" maxlength="40" required data-i18n-ph="hero.015">
+      <button type="submit" class="goal-add" data-i18n="hero.016">＋ 添加</button>
+    </form>
+  </div>
+</div>
     <div class="gl-tabs cx-card" role="tablist" aria-label="德语学习栏目" data-i18n-aria="learn.019">
           <button type="button" class="gl-tab cx-chip on" data-gl-tab="invite" data-i18n="gate.003">邀请码</button>
           <button type="button" class="gl-tab cx-chip" data-gl-tab="flash" data-i18n="learn.020">闪卡</button>
@@ -6179,18 +6177,18 @@ html.cx-js .cx-reveal.in{opacity:1;transform:translateY(0)}
 
 <style>
 .ix-learn{background:#fafaf8;border:1px solid #e7e5e0;border-radius:20px;padding:20px;margin:16px 0;color:#101418}
-.ix-learn .ix-bar{height:3px;border-radius:99px;background:linear-gradient(90deg,#f87171,#fbbf24,#34d399,#60a5fa,#a78bfa);margin-bottom:14px}
+.ix-learn .ix-bar{height:1px;border-radius:0;background:#e5e2dc;margin-bottom:14px}
 .ix-learn h3{margin:0 0 6px;font-size:17px;line-height:1.4}
 .ix-learn .ix-lead{font-size:14px;line-height:1.7;margin:0 0 14px;opacity:.85}
 .ix-learn .ix-word{font-size:22px;font-weight:700;line-height:1.4;margin:0 0 4px}
 .ix-learn .ix-cat{font-size:13px;opacity:.65;margin:0 0 14px}
 .ix-learn .ix-opts{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px}
-.ix-learn .ix-opt{background:#fff;color:#101418;border:1px solid #d8d5cf;border-radius:12px;padding:11px 12px;font-size:14px;line-height:1.5;cursor:pointer;text-align:left;transition:opacity 240ms ease,transform 240ms ease}
+.ix-learn .ix-opt{background:#fff;color:#101418;border:1px solid #d8d5cf;border-radius:12px;padding:11px 12px;font-size:14px;line-height:1.5;cursor:pointer;text-align:left;transition:opacity 320ms var(--ease),transform 320ms var(--ease)}
 .ix-learn .ix-opt:hover:not(:disabled){opacity:.85}
 .ix-learn .ix-opt:disabled{cursor:default}
 .ix-learn .ix-opt-good{border-color:#1d4ed8;color:#1d4ed8;font-weight:700}
 .ix-learn .ix-opt-bad{opacity:.45}
-.ix-learn .ix-btn{background:#1d4ed8;color:#fff;border:0;border-radius:999px;padding:9px 20px;font-size:14px;cursor:pointer;transition:opacity 240ms ease,transform 240ms ease}
+.ix-learn .ix-btn{background:#1d4ed8;color:#fff;border:0;border-radius:10px;padding:9px 20px;font-size:14px;cursor:pointer;transition:opacity 320ms var(--ease),transform 320ms var(--ease)}
 .ix-learn .ix-btn:hover{opacity:.88}
 .ix-learn .ix-btn:active{transform:translateY(1px)}
 .ix-learn .ix-btn-ghost{background:transparent;color:#101418;border:1px solid #d8d5cf}
@@ -6198,7 +6196,7 @@ html.cx-js .cx-reveal.in{opacity:1;transform:translateY(0)}
 .ix-learn .ix-score{font-size:14px;font-weight:700;color:#1d4ed8;margin:0 0 12px}
 .ix-learn .ix-fb{font-size:14px;line-height:1.7;margin:0 0 12px;min-height:24px}
 .ix-learn .ix-note{font-size:13px;line-height:1.7;opacity:.75;margin:12px 0 0}
-.ix-fade{animation:ix-fade 240ms ease both}
+.ix-fade{animation:ix-fade 320ms var(--ease) both}
 @keyframes ix-fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
 </style>
 <div class="ix-learn" id="ix-learn">
@@ -6728,18 +6726,18 @@ html.cx-js .cx-reveal.in{opacity:1;transform:translateY(0)}
 
 <style>
 .ix-adm{background:#fafaf8;border:1px solid #e7e5e0;border-radius:20px;padding:20px;margin:16px 0;color:#101418}
-.ix-adm .ix-bar{height:3px;border-radius:99px;background:linear-gradient(90deg,#f87171,#fbbf24,#34d399,#60a5fa,#a78bfa);margin-bottom:14px}
+.ix-adm .ix-bar{height:1px;border-radius:0;background:#e5e2dc;margin-bottom:14px}
 .ix-adm h3{margin:0 0 6px;font-size:17px;line-height:1.4}
 .ix-adm .ix-lead{font-size:14px;line-height:1.7;margin:0 0 14px;opacity:.85}
 .ix-adm .ix-chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
-.ix-adm .ix-chip{background:#fff;color:#101418;border:1px solid #d8d5cf;border-radius:999px;padding:7px 14px;font-size:13px;cursor:pointer;transition:opacity 240ms ease,transform 240ms ease}
+.ix-adm .ix-chip{background:#fff;color:#101418;border:1px solid #d8d5cf;border-radius:10px;padding:7px 14px;font-size:13px;cursor:pointer;transition:opacity 320ms var(--ease),transform 320ms var(--ease)}
 .ix-adm .ix-chip:hover{opacity:.85}
 .ix-adm .ix-chip-on{background:#1d4ed8;color:#fff;border-color:#1d4ed8}
 .ix-adm .ix-checks{display:flex;gap:16px;flex-wrap:wrap;font-size:13px;line-height:1.6}
 .ix-adm .ix-checks label{display:flex;gap:6px;align-items:center;cursor:pointer}
 .ix-adm .ix-checks input{accent-color:#1d4ed8}
 .ix-adm .ix-note{font-size:13px;line-height:1.7;opacity:.75;margin:12px 0 0}
-.ix-fade{animation:ix-fade 240ms ease both}
+.ix-fade{animation:ix-fade 320ms var(--ease) both}
 @keyframes ix-fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
 </style>
 <div class="ix-adm" id="ix-admission">
@@ -6949,27 +6947,27 @@ html.cx-js .cx-reveal.in{opacity:1;transform:translateY(0)}
 
 <style>
 .ix-life{background:#fafaf8;border:1px solid #e7e5e0;border-radius:20px;padding:20px;margin:16px 0;color:#101418}
-.ix-life .ix-bar{height:3px;border-radius:99px;background:linear-gradient(90deg,#f87171,#fbbf24,#34d399,#60a5fa,#a78bfa);margin-bottom:14px}
+.ix-life .ix-bar{height:1px;border-radius:0;background:#e5e2dc;margin-bottom:14px}
 .ix-life h3{margin:0 0 6px;font-size:17px;line-height:1.4}
 .ix-life .ix-lead{font-size:14px;line-height:1.7;margin:0 0 14px;opacity:.85}
 .ix-life .ix-prog{display:flex;align-items:center;gap:10px;margin-bottom:14px}
 .ix-life .ix-dots{display:flex;gap:6px}
-.ix-life .ix-dot{width:10px;height:10px;border-radius:50%;border:1px solid #d8d5cf;background:#fff;transition:opacity 240ms ease}
+.ix-life .ix-dot{width:10px;height:10px;border-radius:50%;border:1px solid #d8d5cf;background:#fff;transition:opacity 320ms var(--ease)}
 .ix-life .ix-dot-on{background:#1d4ed8;border-color:#1d4ed8}
 .ix-life .ix-count{font-size:14px;font-weight:700;color:#1d4ed8;margin:0}
-.ix-life .ix-item{display:flex;gap:10px;align-items:flex-start;border:1px solid #e7e5e0;border-radius:20px;padding:14px 16px;margin-bottom:10px;background:#fff;cursor:pointer;transition:opacity 240ms ease,transform 240ms ease}
+.ix-life .ix-item{display:flex;gap:10px;align-items:flex-start;border:1px solid #e7e5e0;border-radius:20px;padding:14px 16px;margin-bottom:10px;background:#fff;cursor:pointer;transition:opacity 320ms var(--ease),transform 320ms var(--ease)}
 .ix-life .ix-item:hover{opacity:.92}
 .ix-life .ix-item input{margin-top:3px;accent-color:#1d4ed8;flex:none}
 .ix-life .ix-item b{font-size:14px;line-height:1.5}
-.ix-life .ix-tag{display:inline-block;font-size:12px;font-weight:700;color:#1d4ed8;border:1px solid #1d4ed8;border-radius:999px;padding:1px 8px;margin-left:6px;vertical-align:1px}
+.ix-life .ix-tag{display:inline-block;font-size:12px;font-weight:700;color:#1d4ed8;border:1px solid #1d4ed8;border-radius:10px;padding:1px 8px;margin-left:6px;vertical-align:1px}
 .ix-life .ix-item p{font-size:13px;line-height:1.7;opacity:.8;margin:4px 0 0}
 .ix-life .ix-item-done{opacity:.55}
 .ix-life .ix-item-done b{text-decoration:line-through}
-.ix-life .ix-btn{background:transparent;color:#101418;border:1px solid #d8d5cf;border-radius:999px;padding:8px 18px;font-size:14px;cursor:pointer;transition:opacity 240ms ease,transform 240ms ease}
+.ix-life .ix-btn{background:transparent;color:#101418;border:1px solid #d8d5cf;border-radius:10px;padding:8px 18px;font-size:14px;cursor:pointer;transition:opacity 320ms var(--ease),transform 320ms var(--ease)}
 .ix-life .ix-btn:hover{opacity:.85}
 .ix-life .ix-btn:active{transform:translateY(1px)}
 .ix-life .ix-note{font-size:13px;line-height:1.7;opacity:.75;margin:12px 0 0}
-.ix-fade{animation:ix-fade 240ms ease both}
+.ix-fade{animation:ix-fade 320ms var(--ease) both}
 @keyframes ix-fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
 </style>
 <div class="ix-life" id="ix-life">
@@ -10663,7 +10661,7 @@ try{ initUnis(); }catch(e){}
 </style>
 <script>
 /* ===== 我的目标 (build/goals.js) ===== */
-/* 我的目标 (hero goals widget). No default goals: the lists start empty and
+/* 我的目标 (learn goals block, moved off the hero 2026-11-20). No default goals: the lists start empty and
    only show what the user adds.
    - Long-term goals (KEY 'goals'): category + title + optional date. Countdown
      shows only when the user set a date (per-box tickCd). Edit/delete supported.
