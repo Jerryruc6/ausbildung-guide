@@ -566,6 +566,9 @@ ol.steps ul{margin:10px 0 0;padding-left:20px}
 .chip[data-lang="b2"][aria-pressed="true"]{background:var(--orange);border-color:var(--orange)}
 .chip[data-lang="c1"][aria-pressed="true"]{background:var(--pink);border-color:var(--pink)}
 .chip[data-lang="range"][aria-pressed="true"]{background:var(--amber);border-color:var(--amber)}
+/* 修复：语言档 chips 点亮后文字与底色同色导致看不见（data-lang 点亮规则只写了底色、没写文字色，且 .chip-row .chip 的白底会盖掉通用点亮蓝底）。点亮态文字一律白色；“全部”档点亮时底色保持深蓝。 */
+#tierChips .chip[aria-pressed="true"]{color:#fff}
+#tierChips .chip[data-lang="all"][aria-pressed="true"]{background:var(--blue);border-color:var(--blue);color:#fff}
 .stat.hl2 .num{color:var(--blue)}
 .stat:nth-child(4) .num{color:var(--ink)}
 #sec-apply .g-no,#sec-apply .g-head h2 .em,#sec-apply .block h2 .em{color:var(--blue)}
