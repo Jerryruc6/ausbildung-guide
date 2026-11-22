@@ -12161,6 +12161,9 @@ try{ initUnis(); }catch(e){}
 .schaum-intro-lex{font-size:clamp(14px,3.4vw,21px);letter-spacing:.28em;text-transform:uppercase;color:rgba(255,255,255,.82)}
 .schaum-intro-tag{margin-top:10px;font-size:clamp(13px,3vw,16px);letter-spacing:.12em;color:rgba(255,255,255,.66)}
 .schaum-intro.phase-exit .schaum-intro-brand{transform:translateY(-6px) scale(.96)}
+.schaum-intro-video{position:absolute;inset:0;z-index:1;width:100%;height:100%;object-fit:contain;background:#05070D;display:none}
+.schaum-intro.phase-video .schaum-intro-video{display:block}
+.schaum-intro.phase-video .schaum-intro-glow,.schaum-intro.phase-video .schaum-intro-bands,.schaum-intro.phase-video .schaum-intro-stage{display:none}
 .schaum-intro-skip{position:absolute;top:calc(14px + env(safe-area-inset-top));right:calc(18px + env(safe-area-inset-right));z-index:3;min-width:64px;min-height:44px;padding:10px 18px;border:1px solid rgba(255,255,255,.35);border-radius:999px;background:rgba(255,255,255,.06);color:#fff;font:inherit;font-size:15px;cursor:pointer}
 .schaum-intro-skip:active{opacity:.7}
 .schaum-intro-skip:focus-visible{outline:2px solid #fff;outline-offset:2px}
@@ -12250,6 +12253,7 @@ try{ initUnis(); }catch(e){}
       for(i = 0; i < timers.length; i++) clearTimeout(timers[i]);
       timers = [];
       document.removeEventListener('keydown', onKey);
+      try{ var vv = el.querySelector('video'); if(vv) vv.pause(); }catch(e){}
       unlockScroll();
       if(el && el.parentNode) el.parentNode.removeChild(el);
     }
@@ -12278,6 +12282,39 @@ try{ initUnis(); }catch(e){}
       next.classList.add('on');
       sweep();
     }
+    /* MP4 开场：首访播 intro.mp4；加载/解码失败时回落 CSS 版 */
+    function tryVideo(){
+      var v = null;
+      try{
+        v = document.createElement('video');
+        v.className = 'schaum-intro-video';
+        v.muted = true;
+        v.setAttribute('muted', '');
+        v.setAttribute('playsinline', '');
+        v.setAttribute('preload', 'auto');
+        v.src = 'intro.mp4';
+      }catch(e){ return false; }
+      var started = false, fellBack = false;
+      var watchdog = setTimeout(function(){ if(!started) fallback(); }, 3500);
+      function fallback(){
+        if(fellBack || done) return;
+        fellBack = true;
+        clearTimeout(watchdog);
+        try{ v.pause(); }catch(e){}
+        try{ if(v.parentNode) v.parentNode.removeChild(v); }catch(e){}
+        el.classList.remove('phase-video');
+        runFull();
+      }
+      v.addEventListener('playing', function(){ started = true; clearTimeout(watchdog); });
+      v.addEventListener('ended', function(){ clearTimeout(watchdog); beginExit(); });
+      v.addEventListener('error', function(){ fallback(); });
+      el.appendChild(v);
+      el.classList.add('phase-video');
+      var pr = null;
+      try{ pr = v.play(); }catch(e){ fallback(); return true; }
+      if(pr && pr.catch) pr.catch(function(){ fallback(); });
+      return true;
+    }
     function runFull(){
       el.classList.add('phase-bands');
       later(function(){
@@ -12298,8 +12335,8 @@ try{ initUnis(); }catch(e){}
       if(done) return;
       var simple = seen || reduced || !animOK;
       try{ if(!seen) sessionStorage.setItem(KEY, '1'); }catch(e){}
-      /* 8 秒硬超时兜底：从播放开始计 */
-      setTimeout(function(){ if(!done){ done = true; cleanup(); } }, 8000);
+      /* 硬超时兜底：从播放开始计；视频版 14 秒，超时放宽到 20 秒 */
+      var hardTimer = setTimeout(function(){ if(!done){ done = true; cleanup(); } }, 8000);
       try{ el.hidden = false; }catch(e){}
       el.classList.add('on');
       lockScroll();
@@ -12308,6 +12345,9 @@ try{ initUnis(); }catch(e){}
       if(simple){
         el.classList.add('simple');
         later(beginExit, reduced ? 600 : 1000);
+      }else if(tryVideo()){
+        clearTimeout(hardTimer);
+        hardTimer = setTimeout(function(){ if(!done){ done = true; cleanup(); } }, 20000);
       }else{
         runFull();
       }
